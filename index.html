@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contador de Personas · Apple Edition</title>
+  
+  <!-- Tailwind CSS & Lucide Icons -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <style>
+    :root {
+      --font-sf: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", sans-serif;
+      
+      /* Light Mode (Apple Pristine Frosted Glass - Default) */
+      --bg-tint-overlay: rgba(246, 248, 252, 0.52);
+      --shell-bg: rgba(255, 255, 255, 0.82);
+      --card-bg: rgba(255, 255, 255, 0.7);
+      --card-inner-bg: rgba(0, 0, 0, 0.03);
+      --border-subtle: rgba(0, 0, 0, 0.08);
+      --border-strong: rgba(0, 0, 0, 0.12);
+      
+      --text-primary: #1d1d1f;
+      --text-secondary: #86868b;
+      --text-tertiary: #a1a1a6;
+      
+      --apple-blue: #0071e3;
+      --apple-blue-hover: #0077ed;
+      --apple-blue-soft: rgba(0, 113, 227, 0.1);
+      
+      --men-color: #0284c7;
+      --men-bg-soft: rgba(2, 132, 199, 0.08);
+      --women-color: #e11d48;
+      --women-bg-soft: rgba(225, 29, 72, 0.08);
+
+      --btn-secondary-bg: rgba(0, 0, 0, 0.05);
+      --btn-secondary-hover: rgba(0, 0, 0, 0.09);
+      --btn-secondary-text: #1d1d1f;
+      
+      --shadow-elevation: 0 30px 60px -12px rgba(0, 0, 0, 0.18), 0 12px 24px -8px rgba(0, 0, 0, 0.08);
+      --shadow-card: 0 4px 16px -2px rgba(0, 0, 0, 0.04);
+      --switch-bg: rgba(120, 120, 128, 0.18);
+    }
+
+    /* Dark Mode (Apple Space Black & OLED Glass) */
+    .dark {
+      --bg-tint-overlay: rgba(10, 14, 23, 0.78);
+      --shell-bg: rgba(24, 27, 34, 0.85);
+      --card-bg: rgba(38, 42, 53, 0.65);
+      --card-inner-bg: rgba(255, 255, 255, 0.04);
+      --border-subtle: rgba(255, 255, 255, 0.12);
+      --border-strong: rgba(255, 255, 255, 0.18);
+      
+      --text-primary: #f5f5f7;
+      --text-secondary: #98989d;
+      --text-tertiary: #6e6e73;
+      
+      --apple-blue: #2997ff;
+      --apple-blue-hover: #3ca2ff;
+      --apple-blue-soft: rgba(41, 151, 255, 0.16);
+      
+      --men-color: #38bdf8;
+      --men-bg-soft: rgba(56, 189, 248, 0.14);
+      --women-color: #fb7185;
+      --women-bg-soft: rgba(251, 113, 133, 0.14);
+
+      --btn-secondary-bg: rgba(255, 255, 255, 0.08);
+      --btn-secondary-hover: rgba(255, 255, 255, 0.15);
+      --btn-secondary-text: #f5f5f7;
+      
+      --shadow-elevation: 0 35px 80px -15px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255, 255, 255, 0.12);
+      --shadow-card: 0 6px 20px -3px rgba(0, 0, 0, 0.35);
+      --switch-bg: #0071e3;
+    }
+
+    * {
+      font-family: var(--font-sf);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.25rem;
+      background-color: #0b0f19;
+      position: relative;
+      overflow-x: hidden;
+      color: var(--text-primary);
+      transition: background-color 0.4s ease, color 0.3s ease;
+    }
+
+    /* Ambient Background with subtle glass blur */
+    .bg-image {
+      position: fixed;
+      inset: 0;
+      background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDQ8OB70OklNErdaJiIbjXoj5b6xrz9TSZylL_UR-Ccdib25zPvXnzgJ3HMocxiZ1k9Y3_Iq6HQc0j_ehXVDRHQrCjtbkQtsOCKsfF-6js0ZMIkwgHeeHu-LdxMNkMHh870O0W77uH4OKS58taRUEbQOkYaFX9BdAdYZ10NZF9GGhNqb0iLhleFWXstDq9fYpNR1dlObfZmcDP0FdoP2_LjOPfMAY7VEwMYUl4y3CWMieb4Y2ZVdp3MmSHgaaICVbaZjg');
+      background-size: cover;
+      background-position: center 30%;
+      transform: scale(1.06);
+      filter: blur(28px) saturate(135%);
+      z-index: 0;
+    }
+
+    .bg-tint-overlay {
+      position: fixed;
+      inset: 0;
+      background: var(--bg-tint-overlay);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      z-index: 1;
+      transition: background 0.4s ease;
+    }
+
+    /* Main Apple HIG Container */
+    .apple-shell {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 630px;
+      background: var(--shell-bg);
+      backdrop-filter: blur(36px) saturate(190%);
+      -webkit-backdrop-filter: blur(36px) saturate(190%);
+      border: 1px solid var(--border-subtle);
+      border-radius: 34px;
+      padding: 2.25rem 2rem;
+      box-shadow: var(--shadow-elevation);
+      display: flex;
+      flex-direction: column;
+      gap: 1.6rem;
+      transition: background 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    /* Spring animations */
+    .spring-number {
+      display: inline-block;
+      transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .spring-number.bounce {
+      transform: scale(1.15);
+    }
+
+    /* Apple Haptic Button Effect */
+    .haptic-btn {
+      transition: transform 0.16s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.2s ease, opacity 0.2s ease, box-shadow 0.2s ease;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .haptic-btn:active:not(:disabled) {
+      transform: scale(0.955);
+    }
+    .haptic-btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+      transform: none !important;
+      box-shadow: none !important;
+    }
+
+    /* Apple Switch Toggle */
+    .apple-toggle {
+      width: 52px;
+      height: 30px;
+      background: var(--switch-bg);
+      border-radius: 9999px;
+      position: relative;
+      cursor: pointer;
+      padding: 3px;
+      transition: background-color 0.3s ease, border-color 0.3s ease;
+      display: flex;
+      align-items: center;
+      border: 0.5px solid var(--border-subtle);
+    }
+    .apple-toggle:active {
+      transform: scale(0.97);
+    }
+    .apple-toggle-knob {
+      width: 24px;
+      height: 24px;
+      background: #ffffff;
+      border-radius: 50%;
+      box-shadow: 0 2px 7px rgba(0, 0, 0, 0.22);
+      transition: transform 0.32s cubic-bezier(0.34, 1.35, 0.64, 1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #64748b;
+    }
+    .dark .apple-toggle-knob {
+      transform: translateX(22px);
+      background: #ffffff;
+      color: #0f172a;
+    }
+
+    /* Sleek Apple Progress Capsule */
+    .segmented-pill {
+      height: 8px;
+      border-radius: 9999px;
+      background: rgba(120, 120, 128, 0.16);
+      overflow: hidden;
+      display: flex;
+      position: relative;
+    }
+    .pill-segment-men {
+      height: 100%;
+      background: linear-gradient(90deg, #0284c7, #38bdf8);
+      transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .pill-segment-women {
+      height: 100%;
+      background: linear-gradient(90deg, #f43f5e, #fb7185);
+      transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    button:focus-visible, .apple-toggle:focus-visible {
+      outline: 2px solid var(--apple-blue);
+      outline-offset: 2px;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 1rem 0.75rem;
+      }
+      .apple-shell {
+        border-radius: 28px;
+        padding: 1.5rem 1.15rem;
+        gap: 1.25rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ambient Blurred Backgrounds -->
+  <div class="bg-image" aria-hidden="true"></div>
+  <div class="bg-tint-overlay" aria-hidden="true"></div>
+
+  <!-- Apple Glass Shell Window -->
+  <main class="apple-shell" role="region" aria-label="Contador de Personas">
+
+    <!-- Top Navigation / Status Header Bar -->
+    <header class="flex items-center justify-between pb-2 border-b border-[var(--border-subtle)]">
+      
+      <!-- Aforo en Tiempo Real Pill -->
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-semibold tracking-wider uppercase transition-colors"
+           style="background: var(--card-bg); border: 0.5px solid var(--border-subtle); color: var(--text-secondary);">
+        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.7)]"></span>
+        <span>Aforo en Tiempo Real</span>
+      </div>
+
+      <!-- Dark Mode Apple Switch with Moon Icon -->
+      <div class="flex items-center gap-2.5">
+        <span class="text-xs font-medium tracking-tight" style="color: var(--text-secondary);" id="theme-label">
+          <span id="theme-text">Modo Claro</span>
+        </span>
+        <button id="theme-toggle" class="apple-toggle" role="switch" aria-checked="false" aria-labelledby="theme-label" title="Alternar Modo Oscuro">
+          <div class="apple-toggle-knob">
+            <i data-lucide="moon" class="w-3.5 h-3.5" id="moon-icon"></i>
+          </div>
+        </button>
+      </div>
+
+    </header>
+
+    <!-- App Header & Subtitle -->
+    <section class="text-center pt-1">
+      <div class="inline-flex items-center justify-center w-11 h-11 rounded-2xl mb-2.5 shadow-sm"
+           style="background: var(--apple-blue-soft); color: var(--apple-blue);">
+        <i data-lucide="users" class="w-6 h-6"></i>
+      </div>
+      <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-[var(--text-primary)]">
+        Contador de Personas
+      </h1>
+      <p class="text-sm mt-1.5 font-normal max-w-md mx-auto leading-relaxed text-[var(--text-secondary)]">
+        Controla fácilmente el número de personas presentes en la sala o evento.
+      </p>
+    </section>
+
+    <!-- Main Counter Hero Card -->
+    <section class="relative rounded-3xl p-6 text-center transition-all flex flex-col items-center justify-center overflow-hidden"
+             style="background: var(--card-bg); border: 0.5px solid var(--border-subtle); box-shadow: var(--shadow-card);">
+      
+      <!-- Big Number -->
+      <div class="my-1">
+        <span id="total-count-display" class="spring-number text-7xl sm:text-8xl font-bold tracking-tight text-[var(--text-primary)]">
+          0
+        </span>
+      </div>
+
+      <!-- Plurality Dynamic Label (Strict grammar: 1 Persona / N Personas) -->
+      <p id="total-count-label" class="text-base sm:text-lg font-medium text-[var(--text-secondary)] mt-1 mb-6">
+        0 Personas
+      </p>
+
+      <!-- Main Action Buttons -->
+      <div class="flex items-center justify-center gap-3 w-full max-w-sm flex-wrap">
+        
+        <!-- Restar Persona Button -->
+        <button id="btn-sub-total" disabled class="haptic-btn flex-1 min-w-[100px] py-3 px-4 rounded-2xl text-sm font-semibold flex items-center justify-center gap-2 cursor-pointer"
+                style="background: var(--btn-secondary-bg); color: var(--btn-secondary-text); border: 0.5px solid var(--border-subtle);"
+                aria-label="Restar persona">
+          <i data-lucide="minus" class="w-4 h-4"></i>
+          <span>Restar</span>
+        </button>
+
+        <!-- Añadir Persona Button (Apple Primary Blue) -->
+        <button id="btn-add-total" class="haptic-btn flex-[1.3] min-w-[125px] py-3 px-5 rounded-2xl text-sm font-semibold flex items-center justify-center gap-2 text-white shadow-md cursor-pointer"
+                style="background: var(--apple-blue); box-shadow: 0 4px 16px -2px rgba(0, 113, 227, 0.4);"
+                aria-label="Añadir persona">
+          <i data-lucide="plus" class="w-4 h-4 stroke-[2.5]"></i>
+          <span>Añadir</span>
+        </button>
+
+        <!-- Reiniciar Button -->
+        <button id="btn-reset-all" disabled class="haptic-btn py-3 px-4 rounded-2xl text-sm font-semibold flex items-center justify-center gap-1.5 cursor-pointer"
+                style="background: var(--btn-secondary-bg); color: var(--btn-secondary-text); border: 0.5px solid var(--border-subtle);"
+                aria-label="Reiniciar contador a cero" title="Reiniciar contador">
+          <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+          <span class="hidden sm:inline">Reiniciar</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Gender Counter Breakdown Cards -->
+    <section class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      
+      <!-- Hombres Card -->
+      <div class="rounded-3xl p-5 flex flex-col items-center justify-between text-center transition-all"
+           style="background: var(--card-bg); border: 0.5px solid var(--border-subtle); box-shadow: var(--shadow-card);">
+        
+        <!-- Icon & Label -->
+        <div class="flex flex-col items-center gap-1">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center mb-1"
+               style="background: var(--men-bg-soft); color: var(--men-color);">
+            <i data-lucide="user" class="w-5 h-5"></i>
+          </div>
+          <span class="text-xs font-bold uppercase tracking-wider text-[var(--text-secondary)]">Hombres</span>
+        </div>
+
+        <!-- Count -->
+        <div class="my-3">
+          <span id="men-count-display" class="spring-number text-4xl sm:text-5xl font-bold tracking-tight text-[var(--text-primary)]">
+            0
+          </span>
+        </div>
+
+        <!-- Buttons -->
+        <div class="flex items-center gap-2 w-full pt-1">
+          <button id="btn-sub-men" disabled class="haptic-btn py-2.5 px-3.5 rounded-xl text-xs font-semibold flex items-center justify-center"
+                  style="background: var(--btn-secondary-bg); color: var(--btn-secondary-text); border: 0.5px solid var(--border-subtle);"
+                  aria-label="Restar un hombre">
+            <i data-lucide="minus" class="w-3.5 h-3.5"></i>
+          </button>
+          
+          <button id="btn-add-men" class="haptic-btn flex-1 py-2.5 px-3 rounded-xl text-xs font-semibold flex items-center justify-center gap-1.5 cursor-pointer text-white shadow-sm"
+                  style="background: var(--men-color);"
+                  aria-label="Añadir un hombre">
+            <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+            <span>+1 Hombre</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mujeres Card -->
+      <div class="rounded-3xl p-5 flex flex-col items-center justify-between text-center transition-all"
+           style="background: var(--card-bg); border: 0.5px solid var(--border-subtle); box-shadow: var(--shadow-card);">
+        
+        <!-- Icon & Label -->
+        <div class="flex flex-col items-center gap-1">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center mb-1"
+               style="background: var(--women-bg-soft); color: var(--women-color);">
+            <i data-lucide="user-check" class="w-5 h-5"></i>
+          </div>
+          <span class="text-xs font-bold uppercase tracking-wider text-[var(--text-secondary)]">Mujeres</span>
+        </div>
+
+        <!-- Count -->
+        <div class="my-3">
+          <span id="women-count-display" class="spring-number text-4xl sm:text-5xl font-bold tracking-tight text-[var(--text-primary)]">
+            0
+          </span>
+        </div>
+
+        <!-- Buttons -->
+        <div class="flex items-center gap-2 w-full pt-1">
+          <button id="btn-sub-women" disabled class="haptic-btn py-2.5 px-3.5 rounded-xl text-xs font-semibold flex items-center justify-center"
+                  style="background: var(--btn-secondary-bg); color: var(--btn-secondary-text); border: 0.5px solid var(--border-subtle);"
+                  aria-label="Restar una mujer">
+            <i data-lucide="minus" class="w-3.5 h-3.5"></i>
+          </button>
+          
+          <button id="btn-add-women" class="haptic-btn flex-1 py-2.5 px-3 rounded-xl text-xs font-semibold flex items-center justify-center gap-1.5 cursor-pointer text-white shadow-sm"
+                  style="background: var(--women-color);"
+                  aria-label="Añadir una mujer">
+            <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+            <span>+1 Mujer</span>
+          </button>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="rounded-3xl p-5 flex flex-col gap-4"
+             style="background: var(--card-bg); border: 0.5px solid var(--border-subtle); box-shadow: var(--shadow-card);">
+      
+      <!-- Stats Title & Occupancy Tag -->
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[var(--text-secondary)]">
+          <i data-lucide="trending-up" class="w-4 h-4 text-[var(--apple-blue)]"></i>
+          <span>Estadísticas de Asistencia</span>
+        </div>
+
+        <span id="occupancy-badge" class="text-[11px] font-semibold px-2.5 py-0.5 rounded-full transition-colors"
+              style="background: var(--card-inner-bg); color: var(--text-secondary); border: 0.5px solid var(--border-subtle);">
+          Aforo vacío
+        </span>
+      </div>
+
+      <!-- Stat Values 3-Column Grid -->
+      <div class="grid grid-cols-3 gap-2">
+        
+        <!-- Total Metric -->
+        <div class="rounded-2xl p-3 text-center" style="background: var(--card-inner-bg); border: 0.5px solid var(--border-subtle);">
+          <span class="text-[11px] font-medium text-[var(--text-secondary)] block">👥 Total</span>
+          <span id="stat-total" class="text-xl sm:text-2xl font-bold tracking-tight text-[var(--text-primary)] block mt-0.5">0</span>
+          <span id="stat-total-pct" class="text-[10px] text-[var(--text-tertiary)] font-semibold block mt-0.5">100%</span>
+        </div>
+
+        <!-- Hombres Metric -->
+        <div class="rounded-2xl p-3 text-center" style="background: var(--card-inner-bg); border: 0.5px solid var(--border-subtle);">
+          <span class="text-[11px] font-medium text-[var(--text-secondary)] block">👨 Hombres</span>
+          <span id="stat-men" class="text-xl sm:text-2xl font-bold tracking-tight text-[var(--text-primary)] block mt-0.5">0</span>
+          <span id="stat-men-pct" class="text-[10px] font-semibold block mt-0.5" style="color: var(--men-color);">0%</span>
+        </div>
+
+        <!-- Mujeres Metric -->
+        <div class="rounded-2xl p-3 text-center" style="background: var(--card-inner-bg); border: 0.5px solid var(--border-subtle);">
+          <span class="text-[11px] font-medium text-[var(--text-secondary)] block">👩 Mujeres</span>
+          <span id="stat-women" class="text-xl sm:text-2xl font-bold tracking-tight text-[var(--text-primary)] block mt-0.5">0</span>
+          <span id="stat-women-pct" class="text-[10px] font-semibold block mt-0.5" style="color: var(--women-color);">0%</span>
+        </div>
+
+      </div>
+
+      <!-- Percentage Segmented Apple Bar -->
+      <div class="space-y-1.5 pt-1">
+        <div class="flex items-center justify-between text-[11px] font-medium">
+          <span style="color: var(--men-color);" id="bar-men-text">Hombres: 0%</span>
+          <span style="color: var(--women-color);" id="bar-women-text">Mujeres: 0%</span>
+        </div>
+        <div class="segmented-pill" role="progressbar" aria-label="Distribución por género" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+          <div id="bar-men" class="pill-segment-men" style="width: 50%;"></div>
+          <div id="bar-women" class="pill-segment-women" style="width: 50%;"></div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Footer Practice Attribution -->
+    <footer class="text-center pt-1 pb-0 text-xs font-normal text-[var(--text-tertiary)] flex items-center justify-center gap-1.5">
+      <i data-lucide="graduation-cap" class="w-3.5 h-3.5 opacity-70"></i>
+      <span>Práctica Diseño de Interfaces · 2º DAM</span>
+    </footer>
+
+  </main>
+
+  <!-- Interactive JavaScript -->
+  <script>
+    // State
+    let menCount = 0;
+    let womenCount = 0;
+
+    // DOM Elements
+    const totalDisplay = document.getElementById('total-count-display');
+    const totalLabel = document.getElementById('total-count-label');
+    const menDisplay = document.getElementById('men-count-display');
+    const womenDisplay = document.getElementById('women-count-display');
+
+    const btnSubTotal = document.getElementById('btn-sub-total');
+    const btnAddTotal = document.getElementById('btn-add-total');
+    const btnResetAll = document.getElementById('btn-reset-all');
+
+    const btnSubMen = document.getElementById('btn-sub-men');
+    const btnAddMen = document.getElementById('btn-add-men');
+    const btnSubWomen = document.getElementById('btn-sub-women');
+    const btnAddWomen = document.getElementById('btn-add-women');
+
+    const statTotal = document.getElementById('stat-total');
+    const statMen = document.getElementById('stat-men');
+    const statWomen = document.getElementById('stat-women');
+    const statMenPct = document.getElementById('stat-men-pct');
+    const statWomenPct = document.getElementById('stat-women-pct');
+    const occupancyBadge = document.getElementById('occupancy-badge');
+
+    const barMen = document.getElementById('bar-men');
+    const barWomen = document.getElementById('bar-women');
+    const barMenText = document.getElementById('bar-men-text');
+    const barWomenText = document.getElementById('bar-women-text');
+
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeText = document.getElementById('theme-text');
+
+    // Bounce trigger helper
+    function triggerBounce(element) {
+      element.classList.remove('bounce');
+      // trigger reflow
+      void element.offsetWidth;
+      element.classList.add('bounce');
+      setTimeout(() => element.classList.remove('bounce'), 280);
+    }
+
+    // Core update view
+    function updateUI(animatedElement) {
+      const total = menCount + womenCount;
+
+      // Update text displays
+      totalDisplay.textContent = total;
+      menDisplay.textContent = menCount;
+      womenDisplay.textContent = womenCount;
+
+      statTotal.textContent = total;
+      statMen.textContent = menCount;
+      statWomen.textContent = womenCount;
+
+      // Dynamic label: strictly singular when total is 1
+      if (total === 1) {
+        totalLabel.textContent = "1 Persona";
+      } else {
+        totalLabel.textContent = `${total} Personas`;
+      }
+
+      // Disabled states (cannot drop below 0)
+      const isZero = total === 0;
+      btnSubTotal.disabled = isZero;
+      btnResetAll.disabled = isZero;
+      btnSubMen.disabled = menCount === 0;
+      btnSubWomen.disabled = womenCount === 0;
+
+      // Calculations for percentage
+      let menPct = 0;
+      let womenPct = 0;
+
+      if (total > 0) {
+        menPct = Math.round((menCount / total) * 100);
+        womenPct = 100 - menPct;
+        barMen.style.width = `${menPct}%`;
+        barWomen.style.width = `${womenPct}%`;
+      } else {
+        barMen.style.width = '50%';
+        barWomen.style.width = '50%';
+      }
+
+      statMenPct.textContent = `${menPct}%`;
+      statWomenPct.textContent = `${womenPct}%`;
+      barMenText.textContent = `Hombres: ${menPct}%`;
+      barWomenText.textContent = `Mujeres: ${womenPct}%`;
+
+      // Occupancy state
+      if (total === 0) {
+        occupancyBadge.textContent = "Aforo vacío";
+        occupancyBadge.style.color = "var(--text-secondary)";
+      } else if (total < 10) {
+        occupancyBadge.textContent = "Afluencia baja";
+        occupancyBadge.style.color = "#0284c7";
+      } else if (total < 25) {
+        occupancyBadge.textContent = "Afluencia moderada";
+        occupancyBadge.style.color = "#10b981";
+      } else {
+        occupancyBadge.textContent = "Afluencia alta";
+        occupancyBadge.style.color = "#e11d48";
+      }
+
+      // Trigger spring animation if specified
+      if (animatedElement) {
+        triggerBounce(animatedElement);
+      }
+    }
+
+    // Event Listeners
+    btnAddMen.addEventListener('click', () => {
+      menCount++;
+      updateUI(menDisplay);
+      triggerBounce(totalDisplay);
+    });
+
+    btnSubMen.addEventListener('click', () => {
+      if (menCount > 0) {
+        menCount--;
+        updateUI(menDisplay);
+        triggerBounce(totalDisplay);
+      }
+    });
+
+    btnAddWomen.addEventListener('click', () => {
+      womenCount++;
+      updateUI(womenDisplay);
+      triggerBounce(totalDisplay);
+    });
+
+    btnSubWomen.addEventListener('click', () => {
+      if (womenCount > 0) {
+        womenCount--;
+        updateUI(womenDisplay);
+        triggerBounce(totalDisplay);
+      }
+    });
+
+    // General Add button: distributes or defaults to +1 persona (adds to hombres as default balanced increment)
+    btnAddTotal.addEventListener('click', () => {
+      // By default adds 1 to keep Total = Hombres + Mujeres rule strictly preserved
+      if (menCount <= womenCount) {
+        menCount++;
+      } else {
+        womenCount++;
+      }
+      updateUI(totalDisplay);
+    });
+
+    // General Subtract button: decreases the larger gender counter first
+    btnSubTotal.addEventListener('click', () => {
+      if (menCount + womenCount > 0) {
+        if (menCount >= womenCount && menCount > 0) {
+          menCount--;
+        } else if (womenCount > 0) {
+          womenCount--;
+        } else if (menCount > 0) {
+          menCount--;
+        }
+        updateUI(totalDisplay);
+      }
+    });
+
+    // Reset button
+    btnResetAll.addEventListener('click', () => {
+      menCount = 0;
+      womenCount = 0;
+      updateUI(totalDisplay);
+    });
+
+    // Dark Mode Toggle
+    let isDarkMode = false;
+    themeToggle.addEventListener('click', () => {
+      isDarkMode = !isDarkMode;
+      document.documentElement.classList.toggle('dark', isDarkMode);
+      themeToggle.setAttribute('aria-checked', isDarkMode ? 'true' : 'false');
+      themeText.textContent = isDarkMode ? 'Modo Oscuro' : 'Modo Claro';
+    });
+
+    // Initialize Icons and UI
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.lucide) {
+        window.lucide.createIcons();
+      }
+      updateUI();
+    });
+  </script>
+</body>
+</html>
