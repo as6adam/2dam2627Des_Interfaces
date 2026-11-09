@@ -3,74 +3,79 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contador de Personas · Apple Edition</title>
-  
-  <!-- Tailwind CSS & Lucide Icons -->
+  <meta name="theme-color" content="#0a0e1a">
+  <title>Contador de Personas</title>
+
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  <script src="https://unpkg.com/lucide@latest"></script>
-  
+  <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+
   <style>
     :root {
-      --font-sf: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", sans-serif;
-      
-      /* Light Mode (Apple Pristine Frosted Glass - Default) */
-      --bg-tint-overlay: rgba(246, 248, 252, 0.52);
-      --shell-bg: rgba(255, 255, 255, 0.82);
-      --card-bg: rgba(255, 255, 255, 0.7);
-      --card-inner-bg: rgba(0, 0, 0, 0.03);
+      --font-sf: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+
+      /* Claro: cristal esmerilado sobre ambiente neón */
+      --bg-tint-overlay: rgba(232, 238, 255, 0.34);
+      --shell-bg: rgba(255, 255, 255, 0.78);
+      --card-bg: rgba(255, 255, 255, 0.66);
+      --card-inner-bg: rgba(0, 0, 0, 0.035);
       --border-subtle: rgba(0, 0, 0, 0.08);
-      --border-strong: rgba(0, 0, 0, 0.12);
-      
+      --border-strong: rgba(0, 0, 0, 0.14);
+
       --text-primary: #1d1d1f;
-      --text-secondary: #86868b;
-      --text-tertiary: #a1a1a6;
-      
+      --text-secondary: #6e6e73;
+      --text-tertiary: #8e8e93;
+
       --apple-blue: #0071e3;
-      --apple-blue-hover: #0077ed;
       --apple-blue-soft: rgba(0, 113, 227, 0.1);
-      
+
       --men-color: #0284c7;
-      --men-bg-soft: rgba(2, 132, 199, 0.08);
+      --men-bg-soft: rgba(2, 132, 199, 0.09);
       --women-color: #e11d48;
-      --women-bg-soft: rgba(225, 29, 72, 0.08);
+      --women-bg-soft: rgba(225, 29, 72, 0.09);
+
+      --ok: #059669;
+      --warn: #d97706;
+      --crit: #e11d48;
+      --crit-soft: rgba(225, 29, 72, 0.12);
 
       --btn-secondary-bg: rgba(0, 0, 0, 0.05);
-      --btn-secondary-hover: rgba(0, 0, 0, 0.09);
       --btn-secondary-text: #1d1d1f;
-      
-      --shadow-elevation: 0 30px 60px -12px rgba(0, 0, 0, 0.18), 0 12px 24px -8px rgba(0, 0, 0, 0.08);
-      --shadow-card: 0 4px 16px -2px rgba(0, 0, 0, 0.04);
-      --switch-bg: rgba(120, 120, 128, 0.18);
+
+      --shadow-elevation: 0 30px 60px -12px rgba(0, 0, 0, 0.28), 0 12px 24px -8px rgba(0, 0, 0, 0.12);
+      --shadow-card: 0 4px 16px -2px rgba(0, 0, 0, 0.05);
+      --switch-bg: rgba(120, 120, 128, 0.22);
     }
 
-    /* Dark Mode (Apple Space Black & OLED Glass) */
     .dark {
-      --bg-tint-overlay: rgba(10, 14, 23, 0.78);
-      --shell-bg: rgba(24, 27, 34, 0.85);
-      --card-bg: rgba(38, 42, 53, 0.65);
-      --card-inner-bg: rgba(255, 255, 255, 0.04);
+      --bg-tint-overlay: rgba(6, 9, 20, 0.58);
+      --shell-bg: rgba(20, 23, 32, 0.78);
+      --card-bg: rgba(38, 42, 56, 0.58);
+      --card-inner-bg: rgba(255, 255, 255, 0.05);
       --border-subtle: rgba(255, 255, 255, 0.12);
-      --border-strong: rgba(255, 255, 255, 0.18);
-      
-      --text-primary: #f5f5f7;
-      --text-secondary: #98989d;
-      --text-tertiary: #6e6e73;
-      
-      --apple-blue: #2997ff;
-      --apple-blue-hover: #3ca2ff;
-      --apple-blue-soft: rgba(41, 151, 255, 0.16);
-      
-      --men-color: #38bdf8;
-      --men-bg-soft: rgba(56, 189, 248, 0.14);
-      --women-color: #fb7185;
-      --women-bg-soft: rgba(251, 113, 133, 0.14);
+      --border-strong: rgba(255, 255, 255, 0.2);
 
-      --btn-secondary-bg: rgba(255, 255, 255, 0.08);
-      --btn-secondary-hover: rgba(255, 255, 255, 0.15);
+      --text-primary: #f5f5f7;
+      --text-secondary: #a1a1a6;
+      --text-tertiary: #7c7c82;
+
+      --apple-blue: #2997ff;
+      --apple-blue-soft: rgba(41, 151, 255, 0.18);
+
+      --men-color: #38bdf8;
+      --men-bg-soft: rgba(56, 189, 248, 0.15);
+      --women-color: #fb7185;
+      --women-bg-soft: rgba(251, 113, 133, 0.15);
+
+      --ok: #34d399;
+      --warn: #fbbf24;
+      --crit: #fb7185;
+      --crit-soft: rgba(251, 113, 133, 0.18);
+
+      --btn-secondary-bg: rgba(255, 255, 255, 0.09);
       --btn-secondary-text: #f5f5f7;
-      
-      --shadow-elevation: 0 35px 80px -15px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255, 255, 255, 0.12);
-      --shadow-card: 0 6px 20px -3px rgba(0, 0, 0, 0.35);
+
+      --shadow-elevation: 0 35px 80px -15px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.1);
+      --shadow-card: 0 6px 20px -3px rgba(0, 0, 0, 0.4);
       --switch-bg: #0071e3;
     }
 
@@ -85,45 +90,54 @@
 
     body {
       min-height: 100vh;
+      min-height: 100dvh;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 2rem 1.25rem;
-      background-color: #0b0f19;
+      background-color: #070a14;
       position: relative;
       overflow-x: hidden;
       color: var(--text-primary);
-      transition: background-color 0.4s ease, color 0.3s ease;
+      transition: color 0.3s ease;
     }
 
-    /* Ambient Background with subtle glass blur */
+    /* Fondo: siluetas en niebla con neones azul y naranja (imagen incrustada, sin dependencias) */
     .bg-image {
       position: fixed;
-      inset: 0;
-      background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDQ8OB70OklNErdaJiIbjXoj5b6xrz9TSZylL_UR-Ccdib25zPvXnzgJ3HMocxiZ1k9Y3_Iq6HQc0j_ehXVDRHQrCjtbkQtsOCKsfF-6js0ZMIkwgHeeHu-LdxMNkMHh870O0W77uH4OKS58taRUEbQOkYaFX9BdAdYZ10NZF9GGhNqb0iLhleFWXstDq9fYpNR1dlObfZmcDP0FdoP2_LjOPfMAY7VEwMYUl4y3CWMieb4Y2ZVdp3MmSHgaaICVbaZjg');
+      inset: -40px;
+      background-image: url('data:image/jpeg;base64,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');
       background-size: cover;
-      background-position: center 30%;
-      transform: scale(1.06);
-      filter: blur(28px) saturate(135%);
+      background-position: center;
+      filter: blur(14px) saturate(140%);
       z-index: 0;
     }
-
+    /* Resplandores de neón extra para dar profundidad en pantallas verticales */
+    .bg-glow {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background:
+        radial-gradient(60vmax 40vmax at 8% 6%, rgba(255, 122, 61, 0.38), transparent 60%),
+        radial-gradient(70vmax 50vmax at 92% 96%, rgba(37, 99, 235, 0.4), transparent 60%);
+      mix-blend-mode: screen;
+    }
     .bg-tint-overlay {
       position: fixed;
       inset: 0;
       background: var(--bg-tint-overlay);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      z-index: 1;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      z-index: 2;
       transition: background 0.4s ease;
     }
 
-    /* Main Apple HIG Container */
     .apple-shell {
       position: relative;
-      z-index: 2;
+      z-index: 3;
       width: 100%;
-      max-width: 630px;
+      max-width: 660px;
       background: var(--shell-bg);
       backdrop-filter: blur(36px) saturate(190%);
       -webkit-backdrop-filter: blur(36px) saturate(190%);
@@ -133,28 +147,29 @@
       box-shadow: var(--shadow-elevation);
       display: flex;
       flex-direction: column;
-      gap: 1.6rem;
+      gap: 1.4rem;
       transition: background 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
     }
 
-    /* Spring animations */
-    .spring-number {
-      display: inline-block;
-      transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-    .spring-number.bounce {
-      transform: scale(1.15);
+    .glass-card {
+      background: var(--card-bg);
+      border: 0.5px solid var(--border-subtle);
+      box-shadow: var(--shadow-card);
     }
 
-    /* Apple Haptic Button Effect */
+    .spring-number {
+      display: inline-block;
+      transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.3s ease;
+    }
+    .spring-number.bounce { transform: scale(1.15); }
+
     .haptic-btn {
       transition: transform 0.16s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.2s ease, opacity 0.2s ease, box-shadow 0.2s ease;
       user-select: none;
       -webkit-tap-highlight-color: transparent;
+      cursor: pointer;
     }
-    .haptic-btn:active:not(:disabled) {
-      transform: scale(0.955);
-    }
+    .haptic-btn:active:not(:disabled) { transform: scale(0.955); }
     .haptic-btn:disabled {
       opacity: 0.35;
       cursor: not-allowed;
@@ -162,7 +177,14 @@
       box-shadow: none !important;
     }
 
-    /* Apple Switch Toggle */
+    .btn-secondary {
+      background: var(--btn-secondary-bg);
+      color: var(--btn-secondary-text);
+      border: 0.5px solid var(--border-subtle);
+    }
+    .btn-secondary:hover:not(:disabled) { background: var(--border-subtle); }
+
+    /* Interruptores estilo iOS */
     .apple-toggle {
       width: 52px;
       height: 30px;
@@ -171,18 +193,16 @@
       position: relative;
       cursor: pointer;
       padding: 3px;
-      transition: background-color 0.3s ease, border-color 0.3s ease;
+      transition: background-color 0.3s ease;
       display: flex;
       align-items: center;
       border: 0.5px solid var(--border-subtle);
-    }
-    .apple-toggle:active {
-      transform: scale(0.97);
+      flex-shrink: 0;
     }
     .apple-toggle-knob {
       width: 24px;
       height: 24px;
-      background: #ffffff;
+      background: #fff;
       border-radius: 50%;
       box-shadow: 0 2px 7px rgba(0, 0, 0, 0.22);
       transition: transform 0.32s cubic-bezier(0.34, 1.35, 0.64, 1);
@@ -191,264 +211,277 @@
       justify-content: center;
       color: #64748b;
     }
-    .dark .apple-toggle-knob {
-      transform: translateX(22px);
-      background: #ffffff;
-      color: #0f172a;
-    }
+    .dark .apple-toggle-knob { transform: translateX(22px); color: #0f172a; }
 
-    /* Sleek Apple Progress Capsule */
+    /* Barras */
     .segmented-pill {
       height: 8px;
       border-radius: 9999px;
-      background: rgba(120, 120, 128, 0.16);
+      background: rgba(120, 120, 128, 0.18);
       overflow: hidden;
       display: flex;
-      position: relative;
     }
-    .pill-segment-men {
-      height: 100%;
-      background: linear-gradient(90deg, #0284c7, #38bdf8);
-      transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .pill-segment-women {
-      height: 100%;
-      background: linear-gradient(90deg, #f43f5e, #fb7185);
-      transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-    }
+    .pill-segment-men { height: 100%; background: linear-gradient(90deg, #0284c7, #38bdf8); transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1); }
+    .pill-segment-women { height: 100%; background: linear-gradient(90deg, #f43f5e, #fb7185); transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1); }
 
-    button:focus-visible, .apple-toggle:focus-visible {
-      outline: 2px solid var(--apple-blue);
-      outline-offset: 2px;
+    .cap-track { height: 6px; border-radius: 9999px; background: rgba(120, 120, 128, 0.18); overflow: hidden; }
+    .cap-fill { height: 100%; width: 0; border-radius: 9999px; background: var(--ok); transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease; }
+
+    /* Estado aforo completo */
+    .is-full .hero-card { border-color: var(--crit); box-shadow: 0 0 0 3px var(--crit-soft), var(--shadow-card); }
+    .is-full #total-count-display { color: var(--crit); }
+
+    /* Banner flotante */
+    .full-banner {
+      position: fixed;
+      top: max(14px, env(safe-area-inset-top));
+      left: 50%;
+      z-index: 50;
+      transform: translate(-50%, -140%);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.5s cubic-bezier(0.34, 1.4, 0.64, 1), opacity 0.3s ease;
+      width: min(92vw, 420px);
     }
+    .full-banner.show { transform: translate(-50%, 0); opacity: 1; pointer-events: auto; }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: max(18px, env(safe-area-inset-bottom));
+      left: 50%;
+      z-index: 60;
+      transform: translate(-50%, 140%);
+      opacity: 0;
+      transition: transform 0.4s cubic-bezier(0.34, 1.4, 0.64, 1), opacity 0.25s ease;
+      pointer-events: none;
+    }
+    .toast.show { transform: translate(-50%, 0); opacity: 1; }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20% { transform: translateX(-6px); }
+      40% { transform: translateX(5px); }
+      60% { transform: translateX(-4px); }
+      80% { transform: translateX(3px); }
+    }
+    .shake { animation: shake 0.38s ease; }
+
+    @keyframes logIn {
+      from { opacity: 0; transform: translateY(-6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .log-new { animation: logIn 0.3s ease; }
+
+    /* Historial colapsable */
+    .collapse-body {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .collapse-body.open { grid-template-rows: 1fr; }
+    .collapse-body > div { overflow: hidden; }
+    .chevron { transition: transform 0.3s ease; }
+    .open-state .chevron { transform: rotate(180deg); }
+
+    /* Diálogo de ajustes */
+    dialog.settings {
+      margin: auto;
+      border: 1px solid var(--border-subtle);
+      border-radius: 28px;
+      background: var(--shell-bg);
+      backdrop-filter: blur(40px) saturate(190%);
+      -webkit-backdrop-filter: blur(40px) saturate(190%);
+      color: var(--text-primary);
+      width: min(92vw, 400px);
+      padding: 1.6rem;
+      box-shadow: var(--shadow-elevation);
+    }
+    dialog.settings::backdrop { background: rgba(0, 0, 0, 0.42); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
+    dialog.settings[open] { animation: dlgIn 0.3s cubic-bezier(0.34, 1.4, 0.64, 1); }
+    @keyframes dlgIn { from { opacity: 0; transform: scale(0.94); } to { opacity: 1; transform: scale(1); } }
+
+    .num-input {
+      width: 100%;
+      text-align: center;
+      font-size: 2.4rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: var(--card-inner-bg);
+      color: var(--text-primary);
+      border: 1px solid var(--border-subtle);
+      border-radius: 18px;
+      padding: 0.6rem 0.5rem;
+      -moz-appearance: textfield;
+    }
+    .num-input::-webkit-outer-spin-button, .num-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+    .num-input:focus { outline: 2px solid var(--apple-blue); outline-offset: 1px; }
+
+    button:focus-visible, .apple-toggle:focus-visible, summary:focus-visible { outline: 2px solid var(--apple-blue); outline-offset: 2px; }
 
     @media (max-width: 640px) {
-      body {
-        padding: 1rem 0.75rem;
-      }
-      .apple-shell {
-        border-radius: 28px;
-        padding: 1.5rem 1.15rem;
-        gap: 1.25rem;
-      }
+      body { padding: 1rem 0.75rem; }
+      .apple-shell { border-radius: 28px; padding: 1.5rem 1.1rem; gap: 1.2rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Ambient Blurred Backgrounds -->
   <div class="bg-image" aria-hidden="true"></div>
+  <div class="bg-glow" aria-hidden="true"></div>
   <div class="bg-tint-overlay" aria-hidden="true"></div>
 
-  <!-- Apple Glass Shell Window -->
-  <main class="apple-shell" role="region" aria-label="Contador de Personas">
+  <!-- Banner flotante: aforo completo -->
+  <div id="full-banner" class="full-banner" role="alert" aria-live="assertive">
+    <div class="flex items-center gap-3 rounded-2xl px-4 py-3 text-white shadow-2xl"
+         style="background: linear-gradient(135deg, #e11d48, #be123c); border: 1px solid rgba(255,255,255,0.25);">
+      <i data-lucide="octagon-alert" class="w-6 h-6 shrink-0"></i>
+      <div class="min-w-0 flex-1">
+        <p class="text-sm font-bold leading-tight">¡Aforo completo!</p>
+        <p class="text-xs opacity-90 leading-tight mt-0.5" id="full-banner-text">Se ha alcanzado el límite.</p>
+      </div>
+      <button id="banner-close" class="haptic-btn p-1.5 rounded-full hover:bg-white/20" aria-label="Cerrar aviso">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+    </div>
+  </div>
 
-    <!-- Top Navigation / Status Header Bar -->
-    <header class="flex items-center justify-between pb-2 border-b border-[var(--border-subtle)]">
-      
-      <!-- Aforo en Tiempo Real Pill -->
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-semibold tracking-wider uppercase transition-colors"
-           style="background: var(--card-bg); border: 0.5px solid var(--border-subtle); color: var(--text-secondary);">
+  <main id="app" class="apple-shell" role="region" aria-label="Contador de Personas">
+
+    <!-- Barra superior -->
+    <header class="flex items-center justify-between gap-3 pb-3 border-b border-[var(--border-subtle)]">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-semibold tracking-wider uppercase glass-card"
+           style="color: var(--text-secondary);">
         <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.7)]"></span>
-        <span>Aforo en Tiempo Real</span>
+        <span>Aforo en tiempo real</span>
       </div>
 
-      <!-- Dark Mode Apple Switch with Moon Icon -->
-      <div class="flex items-center gap-2.5">
-        <span class="text-xs font-medium tracking-tight" style="color: var(--text-secondary);" id="theme-label">
-          <span id="theme-text">Modo Claro</span>
-        </span>
-        <button id="theme-toggle" class="apple-toggle" role="switch" aria-checked="false" aria-labelledby="theme-label" title="Alternar Modo Oscuro">
-          <div class="apple-toggle-knob">
-            <i data-lucide="moon" class="w-3.5 h-3.5" id="moon-icon"></i>
-          </div>
+      <div class="flex items-center gap-2">
+        <button id="sound-toggle" class="haptic-btn btn-secondary w-9 h-9 rounded-full flex items-center justify-center" aria-pressed="true" aria-label="Sonido activado" title="Sonido">
+          <i data-lucide="volume-2" class="w-4 h-4" id="sound-icon"></i>
+        </button>
+        <span class="text-xs font-medium hidden sm:inline" style="color: var(--text-secondary);" id="theme-label"><span id="theme-text">Modo claro</span></span>
+        <button id="theme-toggle" class="apple-toggle" role="switch" aria-checked="false" aria-labelledby="theme-label" title="Alternar modo oscuro">
+          <div class="apple-toggle-knob"><i data-lucide="moon" class="w-3.5 h-3.5"></i></div>
         </button>
       </div>
-
     </header>
 
-    <!-- App Header & Subtitle -->
-    <section class="text-center pt-1">
-      <div class="inline-flex items-center justify-center w-11 h-11 rounded-2xl mb-2.5 shadow-sm"
+    <!-- Título -->
+    <section class="text-center">
+      <div class="inline-flex items-center justify-center w-11 h-11 rounded-2xl mb-2.5"
            style="background: var(--apple-blue-soft); color: var(--apple-blue);">
         <i data-lucide="users" class="w-6 h-6"></i>
       </div>
-      <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-[var(--text-primary)]">
-        Contador de Personas
-      </h1>
-      <p class="text-sm mt-1.5 font-normal max-w-md mx-auto leading-relaxed text-[var(--text-secondary)]">
+      <h1 class="text-2xl sm:text-3xl font-bold tracking-tight">Contador de Personas</h1>
+      <p class="text-sm mt-1.5 max-w-md mx-auto leading-relaxed" style="color: var(--text-secondary);">
         Controla fácilmente el número de personas presentes en la sala o evento.
       </p>
     </section>
 
-    <!-- Main Counter Hero Card -->
-    <section class="relative rounded-3xl p-6 text-center transition-all flex flex-col items-center justify-center overflow-hidden"
-             style="background: var(--card-bg); border: 0.5px solid var(--border-subtle); box-shadow: var(--shadow-card);">
-      
-      <!-- Big Number -->
-      <div class="my-1">
-        <span id="total-count-display" class="spring-number text-7xl sm:text-8xl font-bold tracking-tight text-[var(--text-primary)]">
-          0
-        </span>
+    <!-- Contador principal -->
+    <section id="hero-card" class="hero-card glass-card relative rounded-3xl p-6 text-center flex flex-col items-center overflow-hidden transition-all">
+      <div class="my-1" aria-live="polite" aria-atomic="true">
+        <span id="total-count-display" class="spring-number text-7xl sm:text-8xl font-bold tracking-tight">0</span>
+      </div>
+      <p id="total-count-label" class="text-base sm:text-lg font-medium mt-1" style="color: var(--text-secondary);">0 Personas</p>
+
+      <!-- Capacidad -->
+      <div class="w-full max-w-sm mt-4 mb-5">
+        <div class="flex items-center justify-between text-xs font-medium mb-1.5" style="color: var(--text-secondary);">
+          <span id="cap-text">0 de 33</span>
+          <button id="btn-settings" class="haptic-btn inline-flex items-center gap-1 px-2.5 py-1 rounded-full btn-secondary text-[11px] font-semibold" aria-haspopup="dialog">
+            <i data-lucide="sliders-horizontal" class="w-3 h-3"></i>
+            <span>Aforo máx.: <span id="cap-max-label">33</span></span>
+          </button>
+        </div>
+        <div class="cap-track" role="progressbar" aria-label="Ocupación del aforo" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="cap-progress">
+          <div id="cap-fill" class="cap-fill"></div>
+        </div>
       </div>
 
-      <!-- Plurality Dynamic Label (Strict grammar: 1 Persona / N Personas) -->
-      <p id="total-count-label" class="text-base sm:text-lg font-medium text-[var(--text-secondary)] mt-1 mb-6">
-        0 Personas
-      </p>
-
-      <!-- Main Action Buttons -->
       <div class="flex items-center justify-center gap-3 w-full max-w-sm flex-wrap">
-        
-        <!-- Restar Persona Button -->
-        <button id="btn-sub-total" disabled class="haptic-btn flex-1 min-w-[100px] py-3 px-4 rounded-2xl text-sm font-semibold flex items-center justify-center gap-2 cursor-pointer"
-                style="background: var(--btn-secondary-bg); color: var(--btn-secondary-text); border: 0.5px solid var(--border-subtle);"
-                aria-label="Restar persona">
-          <i data-lucide="minus" class="w-4 h-4"></i>
-          <span>Restar</span>
+        <button id="btn-sub-total" disabled class="haptic-btn btn-secondary flex-1 min-w-[100px] py-3 px-4 rounded-2xl text-sm font-semibold flex items-center justify-center gap-2" aria-label="Restar persona">
+          <i data-lucide="minus" class="w-4 h-4"></i><span>Restar</span>
         </button>
-
-        <!-- Añadir Persona Button (Apple Primary Blue) -->
-        <button id="btn-add-total" class="haptic-btn flex-[1.3] min-w-[125px] py-3 px-5 rounded-2xl text-sm font-semibold flex items-center justify-center gap-2 text-white shadow-md cursor-pointer"
-                style="background: var(--apple-blue); box-shadow: 0 4px 16px -2px rgba(0, 113, 227, 0.4);"
-                aria-label="Añadir persona">
-          <i data-lucide="plus" class="w-4 h-4 stroke-[2.5]"></i>
-          <span>Añadir</span>
+        <button id="btn-add-total" class="haptic-btn flex-[1.3] min-w-[125px] py-3 px-5 rounded-2xl text-sm font-semibold flex items-center justify-center gap-2 text-white"
+                style="background: var(--apple-blue); box-shadow: 0 4px 16px -2px rgba(0, 113, 227, 0.4);" aria-label="Añadir persona">
+          <i data-lucide="plus" class="w-4 h-4 stroke-[2.5]"></i><span>Añadir</span>
         </button>
-
-        <!-- Reiniciar Button -->
-        <button id="btn-reset-all" disabled class="haptic-btn py-3 px-4 rounded-2xl text-sm font-semibold flex items-center justify-center gap-1.5 cursor-pointer"
-                style="background: var(--btn-secondary-bg); color: var(--btn-secondary-text); border: 0.5px solid var(--border-subtle);"
-                aria-label="Reiniciar contador a cero" title="Reiniciar contador">
-          <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
-          <span class="hidden sm:inline">Reiniciar</span>
+        <button id="btn-reset-all" disabled class="haptic-btn btn-secondary py-3 px-4 rounded-2xl text-sm font-semibold flex items-center justify-center gap-1.5" aria-label="Reiniciar contador a cero" title="Reiniciar contador">
+          <i data-lucide="rotate-ccw" class="w-4 h-4"></i><span class="hidden sm:inline">Reiniciar</span>
         </button>
       </div>
     </section>
 
-    <!-- Gender Counter Breakdown Cards -->
+    <!-- Hombres / Mujeres -->
     <section class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-      
-      <!-- Hombres Card -->
-      <div class="rounded-3xl p-5 flex flex-col items-center justify-between text-center transition-all"
-           style="background: var(--card-bg); border: 0.5px solid var(--border-subtle); box-shadow: var(--shadow-card);">
-        
-        <!-- Icon & Label -->
+      <div class="glass-card rounded-3xl p-5 flex flex-col items-center text-center">
         <div class="flex flex-col items-center gap-1">
-          <div class="w-10 h-10 rounded-2xl flex items-center justify-center mb-1"
-               style="background: var(--men-bg-soft); color: var(--men-color);">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center mb-1" style="background: var(--men-bg-soft); color: var(--men-color);">
             <i data-lucide="user" class="w-5 h-5"></i>
           </div>
-          <span class="text-xs font-bold uppercase tracking-wider text-[var(--text-secondary)]">Hombres</span>
+          <span class="text-xs font-bold uppercase tracking-wider" style="color: var(--text-secondary);">Hombres</span>
         </div>
-
-        <!-- Count -->
-        <div class="my-3">
-          <span id="men-count-display" class="spring-number text-4xl sm:text-5xl font-bold tracking-tight text-[var(--text-primary)]">
-            0
-          </span>
-        </div>
-
-        <!-- Buttons -->
+        <div class="my-3"><span id="men-count-display" class="spring-number text-4xl sm:text-5xl font-bold tracking-tight">0</span></div>
         <div class="flex items-center gap-2 w-full pt-1">
-          <button id="btn-sub-men" disabled class="haptic-btn py-2.5 px-3.5 rounded-xl text-xs font-semibold flex items-center justify-center"
-                  style="background: var(--btn-secondary-bg); color: var(--btn-secondary-text); border: 0.5px solid var(--border-subtle);"
-                  aria-label="Restar un hombre">
-            <i data-lucide="minus" class="w-3.5 h-3.5"></i>
-          </button>
-          
-          <button id="btn-add-men" class="haptic-btn flex-1 py-2.5 px-3 rounded-xl text-xs font-semibold flex items-center justify-center gap-1.5 cursor-pointer text-white shadow-sm"
-                  style="background: var(--men-color);"
-                  aria-label="Añadir un hombre">
-            <i data-lucide="plus" class="w-3.5 h-3.5"></i>
-            <span>+1 Hombre</span>
+          <button id="btn-sub-men" disabled class="haptic-btn btn-secondary py-2.5 px-3.5 rounded-xl flex items-center justify-center" aria-label="Restar un hombre"><i data-lucide="minus" class="w-3.5 h-3.5"></i></button>
+          <button id="btn-add-men" class="haptic-btn flex-1 py-2.5 px-3 rounded-xl text-xs font-semibold flex items-center justify-center gap-1.5 text-white shadow-sm" style="background: var(--men-color);" aria-label="Añadir un hombre">
+            <i data-lucide="plus" class="w-3.5 h-3.5"></i><span>+1 Hombre</span>
           </button>
         </div>
       </div>
 
-      <!-- Mujeres Card -->
-      <div class="rounded-3xl p-5 flex flex-col items-center justify-between text-center transition-all"
-           style="background: var(--card-bg); border: 0.5px solid var(--border-subtle); box-shadow: var(--shadow-card);">
-        
-        <!-- Icon & Label -->
+      <div class="glass-card rounded-3xl p-5 flex flex-col items-center text-center">
         <div class="flex flex-col items-center gap-1">
-          <div class="w-10 h-10 rounded-2xl flex items-center justify-center mb-1"
-               style="background: var(--women-bg-soft); color: var(--women-color);">
+          <div class="w-10 h-10 rounded-2xl flex items-center justify-center mb-1" style="background: var(--women-bg-soft); color: var(--women-color);">
             <i data-lucide="user-check" class="w-5 h-5"></i>
           </div>
-          <span class="text-xs font-bold uppercase tracking-wider text-[var(--text-secondary)]">Mujeres</span>
+          <span class="text-xs font-bold uppercase tracking-wider" style="color: var(--text-secondary);">Mujeres</span>
         </div>
-
-        <!-- Count -->
-        <div class="my-3">
-          <span id="women-count-display" class="spring-number text-4xl sm:text-5xl font-bold tracking-tight text-[var(--text-primary)]">
-            0
-          </span>
-        </div>
-
-        <!-- Buttons -->
+        <div class="my-3"><span id="women-count-display" class="spring-number text-4xl sm:text-5xl font-bold tracking-tight">0</span></div>
         <div class="flex items-center gap-2 w-full pt-1">
-          <button id="btn-sub-women" disabled class="haptic-btn py-2.5 px-3.5 rounded-xl text-xs font-semibold flex items-center justify-center"
-                  style="background: var(--btn-secondary-bg); color: var(--btn-secondary-text); border: 0.5px solid var(--border-subtle);"
-                  aria-label="Restar una mujer">
-            <i data-lucide="minus" class="w-3.5 h-3.5"></i>
-          </button>
-          
-          <button id="btn-add-women" class="haptic-btn flex-1 py-2.5 px-3 rounded-xl text-xs font-semibold flex items-center justify-center gap-1.5 cursor-pointer text-white shadow-sm"
-                  style="background: var(--women-color);"
-                  aria-label="Añadir una mujer">
-            <i data-lucide="plus" class="w-3.5 h-3.5"></i>
-            <span>+1 Mujer</span>
+          <button id="btn-sub-women" disabled class="haptic-btn btn-secondary py-2.5 px-3.5 rounded-xl flex items-center justify-center" aria-label="Restar una mujer"><i data-lucide="minus" class="w-3.5 h-3.5"></i></button>
+          <button id="btn-add-women" class="haptic-btn flex-1 py-2.5 px-3 rounded-xl text-xs font-semibold flex items-center justify-center gap-1.5 text-white shadow-sm" style="background: var(--women-color);" aria-label="Añadir una mujer">
+            <i data-lucide="plus" class="w-3.5 h-3.5"></i><span>+1 Mujer</span>
           </button>
         </div>
       </div>
-
     </section>
 
-    <!-- Statistics Section -->
-    <section class="rounded-3xl p-5 flex flex-col gap-4"
-             style="background: var(--card-bg); border: 0.5px solid var(--border-subtle); box-shadow: var(--shadow-card);">
-      
-      <!-- Stats Title & Occupancy Tag -->
-      <div class="flex items-center justify-between">
-        <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[var(--text-secondary)]">
-          <i data-lucide="trending-up" class="w-4 h-4 text-[var(--apple-blue)]"></i>
-          <span>Estadísticas de Asistencia</span>
+    <!-- Estadísticas -->
+    <section class="glass-card rounded-3xl p-5 flex flex-col gap-4">
+      <div class="flex items-center justify-between gap-2">
+        <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider" style="color: var(--text-secondary);">
+          <i data-lucide="trending-up" class="w-4 h-4" style="color: var(--apple-blue);"></i>
+          <span>Estadísticas de asistencia</span>
         </div>
-
-        <span id="occupancy-badge" class="text-[11px] font-semibold px-2.5 py-0.5 rounded-full transition-colors"
-              style="background: var(--card-inner-bg); color: var(--text-secondary); border: 0.5px solid var(--border-subtle);">
-          Aforo vacío
-        </span>
+        <span id="occupancy-badge" class="text-[11px] font-semibold px-2.5 py-0.5 rounded-full transition-colors whitespace-nowrap"
+              style="background: var(--card-inner-bg); color: var(--text-secondary); border: 0.5px solid var(--border-subtle);">Aforo vacío</span>
       </div>
 
-      <!-- Stat Values 3-Column Grid -->
       <div class="grid grid-cols-3 gap-2">
-        
-        <!-- Total Metric -->
         <div class="rounded-2xl p-3 text-center" style="background: var(--card-inner-bg); border: 0.5px solid var(--border-subtle);">
-          <span class="text-[11px] font-medium text-[var(--text-secondary)] block">👥 Total</span>
-          <span id="stat-total" class="text-xl sm:text-2xl font-bold tracking-tight text-[var(--text-primary)] block mt-0.5">0</span>
-          <span id="stat-total-pct" class="text-[10px] text-[var(--text-tertiary)] font-semibold block mt-0.5">100%</span>
+          <span class="text-[11px] font-medium block" style="color: var(--text-secondary);">👥 Total</span>
+          <span id="stat-total" class="text-xl sm:text-2xl font-bold tracking-tight block mt-0.5">0</span>
+          <span class="text-[10px] font-semibold block mt-0.5" style="color: var(--text-tertiary);">100%</span>
         </div>
-
-        <!-- Hombres Metric -->
         <div class="rounded-2xl p-3 text-center" style="background: var(--card-inner-bg); border: 0.5px solid var(--border-subtle);">
-          <span class="text-[11px] font-medium text-[var(--text-secondary)] block">👨 Hombres</span>
-          <span id="stat-men" class="text-xl sm:text-2xl font-bold tracking-tight text-[var(--text-primary)] block mt-0.5">0</span>
+          <span class="text-[11px] font-medium block" style="color: var(--text-secondary);">👨 Hombres</span>
+          <span id="stat-men" class="text-xl sm:text-2xl font-bold tracking-tight block mt-0.5">0</span>
           <span id="stat-men-pct" class="text-[10px] font-semibold block mt-0.5" style="color: var(--men-color);">0%</span>
         </div>
-
-        <!-- Mujeres Metric -->
         <div class="rounded-2xl p-3 text-center" style="background: var(--card-inner-bg); border: 0.5px solid var(--border-subtle);">
-          <span class="text-[11px] font-medium text-[var(--text-secondary)] block">👩 Mujeres</span>
-          <span id="stat-women" class="text-xl sm:text-2xl font-bold tracking-tight text-[var(--text-primary)] block mt-0.5">0</span>
+          <span class="text-[11px] font-medium block" style="color: var(--text-secondary);">👩 Mujeres</span>
+          <span id="stat-women" class="text-xl sm:text-2xl font-bold tracking-tight block mt-0.5">0</span>
           <span id="stat-women-pct" class="text-[10px] font-semibold block mt-0.5" style="color: var(--women-color);">0%</span>
         </div>
-
       </div>
 
-      <!-- Percentage Segmented Apple Bar -->
       <div class="space-y-1.5 pt-1">
         <div class="flex items-center justify-between text-[11px] font-medium">
           <span style="color: var(--men-color);" id="bar-men-text">Hombres: 0%</span>
@@ -460,205 +493,543 @@
         </div>
       </div>
 
+      <button id="btn-copy" class="haptic-btn w-full py-3 px-4 rounded-2xl text-sm font-semibold flex items-center justify-center gap-2 btn-secondary">
+        <i data-lucide="copy" class="w-4 h-4" id="copy-icon"></i><span id="copy-text">Copiar resumen</span>
+      </button>
     </section>
 
-    <!-- Footer Practice Attribution -->
-    <footer class="text-center pt-1 pb-0 text-xs font-normal text-[var(--text-tertiary)] flex items-center justify-center gap-1.5">
+    <!-- Historial -->
+    <section id="history-card" class="glass-card rounded-3xl overflow-hidden">
+      <button id="history-toggle" class="haptic-btn w-full flex items-center justify-between gap-2 p-5" aria-expanded="false" aria-controls="history-body">
+        <span class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider" style="color: var(--text-secondary);">
+          <i data-lucide="history" class="w-4 h-4" style="color: var(--apple-blue);"></i>
+          <span>Actividad reciente</span>
+          <span id="history-count" class="px-2 py-0.5 rounded-full text-[10px] font-semibold normal-case tracking-normal" style="background: var(--card-inner-bg); border: 0.5px solid var(--border-subtle);">0</span>
+        </span>
+        <i data-lucide="chevron-down" class="w-4 h-4 chevron" style="color: var(--text-secondary);"></i>
+      </button>
+      <div id="history-body" class="collapse-body">
+        <div>
+          <ul id="history-list" class="px-5 pb-2 flex flex-col gap-1.5" aria-live="polite"></ul>
+          <div class="px-5 pb-4 pt-1 flex justify-end">
+            <button id="history-clear" disabled class="haptic-btn text-xs font-semibold px-3 py-1.5 rounded-full btn-secondary flex items-center gap-1.5">
+              <i data-lucide="trash-2" class="w-3 h-3"></i><span>Borrar historial</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="text-center text-xs flex items-center justify-center gap-1.5" style="color: var(--text-tertiary);">
       <i data-lucide="graduation-cap" class="w-3.5 h-3.5 opacity-70"></i>
       <span>Práctica Diseño de Interfaces · 2º DAM</span>
     </footer>
-
   </main>
 
-  <!-- Interactive JavaScript -->
+  <!-- Ajustes de aforo -->
+  <dialog id="settings-dialog" class="settings" aria-labelledby="settings-title">
+    <form method="dialog" id="settings-form" class="flex flex-col gap-5">
+      <div class="text-center">
+        <div class="inline-flex items-center justify-center w-11 h-11 rounded-2xl mb-2" style="background: var(--apple-blue-soft); color: var(--apple-blue);">
+          <i data-lucide="gauge" class="w-6 h-6"></i>
+        </div>
+        <h2 id="settings-title" class="text-lg font-bold tracking-tight">Aforo máximo</h2>
+        <p class="text-xs mt-1" style="color: var(--text-secondary);">Al llegar al límite no se podrán añadir más personas.</p>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <button type="button" id="max-minus" class="haptic-btn btn-secondary w-12 h-12 rounded-2xl flex items-center justify-center shrink-0" aria-label="Reducir aforo"><i data-lucide="minus" class="w-5 h-5"></i></button>
+        <input id="max-input" class="num-input" type="number" inputmode="numeric" min="1" max="9999" step="1" value="33" aria-label="Aforo máximo">
+        <button type="button" id="max-plus" class="haptic-btn btn-secondary w-12 h-12 rounded-2xl flex items-center justify-center shrink-0" aria-label="Aumentar aforo"><i data-lucide="plus" class="w-5 h-5"></i></button>
+      </div>
+
+      <div class="flex flex-wrap justify-center gap-2" id="presets">
+        <button type="button" data-preset="10" class="haptic-btn btn-secondary px-3.5 py-1.5 rounded-full text-xs font-semibold">10</button>
+        <button type="button" data-preset="25" class="haptic-btn btn-secondary px-3.5 py-1.5 rounded-full text-xs font-semibold">25</button>
+        <button type="button" data-preset="33" class="haptic-btn btn-secondary px-3.5 py-1.5 rounded-full text-xs font-semibold">33</button>
+        <button type="button" data-preset="50" class="haptic-btn btn-secondary px-3.5 py-1.5 rounded-full text-xs font-semibold">50</button>
+        <button type="button" data-preset="100" class="haptic-btn btn-secondary px-3.5 py-1.5 rounded-full text-xs font-semibold">100</button>
+      </div>
+
+      <p id="max-error" class="text-xs text-center font-medium hidden" style="color: var(--crit);" role="alert">Introduce un número entre 1 y 9999.</p>
+
+      <div class="flex gap-3">
+        <button type="button" id="settings-cancel" class="haptic-btn btn-secondary flex-1 py-3 rounded-2xl text-sm font-semibold">Cancelar</button>
+        <button type="submit" id="settings-save" class="haptic-btn flex-1 py-3 rounded-2xl text-sm font-semibold text-white" style="background: var(--apple-blue);">Guardar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Toast -->
+  <div id="toast" class="toast" role="status" aria-live="polite">
+    <div class="glass-card px-4 py-2.5 rounded-full text-sm font-semibold flex items-center gap-2" style="background: var(--shell-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); color: var(--text-primary);">
+      <i data-lucide="check-circle-2" class="w-4 h-4" id="toast-icon" style="color: var(--ok);"></i>
+      <span id="toast-text"></span>
+    </div>
+  </div>
+
   <script>
-    // State
-    let menCount = 0;
-    let womenCount = 0;
+    (() => {
+      'use strict';
 
-    // DOM Elements
-    const totalDisplay = document.getElementById('total-count-display');
-    const totalLabel = document.getElementById('total-count-label');
-    const menDisplay = document.getElementById('men-count-display');
-    const womenDisplay = document.getElementById('women-count-display');
+      // ---------- Utilidades de almacenamiento (seguras) ----------
+      const store = {
+        get(k, fallback) { try { const v = localStorage.getItem(k); return v === null ? fallback : v; } catch (e) { return fallback; } },
+        set(k, v) { try { localStorage.setItem(k, v); } catch (e) { /* sin persistencia */ } }
+      };
 
-    const btnSubTotal = document.getElementById('btn-sub-total');
-    const btnAddTotal = document.getElementById('btn-add-total');
-    const btnResetAll = document.getElementById('btn-reset-all');
+      // ---------- Estado ----------
+      const DEFAULT_MAX = 33;
+      const HISTORY_VISIBLE = 5;
+      const state = {
+        men: 0,
+        women: 0,
+        max: clampMax(parseInt(store.get('aforo-max', DEFAULT_MAX), 10)),
+        history: [],
+        sound: store.get('aforo-sound', '1') === '1',
+        dark: store.get('aforo-dark', '0') === '1',
+        bannerDismissed: false
+      };
 
-    const btnSubMen = document.getElementById('btn-sub-men');
-    const btnAddMen = document.getElementById('btn-add-men');
-    const btnSubWomen = document.getElementById('btn-sub-women');
-    const btnAddWomen = document.getElementById('btn-add-women');
+      function clampMax(n) { return Number.isFinite(n) ? Math.min(9999, Math.max(1, n)) : DEFAULT_MAX; }
 
-    const statTotal = document.getElementById('stat-total');
-    const statMen = document.getElementById('stat-men');
-    const statWomen = document.getElementById('stat-women');
-    const statMenPct = document.getElementById('stat-men-pct');
-    const statWomenPct = document.getElementById('stat-women-pct');
-    const occupancyBadge = document.getElementById('occupancy-badge');
+      const $ = (id) => document.getElementById(id);
+      const el = {
+        app: $('app'), hero: $('hero-card'),
+        total: $('total-count-display'), totalLabel: $('total-count-label'),
+        men: $('men-count-display'), women: $('women-count-display'),
+        subTotal: $('btn-sub-total'), addTotal: $('btn-add-total'), reset: $('btn-reset-all'),
+        subMen: $('btn-sub-men'), addMen: $('btn-add-men'),
+        subWomen: $('btn-sub-women'), addWomen: $('btn-add-women'),
+        statTotal: $('stat-total'), statMen: $('stat-men'), statWomen: $('stat-women'),
+        statMenPct: $('stat-men-pct'), statWomenPct: $('stat-women-pct'),
+        badge: $('occupancy-badge'),
+        barMen: $('bar-men'), barWomen: $('bar-women'), barMenText: $('bar-men-text'), barWomenText: $('bar-women-text'),
+        capText: $('cap-text'), capMaxLabel: $('cap-max-label'), capFill: $('cap-fill'), capProgress: $('cap-progress'),
+        banner: $('full-banner'), bannerText: $('full-banner-text'), bannerClose: $('banner-close'),
+        theme: $('theme-toggle'), themeText: $('theme-text'),
+        soundBtn: $('sound-toggle'), soundIcon: $('sound-icon'),
+        dialog: $('settings-dialog'), form: $('settings-form'), maxInput: $('max-input'), maxError: $('max-error'),
+        historyToggle: $('history-toggle'), historyBody: $('history-body'), historyList: $('history-list'),
+        historyCount: $('history-count'), historyClear: $('history-clear'), historyCard: $('history-card'),
+        copy: $('btn-copy'), copyText: $('copy-text'),
+        toast: $('toast'), toastText: $('toast-text'), toastIcon: $('toast-icon')
+      };
 
-    const barMen = document.getElementById('bar-men');
-    const barWomen = document.getElementById('bar-women');
-    const barMenText = document.getElementById('bar-men-text');
-    const barWomenText = document.getElementById('bar-women-text');
-
-    const themeToggle = document.getElementById('theme-toggle');
-    const themeText = document.getElementById('theme-text');
-
-    // Bounce trigger helper
-    function triggerBounce(element) {
-      element.classList.remove('bounce');
-      // trigger reflow
-      void element.offsetWidth;
-      element.classList.add('bounce');
-      setTimeout(() => element.classList.remove('bounce'), 280);
-    }
-
-    // Core update view
-    function updateUI(animatedElement) {
-      const total = menCount + womenCount;
-
-      // Update text displays
-      totalDisplay.textContent = total;
-      menDisplay.textContent = menCount;
-      womenDisplay.textContent = womenCount;
-
-      statTotal.textContent = total;
-      statMen.textContent = menCount;
-      statWomen.textContent = womenCount;
-
-      // Dynamic label: strictly singular when total is 1
-      if (total === 1) {
-        totalLabel.textContent = "1 Persona";
-      } else {
-        totalLabel.textContent = `${total} Personas`;
-      }
-
-      // Disabled states (cannot drop below 0)
-      const isZero = total === 0;
-      btnSubTotal.disabled = isZero;
-      btnResetAll.disabled = isZero;
-      btnSubMen.disabled = menCount === 0;
-      btnSubWomen.disabled = womenCount === 0;
-
-      // Calculations for percentage
-      let menPct = 0;
-      let womenPct = 0;
-
-      if (total > 0) {
-        menPct = Math.round((menCount / total) * 100);
-        womenPct = 100 - menPct;
-        barMen.style.width = `${menPct}%`;
-        barWomen.style.width = `${womenPct}%`;
-      } else {
-        barMen.style.width = '50%';
-        barWomen.style.width = '50%';
-      }
-
-      statMenPct.textContent = `${menPct}%`;
-      statWomenPct.textContent = `${womenPct}%`;
-      barMenText.textContent = `Hombres: ${menPct}%`;
-      barWomenText.textContent = `Mujeres: ${womenPct}%`;
-
-      // Occupancy state
-      if (total === 0) {
-        occupancyBadge.textContent = "Aforo vacío";
-        occupancyBadge.style.color = "var(--text-secondary)";
-      } else if (total < 10) {
-        occupancyBadge.textContent = "Afluencia baja";
-        occupancyBadge.style.color = "#0284c7";
-      } else if (total < 25) {
-        occupancyBadge.textContent = "Afluencia moderada";
-        occupancyBadge.style.color = "#10b981";
-      } else {
-        occupancyBadge.textContent = "Afluencia alta";
-        occupancyBadge.style.color = "#e11d48";
-      }
-
-      // Trigger spring animation if specified
-      if (animatedElement) {
-        triggerBounce(animatedElement);
-      }
-    }
-
-    // Event Listeners
-    btnAddMen.addEventListener('click', () => {
-      menCount++;
-      updateUI(menDisplay);
-      triggerBounce(totalDisplay);
-    });
-
-    btnSubMen.addEventListener('click', () => {
-      if (menCount > 0) {
-        menCount--;
-        updateUI(menDisplay);
-        triggerBounce(totalDisplay);
-      }
-    });
-
-    btnAddWomen.addEventListener('click', () => {
-      womenCount++;
-      updateUI(womenDisplay);
-      triggerBounce(totalDisplay);
-    });
-
-    btnSubWomen.addEventListener('click', () => {
-      if (womenCount > 0) {
-        womenCount--;
-        updateUI(womenDisplay);
-        triggerBounce(totalDisplay);
-      }
-    });
-
-    // General Add button: distributes or defaults to +1 persona (adds to hombres as default balanced increment)
-    btnAddTotal.addEventListener('click', () => {
-      // By default adds 1 to keep Total = Hombres + Mujeres rule strictly preserved
-      if (menCount <= womenCount) {
-        menCount++;
-      } else {
-        womenCount++;
-      }
-      updateUI(totalDisplay);
-    });
-
-    // General Subtract button: decreases the larger gender counter first
-    btnSubTotal.addEventListener('click', () => {
-      if (menCount + womenCount > 0) {
-        if (menCount >= womenCount && menCount > 0) {
-          menCount--;
-        } else if (womenCount > 0) {
-          womenCount--;
-        } else if (menCount > 0) {
-          menCount--;
+      // ---------- Audio (Web Audio API, sin archivos externos) ----------
+      let audioCtx = null;
+      function getCtx() {
+        if (!audioCtx) {
+          const AC = window.AudioContext || window.webkitAudioContext;
+          if (!AC) return null;
+          audioCtx = new AC();
         }
-        updateUI(totalDisplay);
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        return audioCtx;
       }
-    });
 
-    // Reset button
-    btnResetAll.addEventListener('click', () => {
-      menCount = 0;
-      womenCount = 0;
-      updateUI(totalDisplay);
-    });
-
-    // Dark Mode Toggle
-    let isDarkMode = false;
-    themeToggle.addEventListener('click', () => {
-      isDarkMode = !isDarkMode;
-      document.documentElement.classList.toggle('dark', isDarkMode);
-      themeToggle.setAttribute('aria-checked', isDarkMode ? 'true' : 'false');
-      themeText.textContent = isDarkMode ? 'Modo Oscuro' : 'Modo Claro';
-    });
-
-    // Initialize Icons and UI
-    document.addEventListener('DOMContentLoaded', () => {
-      if (window.lucide) {
-        window.lucide.createIcons();
+      // Un "tick" corto con envolvente exponencial, parecido al feedback háptico de iOS
+      function tone(freq, { dur = 0.07, type = 'sine', gain = 0.12, delay = 0, slideTo = null } = {}) {
+        if (!state.sound) return;
+        const ctx = getCtx();
+        if (!ctx) return;
+        const t0 = ctx.currentTime + delay;
+        const osc = ctx.createOscillator();
+        const g = ctx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, t0);
+        if (slideTo) osc.frequency.exponentialRampToValueAtTime(slideTo, t0 + dur);
+        g.gain.setValueAtTime(0.0001, t0);
+        g.gain.exponentialRampToValueAtTime(gain, t0 + 0.008);
+        g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
+        osc.connect(g).connect(ctx.destination);
+        osc.start(t0);
+        osc.stop(t0 + dur + 0.02);
       }
-      updateUI();
-    });
+
+      const sfx = {
+        add()   { tone(880, { slideTo: 1175, dur: 0.07 }); },
+        sub()   { tone(620, { slideTo: 440, dur: 0.08 }); },
+        reset() { tone(660, { dur: 0.09 }); tone(440, { dur: 0.12, delay: 0.09 }); },
+        full()  { tone(220, { type: 'triangle', dur: 0.16, gain: 0.16 }); tone(185, { type: 'triangle', dur: 0.22, gain: 0.16, delay: 0.17 }); },
+        blocked() { tone(180, { type: 'triangle', dur: 0.12, gain: 0.14 }); },
+        ok()    { tone(988, { dur: 0.06 }); tone(1319, { dur: 0.09, delay: 0.07 }); }
+      };
+
+      // ---------- Helpers de formato ----------
+      const total = () => state.men + state.women;
+      const isFull = () => total() >= state.max;
+      const plural = (n) => (n === 1 ? '1 Persona' : `${n} Personas`);
+      const time = (d = new Date()) => d.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+      const pcts = () => {
+        const t = total();
+        if (t === 0) return { men: 0, women: 0 };
+        const m = Math.round((state.men / t) * 100);
+        return { men: m, women: 100 - m };
+      };
+
+      function occupancyInfo() {
+        const t = total();
+        const ratio = t / state.max;
+        if (t === 0) return { text: 'Aforo vacío', color: 'var(--text-secondary)', level: 'empty' };
+        if (t > state.max) return { text: 'Aforo superado', color: 'var(--crit)', level: 'full' };
+        if (t === state.max) return { text: 'Aforo completo', color: 'var(--crit)', level: 'full' };
+        if (ratio < 0.5) return { text: 'Afluencia baja', color: 'var(--men-color)', level: 'low' };
+        if (ratio < 0.8) return { text: 'Afluencia moderada', color: 'var(--ok)', level: 'mid' };
+        return { text: 'Afluencia alta', color: 'var(--warn)', level: 'high' };
+      }
+
+      // ---------- Animaciones ----------
+      function bounce(node) {
+        node.classList.remove('bounce');
+        void node.offsetWidth;
+        node.classList.add('bounce');
+        setTimeout(() => node.classList.remove('bounce'), 280);
+      }
+      function shake(node) {
+        node.classList.remove('shake');
+        void node.offsetWidth;
+        node.classList.add('shake');
+      }
+
+      let toastTimer;
+      function toast(msg, ok = true) {
+        el.toastText.textContent = msg;
+        el.toastIcon.style.color = ok ? 'var(--ok)' : 'var(--crit)';
+        el.toast.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => el.toast.classList.remove('show'), 2200);
+      }
+
+      // ---------- Historial ----------
+      function log(label, kind) {
+        state.history.unshift({ label, kind, time: time() });
+        state.history = state.history.slice(0, 30);
+        renderHistory(true);
+      }
+
+      const kindStyle = {
+        'add-men':   { icon: 'user-plus',  color: 'var(--men-color)' },
+        'sub-men':   { icon: 'user-minus', color: 'var(--men-color)' },
+        'add-women': { icon: 'user-plus',  color: 'var(--women-color)' },
+        'sub-women': { icon: 'user-minus', color: 'var(--women-color)' },
+        'reset':     { icon: 'rotate-ccw', color: 'var(--text-secondary)' },
+        'max':       { icon: 'gauge',      color: 'var(--apple-blue)' },
+        'full':      { icon: 'octagon-alert', color: 'var(--crit)' }
+      };
+
+      function renderHistory(animateFirst = false) {
+        const items = state.history.slice(0, HISTORY_VISIBLE);
+        el.historyList.innerHTML = '';
+        if (items.length === 0) {
+          const li = document.createElement('li');
+          li.className = 'text-sm py-3 text-center';
+          li.style.color = 'var(--text-tertiary)';
+          li.textContent = 'Aún no hay movimientos. Pulsa “Añadir” para empezar.';
+          el.historyList.appendChild(li);
+        } else {
+          items.forEach((it, i) => {
+            const s = kindStyle[it.kind] || kindStyle.reset;
+            const li = document.createElement('li');
+            li.className = 'flex items-center gap-3 rounded-2xl px-3 py-2' + (animateFirst && i === 0 ? ' log-new' : '');
+            li.style.cssText = 'background: var(--card-inner-bg); border: 0.5px solid var(--border-subtle);';
+            li.innerHTML =
+              `<i data-lucide="${s.icon}" class="w-4 h-4 shrink-0" style="color:${s.color}"></i>` +
+              `<span class="text-sm font-semibold flex-1 min-w-0 truncate"></span>` +
+              `<time class="text-xs tabular-nums" style="color: var(--text-tertiary);"></time>`;
+            li.querySelector('span').textContent = it.label;
+            li.querySelector('time').textContent = it.time;
+            el.historyList.appendChild(li);
+          });
+        }
+        el.historyCount.textContent = state.history.length;
+        el.historyClear.disabled = state.history.length === 0;
+        if (window.lucide) window.lucide.createIcons();
+      }
+
+      // ---------- Render principal ----------
+      function render(animated) {
+        const t = total();
+        const full = isFull();
+        const p = pcts();
+        const occ = occupancyInfo();
+
+        el.total.textContent = t;
+        el.men.textContent = state.men;
+        el.women.textContent = state.women;
+        el.totalLabel.textContent = plural(t);
+        el.statTotal.textContent = t;
+        el.statMen.textContent = state.men;
+        el.statWomen.textContent = state.women;
+        el.statMenPct.textContent = `${p.men}%`;
+        el.statWomenPct.textContent = `${p.women}%`;
+        el.barMenText.textContent = `Hombres: ${p.men}%`;
+        el.barWomenText.textContent = `Mujeres: ${p.women}%`;
+        el.barMen.style.width = t > 0 ? `${p.men}%` : '50%';
+        el.barWomen.style.width = t > 0 ? `${p.women}%` : '50%';
+
+        // Botones
+        el.subTotal.disabled = t === 0;
+        el.reset.disabled = t === 0;
+        el.subMen.disabled = state.men === 0;
+        el.subWomen.disabled = state.women === 0;
+        el.addTotal.disabled = full;
+        el.addMen.disabled = full;
+        el.addWomen.disabled = full;
+
+        // Capacidad
+        const ratio = Math.min(1, t / state.max);
+        const pctCap = Math.round(ratio * 100);
+        el.capText.textContent = full
+          ? `${t} de ${state.max} · sin plazas`
+          : `${t} de ${state.max} · quedan ${state.max - t}`;
+        el.capMaxLabel.textContent = state.max;
+        el.capFill.style.width = `${pctCap}%`;
+        el.capFill.style.backgroundColor =
+          full ? 'var(--crit)' : ratio >= 0.8 ? 'var(--warn)' : 'var(--ok)';
+        el.capProgress.setAttribute('aria-valuenow', pctCap);
+
+        // Badge
+        el.badge.textContent = occ.text;
+        el.badge.style.color = occ.color;
+        el.badge.style.background = full ? 'var(--crit-soft)' : 'var(--card-inner-bg)';
+        el.badge.style.borderColor = full ? 'var(--crit)' : 'var(--border-subtle)';
+        el.badge.style.fontWeight = full ? '700' : '600';
+
+        // Estado completo + banner
+        el.app.classList.toggle('is-full', full);
+        if (full && !state.bannerDismissed) {
+          el.bannerText.textContent = t > state.max
+            ? `Hay ${t} personas y el límite es ${state.max}.`
+            : `Se ha alcanzado el límite de ${state.max} personas.`;
+          el.banner.classList.add('show');
+        } else {
+          el.banner.classList.remove('show');
+        }
+        if (!full) state.bannerDismissed = false;
+
+        if (animated) bounce(animated);
+      }
+
+      // ---------- Acciones ----------
+      function applyFullTransition(wasFull) {
+        if (!wasFull && isFull()) {
+          state.bannerDismissed = false;
+          sfx.full();
+          log(`¡Aforo completo! (${total()}/${state.max})`, 'full');
+          if (navigator.vibrate) navigator.vibrate([40, 60, 40]);
+          return true;
+        }
+        return false;
+      }
+
+      function change(gender, delta) {
+        if (delta > 0 && isFull()) { blocked(); return; }
+        if (delta < 0 && state[gender] === 0) return;
+        const wasFull = isFull();
+        state[gender] += delta;
+
+        const name = gender === 'men' ? 'Hombre' : 'Mujer';
+        log(`${delta > 0 ? '+1' : '-1'} ${name}`, `${delta > 0 ? 'add' : 'sub'}-${gender}`);
+        if (!applyFullTransition(wasFull)) (delta > 0 ? sfx.add : sfx.sub)();
+
+        render(gender === 'men' ? el.men : el.women);
+        bounce(el.total);
+      }
+
+      function blocked() {
+        sfx.blocked();
+        shake(el.hero);
+        state.bannerDismissed = false;
+        render();
+        toast('Aforo completo: no se pueden añadir más personas', false);
+      }
+
+      // "Añadir" general: mantiene Total = Hombres + Mujeres equilibrando; "Restar" quita del grupo mayor
+      el.addTotal.addEventListener('click', () => change(state.men <= state.women ? 'men' : 'women', +1));
+      el.subTotal.addEventListener('click', () => {
+        if (total() === 0) return;
+        change(state.men >= state.women && state.men > 0 ? 'men' : 'women', -1);
+      });
+      el.addMen.addEventListener('click', () => change('men', +1));
+      el.subMen.addEventListener('click', () => change('men', -1));
+      el.addWomen.addEventListener('click', () => change('women', +1));
+      el.subWomen.addEventListener('click', () => change('women', -1));
+
+      el.reset.addEventListener('click', () => {
+        if (total() === 0) return;
+        const prev = total();
+        state.men = 0; state.women = 0;
+        log(`Reinicio (${prev} → 0)`, 'reset');
+        sfx.reset();
+        render(el.total);
+      });
+
+      el.bannerClose.addEventListener('click', () => {
+        state.bannerDismissed = true;
+        el.banner.classList.remove('show');
+      });
+
+      // ---------- Historial colapsable ----------
+      el.historyToggle.addEventListener('click', () => {
+        const open = el.historyBody.classList.toggle('open');
+        el.historyToggle.setAttribute('aria-expanded', open);
+        el.historyCard.classList.toggle('open-state', open);
+      });
+      el.historyClear.addEventListener('click', () => {
+        state.history = [];
+        renderHistory();
+        sfx.sub();
+      });
+
+      // ---------- Diálogo de aforo ----------
+      function openSettings() {
+        el.maxInput.value = state.max;
+        el.maxError.classList.add('hidden');
+        if (typeof el.dialog.showModal === 'function') el.dialog.showModal(); else el.dialog.setAttribute('open', '');
+        setTimeout(() => { el.maxInput.focus(); el.maxInput.select(); }, 50);
+      }
+      function closeSettings() { if (el.dialog.close) el.dialog.close(); else el.dialog.removeAttribute('open'); }
+
+      $('btn-settings').addEventListener('click', openSettings);
+      $('settings-cancel').addEventListener('click', closeSettings);
+      el.dialog.addEventListener('click', (e) => { if (e.target === el.dialog) closeSettings(); });
+
+      const stepMax = (d) => {
+        const n = parseInt(el.maxInput.value, 10);
+        el.maxInput.value = clampMax((Number.isFinite(n) ? n : state.max) + d);
+        sfx[d > 0 ? 'add' : 'sub']();
+      };
+      $('max-minus').addEventListener('click', () => stepMax(-1));
+      $('max-plus').addEventListener('click', () => stepMax(+1));
+      $('presets').addEventListener('click', (e) => {
+        const b = e.target.closest('[data-preset]');
+        if (!b) return;
+        el.maxInput.value = b.dataset.preset;
+        el.maxError.classList.add('hidden');
+        sfx.add();
+      });
+
+      el.form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const n = parseInt(el.maxInput.value, 10);
+        if (!Number.isFinite(n) || n < 1 || n > 9999) {
+          el.maxError.classList.remove('hidden');
+          shake(el.maxInput);
+          return;
+        }
+        const wasFull = isFull();
+        const changed = n !== state.max;
+        state.max = n;
+        store.set('aforo-max', String(n));
+        if (changed) log(`Aforo máximo: ${n}`, 'max');
+        if (!wasFull && isFull()) applyFullTransition(false); else sfx.ok();
+        state.bannerDismissed = false;
+        render();
+        closeSettings();
+        if (changed) toast(`Aforo máximo fijado en ${n}`);
+      });
+
+      // ---------- Copiar resumen ----------
+      function buildSummary() {
+        const p = pcts();
+        const occ = occupancyInfo();
+        const t = total();
+        const now = new Date();
+        const fecha = now.toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' });
+        return [
+          '📊 Resumen de asistencia',
+          `🕒 ${fecha} · ${time(now)}`,
+          '',
+          `👥 Total: ${t} de ${state.max} (${Math.round((t / state.max) * 100)}% del aforo)`,
+          `👨 Hombres: ${state.men} (${p.men}%)`,
+          `👩 Mujeres: ${state.women} (${p.women}%)`,
+          '',
+          `${isFull() ? '🔴' : t / state.max >= 0.8 ? '🟠' : '🟢'} Estado: ${occ.text}${isFull() ? '' : ` · quedan ${state.max - t} plazas`}`
+        ].join('\n');
+      }
+
+      async function copyText(text) {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(text);
+          return;
+        }
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.setAttribute('readonly', '');
+        ta.style.cssText = 'position:fixed;top:0;left:0;opacity:0;';
+        document.body.appendChild(ta);
+        ta.select();
+        const ok = document.execCommand('copy');
+        document.body.removeChild(ta);
+        if (!ok) throw new Error('copy failed');
+      }
+
+      let copyTimer;
+      el.copy.addEventListener('click', async () => {
+        try {
+          await copyText(buildSummary());
+          sfx.ok();
+          toast('Resumen copiado al portapapeles');
+          el.copyText.textContent = '¡Copiado!';
+          el.copy.querySelector('svg, i').setAttribute('data-lucide', 'check');
+        } catch (err) {
+          toast('No se pudo copiar. Inténtalo de nuevo.', false);
+          return;
+        }
+        if (window.lucide) window.lucide.createIcons();
+        clearTimeout(copyTimer);
+        copyTimer = setTimeout(() => {
+          el.copyText.textContent = 'Copiar resumen';
+          const ic = el.copy.querySelector('svg, i');
+          if (ic) ic.setAttribute('data-lucide', 'copy');
+          if (window.lucide) window.lucide.createIcons();
+        }, 1800);
+      });
+
+      // ---------- Sonido y tema ----------
+      function renderSound() {
+        el.soundBtn.setAttribute('aria-pressed', state.sound);
+        el.soundBtn.setAttribute('aria-label', state.sound ? 'Sonido activado' : 'Sonido desactivado');
+        const ic = el.soundBtn.querySelector('svg, i');
+        if (ic) ic.setAttribute('data-lucide', state.sound ? 'volume-2' : 'volume-x');
+        if (window.lucide) window.lucide.createIcons();
+      }
+      el.soundBtn.addEventListener('click', () => {
+        state.sound = !state.sound;
+        store.set('aforo-sound', state.sound ? '1' : '0');
+        renderSound();
+        if (state.sound) sfx.ok();
+      });
+
+      function renderTheme() {
+        document.documentElement.classList.toggle('dark', state.dark);
+        el.theme.setAttribute('aria-checked', state.dark);
+        el.themeText.textContent = state.dark ? 'Modo oscuro' : 'Modo claro';
+      }
+      el.theme.addEventListener('click', () => {
+        state.dark = !state.dark;
+        store.set('aforo-dark', state.dark ? '1' : '0');
+        renderTheme();
+        sfx.add();
+      });
+
+      // Atajos de teclado: + / - para añadir/restar, Esc cierra el aviso
+      document.addEventListener('keydown', (e) => {
+        if (el.dialog.open || /input|textarea/i.test(e.target.tagName)) return;
+        if (e.key === '+') el.addTotal.click();
+        if (e.key === '-') el.subTotal.click();
+      });
+
+      // ---------- Inicio ----------
+      document.addEventListener('DOMContentLoaded', () => {
+        renderTheme();
+        renderSound();
+        renderHistory();
+        render();
+        if (window.lucide) window.lucide.createIcons();
+      });
+    })();
   </script>
 </body>
 </html>
