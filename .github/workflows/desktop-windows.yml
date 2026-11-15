@@ -2,7 +2,7 @@ name: Build and test Tempora Windows
 on:
   push:
     branches: [Pomodoro_Tempora]
-    paths: ['src/**', 'src-tauri/**', 'package*.json', 'scripts/smoke-desktop.ps1', '.github/workflows/desktop-windows.yml']
+    paths: ['src/**', 'src-tauri/**', 'package*.json', 'scripts/smoke-desktop.ps1', 'scripts/verify-tauri.mjs', '.github/workflows/desktop-windows.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -19,7 +19,7 @@ jobs:
       - run: npm ci
       - run: rustup default stable
       - run: npm run tauri -- build --bundles nsis --ci
-      - name: Native window and accessibility smoke test
+      - name: Native window and WebView2 smoke test
         shell: pwsh
         run: ./scripts/smoke-desktop.ps1
       - uses: actions/upload-artifact@v4
