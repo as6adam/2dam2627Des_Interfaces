@@ -11,6 +11,28 @@ html, body { height: 100%; }
 body { overflow-x: hidden; overflow-y: auto; user-select: none; }
 input, textarea { user-select: text; }
 
+/* Card density follows its duration and its own width, including overlapping lanes on mobile. */
+.event-card { container-type: inline-size; box-sizing: border-box; }
+.event-card-content { height: 100%; min-width: 0; padding: 6px 10px 6px 12px; }
+.event-card-heading { display: flex; align-items: center; min-width: 0; gap: 6px; }
+.event-card-icon { width: 12px; height: 12px; flex-shrink: 0; }
+.event-card-title { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: -.02em; }
+.event-card-meta { margin: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 11px; line-height: 15px; }
+.event-card--compact .event-card-content { display: flex; align-items: center; gap: 6px; padding-top: 0; padding-bottom: 0; }
+.event-card--compact .event-card-heading { flex: 1; }
+.event-card-time { flex-shrink: 0; max-width: 50%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 11px; line-height: 16px; }
+.event-card--tiny .event-card-content { padding-left: 6px; padding-right: 4px; }
+.event-card--tiny .event-card-icon { display: none; }
+.event-card--tiny .event-card-title, .event-card--tiny .event-card-time { font-size: 10px; line-height: 10px; }
+@container (max-width: 120px) {
+  .event-card-content { padding-left: 7px; padding-right: 4px; }
+  .event-card-heading { gap: 4px; }
+  .event-card-time { display: none; }
+}
+@container (max-width: 64px) {
+  .event-card-icon { display: none; }
+}
+
 /* ───────── Contenedor, áreas seguras y viewport visual ───────── */
 /* Primero el valor sin env(): un navegador que no entiende max()/env() descarta la segunda declaración y conserva esta. */
 .app-shell { padding: .75rem; padding: max(.75rem, env(safe-area-inset-top)) max(.75rem, env(safe-area-inset-right)) max(.75rem, env(safe-area-inset-bottom)) max(.75rem, env(safe-area-inset-left)); }

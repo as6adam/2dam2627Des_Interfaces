@@ -37,8 +37,10 @@ export function EventCard({ item, lane, lanes, dayCount, gridRef }: { item: Item
   const language = useLanguage()
   const start = new Date(item.start)
   const top = (start.getHours() - START_H + start.getMinutes() / 60) * HOUR_H
-  const height = Math.max(30, (item.duration / 60) * HOUR_H - 2)
+  // Keep the two-pixel gap inside the time slot; short events must not overlap the next slot.
+  const height = Math.max(1, (item.duration / 60) * HOUR_H - 2)
   const compact = height < 48
+  const tiny = height < 20
   const v = useVocab()
   const t = useCommon().calendar
   const { color, icon: Icon } = META[item.kind]
@@ -147,7 +149,8 @@ export function EventCard({ item, lane, lanes, dayCount, gridRef }: { item: Item
       onKeyDown={(e) => { if ((e.key === 'Enter' || e.key === ' ') && e.target === e.currentTarget) { e.preventDefault(); openDetail() } }}
       onClick={() => { if (swallowClick.current) { swallowClick.current = false; return } openDetail() }}
       initial={false}
-      className={clsx('absolute touch-pan-x touch-pan-y overflow-hidden rounded-xl px-2.5 [-webkit-touch-callout:none]', compact ? 'flex items-center' : 'py-1.5', armed ? 'cursor-grabbing' : 'cursor-grab')}
+      className={clsx('event-card absolute touch-pan-x touch-pan-y overflow-hidden rounded-xl [-webkit-touch-callout:none]', compact && 'event-card--compact', tiny && 'event-card--tiny', armed ? 'cursor-grabbing' : 'cursor-grab')}
+      title={t.eventLabel(label, item.subject, formatEventDateTime(language, start))}
       style={{
         top, height, left: `calc(${(lane / lanes) * 100}% + 2px)`, width: `calc(${100 / lanes}% - 4px)`, zIndex: armed ? 40 : 10, x: mx, y: my, scale: armed ? 1.03 : 1,
         background: `linear-gradient(135deg, rgb(${color} / .26), rgb(${color} / .12))`,
@@ -157,17 +160,19 @@ export function EventCard({ item, lane, lanes, dayCount, gridRef }: { item: Item
       }}
     >
       <span className="absolute inset-y-0 left-0 w-1" style={{ background: `rgb(${color})` }} />
-      <div className={clsx('flex min-w-0 items-center gap-1.5 pl-1', compact && 'flex-1')}>
-        <Icon aria-hidden className="size-3 shrink-0" style={{ color: `rgb(${color})` }} />
-        <span className="min-w-0 truncate text-[12px] font-semibold leading-4 tracking-tight">{item.subject}</span>
+      <div className="event-card-content">
+      <div className="event-card-heading">
+        <Icon aria-hidden className="event-card-icon" style={{ color: `rgb(${color})` }} />
+        <span className="event-card-title">{item.subject}</span>
       </div>
       {compact ? (
-        <span aria-hidden className="t-caption ml-2 max-w-[50%] shrink-0 truncate leading-4 text-sub tabular-nums">
+        <span aria-hidden className="event-card-time text-sub tabular-nums">
           {preview ? formatDragPreview(language, preview) : armed ? t.dragReady : formatTime(start)}
         </span>
-      ) : <p aria-hidden className="t-caption truncate pl-1 text-sub tabular-nums">
+      ) : <p aria-hidden className="event-card-meta text-sub tabular-nums">
         {preview ? formatDragPreview(language, preview) : armed ? t.dragReady : `${label} · ${formatTime(start)}`}
       </p>}
+      </div>
     </motion.div>
   )
 }
