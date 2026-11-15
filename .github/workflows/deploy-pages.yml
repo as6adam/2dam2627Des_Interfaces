@@ -1,15 +1,13 @@
-# Despliega landing + aplicación (dist/) en GitHub Pages con GitHub Actions.
-# Requisito único en el repositorio: Settings → Pages → Build and deployment → Source: «GitHub Actions».
-# Esta configuración NO se ha ejecutado todavía en GitHub.
 name: Deploy to GitHub Pages
 
 on:
-  # Cuando se elija la rama de publicación, añade aquí un disparador push (ver README, «Rama de publicación»).
-  # Nunca desplegar desde pull requests ni usar pull_request_target.
+  push:
+    branches:
+      - Pomodoro_Tempora
   workflow_dispatch:
     inputs:
       ref:
-        description: 'Rama, etiqueta o SHA a desplegar (vacío = la rama desde la que se lanza)'
+        description: 'Rama, etiqueta o SHA a desplegar'
         required: false
         default: ''
 
@@ -26,15 +24,18 @@ jobs:
     steps:
       - uses: actions/checkout@v6
         with:
-          ref: ${{ inputs.ref }}
+          ref: ${{ inputs.ref || github.ref }}
+
       - uses: actions/setup-node@v7
         with:
           node-version-file: .nvmrc
           cache: npm
+
       - run: npm ci
       - run: npm test
       - run: npm run build
       - run: npm run verify:dist
+
       - uses: actions/upload-pages-artifact@v4
         with:
           path: dist
