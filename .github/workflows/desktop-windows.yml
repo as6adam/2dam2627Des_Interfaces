@@ -19,7 +19,7 @@ jobs:
       - run: npm ci
       - run: rustup default stable
       - run: npm run tauri -- build --bundles nsis --ci
-      - name: Native window and WebView2 smoke test
+      - name: Native production window startup smoke test
         shell: pwsh
         run: ./scripts/smoke-desktop.ps1
       - uses: actions/upload-artifact@v4

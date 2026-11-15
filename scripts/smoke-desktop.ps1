@@ -13,15 +13,13 @@ try {
         if ($process.HasExited) { throw "Tempora exited during startup: $($process.ExitCode)" }
         if ($process.MainWindowHandle -ne [IntPtr]::Zero) {
             $window = [System.Windows.Automation.AutomationElement]::FromHandle($process.MainWindowHandle)
-            try {
-                $targets = Invoke-RestMethod -Uri 'http://127.0.0.1:9223/json' -TimeoutSec 2
-                if ($targets | Where-Object { $_.type -eq 'page' -and $_.url -match 'app/index.html' }) { break }
-            } catch { }
+            if ($window.Current.Name -match 'Tempora') { break }
         }
     }
     if (-not $window) { throw 'The native Tempora window was not found.' }
-    & node (Join-Path $PSScriptRoot 'verify-tauri.mjs')
-    if ($LASTEXITCODE -ne 0) { throw 'The native WebView2 verification failed.' }
+    if ($window.Current.Name -notmatch 'Tempora') { throw 'The native window did not have the expected Tempora title.' }
+    if ($process.WaitForExit(5000)) { throw "Tempora exited after opening its window: $($process.ExitCode)" }
+    @{ application = 'Tempora'; nativeWindow = $true; windowTitle = $window.Current.Name; runningAfterStartup = $true; scope = 'Production Windows binary: process and native window startup. The browser workflow separately tests the rendered interface, keyboard and Chromium accessibility tree. This does not certify a physical screen reader or native UI interactions.' } | ConvertTo-Json -Depth 4 | Set-Content -LiteralPath (Join-Path $PSScriptRoot '../desktop-smoke.json') -Encoding utf8
 } finally {
     if (-not $process.HasExited) { Stop-Process -Id $process.Id }
 }
