@@ -38,6 +38,7 @@ export function EventCard({ item, lane, lanes, dayCount, gridRef }: { item: Item
   const start = new Date(item.start)
   const top = (start.getHours() - START_H + start.getMinutes() / 60) * HOUR_H
   const height = Math.max(30, (item.duration / 60) * HOUR_H - 2)
+  const compact = height < 48
   const v = useVocab()
   const t = useCommon().calendar
   const { color, icon: Icon } = META[item.kind]
@@ -146,7 +147,7 @@ export function EventCard({ item, lane, lanes, dayCount, gridRef }: { item: Item
       onKeyDown={(e) => { if ((e.key === 'Enter' || e.key === ' ') && e.target === e.currentTarget) { e.preventDefault(); openDetail() } }}
       onClick={() => { if (swallowClick.current) { swallowClick.current = false; return } openDetail() }}
       initial={false}
-      className={clsx('absolute touch-pan-x touch-pan-y overflow-hidden rounded-xl px-2.5 py-1.5 [-webkit-touch-callout:none]', armed ? 'cursor-grabbing' : 'cursor-grab')}
+      className={clsx('absolute touch-pan-x touch-pan-y overflow-hidden rounded-xl px-2.5 [-webkit-touch-callout:none]', compact ? 'flex items-center' : 'py-1.5', armed ? 'cursor-grabbing' : 'cursor-grab')}
       style={{
         top, height, left: `calc(${(lane / lanes) * 100}% + 2px)`, width: `calc(${100 / lanes}% - 4px)`, zIndex: armed ? 40 : 10, x: mx, y: my, scale: armed ? 1.03 : 1,
         background: `linear-gradient(135deg, rgb(${color} / .26), rgb(${color} / .12))`,
@@ -156,13 +157,17 @@ export function EventCard({ item, lane, lanes, dayCount, gridRef }: { item: Item
       }}
     >
       <span className="absolute inset-y-0 left-0 w-1" style={{ background: `rgb(${color})` }} />
-      <div className="flex items-center gap-1.5 pl-1">
+      <div className={clsx('flex min-w-0 items-center gap-1.5 pl-1', compact && 'flex-1')}>
         <Icon aria-hidden className="size-3 shrink-0" style={{ color: `rgb(${color})` }} />
-        <span className="truncate text-[12px] font-semibold tracking-tight">{item.subject}</span>
+        <span className="min-w-0 truncate text-[12px] font-semibold leading-4 tracking-tight">{item.subject}</span>
       </div>
-      <p aria-hidden className="t-caption truncate pl-1 text-sub tabular-nums">
+      {compact ? (
+        <span aria-hidden className="t-caption ml-2 max-w-[50%] shrink-0 truncate leading-4 text-sub tabular-nums">
+          {preview ? formatDragPreview(language, preview) : armed ? t.dragReady : formatTime(start)}
+        </span>
+      ) : <p aria-hidden className="t-caption truncate pl-1 text-sub tabular-nums">
         {preview ? formatDragPreview(language, preview) : armed ? t.dragReady : `${label} · ${formatTime(start)}`}
-      </p>
+      </p>}
     </motion.div>
   )
 }
