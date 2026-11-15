@@ -107,7 +107,7 @@ export function CalendarView() {
   const onColumnClick = (e: React.MouseEvent<HTMLDivElement>, day: Date) => {
     if (e.target !== e.currentTarget || justDragged) return
     const y = e.clientY - e.currentTarget.getBoundingClientRect().top
-    const mins = Math.min(snap((y / HOUR_H) * 60 + START_H * 60, 30), (END_H - 1) * 60)
+    const mins = Math.max(START_H * 60, Math.min(snap((y / HOUR_H) * 60 + START_H * 60, 30), END_H * 60 - 30))
     const start = setMinutes(setHours(day, 0), mins)
     if (picking) {
       const parent = items.find((i) => i.id === picking.itemId)
@@ -195,8 +195,8 @@ export function CalendarView() {
 
             <div className="flex" style={{ height: hours.length * HOUR_H }}>
               <div className="sticky left-0 z-10 w-12 shrink-0 bg-glass/90 md:w-14">
-                {hours.map((h, i) => i > 0 && (
-                  <span key={h} className="t-caption absolute right-2 -translate-y-1/2 tabular-nums text-sub" style={{ top: i * HOUR_H }}>{String(h).padStart(2, '0')}:00</span>
+                {hours.map((h, i) => (
+                  <span key={h} className="t-caption absolute right-2 tabular-nums text-sub" style={{ top: i * HOUR_H, transform: i === 0 ? undefined : 'translateY(-50%)' }}>{String(h).padStart(2, '0')}:00</span>
                 ))}
               </div>
               <div ref={gridRef} className="relative grid flex-1" style={cols(days.length)}>

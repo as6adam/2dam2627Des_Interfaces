@@ -7,8 +7,8 @@ import { getCommon } from './i18n'
 
 /* ───────── Geometría del calendario (sin cambios) ───────── */
 export const HOUR_H = 56
-export const START_H = 6
-export const END_H = 23
+export const START_H = 0
+export const END_H = 24
 
 /** Decisión de producto: la semana empieza en lunes en TODOS los idiomas (no depende del locale). */
 export const WEEK_STARTS_ON = 1 as const
