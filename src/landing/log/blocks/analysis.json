@@ -1,0 +1,293 @@
+{
+ "id": "analysis",
+ "phase": 1,
+ "phaseSourceHeading": "Fase 1 Análisis y arquitectura",
+ "sourceHeading": "Análisis inicial Análisis y arquitectura inicial",
+ "sections": [
+  {
+   "kind": "userPrompt",
+   "sourceHeading": "Prompt del usuario enviado a GPT",
+   "paragraphs": [
+    {
+     "k": "text",
+     "t": "Rol y Contexto: Eres un arquitecto de software experto y un mentor especializado en Prompt Engineering y desarrollo web moderno (React, Vite, Tailwind CSS, TypeScript). Estoy en 2º de DAM (Desarrollo de Aplicaciones Multiplataforma) y necesito tu ayuda para diseñar y estructurar desde cero una aplicación web tipo Pomodoro con estética iOS-like HIG (Human Interface Guidelines).",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Esta práctica requiere que guarde y documente meticulosamente todo el proceso: cada prompt, cada respuesta tuya, cada prompt que use con Claude, y el resultado de Claude.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Punto de partida y materiales de referencia:",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "1.​ El proyecto anterior (Desktop): Ya desarrollé una app de escritorio llamada \"Tempora\" inspirada en Google Calendar y Motion, con estética iOS HIG para huir del diseño aburrido (AI-SLOP). (Te he adjuntado todos los archivos necesarios, tanto el zip con todos los archivos de la aplicación (File.1), el prompt que utilizé para Claude Sonnet 5.5 (File.2), Una imagen que utilizé de la vista de la aplicación Motion (Image.3) y finalmente el icono para la aplicación que generé con Canva AI (File.4) 2.​ El objetivo: \"Traducir\" y adaptar esa aplicación de escritorio a una versión Web moderna lista para subir a GitHub. 3.​ Requisitos para la máxima nota: La aplicación debe ser altamente creativa. Además del Pomodoro tradicional, debe incluir funcionalidades complementarias útiles que la conviertan en una herramienta de productividad completa y no en un simple temporizador.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Tu labor (Metodología de trabajo paso a paso): No me des todo el código de golpe. Vamos a trabajar de forma iterativa y metódica mediante un proceso guiado:",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "1.​ Fase de Análisis y Arquitectura: Ayúdame a diseñar la estructura de componentes, la gestión de estados (Store) y las funcionalidades adicionales y creativas que integrará esta versión web. 2.​ Fase de Prompts para Claude: Diseña y redacta los prompts exactos y ultra- optimizados (con ingeniería de prompts) que debo copiar y pegar en Claude Sonnet para que él escriba el código de cada módulo o componente. 3.​ Preguntas y Decisiones: En cada paso, hazme preguntas clave sobre decisiones de diseño, lógica o tecnologías para que yo participe activamente en el desarrollo y pueda documentarlo con criterio para la práctica. 4.​ Registro y Documentación: Ayúdame a estructurar cómo debo redactar la documentación del proceso (prompt original, ajustes, respuesta y código resultante) para entregar la práctica con la máxima nota.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Comencemos con la Fase 1: Analiza el contexto, proponme 3 ideas de funcionalidades creativas complementarias al Pomodoro que encajen con la filosofía iOS HIG, y preséntame el plan de fases estructurado. ¡Vamos a ello!",
+     "s": "Source"
+    }
+   ]
+  },
+  {
+   "kind": "progress",
+   "sourceHeading": "Mensajes de progreso registrados de GPT",
+   "paragraphs": [
+    {
+     "k": "text",
+     "t": "Voy a revisar el proyecto y el prompt original para plantear una adaptación coherente con Tempora. Después te propondré tres funciones complementarias y un plan por fases, con decisiones que puedas justificar en la memoria de la práctica.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Used Library integration, ran a command, searched the web",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "El prompt original ya plantea calendario, exámenes, entregas, sesiones de estudio y Pomodoro. Propongo que la versión web conecte esas piezas en un flujo claro: elegir qué estudiar, reservar tiempo y registrar el trabajo realizado. El violeta del icono puede dar identidad a la interfaz sin sobrecargarla.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Used Library integration, edited a file, ran a command, searched the web",
+     "s": "Source"
+    }
+   ]
+  },
+  {
+   "kind": "gptResponse",
+   "sourceHeading": "Respuesta de GPT anterior al prompt para Claude",
+   "paragraphs": [
+    {
+     "k": "text",
+     "t": "Tempora Web puede tener una identidad clara: un espacio para planificar el estudio, concentrarse y comprobar el progreso. El Pomodoro será el centro que conecte esas tres acciones.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "He leído tu prompt original y revisado las imágenes: ya defines calendario, exámenes, entregas, sesiones de preparación y temas personalizables. El ZIP no ha podido descargarse, así que esta propuesta parte de esos materiales; queda pendiente revisar el código antes de decidir qué podemos reutilizar.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "1. Dirección de diseño",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "De Motion tomaría la organización del calendario y la relación entre tareas y tiempo. Del icono, el violeta como acento principal.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Para conseguir una estética inspirada en iOS HIG, propongo:",
+     "s": "Source"
+    },
+    {
+     "k": "table",
+     "t": "●​   Tipografía de sistema, jerarquía clara y espacio entre elementos.\n    ●​   Fondos neutros, separadores discretos y superficies translúcidas puntuales.\n    ●​   Una acción principal por contexto: planificar, comenzar o continuar.\n    ●​   Navegación por teclado, foco visible, contraste suficiente y movimiento reducido.",
+     "s": "TranscriptTable"
+    },
+    {
+     "k": "text",
+     "t": "Apple recomienda interacciones sencillas y animaciones breves que comuniquen cambios, además de contemplar accesibilidad desde el diseño. Esa será nuestra referencia para justificar decisiones visuales. Apple Developer Documentation",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "2. Tres funcionalidades creativas",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "1. Plan de estudio inverso",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "El usuario introduce una entrega o examen, su fecha y una estimación de pomodoros necesarios. Tempora propone sesiones previas según los huecos disponibles; el usuario revisa y acepta la propuesta.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Ejemplo: «Examen de Java el viernes · 6 pomodoros pendientes» → repartir dos sesiones por día durante tres días.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Utilidad: convierte una fecha límite en acciones concretas. ●​ Presentación: bloques discretos en una agenda, con explicación de la propuesta y edición manual. ●​ Primera versión: algoritmo determinista basado en disponibilidad, duración y fecha límite. Podemos explicar y probar sus reglas sin depender de una API de IA.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "2. Bandeja de distracciones y punto de retorno",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Durante una sesión, un botón permite anotar rápidamente una idea o tarea sin abandonar el temporizador. Al terminar, el usuario puede revisarla y escribir una frase: «Cuando vuelva, continuaré por…».",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Ejemplo: «Continuaré implementando la validación de fechas de Entrega».",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Utilidad: permite aparcar distracciones y recuperar el contexto. ●​ Presentación: panel breve que conserva el foco del teclado y devuelve al temporizador al cerrarse. ●​ Primera versión: captura de notas, conversión opcional en tarea y punto de retorno asociado a la sesión.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "3. Balance entre tiempo previsto y realizado",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Cada tarea relaciona su estimación con las sesiones registradas. Un resumen semanal muestra minutos de concentración por asignatura y diferencias entre lo planificado y lo realizado.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Ejemplo: «Bases de Datos: estimaste 4 sesiones y completaste la tarea en 6».",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Utilidad: ayuda a mejorar futuras estimaciones. ●​ Presentación: resumen legible y gráficos pequeños, con cifras y etiquetas. ●​ Primera versión: datos calculados a partir del historial; las sesiones interrumpidas se distinguen de las completadas.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Mi recomendación: implementar primero la bandeja, después el balance y finalmente el planificador, que requiere más reglas.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "3. Arquitectura inicial propuesta",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Como base provisional: React + Vite + TypeScript + Tailwind CSS, con Zustand para el estado compartido.",
+     "s": "Source"
+    },
+    {
+     "k": "table",
+     "t": "Área           Componentes principales                       Responsabilidad\nEstructura      AppShell, Navigation               Distribución adaptable y navegación\nConcentració FocusView, TimerControls,\n                                                   Temporizador y cierre de sesión\nn            SessionSummary\n                                                   Asignaturas, entregas, exámenes y\nTareas          TaskList, TaskEditor\n                                                   estimaciones\n                AgendaView,\nPlanificación                                      Bloques de estudio y propuestas\n                StudyPlanPreview\nCaptura         QuickCapture, ResumeNote           Distracciones y punto de retorno\n                WeeklyReview,\nProgreso                                           Estadísticas derivadas\n                SubjectBreakdown\nPreferencias SettingsPanel                         Tema y duraciones",
+     "s": "TranscriptTable"
+    },
+    {
+     "k": "text",
+     "t": "Separación del estado:",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Persistente: tareas, asignaturas, bloques, sesiones y preferencias. ●​ Sesión activa: fase, estado, tarea vinculada, instante de finalización y tiempo restante al pausar. ●​ Local al componente: formularios abiertos, pestañas y borradores. ●​ Derivado: estadísticas y progreso; se calculan desde los registros para evitar duplicidades.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Zustand dispone de persistencia y mecanismos de migración para evolucionar el formato guardado. Para una primera versión local, propongo utilizar localStorage y exportación/ importación JSON. Zustand Docs",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Una decisión técnica importante: el temporizador calculará el tiempo restante mediante marcas temporales. Los navegadores pueden ralentizar los intervalos en pestañas inactivas; descontar un segundo por cada ejecución produciría errores. Al regresar, reconciliará el estado sin inventar sesiones completadas durante la ausencia. MDN",
+     "s": "Source"
+    },
+    {
+     "k": "table",
+     "t": "4. Plan de fases y evidencias\n         Fase                   Trabajo                      Evidencia para la práctica\n                   Revisar Desktop, fijar alcance y      Comparativa Desktop → Web y\n1. Análisis\n                   casos de uso                          decisiones\n                   Flujos, pantallas, colores y\n2. Diseño                                                Bocetos y justificación visual\n                   componentes\n                                                         Modelo de datos y transiciones del\n3. Contratos       Tipos, store, reglas y persistencia\n                                                         temporizador\n4. Base funcional Estructura, tareas y Pomodoro          Prompts por módulo y primera demo",
+     "s": "TranscriptTable"
+    },
+    {
+     "k": "table",
+     "t": "5. Funciones                                       Iteraciones y pruebas de cada\n                   Captura, balance y planificador\ncreativas                                          función\n                   Recarga, segundo plano, teclado Resultados, incidencias y\n6. Verificación\n                   y móvil                         correcciones\n                                                   Instrucciones reproducibles e\n7. Entrega         Repositorio, README y memoria\n                                                   historial Git",
+     "s": "TranscriptTable"
+    },
+    {
+     "k": "text",
+     "t": "Cada prompt para Claude tendrá un objetivo acotado, contexto del proyecto, contratos existentes, archivos que puede modificar, restricciones y criterios de aceptación. Revisaremos su resultado antes de pasar al siguiente módulo.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "5. Cómo documentar cada iteración",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Usaremos identificadores como ITER-001 y conservaremos:",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "1.​ Objetivo y decisión previa: qué queremos resolver y por qué. 2.​ Tu prompt y mi respuesta completos, sin sustituirlos por resúmenes. 3.​ Prompt exacto enviado a Claude, modelo y fecha. 4.​ Respuesta completa de Claude y archivos producidos. 5.​ Validación: qué probaste, resultado esperado y resultado observado. 6.​ Ajustes: error detectado, nuevo prompt y corrección. 7.​ Commit y captura que permitan identificar el resultado.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Esto aporta trazabilidad y demuestra tu criterio al aceptar, corregir o descartar código generado.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "6. Decisiones para cerrar esta primera fase",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "1.​ ¿Mantenemos el enfoque académico —asignaturas, exámenes y entregas— o prefieres productividad general? Recomiendo el académico por continuidad con Tempora. 2.​ ¿La primera versión guardará todo en el navegador o necesitas cuentas y sincronización? Recomiendo almacenamiento local para centrar el esfuerzo en una aplicación completa. 3.​ ¿Interfaz en inglés, como el prompt original, o en español? La memoria puede estar en español en ambos casos.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Con esas respuestas fijaremos el alcance y prepararemos el primer prompt para Claude.",
+     "s": "Source"
+    }
+   ]
+  },
+  {
+   "kind": "claudePrompt",
+   "sourceHeading": "3 Prompt exacto diseñado por GPT para Claude",
+   "paragraphs": [
+    {
+     "k": "note",
+     "t": "No consta un prompt de implementación para Claude en esta fase de análisis. La respuesta de GPT está íntegra en el bloque 2.",
+     "s": "Normal"
+    }
+   ]
+  },
+  {
+   "kind": "claudeResponse",
+   "sourceHeading": "4 Respuesta de Claude con cambios y validación",
+   "paragraphs": [
+    {
+     "k": "note",
+     "t": "No consta una respuesta de Claude asociada al análisis inicial en el documento recibido.",
+     "s": "Normal"
+    }
+   ]
+  }
+ ]
+}

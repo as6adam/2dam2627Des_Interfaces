@@ -1,0 +1,398 @@
+{
+ "id": "004c",
+ "phase": 4,
+ "phaseSourceHeading": "Fase 4 Landing y despliegue",
+ "sourceHeading": "Iteración 004C Verificación local y publicación pendiente",
+ "sections": [
+  {
+   "kind": "userPrompt",
+   "sourceHeading": "Prompt del usuario enviado a GPT",
+   "paragraphs": [
+    {
+     "k": "text",
+     "t": "004b completado, lee las capturas y el archivo .patch, Dame el siguiente prompt",
+     "s": "Source"
+    }
+   ]
+  },
+  {
+   "kind": "progress",
+   "sourceHeading": "Mensajes de progreso registrados de GPT",
+   "paragraphs": [
+    {
+     "k": "text",
+     "t": "Voy a revisar el parche de 004B y contrastarlo con las capturas, especialmente el aviso de guardado y la configuración de publicación.",
+     "s": "Source"
+    }
+   ]
+  },
+  {
+   "kind": "gptResponse",
+   "sourceHeading": "Respuesta de GPT anterior al prompt para Claude",
+   "paragraphs": [
+    {
+     "k": "text",
+     "t": "He revisado las tres capturas y el parche completo de 004B:",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ La landing conserva el diseño en escritorio y móvil, en ambos idiomas y modos. ●​ El aviso de guardado fallido ya aparece traducido y permite cerrarlo. ●​ El parche añade el workflow, Node 22 y los comandos verify:dist y serve:dist. ●​ La publicación sigue pendiente: estas capturas no demuestran una ejecución en GitHub Actions.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Seguimos con 004C: primera publicación y comprobación de la web publicada. GitHub requiere configurar Pages con GitHub Actions como origen de publicación.",
+     "s": "Source"
+    }
+   ]
+  },
+  {
+   "kind": "claudePrompt",
+   "sourceHeading": "3 Prompt exacto diseñado por GPT para Claude",
+   "paragraphs": [
+    {
+     "k": "text",
+     "t": "Continúa sobre el proyecto actualizado tras TEMPORA-WEB-004B.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "OBJETIVO​ Llevar Tempora al repositorio elegido, ejecutar su primera publicación en GitHub Pages y verificar la landing y la aplicación en la URL real.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "REQUISITO OBLIGATORIO​ Utiliza la skill apple-design configurada para cualquier modificación visual. Conserva el diseño actual. Si no puedes acceder a ella, comunícalo antes de realizar cambios visuales; no afirmes haberla utilizado.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "PUNTO DE PARTIDA​ Comprueba:",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Dos entradas: index.html y app/index.html. ●​ Base relativa './'. ●​ .github/workflows/deploy-pages.yml.",
+     "s": "Source"
+    },
+    {
+     "k": "table",
+     "t": "●​   Ejecución manual workflow_dispatch con entrada ref.\n   ●​   .nvmrc con Node 22.\n   ●​   npm test, npm run build y npm run verify.\n   ●​   Servidor estático sin fallback mediante npm run serve.\n   ●​   Aviso traducido cuando falla el guardado de preferencias.",
+     "s": "TranscriptTable"
+    },
+    {
+     "k": "text",
+     "t": "No reconstruyas estas piezas si ya funcionan.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "1.​ IDENTIFICAR EL DESTINO​ Inspecciona el remoto Git, la rama actual, la rama predeterminada y el estado del repositorio.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Si no hay un destino identificado, solicita en una sola intervención:",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ URL del repositorio GitHub de destino. ●​ Rama que utilizaré para publicar, si no se puede deducir del repositorio.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Mientras falta esa información, completa las comprobaciones locales y prepara la entrega.​ No inventes usuario, repositorio ni URL publicada.​ No crees un repositorio ni cambies su visibilidad por iniciativa propia.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "2.​ COMPROBACIÓN LOCAL FINAL​ Utiliza la versión de Node indicada y ejecuta: ●​ npm ci. ●​ npm test. ●​ npm run build. ●​ npm run verify.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Comprueba que el lockfile está incluido y es coherente.​ Si falla algún paso, corrige la causa y repite las comprobaciones afectadas.​ No ocultes fallos desactivando pruebas o sustituyendo npm ci.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "El verificador estático complementa las pruebas de navegador; no demuestra por sí solo que toda la aplicación funcione.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "3.​ PREPARAR EL REPOSITORIO​ Revisa qué archivos se incluirán: ●​ Código, configuración, lockfile, documentación y workflow. ●​ Excluye node_modules, dist y compilaciones de Tauri. ●​ No incluyas credenciales, perfiles de navegador ni datos locales de prueba.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Si el repositorio remoto ya tiene contenido, intégralo conservando su historial.​ No utilices force-push ni sobrescribas trabajo ajeno.​ No incluyas cambios locales ajenos a Tempora.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Resume el contenido que se va a subir y utiliza un commit descriptivo.​ La publicación se realiza únicamente en el destino identificado por el usuario.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "4.​ CONFIGURAR GITHUB PAGES​ Comprueba:",
+     "s": "Source"
+    },
+    {
+     "k": "table",
+     "t": "●​   Source: GitHub Actions.\n   ●​   Entorno github-pages.\n   ●​   Reglas de ramas compatibles con la rama elegida.\n   ●​   Permisos del workflow.\n   ●​   Versiones de las acciones frente a documentación oficial vigente.",
+     "s": "TranscriptTable"
+    },
+    {
+     "k": "text",
+     "t": "Revisa si corresponde incorporar actions/configure-pages al flujo existente. Explica cualquier cambio necesario; no lo añadas solo por copiar una plantilla.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Conserva la base relativa y la entrada directa de Tauri.​ No añadas dominio personalizado, router ni fallback SPA.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Mantén el lanzamiento manual para esta primera publicación.​ No actives publicación automática por push como cambio adicional.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "5.​ PRIMER DESPLIEGUE​ Si tienes acceso autenticado y herramientas para operar el repositorio identificado: ●​ Sube los cambios preparados. ●​ Ejecuta el workflow para la revisión concreta. ●​ Espera el resultado de build y deploy. ●​ Comprueba que ambos finalizaron correctamente. ●​ Obtén la URL real desde el resultado del despliegue.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Registra:",
+     "s": "Source"
+    },
+    {
+     "k": "table",
+     "t": "●​   SHA publicado.\n   ●​   Rama o ref.\n   ●​   Enlace de ejecución.\n   ●​   URL de Pages.\n   ●​   Resultado y fecha de comprobación.",
+     "s": "TranscriptTable"
+    },
+    {
+     "k": "text",
+     "t": "Si no dispones de acceso, entrega los pasos exactos para que yo haga esas acciones. Distingue lo preparado de lo ejecutado y solicita después el enlace de la ejecución o la URL publicada para continuar la verificación.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "No declares publicado un sitio solo porque exista el YAML o haya pasado la compilación local.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "6.​ VERIFICAR LA URL REAL​ Comprueba sobre la web publicada: ●​ Landing accesible. ●​ Enlace “Ir a Tempora”. ●​ Acceso directo y recarga de app/index.html. ●​ Iconos, CSS, scripts e imports dinámicos sin errores de rutas. ●​ Anclas de navegación. ●​ Español e inglés. ●​ Modos claro y oscuro. ●​ Preferencias conservadas entre landing y aplicación. ●​ Selector de propósito en un contexto de prueba limpio.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Creación y recuperación de un evento de prueba tras recargar. ●​ Inicio, pausa y reinicio del Pomodoro. ●​ Audio iniciado explícitamente por el usuario.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Utiliza un contexto de navegador de prueba; no borres datos existentes del usuario.​ Distingue errores propios de la aplicación de restricciones o fallos de proveedores externos.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Si dispones de navegador, revisa escritorio y móvil e incluye capturas.​ No afirmes haber probado un dispositivo físico, Tauri o una interacción que no hayas ejecutado.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "7.​ DOCUMENTACIÓN Y ESTADOS​ Solo tras una publicación real verificada: ●​ Añade al README las URLs reales de landing y aplicación. ●​ Registra la revisión y las comprobaciones realizadas. ●​ Actualiza el estado de publicación en español e inglés.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Si actualizas el contenido después del primer despliegue, publica esa nueva revisión y compruébala antes de presentarla como versión final.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Mantén como pendientes:",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ El registro de prompts y respuestas hasta que entregue el DOCX. ●​ Las pruebas físicas o de escritorio que no se hayan realizado. ●​ Las funcionalidades todavía no implementadas.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "No marques todas las fases como completas.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "8.​ ENTREGA​ Proporciona: ●​ Proyecto actualizado y TEMPORA-WEB-004C.patch si hubo cambios. ●​ SHA y enlace de ejecución, cuando existan. ●​ URLs reales verificadas. ●​ Tabla breve de comprobaciones realizadas, fallidas y pendientes. ●​ Capturas disponibles. ●​ Pasos que requieren intervención mía, si los hay.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Si no pudiste publicar, indica el punto concreto donde se detuvo el proceso y deja los archivos listos para continuar.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "No añadas nuevas funcionalidades en esta iteración.​ Detente al finalizar TEMPORA-WEB-004C.",
+     "s": "Source"
+    }
+   ]
+  },
+  {
+   "kind": "claudeResponse",
+   "sourceHeading": "4 Respuesta de Claude con cambios y validación",
+   "paragraphs": [
+    {
+     "k": "note",
+     "t": "Fuente: páginas 79 a 81 del PDF. Se conserva la respuesta completa.",
+     "s": "Reference"
+    },
+    {
+     "k": "text",
+     "t": "Tras pegar el undécimo prompt obtenido de GPT-6.1 Sol a claude (que se encuentra dentro de las respuestas obtenidas de ChatGPT) he obtenido lo siguiente:",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Empiezo por identificar el destino (remoto Git, gh, carpetas de tu equipo) y, en paralelo, la comprobación local final con npm ci.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Todavía no he publicado nada. No hay destino identificado y no puedo operar GitHub desde aquí, así que no hay SHA, ejecución ni URL publicada.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Dónde me detuve",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ La copia de trabajo no es un repositorio Git: no tiene .git, remoto ni rama. ●​ El GH_TOKEN del entorno es inválido, y tampoco tengo ningún otro acceso autenticado a GitHub. ●​ Tu equipo está enlazado, pero no hay carpetas conectadas. No he buscado tu clon local en tu disco; si lo tienes, concédeme esa carpeta y lo inspecciono.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Qué necesito de ti (una sola respuesta)",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "1.​ La URL del repositorio de destino. 2.​ La rama de publicación. Si el repositorio ya existe, la deduzco de su rama predeterminada.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Comprobación local final (hecha)",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "La hice en una copia limpia, sin node_modules ni dist, con Node 22.23.4 (.nvmrc = 22):",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Comprobación                                    Resultado",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Correcto. El lockfile está presente y es npm ci coherente.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "npm test                                  304 tests pasan, 12 archivos.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "npm run build                             Correcto.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Correcto, 11 archivos, en la raíz y en subruta, npm run verify:dist sin fallback SPA.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Archivos secretos, credenciales o Ninguno. enlaces simbólicos",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Excluye node_modules, dist, dist-* y .gitignore src-tauri/target y gen.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "npm ci avisa de vulnerabilidades en npm audit. No lo he revisado ni corregido, porque no entra en esta iteración y no cambia el resultado. Recuerda que el verificador estático no demuestra por sí solo que toda la aplicación funcione.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "actions/configure-pages",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "No lo añado. La base es relativa (./), no hay dominio personalizado y el flujo no lo necesita. Solo calcularía una base o URL que aquí no se usan, y las versiones de las acciones que ya tiene el flujo no cambian. Si más adelante quieres dominio propio o una base absoluta, lo reviso.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Pasos para publicar (los haces tú, o los hago yo cuando me des acceso)",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "1.​ Descomprime tempora-web-004b.zip. Si el repositorio ya tiene contenido, clónalo y copia encima el contenido del zip, sin .git, para conservar su historial. 2.​ En PowerShell:",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "None‎ git add -A",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "git commit -m \"Tempora: landing, app y flujo de despliegue en GitHub Pages\"",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "git push origin <rama>",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Sin --force. Revisa antes con git status que no entre nada ajeno a Tempora.​ 3. En Settings → Pages, pon Source en GitHub Actions. Si el entorno github-pages restringe ramas, permite la tuya.​ 4. En Actions, abre “Deploy to GitHub Pages” y pulsa Run workflow. Elige la rama y deja ref vacío, o pon el SHA concreto.​ 5. Pásame el enlace de la ejecución o la URL de Pages que aparece en el resumen del trabajo deploy.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Con eso verifico la URL real en navegador (landing, enlace, recarga de app/, recursos, es/ en, claro/oscuro, preferencias, evento tras recargar, Pomodoro, audio, escritorio y móvil con capturas). Después actualizo README y estados en es/en y genero TEMPORA- WEB-004C.patch. No hay parche 004C todavía porque el proyecto no ha cambiado desde 004B.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Me detengo aquí hasta que me des el destino.",
+     "s": "Source"
+    }
+   ]
+  }
+ ]
+}

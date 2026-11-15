@@ -1,0 +1,373 @@
+{
+ "id": "004b",
+ "phase": 4,
+ "phaseSourceHeading": "Fase 4 Landing y despliegue",
+ "sourceHeading": "Iteración 004B Preparación de GitHub Pages",
+ "sections": [
+  {
+   "kind": "userPrompt",
+   "sourceHeading": "Prompt del usuario enviado a GPT",
+   "paragraphs": [
+    {
+     "k": "text",
+     "t": "004a completado, lee las capturas y el archivo patch, Dame el prompt ahora que puedes ver las capturas",
+     "s": "Source"
+    }
+   ]
+  },
+  {
+   "kind": "progress",
+   "sourceHeading": "Mensajes de progreso registrados de GPT",
+   "paragraphs": [
+    {
+     "k": "text",
+     "t": "Veo las cinco capturas de la landing, en claro, oscuro y distintos anchos. Revisaré el parche actualizado para ajustar el prompt de 004B a esta versión.",
+     "s": "Source"
+    }
+   ]
+  },
+  {
+   "kind": "gptResponse",
+   "sourceHeading": "Respuesta de GPT anterior al prompt para Claude",
+   "paragraphs": [
+    {
+     "k": "text",
+     "t": "Las capturas muestran la landing completa, su versión oscura en inglés y la reorganización en pantallas estrechas. Mantendría este diseño para 004B: jerarquía clara, identidad violeta y acceso visible a Tempora.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "He revisado también TEMPORA-WEB-004A(1).patch. Confirma las dos entradas, los estilos separados y las preferencias compartidas. Detecto un detalle concreto: la landing ignora el resultado de saveSharedPref; si falla el guardado, cambia visualmente el idioma, pero no informa de que podría perderse al recargar.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Este prompt actualiza 004B con ese ajuste y las comprobaciones previas a publicar. No he ejecutado el proyecto.",
+     "s": "Source"
+    }
+   ]
+  },
+  {
+   "kind": "claudePrompt",
+   "sourceHeading": "3 Prompt exacto diseñado por GPT para Claude",
+   "paragraphs": [
+    {
+     "k": "text",
+     "t": "Continúa sobre el proyecto actualizado entregado en TEMPORA-WEB-004A.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "OBJETIVO​ Preparar el despliegue reproducible de la landing y la aplicación en GitHub Pages, conservando el diseño mostrado en las capturas. No publiques todavía.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "REQUISITO OBLIGATORIO​ Utiliza la skill apple-design configurada en mi entorno para cualquier cambio visual. Si no puedes acceder a ella, comunícalo antes de modificar la interfaz; no afirmes haberla utilizado.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "CONTEXTO VERIFICADO​ Comprueba estos elementos en el repositorio real:",
+     "s": "Source"
+    },
+    {
+     "k": "table",
+     "t": "●​   index.html inicia src/landing/main.tsx.\n   ●​   app/index.html inicia src/main.tsx.\n   ●​   Vite configura ambas entradas mediante rollupOptions.input.\n   ●​   config/base.ts utiliza './' por defecto y admite TEMPORA_BASE.\n   ●​   landing/guard.ts construye el acceso mediante BASE_URL.\n   ●​   sharedPrefs.ts comparte idioma, modo y tema sin importar el store en ejecución.\n   ●​   Tauri tiene url: \"app/index.html\".\n   ●​   Los estilos comunes están separados de los específicos de cada entrada.",
+     "s": "TranscriptTable"
+    },
+    {
+     "k": "text",
+     "t": "Conserva ambos idiomas, ambos propósitos con eventos compartidos y todas las funcionalidades existentes.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "1.​ CONSERVAR LA PRESENTACIÓN​ Las capturas muestran: ●​ Cabecera con navegación, modo, idioma y acceso. ●​ Presentación con el icono real de Tempora. ●​ Sobre el proyecto y explicación de ambos propósitos. ●​ Funcionalidades, tecnologías y cronología de fases. ●​ Documentación de prompts pendiente. ●​ Acceso final a la aplicación.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Mantén esta composición, sus colores y tipografía.​ Corrige únicamente problemas reproducibles de adaptación o accesibilidad encontrados durante las pruebas.​ No reconstruyas la landing ni añadas contenido decorativo.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "2.​ CORREGIR EL FALLO SILENCIOSO DE PREFERENCIAS​ En Landing.tsx, setLanguage y setDark llaman a saveSharedPref, pero ignoran su resultado booleano.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Si devuelve false:",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Mantén el cambio aplicado en memoria. ●​ Muestra un aviso discreto, accesible y traducido indicando que la preferencia no se ha podido guardar y puede perderse al recargar. ●​ Evita acumular avisos repetidos. ●​ No muestres confirmaciones falsas de guardado. ●​ No sobrescribas datos ilegibles. ●​ No importes el store, AudioEngine o servicios de arranque para mostrar el aviso.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Añade una prueba significativa del comportamiento con almacenamiento fallido utilizando la infraestructura disponible.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "3.​ INSPECCIÓN DEL REPOSITORIO​ Revisa package.json, lockfile, versión de Node, .gitignore, workflows y remoto Git.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "No inventes propietario, repositorio, dominio ni rama.​ Si no existe remoto, continúa preparando los archivos y documenta qué dato falta para conectarlo.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Consulta documentación oficial vigente de GitHub Pages y GitHub Actions para seleccionar versiones compatibles de las acciones.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "4.​ WORKFLOW​ Crea o adapta .github/workflows/deploy-pages.yml para: ●​ Obtener el código. ●​ Preparar Node. ●​ Instalar mediante npm ci. ●​ Ejecutar npm test. ●​ Compilar el frontend. ●​ Validar los archivos generados. ●​ Subir únicamente dist como artefacto de Pages. ●​ Desplegar ese artefacto.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Separa compilación y publicación cuando permita limitar permisos.​ Utiliza contents: read y concede pages: write e id-token: write únicamente donde sean necesarios.​ Configura el entorno github-pages y expón la URL devuelta por el despliegue.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Incluye workflow_dispatch.​ Configura publicación por push únicamente si conoces la rama real. Si no, deja funcional el lanzamiento manual y documenta cómo añadirla.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Gestiona la concurrencia para evitar publicaciones incompatibles.​ No despliegues desde pull requests ni utilices pull_request_target.​ No solicites un token personal si GITHUB_TOKEN es suficiente.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "5.​ INSTALACIÓN REPRODUCIBLE​ Comprueba que package-lock.json existe y coincide con package.json.​ Si falta, genéralo e inclúyelo sin actualizar innecesariamente dependencias principales.​ No sustituyas npm ci por npm install para ocultar incoherencias. 6.​ BASE Y RECURSOS​ Conserva './' como base predeterminada salvo que una prueba demuestre un problema concreto.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Comprueba la salida compilada:",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ En la raíz de un servidor. ●​ Bajo una subruta de prueba. ●​ Abriendo y recargando app/index.html directamente.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Verifica:",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Enlaces “Ir a Tempora”.",
+     "s": "Source"
+    },
+    {
+     "k": "table",
+     "t": "●​   Scripts, CSS e imports dinámicos.\n   ●​   Iconos e imágenes.\n   ●​   Anclas de navegación.\n   ●​   Recursos utilizados por ambas entradas.",
+     "s": "TranscriptTable"
+    },
+    {
+     "k": "text",
+     "t": "No fijes nombres de repositorio en el código.​ No añadas router ni fallback 404 para sustituir archivos estáticos existentes.​ No introduzcas una base de GitHub Pages en el empaquetado de Tauri.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Corrige los comentarios y documentación que presentan file:// como funcionamiento garantizado. Una base relativa no elimina las restricciones del navegador: utiliza un servidor HTTP para las comprobaciones.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "7.​ VALIDACIÓN DEL ARTEFACTO​ Comprueba antes de subir: ●​ dist/index.html existe. ●​ dist/app/index.html existe. ●​ Los recursos locales referenciados se resuelven. ●​ No quedan referencias de desarrollo como /src/main.tsx. ●​ El enlace de la landing apunta a la aplicación correcta.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Usa un servidor estático sin fallback SPA para probar las rutas. Una respuesta 200 que devuelve la landing en lugar del archivo solicitado no cuenta como validación.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Comprueba también que visitar la landing no monta reproductores, temporizadores, selector de propósito ni avisos de bienvenida.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "8.​ DOCUMENTACIÓN Y ESTADOS​ Actualiza README con: ●​ Instalación, pruebas, build y preview. ●​ Entradas de landing y aplicación. ●​ Settings → Pages → Source → GitHub Actions. ●​ Lanzamiento manual y rama de publicación. ●​ Consulta de logs. ●​ Diagnóstico de errores de rutas. ●​ Cómo volver a desplegar una revisión anterior sin force-push.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Aclara que los datos locales de localhost o Tauri no se trasladan automáticamente a la web publicada.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Mientras no exista una publicación real verificada:",
+     "s": "Source"
+    },
+    {
+     "k": "table",
+     "t": "●​   Mantén el despliegue como pendiente.\n   ●​   Puedes indicar “Configuración de despliegue preparada”.\n   ●​   No inventes URL ni ejecución satisfactoria.\n   ●​   Conserva “Documentación pendiente de incorporar” en prompts y respuestas.\n   ●​   No marques todas las fases como completadas.",
+     "s": "TranscriptTable"
+    },
+    {
+     "k": "text",
+     "t": "Mantén coherencia entre español e inglés y adapta las pruebas de estados cuando corresponda.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "9.​ COMPROBACIONES​ Ejecuta npm test y npm run build.​ Valida el YAML con las herramientas disponibles.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Si dispones de navegador:",
+     "s": "Source"
+    },
+    {
+     "k": "table",
+     "t": "●​   Revisa landing y aplicación en raíz y subruta.\n    ●​   Prueba idioma y modo conservados al navegar.\n    ●​   Revisa 390, 768 y 1440 px.\n    ●​   Comprueba teclado, anclas y acceso directo.\n    ●​   Verifica ausencia de errores propios de rutas o recursos.",
+     "s": "TranscriptTable"
+    },
+    {
+     "k": "text",
+     "t": "Distingue validación local, ejecución real en GitHub Actions y pruebas pendientes.​ No afirmes haber ejecutado Tauri si no puedes hacerlo.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "10.​ENTREGA​ Proporciona: ●​ Resumen de cambios. ●​ Proyecto actualizado y TEMPORA-WEB-004B.patch. ●​ Workflow completo. ●​ Comandos ejecutados y resultados reales. ●​ Resultado de pruebas en raíz y subruta. ●​ Capturas si puedes generarlas. ●​ Pasos exactos pendientes para publicar.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "No crees repositorios, no hagas push y no cambies ajustes remotos en esta iteración. Deja la configuración lista para subir al repositorio elegido.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Detente al finalizar TEMPORA-WEB-004B.",
+     "s": "Source"
+    }
+   ]
+  },
+  {
+   "kind": "claudeResponse",
+   "sourceHeading": "4 Respuesta de Claude con cambios y validación",
+   "paragraphs": [
+    {
+     "k": "note",
+     "t": "Fuente: páginas 77 a 79 del PDF. Se conserva la respuesta completa.",
+     "s": "Reference"
+    },
+    {
+     "k": "text",
+     "t": "Tras pegar el décimo prompt obtenido de GPT-6.1 Sol a claude (que se encuentra dentro de las respuestas obtenidas de ChatGPT) he obtenido lo siguiente:",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Empiezo 004B: primero verifico los puntos de contexto y el estado real del repositorio (lockfile, Node, .gitignore, workflows, remoto), y consulto la documentación oficial de GitHub Pages/Actions para elegir versiones de las acciones. La skill apple-design ya está leída en esta sesión; la aplicaré al aviso de preferencias.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "004B va bien: workflow, verificador de dist/ (raíz y subruta, sin fallback SPA), 304 tests y comprobaciones en navegador pasan. Ahora escribo el README, miro las capturas y empaqueto zip + parche.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Todo pasa (tsc, 304 tests, build, verify:dist). Genero ahora el parche contra la base 004A, el zip y las capturas.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "TEMPORA-WEB-004B — informe Preparé el despliegue en GitHub Pages y no publiqué nada. No hay repositorio, remoto ni push, y el flujo no se ha ejecutado en GitHub.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "La skill apple-design estaba accesible y la usé para el único cambio visual, el aviso de guardado. La presentación de la landing no cambió.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Qué hice",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Fallo silencioso al guardar: si localStorage falla, la landing muestra un aviso discreto, accesible y descartable, en es/en. Sale una sola vez y desaparece si un guardado posterior funciona. Un valor ilegible nunca se sobrescribe. ●​ Flujo .github/workflows/deploy-pages.yml: ○​ Se lanza solo a mano (workflow_dispatch, con entrada opcional ref). ○​ El trabajo build hace npm ci, npm test, npm run build, npm run verify:dist y sube dist. ○​ El trabajo deploy tiene pages: write e id-token: write, entorno github-pages y la URL de salida. ○​ Usa GITHUB_TOKEN, sin PAT, sin pull requests y sin pull_request_target. ○​ La base sigue siendo ./; no hay nombres de repositorio fijos ni TEMPORA_BASE.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Versiones de las acciones: checkout@v6, setup-node@v7, upload-pages- artifact@v4, deploy-pages@v4, tomadas de la documentación oficial. También añadí .github/dependabot.yml y .nvmrc (Node 22). ●​ Comprobación del paquete: npm run verify:dist revisa dist/ y lo rastrea con un servidor estático sin fallback SPA, en la raíz y bajo una subruta. Si una ruta devuelve la landing en vez del archivo, falla. Probé que detecta un chunk ausente, URLs absolutas, entradas intercambiadas y referencias de desarrollo. ●​ file://: corregí la afirmación en el comentario de config/base.ts, el README y un test. Para pruebas manuales usa npm run serve:dist. ●​ README: añadí la sección de 004B con la configuración de Pages, el lanzamiento manual, la rama de publicación, los logs, el diagnóstico de rutas, cómo redesplegar una revisión anterior sin force-push y la nota de que localStorage no se traslada del localhost o de Tauri al sitio publicado. ●​ Landing: el despliegue figura como “Configuración de despliegue preparada” (hecho) y “Publicación en GitHub Pages” (pendiente). “Documentación pendiente de incorporar” sigue igual, y la fase de pruebas no está completa.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Resultados",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Validación local, hecha:",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ tsc sin errores. ●​ 304 tests pasan. ●​ build correcto. ●​ verify:dist correcto (11 archivos). ●​ El YAML del flujo y el de Dependabot parsean. No pude instalar actionlint, así que no hay lint específico de Actions. ●​ En Chromium, con servidor sin fallback, en la raíz y en /mi-prueba/tempora/, todo pasó: ○​ Carga de la landing e imágenes. ○​ Anclas por teclado. ○​ Enlace a la app. ○​ Idioma y modo conservados al navegar. ○​ Recarga y acceso directo a app/. ○​ Una ruta inexistente responde 404. ○​ Sin errores de consola. ○​ Sin desbordamiento horizontal a 390, 768 y 1440 px. ○​ La landing no monta audio, iframes, diálogos ni temporizadores. ●​ El aviso de guardado se comprobó con un fallo simulado, con un valor ilegible y con un guardado correcto.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Ejecución real en GitHub Actions: no se ha hecho.​ Tauri: no se ha ejecutado.​ Pendiente: publicar y verificar la URL real.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Pasos exactos para publicar",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "1.​ Elige propietario/repositorio y rama; yo no los he inventado. Sube el proyecto a ese repositorio. 2.​ En Settings → Pages → Source, elige GitHub Actions. 3.​ En Actions, abre “Deploy to GitHub Pages” y pulsa Run workflow. 4.​ Comprueba la URL en el resumen de la ejecución: la landing en <page_url> y la app en <page_url>app/index.html. 5.​ Para desplegar en cada push, añade el disparador push con la rama elegida, como indica el README, y confirma en Settings → Environments → github-pages que esa rama está permitida.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Me detengo aquí.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Archivos en /mnt/attach/outputs/:",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ tempora-web-004b.zip ●​ TEMPORA-WEB-004B.patch ●​ capturas-004b/",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "El parche se aplica limpio sobre 004A (comprobado con git apply --check).",
+     "s": "Source"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,81 @@
+/* Estilos COMPARTIDOS por la landing y la aplicación: tokens de tema (violeta como acento inicial), fondo, foco,
+   materiales y tipografía base. NO contiene nada propio de una sola entrada (alturas fijas, user-select, layout de app,
+   layout de landing): eso vive en src/index.css (aplicación) y src/landing/landing.css (landing). */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ───────── Theme tokens: Obsidian + Gems ───────── */
+:root {
+  --bg: 228 237 249; --ink: 17 24 39; --sub: 100 116 139; --line: 15 23 42;
+  --glass: 255 255 255; --glass-a: .62; --on-accent: 255 255 255;
+  --assign: 217 119 6; --study: 5 150 105;
+  --accent: 109 63 216;
+}
+:root.dark {
+  --bg: 14 14 17; --ink: 244 244 247; --sub: 150 150 164; --line: 255 255 255;
+  --glass: 38 38 44; --glass-a: .58; --on-accent: 14 12 22;
+  --assign: 251 191 36; --study: 52 211 153;
+}
+[data-theme='ruby']       { --accent: 190 18 60; }
+[data-theme='agate']      { --accent: 109 63 216; }
+[data-theme='diamond']    { --accent: 8 145 178; }
+[data-theme='antimatter'] { --accent: 147 51 234; }
+.dark[data-theme='ruby']       { --accent: 251 99 125; }
+.dark[data-theme='agate']      { --accent: 167 139 250; }
+.dark[data-theme='diamond']    { --accent: 103 232 249; }
+.dark[data-theme='antimatter'] { --accent: 192 132 252; --bg: 7 4 18; --glass: 28 18 54; }
+
+/* Base visual común: color, suavizado, fondo con el acento y transición de tema. Sin alturas ni user-select. */
+body {
+  margin: 0; color: rgb(var(--ink)); font-optical-sizing: auto;
+  -webkit-font-smoothing: antialiased;
+  background:
+    radial-gradient(1100px 700px at 8% -10%, rgb(var(--accent) / .20), transparent 60%),
+    radial-gradient(900px 650px at 100% 105%, rgb(var(--accent) / .12), transparent 60%),
+    rgb(var(--bg));
+  transition: background-color .4s ease;
+}
+/* El usuario puede ampliar y escalar el texto: no se bloquea el zoom ni se fija el tamaño de fuente. */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+:focus-visible { outline: 2px solid rgb(var(--accent)); outline-offset: 2px; }
+.field:focus-visible { outline: none; }
+
+/* ───────── Materials ───────── */
+@layer components {
+  .glass {
+    background: rgb(var(--glass) / var(--glass-a));
+    -webkit-backdrop-filter: blur(24px) saturate(180%); backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid rgb(var(--line) / .10);
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / .35), 0 10px 34px -14px rgb(0 0 0 / .30);
+  }
+  .dark .glass { box-shadow: inset 0 1px 0 rgb(255 255 255 / .07), 0 10px 34px -14px rgb(0 0 0 / .7); }
+  .glass-strong { @apply glass; background: rgb(var(--glass) / .86); }
+  .press { transition: transform 100ms ease-out, background-color .15s, color .15s; }
+  .press:active { transform: scale(.97); }
+  .field {
+    @apply w-full rounded-xl border border-line/10 bg-glass/50 px-3 py-2 text-[13px] text-ink outline-none;
+    transition: box-shadow .15s, border-color .15s;
+  }
+  .field:focus { border-color: rgb(var(--accent) / .7); box-shadow: 0 0 0 3px rgb(var(--accent) / .22); }
+  .btn { @apply press rounded-xl px-4 py-2 text-[13px] font-semibold; }
+  .btn-primary { @apply btn bg-accent text-on-accent; box-shadow: 0 6px 18px -6px rgb(var(--accent) / .7); }
+  .btn-ghost { @apply btn text-sub hover:bg-line/10 hover:text-ink; }
+  .t-display { font-size: 1.75rem; line-height: 1.05; letter-spacing: -.022em; font-weight: 700; }
+  .t-title   { font-size: 1.125rem; line-height: 1.2; letter-spacing: -.014em; font-weight: 650; }
+  .t-body    { font-size: .8125rem; line-height: 1.5; letter-spacing: 0; }
+  .t-caption { font-size: .6875rem; line-height: 1.3; letter-spacing: .012em; font-weight: 500; }
+}
+
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-thumb { background: rgb(var(--line) / .18); border-radius: 10px; border: 3px solid transparent; background-clip: content-box; }
+input[type='range'] { accent-color: rgb(var(--accent)); }
+input[type='date'], input[type='time'], select { color-scheme: light; }
+.dark input[type='date'], .dark input[type='time'], .dark select { color-scheme: dark; }
+
+@media (prefers-reduced-transparency: reduce) {
+  .glass, .glass-strong { background: rgb(var(--glass) / .97); backdrop-filter: none; -webkit-backdrop-filter: none; }
+}
+@media (prefers-contrast: more) { .glass, .glass-strong { border-color: rgb(var(--line) / .55); } }
+@media (prefers-reduced-motion: reduce) { .press:active { transform: none; } }
+

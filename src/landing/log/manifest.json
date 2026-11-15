@@ -1,0 +1,554 @@
+{
+ "source": {
+  "file": "e9d042a8-tempora-bitacora-estructurada.docx",
+  "sha256": "c8fde70adbc37b9c828f9ad846e5459656e98f3f8d7c9166a10c9f9e873b5f48",
+  "paragraphs": 949,
+  "blocks": 11
+ },
+ "traceNotes": [
+  "Fuente recibida: Prompts-y-respuestas.pdf, 81 páginas. El archivo recibido es un PDF, aunque la solicitud lo denomina DOCX. Las referencias de página de este documento corresponden a ese PDF.",
+  "Se conserva el contenido textual de los intercambios sin resumir los prompts ni las respuestas. Se reorganizan los bloques, se añaden encabezados y referencias y se ajustan saltos de línea y espacios de maquetación. Las tablas del PDF se mantienen como transcripción textual cuando su extracción no permite reconstruirlas sin interpretar el contenido.",
+  "Los objetivos de apertura y las notas de organización son añadidos editoriales. Los mensajes de progreso rotulados en el original como Thought process se conservan como mensajes registrados, sin atribuirles un contenido adicional. Los resultados de pruebas son declaraciones de Claude en la fuente, no verificaciones nuevas de esta bitácora.",
+  "La fuente identifica GPT como GPT-6.1 Sol con Reasoning level Medium y a Claude como Claude Sonnet 5.5. La numeración ordinal de los prompts de Claude no coincide siempre con la de GPT y omite el séptimo: se conserva su etiqueta original y se vincula cada respuesta por su iteración y contenido."
+ ],
+ "excludedNotes": [
+  "Para la landing: conserve los prompts y las respuestas originales, distinga las propuestas de las funciones implementadas y mantenga la publicación como pendiente en 004C. No traduzca ni corrija silenciosamente los textos de esta transcripción. El bloque 4 conserva íntegra la respuesta de Claude, incluidos su resumen técnico, cambios y validación."
+ ],
+ "blocks": [
+  {
+   "id": "analysis",
+   "phase": 1,
+   "phaseSourceHeading": "Fase 1 Análisis y arquitectura",
+   "sourceHeading": "Análisis inicial Análisis y arquitectura inicial",
+   "objective": "Definir el alcance, las funcionalidades complementarias y la arquitectura inicial de Tempora Web.",
+   "gptRefs": [
+    "Referencia original de GPT: Primer prompt: Páginas 1 a 6."
+   ],
+   "pageMap": "Análisis inicial  —  Análisis y arquitectura inicial  |  GPT páginas 1 a 6; sin respuesta de Claude asociada",
+   "gptPages": [
+    1,
+    6
+   ],
+   "claudePages": null,
+   "sections": [
+    {
+     "kind": "userPrompt",
+     "paragraphs": 7,
+     "chars": 2675
+    },
+    {
+     "kind": "progress",
+     "paragraphs": 4,
+     "chars": 672
+    },
+    {
+     "kind": "gptResponse",
+     "paragraphs": 38,
+     "chars": 7897
+    },
+    {
+     "kind": "claudePrompt",
+     "paragraphs": 1,
+     "chars": 124
+    },
+    {
+     "kind": "claudeResponse",
+     "paragraphs": 1,
+     "chars": 88
+    }
+   ],
+   "chars": 11456,
+   "sha256": "a9066ee5319e77501006382f7997b52a1d1386b1b3b88903227e76db62798e06"
+  },
+  {
+   "id": "001",
+   "phase": 1,
+   "phaseSourceHeading": "Fase 1 Análisis y arquitectura",
+   "sourceHeading": "Iteración 001 Preferencias y selector de propósito",
+   "objective": "Incorporar la elección de propósito y preparar preferencias persistentes sin separar los eventos.",
+   "gptRefs": [
+    "Referencia original de GPT: Segundo Prompt: Páginas 6 a 13."
+   ],
+   "pageMap": "TEMPORA-WEB-001  —  Preferencias y selector de propósito  |  GPT páginas 6 a 13; Claude páginas 54 a 56",
+   "gptPages": [
+    6,
+    13
+   ],
+   "claudePages": [
+    54,
+    56
+   ],
+   "sections": [
+    {
+     "kind": "userPrompt",
+     "paragraphs": 6,
+     "chars": 2259
+    },
+    {
+     "kind": "progress",
+     "paragraphs": 1,
+     "chars": 171
+    },
+    {
+     "kind": "gptResponse",
+     "paragraphs": 36,
+     "chars": 6488
+    },
+    {
+     "kind": "claudePrompt",
+     "paragraphs": 25,
+     "chars": 5552
+    },
+    {
+     "kind": "gptContinuation",
+     "paragraphs": 1,
+     "chars": 203
+    },
+    {
+     "kind": "claudeResponse",
+     "paragraphs": 28,
+     "chars": 5981
+    }
+   ],
+   "chars": 20654,
+   "sha256": "c167c0297517a7f4b76e82248248ed1663765f6cb4e8eda1e325318c376b99a2"
+  },
+  {
+   "id": "002a",
+   "phase": 2,
+   "phaseSourceHeading": "Fase 2 Internacionalización",
+   "sourceHeading": "Iteración 002A Base bilingüe y selector de idioma",
+   "objective": "Completar el vocabulario inglés y conectar el cambio de idioma en Ajustes.",
+   "gptRefs": [
+    "Referencia original de GPT: Tercer Prompt: Páginas 13 a 18."
+   ],
+   "pageMap": "TEMPORA-WEB-002A  —  Base bilingüe y selector de idioma  |  GPT páginas 13 a 18; Claude páginas 57 a 59",
+   "gptPages": [
+    13,
+    18
+   ],
+   "claudePages": [
+    57,
+    59
+   ],
+   "sections": [
+    {
+     "kind": "userPrompt",
+     "paragraphs": 2,
+     "chars": 529
+    },
+    {
+     "kind": "progress",
+     "paragraphs": 1,
+     "chars": 172
+    },
+    {
+     "kind": "gptResponse",
+     "paragraphs": 22,
+     "chars": 2870
+    },
+    {
+     "kind": "claudePrompt",
+     "paragraphs": 30,
+     "chars": 6343
+    },
+    {
+     "kind": "gptContinuation",
+     "paragraphs": 1,
+     "chars": 272
+    },
+    {
+     "kind": "claudeResponse",
+     "paragraphs": 22,
+     "chars": 5891
+    }
+   ],
+   "chars": 16077,
+   "sha256": "2933e62b3e18b73deabf272dbece120ab63ac3af9ee885827564eaabdf7c2086"
+  },
+  {
+   "id": "002b",
+   "phase": 2,
+   "phaseSourceHeading": "Fase 2 Internacionalización",
+   "sourceHeading": "Iteración 002B Traducción completa de la interfaz",
+   "objective": "Traducir la interfaz visible y accesible conservando su comportamiento.",
+   "gptRefs": [
+    "Referencia original de GPT: Cuarto Prompt: Páginas 18 a 22."
+   ],
+   "pageMap": "TEMPORA-WEB-002B  —  Traducción completa de la interfaz  |  GPT páginas 18 a 22; Claude páginas 60 a 61",
+   "gptPages": [
+    18,
+    22
+   ],
+   "claudePages": [
+    60,
+    61
+   ],
+   "sections": [
+    {
+     "kind": "userPrompt",
+     "paragraphs": 1,
+     "chars": 57
+    },
+    {
+     "kind": "progress",
+     "paragraphs": 1,
+     "chars": 3
+    },
+    {
+     "kind": "gptResponse",
+     "paragraphs": 1,
+     "chars": 219
+    },
+    {
+     "kind": "claudePrompt",
+     "paragraphs": 43,
+     "chars": 6621
+    },
+    {
+     "kind": "claudeResponse",
+     "paragraphs": 20,
+     "chars": 3415
+    }
+   ],
+   "chars": 10315,
+   "sha256": "2650497d1301a04de14073aa1d80bec686e666d73aff2133cee255dc244ba7fb"
+  },
+  {
+   "id": "002c",
+   "phase": 2,
+   "phaseSourceHeading": "Fase 2 Internacionalización",
+   "sourceHeading": "Iteración 002C Fechas y notificaciones bilingües",
+   "objective": "Completar fechas, mensajes relativos y notificaciones en ambos idiomas.",
+   "gptRefs": [
+    "Referencia original de GPT: Quinto Prompt: Páginas 22 a 27."
+   ],
+   "pageMap": "TEMPORA-WEB-002C  —  Fechas y notificaciones bilingües  |  GPT páginas 22 a 27; Claude páginas 62 a 64",
+   "gptPages": [
+    22,
+    27
+   ],
+   "claudePages": [
+    62,
+    64
+   ],
+   "sections": [
+    {
+     "kind": "userPrompt",
+     "paragraphs": 1,
+     "chars": 49
+    },
+    {
+     "kind": "progress",
+     "paragraphs": 1,
+     "chars": 3
+    },
+    {
+     "kind": "gptResponse",
+     "paragraphs": 1,
+     "chars": 178
+    },
+    {
+     "kind": "claudePrompt",
+     "paragraphs": 54,
+     "chars": 7875
+    },
+    {
+     "kind": "claudeResponse",
+     "paragraphs": 26,
+     "chars": 4939
+    }
+   ],
+   "chars": 13044,
+   "sha256": "970846d304785dac84aa6cb4edfc14053838952efae5ca8b8a484ed58bd21d5e"
+  },
+  {
+   "id": "003a",
+   "phase": 3,
+   "phaseSourceHeading": "Fase 3 Adaptación al navegador",
+   "sourceHeading": "Iteración 003A Compatibilidad entre navegador y Tauri",
+   "objective": "Separar las funciones nativas y web, especialmente los avisos y permisos.",
+   "gptRefs": [
+    "Referencia original de GPT: Sexto Prompt: Páginas 27 a 31."
+   ],
+   "pageMap": "TEMPORA-WEB-003A  —  Compatibilidad entre navegador y Tauri  |  GPT páginas 27 a 31; Claude páginas 64 a 67",
+   "gptPages": [
+    27,
+    31
+   ],
+   "claudePages": [
+    64,
+    67
+   ],
+   "sections": [
+    {
+     "kind": "userPrompt",
+     "paragraphs": 1,
+     "chars": 47
+    },
+    {
+     "kind": "progress",
+     "paragraphs": 1,
+     "chars": 3
+    },
+    {
+     "kind": "gptResponse",
+     "paragraphs": 4,
+     "chars": 607
+    },
+    {
+     "kind": "claudePrompt",
+     "paragraphs": 37,
+     "chars": 5975
+    },
+    {
+     "kind": "claudeResponse",
+     "paragraphs": 23,
+     "chars": 5768
+    }
+   ],
+   "chars": 12400,
+   "sha256": "14362ee9c13daffc34380857b0a46b4f3c93384c13b25d4e5a07c3f5555f6b77"
+  },
+  {
+   "id": "003b",
+   "phase": 3,
+   "phaseSourceHeading": "Fase 3 Adaptación al navegador",
+   "sourceHeading": "Iteración 003B Audio y persistencia web",
+   "objective": "Corregir el audio y reforzar el almacenamiento local en el navegador.",
+   "gptRefs": [
+    "Referencia original de GPT: Séptimo prompt: Páginas 31 a 35."
+   ],
+   "pageMap": "TEMPORA-WEB-003B  —  Audio y persistencia web  |  GPT páginas 31 a 35; Claude páginas 67 a 70",
+   "gptPages": [
+    31,
+    35
+   ],
+   "claudePages": [
+    67,
+    70
+   ],
+   "sections": [
+    {
+     "kind": "userPrompt",
+     "paragraphs": 1,
+     "chars": 25
+    },
+    {
+     "kind": "progress",
+     "paragraphs": 1,
+     "chars": 3
+    },
+    {
+     "kind": "gptResponse",
+     "paragraphs": 1,
+     "chars": 158
+    },
+    {
+     "kind": "claudePrompt",
+     "paragraphs": 31,
+     "chars": 6463
+    },
+    {
+     "kind": "claudeResponse",
+     "paragraphs": 25,
+     "chars": 7167
+    }
+   ],
+   "chars": 13816,
+   "sha256": "fa2a12a4ba813f3505b0de49dd69dbf55ae568e24bce88ab26f165cdc54e9897"
+  },
+  {
+   "id": "003c",
+   "phase": 3,
+   "phaseSourceHeading": "Fase 3 Adaptación al navegador",
+   "sourceHeading": "Iteración 003C Diseño adaptable y accesibilidad",
+   "objective": "Adaptar la distribución y los controles a móvil, tableta y escritorio.",
+   "gptRefs": [
+    "Referencia original de GPT: Octavo prompt: Páginas 35 a 40."
+   ],
+   "pageMap": "TEMPORA-WEB-003C  —  Diseño adaptable y accesibilidad  |  GPT páginas 35 a 40; Claude páginas 71 a 74",
+   "gptPages": [
+    35,
+    40
+   ],
+   "claudePages": [
+    71,
+    74
+   ],
+   "sections": [
+    {
+     "kind": "userPrompt",
+     "paragraphs": 1,
+     "chars": 25
+    },
+    {
+     "kind": "progress",
+     "paragraphs": 1,
+     "chars": 3
+    },
+    {
+     "kind": "gptResponse",
+     "paragraphs": 1,
+     "chars": 133
+    },
+    {
+     "kind": "claudePrompt",
+     "paragraphs": 43,
+     "chars": 6916
+    },
+    {
+     "kind": "claudeResponse",
+     "paragraphs": 36,
+     "chars": 6803
+    }
+   ],
+   "chars": 13880,
+   "sha256": "e24bf0beb65df476df34e8959c532bb64d57db73ca14438d1973d19a376dd37d"
+  },
+  {
+   "id": "004a",
+   "phase": 4,
+   "phaseSourceHeading": "Fase 4 Landing y despliegue",
+   "sourceHeading": "Iteración 004A Landing bilingüe y dos entradas HTML",
+   "objective": "Crear la landing y separar sus recursos y entrada de los de la aplicación.",
+   "gptRefs": [
+    "Referencia original de GPT: Noveno prompt: Páginas 40 a 45."
+   ],
+   "pageMap": "TEMPORA-WEB-004A  —  Landing bilingüe y dos entradas HTML  |  GPT páginas 40 a 45; Claude páginas 74 a 77",
+   "gptPages": [
+    40,
+    45
+   ],
+   "claudePages": [
+    74,
+    77
+   ],
+   "sections": [
+    {
+     "kind": "userPrompt",
+     "paragraphs": 1,
+     "chars": 86
+    },
+    {
+     "kind": "progress",
+     "paragraphs": 1,
+     "chars": 3
+    },
+    {
+     "kind": "gptResponse",
+     "paragraphs": 5,
+     "chars": 991
+    },
+    {
+     "kind": "claudePrompt",
+     "paragraphs": 49,
+     "chars": 7372
+    },
+    {
+     "kind": "claudeResponse",
+     "paragraphs": 24,
+     "chars": 7249
+    }
+   ],
+   "chars": 15701,
+   "sha256": "d12958bb3cd737b5588c40956a32bbf7c7c9b3267011de996bd1c68535464a9c"
+  },
+  {
+   "id": "004b",
+   "phase": 4,
+   "phaseSourceHeading": "Fase 4 Landing y despliegue",
+   "sourceHeading": "Iteración 004B Preparación de GitHub Pages",
+   "objective": "Preparar el workflow y verificar el artefacto para GitHub Pages.",
+   "gptRefs": [
+    "Referencia original de GPT: Décimo prompt: Páginas 45 a 50."
+   ],
+   "pageMap": "TEMPORA-WEB-004B  —  Preparación de GitHub Pages  |  GPT páginas 45 a 50; Claude páginas 77 a 79",
+   "gptPages": [
+    45,
+    50
+   ],
+   "claudePages": [
+    77,
+    79
+   ],
+   "sections": [
+    {
+     "kind": "userPrompt",
+     "paragraphs": 1,
+     "chars": 102
+    },
+    {
+     "kind": "progress",
+     "paragraphs": 1,
+     "chars": 152
+    },
+    {
+     "kind": "gptResponse",
+     "paragraphs": 3,
+     "chars": 632
+    },
+    {
+     "kind": "claudePrompt",
+     "paragraphs": 42,
+     "chars": 7167
+    },
+    {
+     "kind": "claudeResponse",
+     "paragraphs": 20,
+     "chars": 4674
+    }
+   ],
+   "chars": 12727,
+   "sha256": "807e4195a47a2c8763bfb372d4b8a3d90de66fc47ffdd4431096aed6c40d53bc"
+  },
+  {
+   "id": "004c",
+   "phase": 4,
+   "phaseSourceHeading": "Fase 4 Landing y despliegue",
+   "sourceHeading": "Iteración 004C Verificación local y publicación pendiente",
+   "objective": "Realizar la comprobación local final y documentar el bloqueo de la publicación por falta de destino y acceso.",
+   "gptRefs": [
+    "Referencia original de GPT: Undécimo prompt: Páginas 50 a 54."
+   ],
+   "pageMap": "TEMPORA-WEB-004C  —  Verificación local y publicación pendiente  |  GPT páginas 50 a 54; Claude páginas 79 a 81",
+   "gptPages": [
+    50,
+    54
+   ],
+   "claudePages": [
+    79,
+    81
+   ],
+   "sections": [
+    {
+     "kind": "userPrompt",
+     "paragraphs": 1,
+     "chars": 79
+    },
+    {
+     "kind": "progress",
+     "paragraphs": 1,
+     "chars": 134
+    },
+    {
+     "kind": "gptResponse",
+     "paragraphs": 3,
+     "chars": 545
+    },
+    {
+     "kind": "claudePrompt",
+     "paragraphs": 39,
+     "chars": 5960
+    },
+    {
+     "kind": "claudeResponse",
+     "paragraphs": 28,
+     "chars": 3288
+    }
+   ],
+   "chars": 10006,
+   "sha256": "66c771b169b0f8f639e947412c8ae377ad6d1b35084703113d264380b9fa1ff1"
+  }
+ ]
+}

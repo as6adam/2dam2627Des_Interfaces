@@ -1,0 +1,78 @@
+/* Estilos de la LANDING (entrada index.html). Comparte tokens, fondo, foco y materiales con la aplicación
+   (styles/shared.css) pero NO hereda de ella nada de lo específico de app: aquí la página tiene altura natural,
+   desplaza en vertical con el documento y el texto es seleccionable (no hay #root de altura fija ni user-select: none). */
+@import '../styles/shared.css';
+
+/* Los destinos de las anclas y el foco no quedan ocultos tras la cabecera fija (solo fija desde 768 px). */
+html { scroll-padding-top: 1rem; }
+@media (min-width: 768px) { html { scroll-padding-top: 6.5rem; } }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+body { min-height: 100vh; }
+@supports (height: 100dvh) { body { min-height: 100dvh; } }
+#landing { min-height: inherit; }
+/* Texto largo o muy ampliado (zoom de texto 200–300 %): una palabra que no cabe se parte en lugar de ensanchar la página. */
+main { overflow-wrap: anywhere; }
+
+@layer components {
+  /* Jerarquía tipográfica: tracking y leading dependen del tamaño (grande = más apretado). Todo en rem para respetar el zoom de texto. */
+  .l-display { font-size: clamp(3rem, 9vw, 5rem); line-height: 1; letter-spacing: -.035em; font-weight: 750; }
+  .l-h2 { font-size: clamp(1.75rem, 4.2vw, 2.5rem); line-height: 1.1; letter-spacing: -.024em; font-weight: 700; }
+  .l-h3 { font-size: 1.1875rem; line-height: 1.25; letter-spacing: -.012em; font-weight: 650; }
+  .l-lead { font-size: clamp(1.1875rem, 2.4vw, 1.4375rem); line-height: 1.42; letter-spacing: -.008em; }
+  .l-body { font-size: 1.0625rem; line-height: 1.6; letter-spacing: 0; }
+  .l-small { font-size: .875rem; line-height: 1.5; letter-spacing: .005em; }
+  .l-eyebrow { font-size: .8125rem; line-height: 1.3; letter-spacing: .06em; font-weight: 650; text-transform: uppercase; }
+  .l-link { @apply rounded-md underline decoration-accent/50 underline-offset-4 transition-colors hover:decoration-accent; }
+  /* Botones de la landing: objetivo táctil ≥ 44 px. */
+  .l-btn { @apply press inline-flex min-h-11 items-center justify-center gap-2 rounded-xl px-5 py-2.5 text-[0.9375rem] font-semibold; }
+  .l-btn-primary { @apply l-btn bg-accent text-on-accent; box-shadow: 0 8px 22px -8px rgb(var(--accent) / .75); }
+  .l-btn-ghost { @apply l-btn text-ink hover:bg-line/10; box-shadow: inset 0 0 0 1px rgb(var(--line) / .18); }
+  .l-ctrl { @apply press inline-flex min-h-11 min-w-11 items-center justify-center rounded-xl text-ink hover:bg-line/10; }
+}
+
+.skip-link {
+  position: absolute; left: .75rem; top: -4rem; z-index: 60;
+  padding: .625rem 1rem; border-radius: .75rem; font-weight: 600;
+  background: rgb(var(--ink)); color: rgb(var(--bg));
+}
+.skip-link:focus { top: .75rem; }
+
+/* Contraste: el texto blanco sobre el cian del tema «Diamante» en modo claro queda por debajo de 4.5:1; en la landing ese par usa texto oscuro.
+   (Propio de la landing: no cambia los tokens compartidos ni la aplicación.) */
+:root:not(.dark)[data-theme='diamond'] { --on-accent: 4 24 32; }
+
+/* Aviso de preferencia no guardada: superficie OPACA (sin vidrio sobre vidrio), borde y sombra suaves; sin velo ni foco robado. */
+.l-notice { background: rgb(var(--bg)); box-shadow: inset 0 0 0 1px rgb(var(--line) / .22), 0 14px 36px -14px rgb(0 0 0 / .45); }
+@keyframes l-notice-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: no-preference) { .l-notice { animation: l-notice-in .25s cubic-bezier(.2, .8, .2, 1) both; } }
+@media (prefers-contrast: more) { .l-notice { box-shadow: inset 0 0 0 2px rgb(var(--ink)); } }
+
+/* Entrada breve del héroe: solo opacidad y desplazamiento, una vez, sin bucles. Con «reducir movimiento» no hay animación. */
+@keyframes l-rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: no-preference) {
+  .l-rise { animation: l-rise .6s cubic-bezier(.2, .8, .2, 1) both; animation-delay: var(--d, 0ms); }
+}
+
+/* Halo del icono: acento difuminado, estático. */
+.l-halo { background: radial-gradient(closest-side, rgb(var(--accent) / .32), transparent 72%); }
+
+/* Línea de la cronología de fases. */
+.l-rail::before { display: none; content: ''; position: absolute; left: 1.1875rem; top: 2.5rem; bottom: -2rem; width: 1px; background: rgb(var(--line) / .16); }
+@media (min-width: 640px) { .l-rail::before { display: block; } li:last-child > .l-rail::before { display: none; } }
+
+/* ───────── Registro de prompts y respuestas ─────────
+   Sin animaciones: los desplegables se abren al instante. El texto original conserva sus saltos y espacios (pre-wrap),
+   se ajusta a su columna y las tablas transcritas se desplazan dentro de su propio bloque, nunca ensanchan la página. */
+.l-log { border-radius: 1rem; box-shadow: inset 0 0 0 1px rgb(var(--line) / .2); }
+.l-log > summary, .l-sub > summary { list-style: none; display: flex; align-items: flex-start; gap: .75rem; min-height: 2.75rem; padding: .75rem 1rem; cursor: pointer; border-radius: inherit; }
+.l-log > summary::-webkit-details-marker, .l-sub > summary::-webkit-details-marker { display: none; }
+.l-log > summary:hover, .l-sub > summary:hover { background: rgb(var(--line) / .07); }
+.l-chev { flex: none; margin-top: .3125rem; }
+details[open] > summary > .l-chev { transform: rotate(90deg); }
+.l-text { white-space: pre-wrap; overflow-wrap: anywhere; font-size: .9375rem; line-height: 1.6; user-select: text; }
+.l-pre {
+  white-space: pre; overflow-x: auto; max-width: 100%; tab-size: 4; border-radius: .75rem; padding: .75rem .875rem;
+  font: .8125rem/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; background: rgb(var(--line) / .08); user-select: text;
+}
+.l-note { padding-left: .75rem; box-shadow: inset 2px 0 0 rgb(var(--accent) / .65); overflow-wrap: anywhere; }
+@media (prefers-contrast: more) { .l-log { box-shadow: inset 0 0 0 2px rgb(var(--ink)); } .l-note { box-shadow: inset 3px 0 0 rgb(var(--ink)); } }

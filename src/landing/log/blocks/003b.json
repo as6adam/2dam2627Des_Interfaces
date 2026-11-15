@@ -1,0 +1,333 @@
+{
+ "id": "003b",
+ "phase": 3,
+ "phaseSourceHeading": "Fase 3 Adaptación al navegador",
+ "sourceHeading": "Iteración 003B Audio y persistencia web",
+ "sections": [
+  {
+   "kind": "userPrompt",
+   "sourceHeading": "Prompt del usuario enviado a GPT",
+   "paragraphs": [
+    {
+     "k": "text",
+     "t": "003A presentado, continúa",
+     "s": "Source"
+    }
+   ]
+  },
+  {
+   "kind": "progress",
+   "sourceHeading": "Mensajes de progreso registrados de GPT",
+   "paragraphs": [
+    {
+     "k": "text",
+     "t": "N/A",
+     "s": "Source"
+    }
+   ]
+  },
+  {
+   "kind": "gptResponse",
+   "sourceHeading": "Respuesta de GPT anterior al prompt para Claude",
+   "paragraphs": [
+    {
+     "k": "text",
+     "t": "Continuamos con TEMPORA-WEB-003B: audio y persistencia en navegador. Claude deberá partir del resultado de 003A y comprobar qué funciona antes de modificarlo.",
+     "s": "Source"
+    }
+   ]
+  },
+  {
+   "kind": "claudePrompt",
+   "sourceHeading": "3 Prompt exacto diseñado por GPT para Claude",
+   "paragraphs": [
+    {
+     "k": "text",
+     "t": "Continúa sobre la versión más reciente de Tempora tras TEMPORA-WEB-003A.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "OBJETIVO​ Verificar y corregir el audio y la persistencia en navegador, conservando la compatibilidad con Tauri y todas las funcionalidades existentes.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "REQUISITO OBLIGATORIO​ Utiliza la skill apple-design configurada en mi entorno. Lee sus instrucciones antes de modificar la interfaz y aplica sus criterios pertinentes de HIG y accesibilidad. Si no puedes acceder a ella, comunícalo antes de realizar cambios visuales; no afirmes haberla utilizado.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "COMPROBACIÓN INICIAL​ Inspecciona:",
+     "s": "Source"
+    },
+    {
+     "k": "table",
+     "t": "●​   AudioEngine.tsx y los controles de RightPanel.\n    ●​   useAudio, useApp y sus opciones de persistencia.\n    ●​   Hidratación, validación y migraciones.\n    ●​   Adaptadores y avisos implementados en 003A.\n    ●​   Pruebas existentes.",
+     "s": "TranscriptTable"
+    },
+    {
+     "k": "text",
+     "t": "Explica brevemente los problemas concretos encontrados. Conserva lo que ya funcione y evita refactorizaciones ajenas al objetivo.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "DECISIONES CONFIRMADAS",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Español e inglés. ●​ Académico y Productividad comparten eventos. ●​ Cambiar propósito o idioma solo adapta la presentación. ●​ Conserva los eventos, relaciones, preferencias y funcionalidades existentes. ●​ No añadas backend, cuentas ni sincronización remota. 1.​ REPRODUCCIÓN INICIADA POR EL USUARIO ●​ No reproduzcas audio automáticamente al abrir o recargar. ●​ Conserva fuente y volumen cuando corresponda. ●​ No persistas estados transitorios como playing, loading o ready. ●​ Inicia la reproducción mediante una acción explícita. ●​ Si el navegador rechaza play(), muestra un mensaje traducido y permite reintentar. ●​ Distingue bloqueo de reproducción de un error de fuente cuando la API permita identificarlo. ●​ No prometas reproducción garantizada para URLs externas.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "2.​ CICLO DE VIDA DEL REPRODUCTOR​ Comprueba y corrige: ●​ Carga única del script de YouTube. ●​ Manejo de fallo de carga y espera excesiva. ●​ Limpieza de listeners y recursos al desmontar. ●​ Comportamiento bajo React StrictMode. ●​ Cambios rápidos entre fuentes mientras una carga sigue pendiente. ●​ Respuestas antiguas que puedan sobrescribir el estado de una fuente nueva. ●​ Cambio entre YouTube y audio directo sin reproducción simultánea. ●​ Volumen, silencio, pausa y reanudación.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "No remontes AudioEngine al cambiar idioma, propósito, tema o distribución.​ No fuerces bucles de reintento ni utilices técnicas para eludir restricciones del navegador o proveedor.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Revisa el uso actual del reproductor de YouTube frente a su documentación oficial vigente. Si requiere cambios de visibilidad, controles o presentación para un uso admitido, explícalos e impleméntalos conservando una interfaz coherente.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "3.​ FUENTES Y ESTADOS DE AUDIO ●​ Valida las URLs introducidas mediante URL y protocolos permitidos. ●​ Rechaza protocolos ejecutables o no compatibles. ●​ No consideres que toda URL válida garantiza un audio reproducible. ●​ Conserva los presets existentes salvo que una comprobación justifique su modificación. ●​ No sustituyas enlaces por otros inventados. ●​ Traduce estados, errores, ayudas y etiquetas accesibles. ●​ Ofrece una recuperación clara: reintentar o cambiar fuente. ●​ Evita mostrar errores técnicos sin contexto al usuario. 4.​ PERSISTENCIA​ Verifica por separado: ●​ Eventos y relaciones linkedTo. ●​ Tema, modo, propósito, idioma y preferencia de avisos. ●​ Fuente y volumen de audio. ●​ Estados transitorios que deben reiniciarse al recargar.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Conserva las claves existentes y la compatibilidad con los datos anteriores.​ No incrementes la versión persistida salvo que el esquema lo requiera.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Comprueba:",
+     "s": "Source"
+    },
+    {
+     "k": "table",
+     "t": "●​   Datos ausentes.\n   ●​   JSON ilegible.\n   ●​   Preferencias inválidas.\n   ●​   Datos de audio incompletos o inválidos.\n   ●​   Excepciones de lectura y escritura.\n   ●​   Almacenamiento no disponible o sin espacio.",
+     "s": "TranscriptTable"
+    },
+    {
+     "k": "text",
+     "t": "Si falla el almacenamiento, permite seguir trabajando en memoria y comunica de forma discreta y traducida que los cambios pueden perderse al cerrar.​ Evita avisos repetidos en cada actualización.​ No comuniques que se ha guardado un cambio cuando la escritura haya fallado.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "No elimines automáticamente datos recuperables ni sobrescribas información ilegible antes de evaluar una recuperación razonable.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "5.​ POMODORO Y RECARGA​ Inspecciona y documenta el comportamiento actual al recargar.​ Conserva su política existente en esta iteración: no añadas persistencia del temporizador como funcionalidad nueva.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Cambiar idioma, propósito o fuente de audio no debe reiniciar el Pomodoro ni alterar endAt.​ Conserva el cálculo por marcas temporales y comprueba su reconciliación al regresar de una pestaña inactiva.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "No prometas alarmas puntuales con la pestaña cerrada o el navegador suspendido.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "6.​ ALCANCE​ No implementes: ●​ Exportación/importación de datos. ●​ Sincronización entre dispositivos. ●​ Resolución de edición simultánea entre pestañas. ●​ Landing o despliegue. ●​ Rediseño adaptable completo, reservado para 003C.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Documenta los límites relevantes del almacenamiento por origen y perfil sin añadir pantallas innecesarias.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "7.​ PRUEBAS​ Aprovecha la infraestructura existente y añade pruebas significativas para: ●​ Persistencia y recuperación de fuente y volumen. ●​ Ausencia de reproducción automática tras recargar. ●​ Valores persistidos inválidos. ●​ Fallos de almacenamiento sin caída de la aplicación. ●​ Rechazo de reproducción y recuperación. ●​ Limpieza y descarte de resultados de cargas anteriores, cuando la arquitectura permita probarlos. ●​ Conservación de eventos y preferencias existentes.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Los mocks no demuestran que YouTube o una URL externa funcionen realmente. Distingue esas pruebas de las verificaciones con navegador.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Ejecuta npm test y npm run build.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Si dispones de navegador, comprueba:",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Reproducción iniciada por el usuario. ●​ Pausa, volumen y cambio de fuente.",
+     "s": "Source"
+    },
+    {
+     "k": "table",
+     "t": "●​   Recarga y recuperación de preferencias.\n    ●​   Cambio de idioma y propósito durante la reproducción.\n    ●​   Comportamiento al volver de una pestaña inactiva.\n    ●​   Errores sin promesas rechazadas sin controlar.",
+     "s": "TranscriptTable"
+    },
+    {
+     "k": "text",
+     "t": "Indica navegador, entorno y resultados reales. No afirmes haber probado Tauri si no puedes ejecutarlo.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "8.​ ENTREGA​ Proporciona: ●​ Diagnóstico y decisiones. ●​ Archivos modificados. ●​ Proyecto actualizado y TEMPORA-WEB-003B.patch. ●​ Comandos ejecutados y resultados reales. ●​ Tabla de qué se conserva y qué se reinicia tras recargar. ●​ Limitaciones externas y comprobaciones pendientes. ●​ Hallazgos relevantes para 003C sobre móvil y tableta.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Detente al finalizar TEMPORA-WEB-003B.",
+     "s": "Source"
+    }
+   ]
+  },
+  {
+   "kind": "claudeResponse",
+   "sourceHeading": "4 Respuesta de Claude con cambios y validación",
+   "paragraphs": [
+    {
+     "k": "note",
+     "t": "Fuente: páginas 67 a 70 del PDF. Se conserva la respuesta completa.",
+     "s": "Reference"
+    },
+    {
+     "k": "text",
+     "t": "Tras pegar el sexto prompt obtenido de GPT-6.1 Sol a claude (que se encuentra dentro de las respuestas obtenidas de ChatGPT) he obtenido lo siguiente:",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "El audio y la persistencia están corregidos. Te dejo tempora-web-003b.zip y TEMPORA- WEB-003B.patch (14 ficheros respecto a 003A).",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "No he probado YouTube real: la red de la sandbox bloquea youtube.com, así que ese camino se verificó con una API simulada. Tauri tampoco se ha ejecutado. Antes de tocar la interfaz leí la skill apple-design.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Problemas encontrados",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Audio: ○​ Si cambiabas de fuente mientras el reproductor de YouTube aún se creaba, el cambio se perdía. ○​ Quitar el atributo src del <audio> no detenía el sonido, así que de directo a YouTube podían sonar los dos. ○​ Si la carga del script de YouTube fallaba, la app se quedaba en «Cargando…» sin salida. ○​ Un onReady tardío podía hacer sonar YouTube tras cambiar a audio directo. ○​ No se validaban las URLs. ○​ Los errores eran un único «no se puede reproducir». ○​ El reproductor estaba oculto fuera de pantalla. Según los requisitos mínimos de YouTube que pude leer, los reproductores incrustados deben medir al menos 200×200, sin superposiciones, y no iniciar reproducción automática hasta ser visibles. No pude leer la referencia de la IFrame API (bloqueada), así que onAutoplayBlocked y los códigos de error (101/150) los usé por conocimiento propio y no están verificados contra la documentación. ●​ Persistencia:",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "○​ tempora-audio no se validaba. Un volumen fuera de rango lanza un RangeError en <audio>. ○​ Una escritura fallida (cuota o almacenamiento bloqueado) podía romper acciones del store. ○​ Un JSON ilegible se sobrescribía en la siguiente escritura.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Cambios",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Reproducción: solo empieza con una acción del usuario. YouTube no se contacta hasta pulsar reproducir, y el reproductor se muestra visible (266×200) únicamente con una fuente de YouTube activa. ●​ Controlador: la lógica está en lib/audioController.ts, sin React y con dependencias inyectables. ○​ Cada carga tiene un número de generación, así que las respuestas antiguas se descartan. ○​ Solo suena una fuente a la vez. ○​ Hay tiempo máximo de carga y limpieza con dispose(), compatible con StrictMode. ○​ No hay reintentos automáticos. ●​ Errores: se clasifican en bloqueado, fuente, no disponible (101/150) y red, con texto traducido y botón «Reintentar». ●​ URLs: solo http/https. Se rechazan javascript:, data:, file: y similares, y no se confunde youtube.com.evil… con YouTube. Los presets no cambian. ●​ Persistencia: ○​ tempora-audio se sanea al leer (valores inválidos vuelven a los iniciales). ○​ tempora-v1 conserva su clave y su versión, y se mantiene la compatibilidad con los datos anteriores. ○​ El JSON ilegible se copia a <clave>.unreadable antes de usar valores iniciales. ○​ Si falla la escritura, la app sigue en memoria y muestra un único aviso traducido; nunca dice «guardado». ●​ Pomodoro: no he añadido persistencia nueva. Al volver a la pestaña se reconcilia al instante con endAt (eventos visibilitychange y focus). ●​ Silenciar: ahora restaura el volumen anterior en lugar de un 60 fijo.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Comandos y resultados",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ npx tsc --noEmit: OK. ●​ npm test: 221 pasan (173 de antes más 48 nuevos). ●​ npm run build: OK. ●​ Mutation checks: quitar la guarda de cargas antiguas, quitar el silenciado del audio directo y persistir playing hacen fallar tests. Quitar la guarda loadingGen también falla. ●​ Bug de bucle infinito: detecté y corregí un bucle de sincronización del controlador al cambiar a un preset de YouTube. Se manifestó como un clic colgado en el",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "navegador, y mi doble de pruebas inicial no lo reproducía. Lo arreglé y añadí un tope de iteraciones y un test de regresión.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Verificado en Chromium 153 (Linux, zona Europe/Madrid)",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Salvo donde se indica, contra el servidor de desarrollo; el humo de producción, contra npm run preview.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Audio directo real (un WAV servido por una ruta interceptada): ○​ Nada suena ni se descarga al arrancar. ○​ Tras pulsar reproducir, el tiempo avanza. ○​ Cambiar idioma y propósito durante la reproducción no interrumpe nada: mismo <audio>, sigue avanzando. ○​ Pausa y volumen (0,25) funcionan. ○​ Cambiar a un preset de YouTube detiene el audio directo. ○​ Tras recargar se restauran fuente y volumen, sin reproducir. ●​ YouTube simulado: ○​ Antes de pulsar reproducir no se pide el script. ○​ Después se pide una sola vez y el reproductor aparece a 266×200. ○​ Un cambio de preset carga el nuevo vídeo. ○​ Los eventos simulados de bloqueo y de error 150 muestran sus mensajes y «Reintentar» reanuda. ●​ Fallo real del script (bloqueado con route.abort): aparece «No se ha podido cargar el reproductor…», y al reintentar con la red restaurada funciona. ●​ Almacenamiento: con setItem fallando aparece un único aviso y el modo oscuro sigue funcionando en memoria. Con JSON ilegible la app arranca y conserva las copias .unreadable. ●​ Pestaña inactiva: se simuló con un visibilitychange despachado, no con una pestaña realmente en segundo plano. La fase pasa de enfoque a descanso al instante, con 1 sesión. ●​ Humo de producción: arranque, reproducción de audio directo, pausa y volumen, y recarga sin reproducción automática, sin errores de página ni promesas sin controlar.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Qué se conserva y qué se reinicia al recargar",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Se conserva                                   Se reinicia",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Eventos y linkedTo, modo, tema, propósito,      Temporizador Pomodoro (fase, tiempo idioma, preferencia de avisos                   restante, endAt, sesiones)",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "playing, estado, problema e intentos del Fuente de audio y volumen audio",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Permiso de notificaciones (lo guarda el                      Vista, cursor y filtro del calendario, navegador)                                                   diálogos abiertos",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Limitaciones y pendientes",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ YouTube real: no verificado. Un vídeo puede estar restringido por su propietario o por región, y el error 150/153 en Tauri no se ha probado. La reproducción real y el evento onAutoplayBlocked quedan sin comprobar. ●​ Pestaña en segundo plano real: no probado (Playwright no la suspende de verdad). No hay alarmas con el navegador cerrado o suspendido; el fin del temporizador se detecta cuando la página vuelve a ejecutarse. ●​ Audio duplicado: al terminar de cargar, YouTube recibe a veces dos llamadas a playVideo. Es idempotente pero mejorable. ●​ No verificados a mano: modo oscuro, 320 px, teclado y lectores de pantalla en la nueva interfaz del audio.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Hallazgos para 003C (móvil y tableta)",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ El reproductor visible exige al menos 200×200: a 320 px de ancho ya no cabe con el panel de 300 px actual. Habrá que apilar paneles o dar el reproductor a ancho completo. ●​ El contenedor del reproductor (setAudioSlot) debe estar siempre montado mientras suene YouTube. Si 003C oculta o remonta el panel derecho, se destruye el iframe y se pierde la reproducción. ●​ En móvil la reproducción automática y en segundo plano está más restringida: conviene decidir qué hace Tempora cuando la pantalla se bloquea. ●​ El panel derecho crece 200 px al reproducir YouTube y hay que revisar el scroll vertical en tabletas.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Me detengo aquí, como pediste.",
+     "s": "Source"
+    }
+   ]
+  }
+ ]
+}

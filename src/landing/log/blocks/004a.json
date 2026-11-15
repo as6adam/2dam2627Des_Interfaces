@@ -1,0 +1,438 @@
+{
+ "id": "004a",
+ "phase": 4,
+ "phaseSourceHeading": "Fase 4 Landing y despliegue",
+ "sourceHeading": "Iteración 004A Landing bilingüe y dos entradas HTML",
+ "sections": [
+  {
+   "kind": "userPrompt",
+   "sourceHeading": "Prompt del usuario enviado a GPT",
+   "paragraphs": [
+    {
+     "k": "text",
+     "t": "003c completado, lee las capturas y el archivo patch, Continúa con el siguiente prompt",
+     "s": "Source"
+    }
+   ]
+  },
+  {
+   "kind": "progress",
+   "sourceHeading": "Mensajes de progreso registrados de GPT",
+   "paragraphs": [
+    {
+     "k": "text",
+     "t": "N/A",
+     "s": "Source"
+    }
+   ]
+  },
+  {
+   "kind": "gptResponse",
+   "sourceHeading": "Respuesta de GPT anterior al prompt para Claude",
+   "paragraphs": [
+    {
+     "k": "text",
+     "t": "He leído las cinco capturas y el parche completo de 003C.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Las capturas muestran las tres columnas en escritorio, el panel de concentración plegable, la vista diaria móvil, el detalle como hoja inferior y la semana con desplazamiento horizontal. El parche incorpora Panels.tsx, puntos de ruptura centralizados, gestión compartida del foco y validación común para mover eventos mediante arrastre o formulario.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "No he ejecutado esta versión. Las capturas acreditan esas presentaciones; el propio README deja pendientes dispositivos físicos, teclado virtual y reproducción real al cerrar paneles.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Pasamos a 004A: landing bilingüe y separación de entradas. Hay dos detalles del código que debemos contemplar:",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ El CSS global fija #root a la altura del viewport y desactiva la selección de texto. La landing necesitará desplazamiento natural y texto seleccionable. ●​ Algunas pruebas de 003C inspeccionan el index.html actual. Habrá que dirigir esas comprobaciones a la nueva entrada de la aplicación.",
+     "s": "Source"
+    }
+   ]
+  },
+  {
+   "kind": "claudePrompt",
+   "sourceHeading": "3 Prompt exacto diseñado por GPT para Claude",
+   "paragraphs": [
+    {
+     "k": "text",
+     "t": "Continúa sobre el proyecto actualizado tras TEMPORA-WEB-003C.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "OBJETIVO​ Crear la landing de presentación de Tempora y separar su entrada de la aplicación, preparando una compilación estática compatible con GitHub Pages. No publiques todavía.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "REQUISITO OBLIGATORIO​ Utiliza la skill apple-design configurada en mi entorno. Lee sus instrucciones antes de diseñar o modificar la interfaz y aplica sus criterios pertinentes de HIG y accesibilidad. Si no puedes acceder a ella, comunícalo antes de realizar cambios visuales; no afirmes haberla utilizado.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "COMPROBACIÓN INICIAL​ Inspecciona:",
+     "s": "Source"
+    },
+    {
+     "k": "table",
+     "t": "●​   index.html, entrada React y App.tsx.\n   ●​   vite.config y package.json.\n   ●​   Configuración de desarrollo y producción de Tauri.\n   ●​   index.css, tokens y Tailwind.\n   ●​   Traducciones y preferencias persistidas.\n   ●​   Pruebas de 003C que leen index.html.",
+     "s": "TranscriptTable"
+    },
+    {
+     "k": "text",
+     "t": "El proyecto ya dispone de Panels.tsx, layout.ts, viewport.ts y distribución adaptable. Conserva esa implementación.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "1.​ DOS ENTRADAS​ Organiza: ●​ /index.html: landing. ●​ /app/index.html: aplicación Tempora.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Configura Vite según su versión instalada para generar ambas entradas.​ La aplicación debe admitir acceso directo y recarga en /app/index.html sin necesitar redirecciones de servidor.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Mantén una entrada React independiente para la landing.​ Visitarla no debe montar App, AudioEngine, temporizadores, resumen de bienvenida ni selector de propósito.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Conserva el arranque directo de Tempora en Tauri, tanto en desarrollo como en producción. El escritorio no debe empezar mostrando la landing.​ Elige y documenta una solución explícita para las entradas de Tauri; no cambies rutas suponiendo que funcionarán igual en ambos entornos.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "2.​ CONTENIDO OBLIGATORIO​ La landing debe incluir:",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "A. Sobre el proyecto",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Qué es Tempora. ●​ Su utilidad académica y de productividad. ●​ Calendario, eventos, sesiones vinculadas, Pomodoro, audio, idiomas y personalización que existan realmente.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Contexto de proyecto académico de 2.º de DAM. ●​ Tecnologías utilizadas.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "No atribuyas funciones todavía inexistentes, como planificación automática, sincronización o estadísticas avanzadas.​ No inventes autor, centro, repositorio ni enlaces.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "B. Fases del proyecto​ Presenta de forma clara:",
+     "s": "Source"
+    },
+    {
+     "k": "table",
+     "t": "●​   Análisis.\n   ●​   Diseño.\n   ●​   Desarrollo.\n   ●​   Prompts utilizados y respuestas obtenidas.\n   ●​   Pruebas y despliegue.",
+     "s": "TranscriptTable"
+    },
+    {
+     "k": "text",
+     "t": "Describe el trabajo real y distingue lo implementado de lo pendiente.​ No marques despliegue como completado antes de publicarlo.​ No inventes resultados de pruebas, fechas, métricas ni citas.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "En “Prompts utilizados y respuestas obtenidas” muestra:​ “Documentación pendiente de incorporar”.​ Su equivalente debe existir en inglés.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Más adelante entregaré un DOCX con el registro completo para incorporarlo. Ahora prepara una estructura de contenido tipada y ampliable, sin parser DOCX, documentos ficticios ni botones de descarga sin archivo.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "C. Acceso a la aplicación​ Incluye un enlace principal:​ “Ir a Tempora” / “Open Tempora”.​ Debe apuntar a la entrada real de la aplicación.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Puede repetirse al final de la página si ayuda a la navegación.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "3.​ DISEÑO​ Utiliza el icono real y la identidad visual existente: ●​ Violeta como acento inicial. ●​ Tipografía de sistema. ●​ Jerarquía clara, espacios cuidados y superficies discretas. ●​ Modo claro y oscuro. ●​ Animaciones breves y movimiento reducido.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Construye una página de presentación con personalidad y contenido concreto.​ Evita una sucesión de tarjetas idénticas, eslóganes vacíos, testimonios inventados y adornos sin función.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Incluye navegación por anclas a las secciones.​ Si utilizas una cabecera fija, evita que oculte los destinos y el foco.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "No incrustes la aplicación funcional como decoración.​ Utiliza capturas reales solo si están disponibles como archivos del proyecto y son apropiadas para publicar. Si no están disponibles, prescinde de ellas en esta iteración.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "4.​ ESPAÑOL E INGLÉS​ Traduce todo el contenido y los nombres accesibles.​ Añade un selector con globo y opciones Español / English.​ Actualiza el atributo lang y el título del documento.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Comparte la preferencia existente:",
+     "s": "Source"
+    },
+    {
+     "k": "table",
+     "t": "●​   Español cuando no haya elección guardada.\n   ●​   Mantener la elección al pasar entre landing y aplicación.\n   ●​   No introducir otra clave independiente de idioma.\n   ●​   No sobrescribir eventos ni otras preferencias al guardar el idioma.",
+     "s": "TranscriptTable"
+    },
+    {
+     "k": "text",
+     "t": "Comparte también modo y tema cuando estén disponibles.​ No solicites el propósito para leer la landing.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Reutiliza recursos y utilidades seguras. Si importar el store arrastra inicializaciones innecesarias, separa lo mínimo necesario en lugar de duplicar la lógica de persistencia.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "5.​ AISLAMIENTO DE ESTILOS​ El CSS actual de la aplicación incluye altura fija de #root y user-select: none.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Separa o delimita los estilos específicos:",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Landing con altura natural, desplazamiento vertical y texto seleccionable. ●​ Aplicación con su distribución y scroll interno actuales. ●​ Tokens y componentes visuales compartidos cuando corresponda.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "No soluciones desbordamientos ocultando contenido.​ Revisa las rutas incluidas en content de Tailwind para cubrir ambas entradas.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "6.​ RUTAS Y FUTURO GITHUB PAGES​ Prepara enlaces, iconos y recursos para funcionar: ●​ En la raíz del dominio. ●​ Bajo la subruta de un repositorio.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Utiliza la configuración base de Vite de forma coherente.​ No fijes un nombre de usuario o repositorio inventado.​ Documenta cómo proporcionar la base del despliegue.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "No uses enlaces absolutos como /app/ si ignoran la subruta.​ No añadas un router ni un fallback 404 si las dos entradas estáticas resuelven el alcance.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "7.​ ACCESIBILIDAD Y ADAPTACIÓN​ Incluye: ●​ Landmarks semánticos. ●​ Un h1 y encabezados ordenados.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Enlace para saltar al contenido. ●​ Foco visible y navegación por teclado. ●​ Controles correctamente etiquetados. ●​ Texto legible y contraste suficiente. ●​ Diseño usable en móvil, tableta y escritorio. ●​ Respeto por prefers-reduced-motion y el zoom. 8.​ VALIDACIÓN​ Ejecuta npm test y npm run build.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Actualiza las pruebas que inspeccionaban el index.html original para que sigan comprobando la entrada correcta de Tempora.​ No elimines verificaciones solo para conseguir que pasen.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Comprueba en la salida compilada:",
+     "s": "Source"
+    },
+    {
+     "k": "table",
+     "t": "●​   Existencia de ambas entradas.\n    ●​   Enlace de landing a aplicación.\n    ●​   Acceso directo y recarga de la aplicación.\n    ●​   Recursos bajo una base de repositorio de prueba.\n    ●​   Preferencias conservadas entre ambas páginas.\n    ●​   Landing sin reproductores, avisos de arranque ni temporizadores activos.",
+     "s": "TranscriptTable"
+    },
+    {
+     "k": "text",
+     "t": "Si dispones de navegador, revisa:",
+     "s": "Source"
+    },
+    {
+     "k": "table",
+     "t": "●​   Español e inglés.\n    ●​   Claro y oscuro.\n    ●​   Anchuras de 390, 768 y 1440 px.\n    ●​   Navegación por teclado.\n    ●​   Desplazamiento completo y enlaces por anclas.\n    ●​   Ausencia de regresiones en la aplicación.",
+     "s": "TranscriptTable"
+    },
+    {
+     "k": "text",
+     "t": "Distingue comprobaciones ejecutadas de las pendientes.​ No afirmes haber probado Tauri si no puedes ejecutarlo.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "9.​ ENTREGA​ Proporciona: ●​ Decisiones sobre entradas, estilos y preferencias. ●​ Archivos modificados. ●​ Proyecto actualizado y TEMPORA-WEB-004A.patch. ●​ Comandos ejecutados y resultados reales. ●​ Capturas de la landing si puedes generarlas. ●​ Instrucciones para abrir landing, aplicación y escritorio. ●​ Pendientes para 004B: configuración y despliegue en GitHub Pages.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "No publiques, no añadas backend y no incorpores todavía el documento de prompts.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Detente al finalizar TEMPORA-WEB-004A.",
+     "s": "Source"
+    }
+   ]
+  },
+  {
+   "kind": "claudeResponse",
+   "sourceHeading": "4 Respuesta de Claude con cambios y validación",
+   "paragraphs": [
+    {
+     "k": "note",
+     "t": "Fuente: páginas 74 a 77 del PDF. Se conserva la respuesta completa.",
+     "s": "Reference"
+    },
+    {
+     "k": "text",
+     "t": "Tras pegar el noveno prompt obtenido de GPT-6.1 Sol a claude (que se encuentra dentro de las respuestas obtenidas de ChatGPT) he obtenido lo siguiente:",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Empiezo leyendo la skill apple-design e inspeccionando el proyecto (entradas, Vite, Tauri, CSS, persistencia y pruebas que leen index.html).",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "He leído la skill apple-design y revisado el proyecto. Voy a: separar la entrada de la app en /app/index.html, crear la landing con su propia entrada React, compartir preferencias sin importar el store y fijar la entrada de Tauri en la configuración de la ventana. Aún no he tocado nada visual.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Entradas, Vite (base relativa o TEMPORA_BASE), Tauri (url: app/index.html) y la separación de CSS ya están hechos. Ahora escribo el módulo de preferencias compartidas y la landing con su contenido es/en.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "La landing ya compila a nivel de tipos. Estoy actualizando la prueba 003C para leer app/ index.html y escribiendo las pruebas nuevas (preferencias compartidas, base, paridad es/en, aislamiento); después compilo y reviso en navegador.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "La landing ya compila y se ve bien en escritorio (sin desbordamiento ni errores en consola). Reviso el resto de secciones y el móvil antes de pasar a las comprobaciones de navegador (enlace a la app, recarga, base de repositorio, preferencias).",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Comprobaciones hechas en la salida compilada, con base relativa y con base /tempora- test/: ambas entradas existen, «Ir a Tempora» abre la app, acceso directo y recarga funcionan, las preferencias se conservan entre landing y app, y la landing no monta audio, temporizadores ni avisos. Sigo con la matriz de tamaños e idiomas, el teclado, las anclas y el contraste.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Todas las comprobaciones de navegador pasan (42 en ambas bases + 90 de matriz, teclado, anclas, zoom, contraste y regresión de la app). Voy a afinar la cabecera móvil (el menú se parte en dos filas), y después README, parche, zip y capturas.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Ahora compruebo el servidor de desarrollo (landing y app en :1420), y luego empaqueto.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "TEMPORA-WEB-004A queda hecha: la landing está en /index.html, la app en /app/ index.html, y la compilación estática sale preparada para GitHub Pages sin publicar nada. Leí la skill apple-design antes de tocar la interfaz y apliqué sus criterios (tipografía, movimiento reducido, foco, objetivos táctiles, contraste), pero no he comprobado Tauri. Las capturas de las tres de página completa que se ven en el chat son copias reducidas a 8000 px de alto; los originales completos están en capturas-004a/.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Decisiones",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Entradas: Vite genera las dos entradas HTML y cada una tiene su propia entrada React. La landing no importa App, el store, AudioEngine, Pomodoro, avisos de arranque ni el selector de propósito, y una prueba protege esas importaciones. Acceso directo y recarga de /app/index.html funcionan sin redirecciones de servidor. ●​ Base de despliegue: ○​ Por defecto es relativa (./), así que el mismo dist/ sirve en la raíz de un dominio, bajo la subruta de un repositorio y en Tauri. No hay ningún nombre de repositorio fijado. ○​ Para una subruta absoluta: TEMPORA_BASE=/tu-repo/ npm run build. ○​ El enlace «Ir a Tempora» se construye desde import.meta.env.BASE_URL, nunca con un /app/ fijo. ●​ Tauri: la ventana tiene \"url\": \"app/index.html\" en tauri.conf.json. La documentación oficial confirma la ruta en producción. Que en desarrollo se resuelva contra devUrl lo sé por conocimiento propio, no lo pude comprobar. Por eso la landing incluye una red de seguridad: si algún día se cargara dentro de Tauri, salta sola a la app. ●​ Preferencias: la landing lee y escribe la misma clave tempora-v1 (idioma, modo, tema) con un módulo mínimo, sin importar el store. ○​ Guardar el idioma o el modo cambia solo ese campo: eventos, propósito, notificaciones y campos desconocidos quedan intactos. ○​ Un valor ilegible nunca se sobrescribe. ○​ Sin elección guardada el idioma es español. ○​ Añadí un botón de modo claro/oscuro en la cabecera para que la elección pase también a la app. ○​ Sin modo guardado, la landing sigue el del sistema (sin guardarlo), mientras que la app arranca en claro. ●​ Estilos: src/styles/shared.css tiene los tokens, el fondo, el foco y los materiales compartidos. index.css conserva lo de la app (altura fija de #root, scroll interno, user-select: none) y landing.css lo de la landing (altura natural, texto seleccionable, desplazamiento de anclas). Tailwind cubre ambas entradas. ●​ Contenido: tipado y por idioma. «Prompts utilizados y respuestas obtenidas» muestra «Documentación pendiente de incorporar» (inglés: «Documentation yet to be added») y hay una lista vacía y ampliable preparada para el registro futuro. No hay autor, centro, enlaces, capturas, fechas ni métricas inventados. Despliegue, las pruebas en dispositivos físicos y lo que no existe aparecen como pendientes.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Comandos y resultados",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ npx tsc --noEmit: correcto. ●​ npm test: 281 pasan (250 anteriores + 31 nuevas). Las comprobaciones de 003C leen ahora app/index.html y no eliminé ninguna. ●​ npm run build: correcto. ●​ Navegador sobre la compilación, con base relativa y con base /tempora-test/: 42 comprobaciones. Ambas entradas existen, el enlace abre la app, acceso directo y recarga, recursos sin 404, preferencias conservadas entre landing y app, y la landing sin audio, temporizadores ni peticiones de notificaciones. ●​ Matriz y accesibilidad: 90 comprobaciones. ○​ Tamaños 390, 768 y 1440, en español e inglés, claro y oscuro. ○​ Sin desbordamiento, un solo h1, landmarks y objetivos de ≥44 px. ○​ Anclas bajo la cabecera fija, foco con teclado, movimiento reducido y texto al 200 % (también en 320 px). ○​ Contraste ≥4,5:1 en los cuatro temas, claro y oscuro. ○​ La app sigue montando y el Pomodoro arranca. ●​ Servidor de desarrollo: la landing en / y la app en /app/index.html cargan sin errores.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Corregí por el camino desbordamientos con texto ampliado y el texto blanco sobre el cian del tema Diamante en claro, que no llegaba al contraste; ese ajuste es solo de la landing.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Cómo abrirlo",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Desarrollo en navegador: npm run dev, con la landing en http:// localhost:1420/ y la app en /app/index.html. ●​ Compilación local: npm run build && npm run preview. ●​ Escritorio: npm run tauri dev o npm run tauri build.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Pendiente y limitaciones",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Sin verificar: la ventana de Tauri, los dispositivos físicos y los lectores de pantalla. ●​ Estados de las fases: salen solo de lo que hay en el repositorio. Revisa los de «Validación con personas usuarias» y «Pruebas manuales» antes de publicar. ●​ Peso: el CSS de la landing incluye también utilidades de la app (unos 36 kB) porque comparten configuración de Tailwind. public/icon.png pesa 1 MB como favicon. ●​ Varias pestañas: si la app y la landing están abiertas a la vez, la app puede sobrescribir en su siguiente guardado un cambio de idioma hecho en la otra pestaña. ●​ Para 004B: configuración y despliegue en GitHub Pages (workflow, base real), optimizar el favicon, la incorporación del registro de prompts y, si se quiere, capturas reales publicables.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Archivos en /mnt/attach/outputs/:",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ tempora-web-004a.zip",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ TEMPORA-WEB-004A.patch (se aplica con git apply porque incluye el PNG derivado del logo) ●​ capturas-004a/ (12 capturas)",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Me detengo aquí, tras 004A.",
+     "s": "Source"
+    }
+   ]
+  }
+ ]
+}

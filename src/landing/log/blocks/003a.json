@@ -1,0 +1,368 @@
+{
+ "id": "003a",
+ "phase": 3,
+ "phaseSourceHeading": "Fase 3 Adaptación al navegador",
+ "sourceHeading": "Iteración 003A Compatibilidad entre navegador y Tauri",
+ "sections": [
+  {
+   "kind": "userPrompt",
+   "sourceHeading": "Prompt del usuario enviado a GPT",
+   "paragraphs": [
+    {
+     "k": "text",
+     "t": "Fase 002c presentada. Continuamos con la Fase 3",
+     "s": "Source"
+    }
+   ]
+  },
+  {
+   "kind": "progress",
+   "sourceHeading": "Mensajes de progreso registrados de GPT",
+   "paragraphs": [
+    {
+     "k": "text",
+     "t": "N/A",
+     "s": "Source"
+    }
+   ]
+  },
+  {
+   "kind": "gptResponse",
+   "sourceHeading": "Respuesta de GPT anterior al prompt para Claude",
+   "paragraphs": [
+    {
+     "k": "text",
+     "t": "Pasamos a TEMPORA-WEB-003: adaptación al navegador, siguiendo el orden acordado. Antes de crear la landing y publicar en GitHub Pages, comprobaremos que Tempora funciona sin depender de Tauri.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "La dividiremos en:",
+     "s": "Source"
+    },
+    {
+     "k": "table",
+     "t": "Iteración                               Objetivo\n            Separar funciones nativas y web, especialmente\n003A\n            notificaciones.\n003B        Verificar audio, persistencia y comportamiento en navegador.\n003C        Adaptar la distribución a móvil y tableta.",
+     "s": "TranscriptTable"
+    },
+    {
+     "k": "text",
+     "t": "Este es el primer prompt. Parte del proyecto que Claude acaba de entregar en 002C y le exige inspeccionarlo antes de modificarlo.",
+     "s": "Source"
+    }
+   ]
+  },
+  {
+   "kind": "claudePrompt",
+   "sourceHeading": "3 Prompt exacto diseñado por GPT para Claude",
+   "paragraphs": [
+    {
+     "k": "text",
+     "t": "Continúa sobre la versión más reciente de Tempora, después de TEMPORA-WEB-002C.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "OBJETIVO​ Preparar Tempora para funcionar como aplicación web estática conservando su compatibilidad con Tauri. Esta iteración se centra en las dependencias nativas, las notificaciones y el arranque en navegador.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "REQUISITO OBLIGATORIO​ Utiliza la skill apple-design configurada en mi entorno. Lee sus instrucciones antes de modificar la interfaz y aplica sus criterios pertinentes de HIG y accesibilidad. Si no puedes acceder a ella, comunícalo antes de realizar cambios visuales; no afirmes haberla utilizado.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "DECISIONES CONFIRMADAS",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ React + Vite + TypeScript + Tailwind CSS + Zustand. ●​ Español e inglés, con español como idioma inicial. ●​ Ambos propósitos comparten eventos. ●​ Propósito e idioma solo adaptan la presentación. ●​ Conserva funcionalidades e internacionalización existentes. ●​ La aplicación web debe funcionar sin instalar Tauri. ●​ Conserva la posibilidad de ejecutar la aplicación de escritorio. 1.​ AUDITORÍA INICIAL​ Inspecciona el repositorio real, especialmente: ●​ package.json y scripts. ●​ vite.config y entradas HTML/React. ●​ App.tsx y hooks de arranque. ●​ src/lib/notify.ts. ●​ Imports de @tauri-apps. ●​ Acceso a window, document y APIs del navegador. ●​ Configuración de Tauri. ●​ Pruebas existentes.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Clasifica las dependencias como:",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Compartidas. ●​ Exclusivas de Tauri. ●​ Exclusivas del navegador.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Explica brevemente qué necesita adaptación. No asumas que todo import de Tauri provoca un fallo: identifica los usos concretos y su comportamiento.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "2.​ CAPA DE COMPATIBILIDAD​ Centraliza la detección de entorno en un módulo pequeño, tipado y comprobable.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Utiliza un mecanismo compatible con la versión instalada de Tauri.​ Evita repetir comprobaciones dispersas en los componentes.​ No añadas detección por user-agent.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Mantén las llamadas nativas detrás de funciones adaptadoras.​ Cuando corresponda, carga dinámicamente los módulos nativos después de confirmar el entorno.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "No importes ni ejecutes funciones nativas durante el arranque web si requieren el runtime de Tauri.​ Evita introducir una arquitectura extensa para unas pocas diferencias de plataforma.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "3.​ NOTIFICACIONES​ Conserva una interfaz compartida para emitir notificaciones.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "En Tauri:",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Utiliza el mecanismo nativo existente. ●​ Conserva el comportamiento funcional que sea compatible con esta separación.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "En navegador:",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Comprueba disponibilidad de Notification. ●​ Comprueba su permiso antes de utilizarla. ●​ Solicita permiso únicamente tras una acción explícita del usuario, mediante un control de Ajustes. ●​ No solicites permiso al abrir la aplicación, mostrar bienvenida o terminar un Pomodoro. ●​ Si el permiso está denegado o la API no está disponible, la aplicación debe seguir funcionando sin errores.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Diferencia:",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Preferencia interna de avisos. ●​ Permiso real concedido por el navegador. ●​ Disponibilidad de la función.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Explica su estado en Ajustes mediante textos traducidos y acciones pertinentes.​ Mantén la posibilidad de desactivar los avisos dentro de Tempora.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Si una notificación del sistema no puede mostrarse, utiliza un aviso dentro de la aplicación, accesible y no bloqueante, cuando la preferencia de avisos esté activada.​ No muestres simultáneamente dos avisos equivalentes.​ Reutiliza componentes existentes si los hay.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "4.​ ASINCRONÍA Y ERRORES​ Revisa todos los consumidores de notify.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Si cambia su contrato o devuelve una promesa:",
+     "s": "Source"
+    },
+    {
+     "k": "table",
+     "t": "●​   Adapta las llamadas.\n   ●​   Maneja rechazos.\n   ●​   Evita promesas rechazadas sin controlar.\n   ●​   No bloquees el temporizador ni el arranque esperando permisos.",
+     "s": "TranscriptTable"
+    },
+    {
+     "k": "text",
+     "t": "Conserva los mensajes localizados de 002C.​ Utiliza idioma y propósito vigentes al construir el aviso.​ Cambiar idioma no debe repetir notificaciones.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "5.​ ARRANQUE Y COMPILACIÓN WEB​ Comprueba que: ●​ npm run dev permite abrir Tempora en un navegador normal. ●​ npm run build genera la aplicación estática. ●​ npm run preview permite comprobar ese resultado. ●​ No se exige Rust para compilar exclusivamente el frontend. ●​ El arranque web no intenta invocar servicios nativos. ●​ Se mantienen el selector inicial, la hidratación y el resumen de bienvenida.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Conserva los scripts y configuración necesarios para Tauri.​ No cambies su entrada de producción sin explicar cómo seguirá iniciando la aplicación.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Todavía no implementes la landing ni las dos entradas HTML.​ Todavía no configures ni ejecutes el despliegue en GitHub Pages.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "6.​ CONSERVACIÓN DEL ESTADO​ No modifiques eventos, IDs, relaciones, fechas ni notas.​ No reinicies audio o temporizador al cambiar idioma, propósito o permisos.​ No alteres endAt, duraciones ni ciclos del Pomodoro.​ No cambies el esquema persistido sin necesidad.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Documenta que los datos locales pertenecen al origen y perfil donde se ejecuta la aplicación: esta adaptación no sincroniza automáticamente los datos de Tauri, localhost y la futura web publicada.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "7.​ PRUEBAS​ Añade pruebas centradas en: ●​ Selección del adaptador correcto. ●​ Navegador sin Notification. ●​ Permisos default, granted y denied. ●​ Ausencia de solicitud automática de permisos. ●​ Errores del adaptador sin afectar al flujo principal. ●​ Ausencia de avisos duplicados.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Usa mocks para permisos y adaptadores; no solicites permisos reales en pruebas automatizadas.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Ejecuta npm test y npm run build.​ Si dispones de navegador, verifica arranque, Ajustes y aviso de prueba.​ Distingue claramente pruebas simuladas, comprobaciones reales y tareas pendientes.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "No afirmes haber validado Tauri si no puedes ejecutarlo.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "8.​ ENTREGA​ Proporciona: ●​ Diagnóstico y decisiones. ●​ Archivos modificados. ●​ Proyecto actualizado y TEMPORA-WEB-003A.patch. ●​ Comandos ejecutados y resultados reales. ●​ Instrucciones para probar frontend y escritorio. ●​ Comprobaciones pendientes. ●​ Hallazgos que debamos tratar en 003B sobre audio y persistencia.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "No actualices versiones principales de dependencias, no añadas backend y no publiques la aplicación.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Detente al finalizar TEMPORA-WEB-003A.",
+     "s": "Source"
+    }
+   ]
+  },
+  {
+   "kind": "claudeResponse",
+   "sourceHeading": "4 Respuesta de Claude con cambios y validación",
+   "paragraphs": [
+    {
+     "k": "note",
+     "t": "Fuente: páginas 64 a 67 del PDF. Se conserva la respuesta completa.",
+     "s": "Reference"
+    },
+    {
+     "k": "text",
+     "t": "Tras pegar el quinto prompt obtenido de GPT-6.1 Sol a claude (que se encuentra dentro de las respuestas obtenidas de ChatGPT) he obtenido lo siguiente:",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Tempora ya arranca, compila y funciona en un navegador normal sin Tauri ni Rust, con permiso de notificaciones gestionado desde Ajustes. Te dejo tempora-web-003a.zip y TEMPORA-WEB-003A.patch (12 ficheros respecto a 002C).",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Lo que no he podido validar es Tauri: no lo he ejecutado, así que el adaptador de escritorio solo está probado con un módulo simulado. Antes de ver el código leí la skill apple- design (está accesible); apliqué sus criterios de privacidad (pedir permiso solo ante una acción explícita), feedback no bloqueante, movimiento reducido y foco.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Diagnóstico",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Dependencias: ○​ Compartidas: React, Zustand, date-fns, Framer Motion, i18n y la lógica del temporizador. ○​ Exclusivas de Tauri: @tauri-apps/plugin-notification, @tauri- apps/api y @tauri-apps/cli, además de src-tauri/ y su capability notification:default.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "○​ Exclusivas del navegador: Notification, el script de YouTube IFrame (AudioEngine) y localStorage. ●​ Qué fallaba: el único import de Tauri estaba en notify.ts. En web no rompía, porque el try/catch se tragaba el TypeError del IPC. Pero metía el plugin en el bundle principal y llamaba a requestPermission() al emitir cualquier aviso (por ejemplo al terminar un Pomodoro).",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Cambios",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Detección de entorno: lib/platform.ts usa globalThis.isTauri, la misma señal que isTauri() de @tauri-apps/api 2.12 instalado. No hay user-agent ni comprobaciones sueltas en componentes. ●​   Notificaciones: lib/notify.ts mantiene una interfaz compartida y un adaptador por plataforma. ○​ El plugin nativo se carga con import() dinámico, y quedó como chunk aparte de 4 kB que en web no se descarga. ○​ notify nunca rechaza ni bloquea al temporizador. Solo envía si el permiso está concedido. ○​ El permiso solo lo pide requestNotifyPermission, desde el botón «Permitir» de Ajustes. En escritorio conservé la petición nativa previa al emitir. ●​   Aviso dentro de la app: si la notificación del sistema no puede mostrarse, aparece un aviso no bloqueante (Toasts.tsx) con región aria-live, botón de cierre y autocierre en 8 s, pausado con el puntero o el foco encima. ○​ Los avisos idénticos no se apilan y hay un máximo de 3. ○​ Con permiso concedido sale solo la notificación del sistema. ○​ El resumen de bienvenida no genera toast, porque su diálogo ya cumple esa función. ●​   Ajustes: el interruptor sigue siendo la preferencia interna. Debajo hay una fila «Permiso del sistema» con el estado real y su texto traducido. Ahí aparece «Permitir» solo si el permiso está en default. El botón «Probar» se desactiva si los avisos están apagados. ●​   Datos: esquema persistido, eventos, endAt y audio no se han tocado. ●​   Documentación: el README explica cómo ejecutar frontend y escritorio, y que los datos locales pertenecen al origen y perfil donde corre la app. Tauri, localhost y la futura web publicada no se sincronizan.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Comandos y resultados",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ npx tsc --noEmit: OK. ●​ npm test: 173 pasan (113 de antes más 60 nuevos, todas con mocks). ●​ Mutation checks: con requestOnSend: true en el adaptador web, fallan 3 tests. Si se elimina el aviso interno, fallan 6. ●​ npm run build: OK, sin Rust. ●​ npm run dev: responde HTTP 200 en :1420.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ npm run preview: lo usé en :4173 con el resultado de npm run build.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Comprobaciones reales en Chromium",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "La mayoría usan un Notification simulado con un contador de llamadas; la última escena usa la API real, sin stub.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Con permiso en default: ○​ El arranque no solicita permiso (0 llamadas). ○​ El resumen de bienvenida aparece sin toast. ○​ «Probar» muestra un toast sin enviar notificación del sistema. ○​ «Permitir» hace 1 solicitud y el estado pasa a concedido. ○​ Un nuevo «Probar» envía una notificación del sistema. ●​ Sin API Notification: el estado lo indica, no aparece «Permitir» y «Probar» muestra un toast. ●​ API real (permiso denied): el estado explica el bloqueo y «Probar» muestra el toast. ●​ No se pidió ningún permiso real. ●​ El chunk de Tauri no se descargó en ninguna escena. ●​ El único error de consola fue net::ERR_TUNNEL_CONNECTION_FAILED, del script de YouTube bloqueado por la red de la sandbox.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Cómo probar",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Frontend: npm install && npm run dev, o npm run build && npm run preview. ●​ Escritorio: npm run tauri dev o npm run tauri build, con Rust y los requisitos de Tauri instalados. La configuración de Tauri no cambió.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Pendiente",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Probar Tauri en una máquina con Rust: que globalThis.isTauri se detecte, que la notificación nativa salga y que el chunk dinámico cargue bajo el CSP actual (csp: null). ●​ Verificar a mano modo oscuro, 320 px, teclado y lector de pantalla en el toast y la fila nueva. ●​ Comprobar con el permiso real de un navegador (Chrome, Firefox, Safari) en una sesión con ventana visible. ●​ No probé la restauración del foco ni el orden de lectura de la región de avisos con un lector de pantalla real.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Hallazgos para 003B",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Audio: ○​ AudioEngine carga https://www.youtube.com/iframe_api sin manejo de fallo de red ni onerror.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "○​ La promesa apiPromise queda cacheada aunque falle, así que no reintenta. ○​ Con bloqueadores, sin red o con una CSP más estricta, el estado queda en «Cargando…» indefinido. ○​ Los navegadores exigen un gesto del usuario para reproducir, y hay que revisar cómo trata eso el estado persistido playing. ○​ Tauri lleva csp: null; una web publicada con CSP real necesitaría permitir youtube.com. ●​ Persistencia: hay dos claves de localStorage, tempora-v1 y tempora-audio, ligadas al origen. Habría que decidir exportar/importar y qué pasa con el almacenamiento bloqueado o en modo privado.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Me detengo aquí, como pediste.",
+     "s": "Source"
+    }
+   ]
+  }
+ ]
+}

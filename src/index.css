@@ -1,0 +1,47 @@
+/* Estilos de la APLICACIÓN (entrada app/index.html). Los tokens, el fondo, el foco y los materiales comunes están en
+   styles/shared.css y los comparte la landing; aquí solo lo que depende del layout de app: altura fija de #root,
+   scroll interno, user-select y paneles. */
+@import './styles/shared.css';
+
+html, body { height: 100%; }
+/* Fallback: 100vh donde no hay dvh; con dvh sigue las barras del navegador móvil. (Con var() no sirve declarar dos veces: @supports.) */
+/* min-height: en pantallas diminutas (zoom 400 %) la página hace scroll vertical en lugar de recortar el contenido. */
+#root { height: 100vh; min-height: 22rem; }
+@supports (height: 100dvh) { #root { height: 100dvh; } }
+body { overflow-x: hidden; overflow-y: auto; user-select: none; }
+input, textarea { user-select: text; }
+
+/* ───────── Contenedor, áreas seguras y viewport visual ───────── */
+/* Primero el valor sin env(): un navegador que no entiende max()/env() descarta la segunda declaración y conserva esta. */
+.app-shell { padding: .75rem; padding: max(.75rem, env(safe-area-inset-top)) max(.75rem, env(safe-area-inset-right)) max(.75rem, env(safe-area-inset-bottom)) max(.75rem, env(safe-area-inset-left)); }
+.vv-fixed { position: fixed; left: 0; right: 0; top: var(--vvt, 0px); height: var(--vvh, 100vh); padding: .75rem; padding: max(.75rem, env(safe-area-inset-top)) max(.75rem, env(safe-area-inset-right)) max(.75rem, env(safe-area-inset-bottom)) max(.75rem, env(safe-area-inset-left)); }
+@supports (height: 100dvh) { .vv-fixed { height: var(--vvh, 100dvh); } }
+@media (min-width: 640px) { .vv-fixed { padding: max(1.5rem, env(safe-area-inset-top)) max(1.5rem, env(safe-area-inset-right)) max(1.5rem, env(safe-area-inset-bottom)) max(1.5rem, env(safe-area-inset-left)); } }
+
+/* Paneles plegables: superficie OPACA (no se apila vidrio sobre vidrio) con borde y sombra. */
+.sheet-surface { background: rgb(var(--bg)); border: 1px solid rgb(var(--line) / .14); box-shadow: 0 24px 60px -20px rgb(0 0 0 / .5); }
+.dark .sheet-surface { border-color: rgb(var(--line) / .12); }
+/* Un panel plegable anima solo su transformación; con movimiento reducido pasa a un fundido corto. */
+.edge-fade-l { background: linear-gradient(to right, rgb(var(--bg) / .95), transparent); }
+.edge-fade-r { background: linear-gradient(to left, rgb(var(--bg) / .95), transparent); }
+
+/* ───────── Paneles plegables (tableta/móvil). Siguen al viewport visual y respetan áreas seguras ───────── */
+.drawer { position: fixed; z-index: 50; top: calc(var(--vvt, 0px) + .75rem); height: calc(var(--vvh, 100vh) - 1.5rem); width: min(21.5rem, calc(100vw - 1.5rem)); }
+.drawer-l { left: .75rem; } .drawer-r { right: .75rem; }
+@supports (height: 100dvh) { .drawer { height: calc(var(--vvh, 100dvh) - 1.5rem); } }
+@supports (top: max(1px, env(safe-area-inset-top))) {
+  .drawer { top: calc(var(--vvt, 0px) + max(.75rem, env(safe-area-inset-top))); height: calc(var(--vvh, 100vh) - max(.75rem, env(safe-area-inset-top)) - max(.75rem, env(safe-area-inset-bottom))); }
+  .drawer-l { left: max(.75rem, env(safe-area-inset-left)); } .drawer-r { right: max(.75rem, env(safe-area-inset-right)); }
+}
+@supports (top: max(1px, env(safe-area-inset-top))) and (height: 100dvh) {
+  .drawer { height: calc(var(--vvh, 100dvh) - max(.75rem, env(safe-area-inset-top)) - max(.75rem, env(safe-area-inset-bottom))); }
+}
+/* Hoja de detalle de evento (móvil): pegada abajo, ancho completo. */
+.sheet-bottom { position: fixed; z-index: 50; left: 0; right: 0; bottom: 0; max-height: calc(var(--vvh, 100vh) - .75rem); padding-bottom: env(safe-area-inset-bottom); }
+@supports (height: 100dvh) { .sheet-bottom { max-height: calc(var(--vvh, 100dvh) - .75rem); } }
+
+/* Campos: 16 px en táctil/móvil (iOS no amplía la página al enfocar, sin bloquear el zoom del usuario) y objetivo ≥44 px. */
+@media (pointer: coarse), (max-width: 767.98px) {
+  .field { font-size: 16px; min-height: 44px; }
+  textarea.field { min-height: 5.5rem; }
+}

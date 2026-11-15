@@ -1,0 +1,448 @@
+{
+ "id": "003c",
+ "phase": 3,
+ "phaseSourceHeading": "Fase 3 Adaptación al navegador",
+ "sourceHeading": "Iteración 003C Diseño adaptable y accesibilidad",
+ "sections": [
+  {
+   "kind": "userPrompt",
+   "sourceHeading": "Prompt del usuario enviado a GPT",
+   "paragraphs": [
+    {
+     "k": "text",
+     "t": "003B presentado, continúa",
+     "s": "Source"
+    }
+   ]
+  },
+  {
+   "kind": "progress",
+   "sourceHeading": "Mensajes de progreso registrados de GPT",
+   "paragraphs": [
+    {
+     "k": "text",
+     "t": "N/A",
+     "s": "Source"
+    }
+   ]
+  },
+  {
+   "kind": "gptResponse",
+   "sourceHeading": "Respuesta de GPT anterior al prompt para Claude",
+   "paragraphs": [
+    {
+     "k": "text",
+     "t": "Seguimos con TEMPORA-WEB-003C: adaptación a móvil y tableta. Esta iteración cierra la adaptación web; después abordaremos la landing.",
+     "s": "Source"
+    }
+   ]
+  },
+  {
+   "kind": "claudePrompt",
+   "sourceHeading": "3 Prompt exacto diseñado por GPT para Claude",
+   "paragraphs": [
+    {
+     "k": "text",
+     "t": "Continúa sobre la versión más reciente de Tempora tras TEMPORA-WEB-003B.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "OBJETIVO​ Adaptar Tempora a móvil, tableta y escritorio, conservando sus funcionalidades, identidad visual y compatibilidad con Tauri.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "REQUISITO OBLIGATORIO​ Utiliza la skill apple-design configurada en mi entorno. Lee sus instrucciones antes de diseñar o modificar la interfaz y aplica sus criterios pertinentes de HIG, interacción y accesibilidad. Si no puedes acceder a ella, comunícalo antes de realizar cambios visuales; no afirmes haberla utilizado.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "COMPROBACIÓN INICIAL​ Inspecciona el código actualizado:",
+     "s": "Source"
+    },
+    {
+     "k": "table",
+     "t": "●​   App.tsx y distribución general.\n    ●​   Sidebar, CalendarView, MiniCalendar y RightPanel.\n    ●​   Modales, popovers, menús y avisos.\n    ●​   AudioEngine y su ubicación en el árbol React.\n    ●​   Estado del calendario, temporizador, audio y formularios.\n    ●​   CSS, alturas, anchuras mínimas y configuración del viewport.",
+     "s": "TranscriptTable"
+    },
+    {
+     "k": "text",
+     "t": "Explica brevemente los problemas encontrados y propone los puntos de ruptura según el espacio que necesitan los componentes. Después implementa la solución.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "DECISIONES CONFIRMADAS",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Español e inglés; español inicialmente. ●​ Ambos propósitos comparten eventos. ●​ Idioma y propósito solo modifican la presentación. ●​ Conserva la identidad de Tempora, sus temas y modos claro/oscuro. ●​ Conserva las mejoras de audio y compatibilidad de 003A y 003B. 1.​ DISTRIBUCIÓN ADAPTABLE​ Escritorio: ●​ Conserva las tres áreas: navegación, calendario y concentración/audio. ●​ Evita reducir el calendario hasta hacerlo ilegible.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Tableta:",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Colapsa los paneles que no quepan.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Mantén controles visibles para abrir navegación y concentración. ●​ No ocultes funcionalidades sin una vía equivalente de acceso.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Móvil:",
+     "s": "Source"
+    },
+    {
+     "k": "table",
+     "t": "●​    Utiliza una estructura principal sencilla.\n   ●​    Presenta navegación y concentración mediante paneles o vistas accesibles.\n   ●​    Permite acceder rápidamente al Pomodoro, calendario y creación de eventos.\n   ●​    Evita superponer controles flotantes sobre contenido o botones importantes.",
+     "s": "TranscriptTable"
+    },
+    {
+     "k": "text",
+     "t": "Reutiliza los componentes existentes. No construyas una segunda aplicación independiente para móvil.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "2.​ CALENDARIO EN PANTALLAS PEQUEÑAS ●​ Prioriza una vista diaria legible. ●​ Si la vista semanal necesita desplazamiento horizontal, confínalo al calendario y señaliza su disponibilidad. ●​ No provoques desplazamiento horizontal de toda la página. ●​ Conserva las fechas y la selección al cambiar de tamaño. ●​ Evita que un efecto responsive fuerce continuamente una vista y anule la elección del usuario.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Mantén accesibles la creación de eventos y la colocación de sesiones vinculadas.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "3.​ INTERACCIÓN TÁCTIL Y TECLADO​ Revisa el conflicto entre arrastrar eventos y desplazar el calendario.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Implementa una interacción táctil que permita desplazarse sin mover eventos accidentalmente.​ Si el arrastre requiere una zona o modo explícito, hazlo comprensible y accesible.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Proporciona una alternativa al arrastre mediante un formulario para cambiar fecha y hora:",
+     "s": "Source"
+    },
+    {
+     "k": "table",
+     "t": "●​    Conserva ID, tipo y relaciones.\n   ●​    Reutiliza o amplía el formulario existente.\n   ●​    Aplica las mismas reglas de validación pertinentes.\n   ●​    Permite completar la operación con teclado.",
+     "s": "TranscriptTable"
+    },
+    {
+     "k": "text",
+     "t": "El clic sobre un hueco o sobre una tarjeta no debe ser la única forma de realizar acciones esenciales.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "4.​ MODALES Y POPOVERS ●​ Ajusta anchuras al viewport. ●​ Mantén cabecera, contenido y acciones alcanzables con desplazamiento interno cuando sea necesario. ●​ Convierte los detalles de evento en un panel o diálogo adecuado en móvil si el popover anclado no cabe. ●​ Conserva nombres accesibles, Escape, gestión del foco y restauración al cerrar. ●​ Evita diálogos superpuestos accidentalmente.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Al seleccionar una acción de navegación desde un panel móvil, ciérralo cuando corresponda y lleva el foco a un destino útil.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Respeta el comportamiento no descartable del selector inicial de propósito.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "5.​ ALTURAS, ÁREAS SEGURAS Y TECLADO VIRTUAL​ Revisa: ●​ Altura dinámica del viewport. ●​ Barras del navegador móvil. ●​ Áreas seguras mediante env(safe-area-inset-*), donde corresponda. ●​ Formularios con teclado virtual abierto. ●​ Orientación vertical y horizontal. ●​ Campos y acciones que puedan quedar fuera de pantalla.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Mantén un fallback adecuado para las unidades de viewport utilizadas.​ No bloquees el zoom del navegador ni impidas ampliar texto.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "6.​ CONTINUIDAD DEL ESTADO​ Abrir o cerrar paneles y cambiar de tamaño no debe: ●​ Remontar AudioEngine. ●​ Interrumpir la reproducción. ●​ Reiniciar Pomodoro, endAt o sesiones. ●​ Borrar formularios. ●​ Restablecer filtros, fecha seleccionada o preferencias. ●​ Duplicar intervalos, reproductores o listeners.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Distingue estado de presentación y estado funcional.​ Si un componente debe remontarse por la estructura elegida, conserva explícitamente los datos necesarios; evita duplicar instancias para resolverlo.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "7.​ ACCESIBILIDAD Y TRADUCCIÓN ●​ Todos los nuevos textos deben existir en español e inglés. ●​ Usa controles semánticos, nombres accesibles y foco visible. ●​ Indica el estado abierto/cerrado de los controles de panel. ●​ Asegura objetivos táctiles cómodos y separación suficiente. ●​ Respeta prefers-reduced-motion. ●​ No comuniques estados solo mediante color. ●​ Comprueba textos largos y ampliación de texto.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Mantén una apariencia coherente con apple-design y los tokens actuales. Evita añadir animaciones o transparencias que dificulten la lectura.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "8.​ PRUEBAS​ Ejecuta npm test y npm run build.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Si dispones de navegador, verifica al menos:",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ 360 × 800. ●​ 390 × 844.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ 768 × 1024. ●​ 1024 × 768. ●​ 1440 × 900.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Comprueba:",
+     "s": "Source"
+    },
+    {
+     "k": "table",
+     "t": "●​   Ausencia de desbordamiento horizontal de página.\n   ●​   Acceso a todas las funciones.\n   ●​   Calendario y formularios utilizables.\n   ●​   Paneles, foco, Escape y teclado.\n   ●​   Cambio de tamaño con Pomodoro y audio activos.\n   ●​   Español e inglés.\n   ●​   Ambos propósitos y modos claro/oscuro.\n   ●​   Zoom y textos largos.",
+     "s": "TranscriptTable"
+    },
+    {
+     "k": "text",
+     "t": "La emulación de viewport no equivale a una prueba en dispositivo físico. Diferencia ambas y documenta las comprobaciones de teclado virtual y gestos que no puedas realizar.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Añade pruebas automatizadas únicamente para comportamientos relevantes que la infraestructura permita verificar. No sustituyas la revisión visual por pruebas que solo comprueben clases CSS.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "9.​ LÍMITES​ No implementes todavía: ●​ Landing. ●​ GitHub Pages. ●​ Backend ni sincronización. ●​ Nuevas funciones de planificación o estadísticas.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "No actualices versiones principales de dependencias.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "10.​ENTREGA​ Proporciona: ●​ Decisiones de distribución y puntos de ruptura. ●​ Archivos modificados. ●​ Proyecto actualizado y TEMPORA-WEB-003C.patch. ●​ Comandos ejecutados y resultados reales. ●​ Capturas de escritorio, tableta y móvil, si puedes generarlas. ●​ Tabla breve de verificaciones realizadas y pendientes. ●​ Limitaciones detectadas.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "No declares un dispositivo o interacción verificados si no los has probado.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Detente al finalizar TEMPORA-WEB-003C.",
+     "s": "Source"
+    }
+   ]
+  },
+  {
+   "kind": "claudeResponse",
+   "sourceHeading": "4 Respuesta de Claude con cambios y validación",
+   "paragraphs": [
+    {
+     "k": "note",
+     "t": "Fuente: páginas 71 a 74 del PDF. Se conserva la respuesta completa.",
+     "s": "Reference"
+    },
+    {
+     "k": "text",
+     "t": "Tras pegar el octavo prompt obtenido de GPT-6.1 Sol a claude (que se encuentra dentro de las respuestas obtenidas de ChatGPT) he obtenido lo siguiente:",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Empiezo leyendo la skill apple-design e inspeccionando el código de 003B antes de tocar nada.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Sigo con 003C. Ya tengo las librerías de layout, viewport y validación de reprogramación, más el estado y los textos es/en. Ahora toco ui.tsx (foco de diálogos reutilizable), paneles, calendario y tarjetas.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Voy bien: ya están los paneles plegables (siguen montados cerrados, así que no se remonta ni el iframe de YouTube) y la barra inferior móvil. Ahora RightPanel, CalendarView (scroll horizontal confinado), tarjetas táctiles y el formulario de cambiar fecha/hora.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Calendario, tarjetas (táctil con pulsación larga, teclado) y formulario de cambiar fecha/hora ya compilan. Ahora el detalle de evento (hoja inferior en móvil, con foco gestionado) y el montaje en App.tsx; luego pruebo en el navegador.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Estoy reparando un error de estructura JSX que me dejó un reemplazo automático en el detalle de evento (ItemPopover). Hecho eso, monto todo en App.tsx y paso a las pruebas en navegador.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Verificado en Chromium: paneles móviles (abrir/cerrar, Escape, foco de vuelta al botón), y el cambio de tamaño 1440→360→1440 con audio y Pomodoro activos sin remontar nada (un solo Audio, mismo endAt, fecha/filtro/borrador intactos, audio avanzando). Ahora pruebo gestos táctiles (CDP), teclado en las tarjetas, hoja de detalle y reprogramación, YouTube simulado con paneles, y zoom/orientación.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Al arrastrar con el dedo tras la pulsación larga, la página se queda colgada en Chromium (un bucle en mi código de agarre táctil). Lo estoy localizando paso a paso; el desplazamiento táctil y el agarre sí funcionan, falla el movimiento posterior.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Arreglado el cuelgue: reemplacé el arrastre de framer por un gesto propio (ratón con umbral, dedo con pulsación larga). Ahora pasan las 31 comprobaciones de gestos táctiles (CDP), teclado, reprogramación y YouTube simulado. Siguen: orientación apaisada, zoom/texto largo, inglés y productividad, modo oscuro, movimiento reducido, pruebas automáticas, capturas y entrega.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Pasa la matriz completa: 4 combinaciones idioma/propósito/modo × 5 tamaños (sin desbordamiento ni errores, paneles dentro del viewport), más movimiento reducido, apaisado, zoom y texto ×2. Reviso unas capturas, añado las pruebas automáticas (vitest) y preparo la entrega.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Ya está todo verificado (tsc, 250 tests, build, humo en producción y capturas). Estoy generando el zip y el parche TEMPORA-WEB-003C.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Tempora ya se adapta a móvil, tableta y escritorio con la misma estructura de DOM, sin una segunda app. Leí y apliqué el skill apple-design. Solo está probado en emulación de Chromium (Playwright y toques emulados por CDP), no en dispositivos físicos.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Decisiones de layout",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Ancho                                         Diseño",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "≥1200 Tres áreas fijas: navegación, calendario y concentración. px",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "1024– Concentración fija; navegación plegable desde la cabecera. 1199",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "768– Ambos paneles plegables, con botones visibles y aria-expanded. 1023",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Barra inferior (Menú · Añadir · Concentración) dentro del flujo, sin controles <768    flotantes. Los paneles son cajones, el detalle del evento es una hoja inferior y la vista inicial es el día.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Un solo DOM a cualquier tamaño: AudioEngine, los paneles y el calendario se montan una vez. Cambiar de tamaño o abrir y cerrar un panel solo cambia clases y el estado de presentación panel. ●​ Semana en pantallas pequeñas: solo el calendario se desplaza en horizontal, con cabecera y columna de horas fijas y un aviso hasta el primer desplazamiento. La página nunca se desplaza de lado. ●​ Arrastre: con ratón o lápiz se arrastra tras 4 px. Con el dedo hace falta mantener pulsado 380 ms; un deslizamiento normal desplaza el calendario. ●​ Alternativa por formulario: “Cambiar fecha y hora” en el detalle, o Enter/Espacio en la tarjeta. Cambia solo start y conserva id, tipo, duración, notas y relaciones. ●​ Validación compartida: formulario y arrastre usan la misma. Un cambio respecto a 003B es que el arrastre ahora rechaza movimientos que rompen las reglas de sesión/examen y avisa con un aviso. ●​ Diálogos: Escape, foco atrapado y restauración del foco son comunes a todos. No hay diálogos superpuestos, y al navegar se cierra el panel móvil y el foco pasa al calendario. ●​ Alturas y zoom: dvh con alternativa, áreas seguras y visualViewport. El zoom no se bloquea.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Comandos y resultados",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ npx tsc --noEmit: OK. ●​ npm test: 250 pasan (221 previos + 28 nuevos + 1 añadido a una suite existente). Cuatro modificaciones de prueba (breakpoint, regla de sesiones, panel cerrado con role=dialog, vista semanal forzada) hicieron fallar un test cada una; al restaurar pasan los 28.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ npm run build: OK (JS 412,78 kB, CSS 29,95 kB). ●​ Humo en vite preview a 360×800, 390×844, 768×1024, 1024×768 y 1440×900: arranca, sin desbordamiento ni errores. El panel de navegación abre y cierra con Escape en los cuatro tamaños menores de 1200. En 1440 solo se comprobó el arranque. ●​ Se probaron las combinaciones es/en, académico/productividad y claro/oscuro, además de horizontal (844×390 y 667×375), texto al 200 % y viewports equivalentes a zoom. ●​ La cadena de redimensionado 1440→…→360→…→1440 con Pomodoro y audio activos mantuvo una sola instancia de Audio y endAt, sesiones, filtros y borradores intactos. ●​ Con toques emulados, deslizar sobre un evento desplaza sin moverlo, y mantener pulsado y arrastrar lo mueve +60 min sin desplazar. ●​ Si algún caso de la matriz falla en tu máquina, es lo primero que habría que mirar.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Verificado y pendiente",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Verificado (emulación)                               Sin verificar",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Layout en 5 tamaños, paneles, foco, Escape, formulario de cambio de     Dispositivos físicos fecha",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Gestos con toques emulados por       Teclado virtual (--vvh/--vvt) y áreas seguras CDP                                  con notch real",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Zoom y texto largo, solo con Zoom real del navegador viewports y escala de texto",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Reproductor de YouTube simulado:     YouTube real, y la política de YouTube al ocultar el mismo iframe, sin pausa ni recarga   reproductor al cerrar un panel",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Tauri (la ventana mínima de 1120 px queda por debajo del layout de tres áreas), lectores de pantalla y vibración",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Limitaciones",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ No hay autodesplazamiento al arrastrar cerca de los bordes; la alternativa es el formulario. ●​ Los eventos solapados en columnas estrechas de la semana solo se leen bien en el detalle.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Las pestañas de fase se parten en dos líneas a 300 px (ya ocurría antes).",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Me detengo aquí, tras 003C.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Archivos en /mnt/attach/outputs:",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ tempora-web-003c.zip ●​ TEMPORA-WEB-003C.patch (la prueba de aplicación sobre 003B pasó) ●​ capturas-003c/ (10 capturas; te envié 5)",
+     "s": "Source"
+    }
+   ]
+  }
+ ]
+}

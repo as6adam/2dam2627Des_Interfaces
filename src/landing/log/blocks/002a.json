@@ -1,0 +1,434 @@
+{
+ "id": "002a",
+ "phase": 2,
+ "phaseSourceHeading": "Fase 2 Internacionalización",
+ "sourceHeading": "Iteración 002A Base bilingüe y selector de idioma",
+ "sections": [
+  {
+   "kind": "userPrompt",
+   "sourceHeading": "Prompt del usuario enviado a GPT",
+   "paragraphs": [
+    {
+     "k": "text",
+     "t": "Adjunto el proyecto actualizado y archivos presentados por Claude (.zip y .patch). Mantén el enfoque actual: ambos propósitos deben compartir los eventos, y cambiar de propósito adapta únicamente la presentación y el vocabulario.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Analiza el estado actual del código y continúa con el siguiente desglose y prompt, enfocándonos ahora en la traducción completa e Internacionalización (i18n) (llenar el vocabulario en inglés en vocab.ts y conectar el selector de idioma en Ajustes). ¿Cuál es el plan y el primer prompt para esta fase?",
+     "s": "Source"
+    }
+   ]
+  },
+  {
+   "kind": "progress",
+   "sourceHeading": "Mensajes de progreso registrados de GPT",
+   "paragraphs": [
+    {
+     "k": "text",
+     "t": "Revisaré el ZIP y el parche para comprobar cómo han quedado vocab.ts, las preferencias y Ajustes. Con esa base prepararé el desglose de i18n y el primer prompt para Claude.",
+     "s": "Source"
+    }
+   ]
+  },
+  {
+   "kind": "gptResponse",
+   "sourceHeading": "Respuesta de GPT anterior al prompt para Claude",
+   "paragraphs": [
+    {
+     "k": "text",
+     "t": "El parche ya añade language, setLanguage y useVocab, pero el inglés todavía devuelve el vocabulario español. También hay una prueba que exige ese comportamiento provisional: tendremos que actualizarla. Propongo ampliar esta base sin añadir otra librería de traducción. No he podido descargar el ZIP; la revisión se apoya en el parche completo.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Mantenemos los eventos compartidos: propósito e idioma solo cambian la presentación. Para esta fase aprovecharemos vocab.ts y Zustand, sin añadir otra librería de traducción.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "He revisado el parche completo TEMPORA-WEB-001.patch. No he podido descargar el ZIP, así que no he contrastado ambos archivos ni ejecutado las pruebas.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Estado actual del código",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Elemento                              Situación encontrada",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Ya existen language, setLanguage y persistencia en tempora-v1. Preferencias Español es el valor inicial.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Contiene vocabulario español para ambos propósitos. en devuelve vocab.ts provisionalmente español.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "useVocab()          Ya reacciona al idioma y propósito del store. Podemos aprovecharlo.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Ajustes             Lee language, pero todavía no permite cambiarlo.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Selector de Utiliza getPurposeInfo('es') y contiene textos españoles fijos. propósito",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Conviven términos centralizados con botones, errores y notificaciones Interfaz restante escritos directamente.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "vocab-gate.test.ts exige que inglés devuelva español. Hay que Pruebas sustituir esa expectativa.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Completar únicamente el objeto inglés no traducirá toda la aplicación. También debemos conectar cada texto y los formatos de fecha con el idioma elegido.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Desglose de esta fase",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Iteración                   Alcance                       Resultado verificable",
+     "s": "Source"
+    },
+    {
+     "k": "table",
+     "t": "Inglés en vocab.ts, textos              Cambio inmediato y persistente en\n002A — Base\n            comunes, selector con globo y           estas superficies y en los\ny Ajustes\n            traducción de Ajustes y propósito       consumidores actuales de useVocab",
+     "s": "TranscriptTable"
+    },
+    {
+     "k": "table",
+     "t": "002B —          Calendario, navegación,\n                                                    Todas las pantallas traducidas,\nInterfaz        formularios, temas, Pomodoro y\n                                                    incluidas etiquetas accesibles\ncompleta        audio",
+     "s": "TranscriptTable"
+    },
+    {
+     "k": "table",
+     "t": "002C —\n                Meses, días, fechas relativas,      Funcionamiento coherente en ambos\nFechas y\n                errores y notificaciones            idiomas y propósitos\nmensajes",
+     "s": "TranscriptTable"
+    },
+    {
+     "k": "text",
+     "t": "Durante 002A prepararemos la estructura para las siguientes iteraciones, evitando duplicar diccionarios por propósito:",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Vocabulario contextual: asignatura/área, entrega/tarea, sesión de estudio/bloque de concentración. ●​ Textos comunes: guardar, cancelar, ajustes, idioma, reproducción y temporizador. ●​ Formatos: fechas y cantidades según idioma.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "No hace falta cambiar la versión de persistencia solo por completar traducciones: language ya forma parte del estado guardado.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Primer prompt para Claude",
+     "s": "Source"
+    }
+   ]
+  },
+  {
+   "kind": "claudePrompt",
+   "sourceHeading": "3 Prompt exacto diseñado por GPT para Claude",
+   "paragraphs": [
+    {
+     "k": "text",
+     "t": "Continúa sobre el proyecto actualizado de TEMPORA-WEB-001.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Implementa únicamente TEMPORA-WEB-002A: completar la base bilingüe y conectar el selector de idioma en Ajustes. No presentes esta iteración como la internacionalización completa de toda la aplicación.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "REQUISITO OBLIGATORIO​ Utiliza la skill apple-design configurada en mi entorno. Lee sus instrucciones antes de modificar la interfaz y aplica los criterios pertinentes de HIG y accesibilidad. Si no puedes acceder a ella, comunícalo antes de realizar cambios visuales y no afirmes haberla utilizado.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "DECISIÓN CONFIRMADA​ Académico y Productividad comparten los mismos eventos.​ Cambiar propósito o idioma solo adapta la presentación y el vocabulario.​ No conviertas, traduzcas ni elimines datos del usuario.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "PUNTO DE PARTIDA​ Comprueba estos elementos en el repositorio:",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​  useApp ya contiene language, setLanguage y purpose. ●​  language se persiste bajo tempora-v1 y comienza en es. ●​  preferences.ts ya admite es y en. ●​  vocab.ts exporta Vocab, getVocab, getPurposeInfo y useVocab. ●​  Actualmente VOCAB y PURPOSE_INFO solo contienen español. ●​  SettingsModal está en Overlays.tsx. ●​  PurposeDialog.tsx utiliza getPurposeInfo('es') y textos españoles fijos. ●​  vocab-gate.test.ts todavía exige que inglés devuelva español.​ Si el código real difiere, explica la diferencia antes de aplicar cambios dependientes. 1.​ COMPLETAR VOCABULARIO​ Completa el inglés para academic y productivity respetando la interfaz Vocab y sus funciones existentes.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Terminología inglesa:",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Examen → Exam en ambos propósitos. ●​ Entrega → Assignment en académico.",
+     "s": "Source"
+    },
+    {
+     "k": "table",
+     "t": "●​   Tarea → Task en productividad.\n   ●​   Asignatura → Subject.\n   ●​   Área → Area.\n   ●​   Sesión de estudio → Study session.\n   ●​   Bloque de concentración → Focus block.",
+     "s": "TranscriptTable"
+    },
+    {
+     "k": "text",
+     "t": "Completa también PURPOSE_INFO en ambos idiomas.​ Usa Record exhaustivos para exigir es y en, ambos propósitos y todas las claves.​ Mantén el comportamiento académico cuando purpose sea null.​ No utilices español como sustituto de traducciones inglesas pendientes.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "2.​ TEXTOS COMUNES​ Añade un diccionario tipado para los textos independientes del propósito necesarios en Ajustes y el selector de propósito.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Conserva la API pública existente siempre que sea posible.​ Evita duplicar todos los textos comunes dentro de cada propósito.​ Utiliza frases completas y funciones tipadas para parámetros y cantidades.​ Contempla singular y plural en los mensajes que incluyan recuentos.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Separa los recursos y funciones puras de los hooks que leen Zustand cuando sea necesario. Evita introducir dependencias circulares entre store.ts y los módulos de traducción, especialmente pensando en las futuras notificaciones del store.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "No añadas i18next ni otro gestor de idioma: aprovecha la solución actual.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "3.​ SELECTOR DE IDIOMA EN AJUSTES​ Añade una fila Idioma / Language en SettingsModal: ●​ Icono Globe de lucide-react. ●​ Desplegable con Español y English. ●​ Valor seleccionado vinculado a useApp.language. ●​ Cambio mediante la acción setLanguage existente. ●​ Aplicación inmediata, sin recarga ni botón adicional de guardar. ●​ Persistencia mediante el mecanismo actual.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Prefiere un select nativo correctamente etiquetado, acompañado del globo y estilizado con los tokens existentes. No construyas un menú personalizado salvo que exista una necesidad justificada.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "El icono será decorativo si el control ya tiene nombre accesible.​ Garantiza teclado, foco visible, contraste y espacio suficiente para ambos idiomas.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "4.​ TRADUCIR COMPLETAMENTE ESTAS SUPERFICIES​ Traduce: ●​ Todo SettingsModal: título, filas, descripciones, botones, confirmación de borrado, etiquetas accesibles y mensaje de prueba de notificación. ●​ Todo PurposeDialog: títulos, explicación, leyenda, estados seleccionado/actual, ayuda y botones. ●​ Los nombres y descripciones de propósito obtenidos mediante getPurposeInfo.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Sustituye getPurposeInfo('es') por una lectura reactiva del idioma actual.​ Asegura que el modal de Ajustes y el selector de propósito abiertos se actualicen sin cerrarse, remontarse ni perder su estado local.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Los componentes que ya consumen useVocab deben empezar a mostrar el inglés al seleccionarlo.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "5.​ IDIOMA DEL DOCUMENTO​ Sincroniza document.documentElement.lang con la preferencia recuperada y sus cambios posteriores.​ Usa es o en.​ Conserva español como valor inicial; no lo sustituyas automáticamente por el idioma del navegador.​ No introduzcas otra clave de almacenamiento ni otra preferencia de idioma. 6.​ CONSERVACIÓN DEL COMPORTAMIENTO​ Cambiar idioma no debe: ●​ Modificar items, subject, notes, fechas, IDs o linkedTo. ●​ Reiniciar el Pomodoro, alterar endAt o modificar sesiones. ●​ Detener, remontar o cambiar el audio. ●​ Reiniciar formularios, filtros o navegación. ●​ Volver a lanzar el resumen de bienvenida. ●​ Alterar la migración existente.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "No incrementes PERSIST_VERSION si el esquema persistido no cambia.​ No traduzcas eventos guardados ni datos de ejemplo ya almacenados.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "7.​ PRUEBAS​ Actualiza la prueba que exige que en devuelva es. Sustitúyela por verificaciones de traducción inglesa real.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Añade o adapta pruebas significativas para:",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Terminología correcta en las cuatro combinaciones idioma × propósito. ●​ Exámenes identificados como exámenes en ambos propósitos. ●​ Nombres y descripciones de propósito en español e inglés. ●​ Persistencia de English tras simular una recarga. ●​ Conservación de eventos, relaciones, estado del Pomodoro y audio al cambiar idioma. ●​ Singular y plural en los mensajes parametrizados que incorpores.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Ejecuta npm test y npm run build si el entorno lo permite.​ Las pruebas actuales usan entorno Node: no afirmes que verifican interacción visual o foco.​ Comprueba manualmente el selector y el idioma del documento si dispones de navegador; de lo contrario, indícalos como pendientes.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "8.​ LÍMITES Y ENTREGA​ No implementes todavía landing, GitHub Pages ni traducción global del calendario, fechas, Pomodoro o audio.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Entrega:",
+     "s": "Source"
+    },
+    {
+     "k": "table",
+     "t": "●​   Diagnóstico breve y decisiones.\n    ●​   Cambios por archivo.\n    ●​   Archivos modificados y parche de esta iteración.\n    ●​   Comandos ejecutados y resultados reales.\n    ●​   Pruebas manuales pendientes.\n    ●​   Inventario concreto de textos y componentes restantes para 002B y 002C.",
+     "s": "TranscriptTable"
+    },
+    {
+     "k": "text",
+     "t": "Distingue claramente lo implementado, lo comprobado y lo pendiente.​ Detente al finalizar TEMPORA-WEB-002A.",
+     "s": "Source"
+    }
+   ]
+  },
+  {
+   "kind": "gptContinuation",
+   "sourceHeading": "Continuación original de la respuesta de GPT",
+   "paragraphs": [
+    {
+     "k": "text",
+     "t": "Para documentarlo, registra esta iteración como «Base bilingüe y preferencias de idioma». Adjunta el prompt, la respuesta de Claude, el parche y capturas de Ajustes en español e inglés; reserva la afirmación «aplicación completamente bilingüe» para cuando terminemos 002C.",
+     "s": "Source"
+    }
+   ]
+  },
+  {
+   "kind": "claudeResponse",
+   "sourceHeading": "4 Respuesta de Claude con cambios y validación",
+   "paragraphs": [
+    {
+     "k": "note",
+     "t": "Fuente: páginas 57 a 59 del PDF. Se conserva la respuesta completa.",
+     "s": "Reference"
+    },
+    {
+     "k": "text",
+     "t": "Tras pegar el segundo prompt obtenido de GPT-6.1 Sol a claude (que se encuentra dentro de las respuestas obtenidas de ChatGPT) he obtenido lo siguiente:",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Primero leo la skill apple-design (requisito) y verifico el punto de partida en el repositorio real antes de tocar nada.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Skill leída completa (291 líneas). Ahora verifico el punto de partida contra el código real.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Continúo con los componentes: Ajustes (fila de idioma), PurposeDialog, la etiqueta del control en Sidebar, lang del documento y estilos del select.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "El cd falló: /home/claude/tempora/src ya no existe, así que ese parche no se aplicó y el “tsc OK” no vale (se ejecutó sin proyecto). Compruebo qué hay en el entorno.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Visualmente correcto en ambos idiomas y a 320 px. Cierro: nota en el README, validación final limpia, paquete y parche de esta iteración (frente a 001).",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "TEMPORA-WEB-002A está implementada: vocabulario es/en completo, selector de idioma en Ajustes y lang del documento sincronizado. Es la base bilingüe, no la internacionalización completa de la aplicación.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "npm test (42/42), tsc, npm run build y 31/31 comprobaciones en Chromium pasan; no lo he probado en Tauri/WebView2.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Diagnóstico y decisiones",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Entorno reiniciado: a mitad de iteración el espacio de trabajo se reinició y /home/ claude/tempora desapareció, con i18n.ts y vocab.ts incluidos. Restauré desde tempora-web-001.zip, verifiqué la base (tsc limpio, 22/22) y rehíce todo lo perdido. El código real coincidía con tu punto de partida. ●​ Skill apple-design: pude acceder a ella y la leí completa (291 líneas). Apliqué foco visible, press en los controles, material sólido sin apilar translucidez, reduced- motion heredado y color-scheme del select en oscuro. ●​ Arquitectura: lib/i18n.ts es puro, con Record<Language, Record<Purpose, …>> exhaustivos, plural() con Intl.PluralRules y import type desde el store (sin ciclo). lib/vocab.ts conserva la API pública y añade usePurposeInfo y useCommon. ●​ Sin dependencias nuevas: el selector es un <select> nativo con <label htmlFor>, el globo es decorativo (aria-hidden), el cambio es inmediato y usa setLanguage. ●​ Idioma del documento: document.documentElement.lang sigue a la preferencia. Ya no depende del navegador: index.html pasa a lang=\"es\". ●​ Persistencia: PERSIST_VERSION sigue en 1; no hay clave ni esquema nuevos.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Título bilingüe: la fila se llama «Idioma / Language» en ambos idiomas, para encontrarla desde el idioma equivocado.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Cambios por archivo (diff completo en el parche)",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ lib/i18n.ts (nuevo): recursos, plural, getVocab/getPurposeInfo/ getCommon. ●​ lib/vocab.ts: hooks; reexporta la API anterior. ●​ Overlays.tsx: SettingsModal traducido por completo, más LanguageSetting y SettingsRow (con labelFor). ●​ PurposeDialog.tsx: sin 'es' fijo ni textos fijos; lee idioma de forma reactiva. ●​ Sidebar.tsx: la etiqueta «Propósito: …» sale de useCommon. ●​ App.tsx: efecto que sincroniza lang. ●​ index.html e index.css: lang=\"es\" y color-scheme del select. ●​ README.md y tests: la prueba en→es de vocab-gate.test.ts ya no existe; nueva i18n.test.ts.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Comprobado",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Node (42 pruebas): ○​ Las 4 combinaciones idioma × propósito. ○​ Exámenes como exámenes en todas. ○​ Nombres y descripciones de propósito en es/en. ○​ English persiste tras recarga simulada. ○​ Eventos, relaciones, Pomodoro y audio intactos al cambiar idioma. ○​ Singular/plural, formas de claves idénticas en es/en y que i18n.ts no importa el store en tiempo de ejecución. ○​ Dos mutaciones (término español en inglés, plural roto) hicieron fallar las pruebas. ○​ Estas pruebas no verifican interacción ni foco. ●​ Chromium sobre el build de producción (31/31): ○​ Idioma inicial es con navegador en-US. ○​ Cambio con teclado en el select: lang pasa a en al instante, se persiste y el foco se mantiene. ○​ El modal de Ajustes conserva el mismo nodo y su estado local (la confirmación de borrado pasa a «Yes, clear everything»). ○​ Singular y plural en la descripción de borrado. ○​ Selector de propósito en inglés, con Cancelar sin efecto. ○​ Audio sin pausa ni reinicio (mismo elemento) y Pomodoro descontando. ○​ Filtro activo conservado y bienvenida sin reaparecer. ○​ Recarga en English. ○​ Sin desbordamiento a 320 px (claro y oscuro). ●​ Un fallo inicial fue de mi aserción (hay dos botones «Assignments», navegación y chip); la corregí y repetí la batería completa.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Pendiente de comprobar a mano",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Tauri/WebView2 en Windows y lector de pantalla con el select. ●​ Temas Ruby, Diamond y Antimatter (solo probé Purple Agate). ●​ Que el selector de propósito abierto cambie de idioma sin remontarse. Es estructural (useCommon reactivo) y los nodos de Ajustes se conservan, pero con ese diálogo encima el fondo es inerte y no pude cambiar idioma en vivo en el navegador. ●​ El audio de la prueba fue un .wav local; los presets de YouTube no cargan desde este sandbox.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Inventario para 002B y 002C",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Aún en inglés: ○​ Pestañas del temporizador (Focus/Short break/Long break) y su estado, y el panel de audio (Focus audio, Custom, placeholder, Now playing/Paused, Mute y Volume). ○​ Cabecera del calendario (Week/Day/Today/Add/Previous/Next), el aviso «Click a time slot…» y la hora HH:mm. ○​ Pop-over de detalles, ItemModal y Startup (Welcome back, Got it, Cancel, Add). ○​ Navegación: «All events», «Theme Customization», «Settings», el interruptor «Light/Dark mode», «Plan. Focus. Pass.» y el aria-label «Tempora logo». ○​ ThemeModal (los cuatro temas y su descripción) y los datos de ejemplo. ○​ La notificación de arranque («heads up», «exam(s)») y las del Pomodoro, que viven en el store. ●​ Fechas y formatos: date-fns sin locale en el calendario, los días, format(…, 'EEE d MMM') y relDays. ●​ Fuera de alcance (002C): <title>, textos de Tauri y la landing.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Detenido aquí. Archivos en /mnt/user-data/outputs/:",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ tempora-web-002a.zip ●​ TEMPORA-WEB-002A.patch",
+     "s": "Source"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,529 @@
+{
+ "id": "001",
+ "phase": 1,
+ "phaseSourceHeading": "Fase 1 Análisis y arquitectura",
+ "sourceHeading": "Iteración 001 Preferencias y selector de propósito",
+ "sections": [
+  {
+   "kind": "userPrompt",
+   "sourceHeading": "Prompt del usuario enviado a GPT",
+   "paragraphs": [
+    {
+     "k": "text",
+     "t": "Acabo de adjuntar todos los archivos actualizados del proyecto Tempora (Tauri + React + TypeScript + Zustand) a este chat para que tengas todo el contexto técnico.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Ahora necesitamos implementar tres grandes mejoras y adaptaciones en la aplicación, Respondo a tus preguntas en el siguiente parráfo, Por favor, revísalas y dime cómo procederemos a programarlas paso a paso:",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "1. Selector de Propósito Inicial (Académico vs. Productividad): - Al abrir la aplicación por primera vez (o mediante un selector accesible), debe preguntar al usuario con qué propósito principal quiere utilizar Tempora. - Dependiendo de la elección (Académico o Productividad), la interfaz y los términos principales deben adaptarse sutilmente (por ejemplo, enfocándose más en exámenes/ asignaturas si es académico, o en bloques de tareas generales si es productividad).",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "2. Landing Page y Estructura para GitHub Pages (index.html): - La aplicación web estática subida a GitHub debe contar con una página principal o landing (index.html) orientada a la presentación del proyecto. - Debe incluir obligatoriamente tres secciones claras: • Sobre el proyecto (descripción general de Tempora). • Fases del proyecto (Análisis, Diseño, Desarrollo, Prompts utilizados y respustas obtenidas, Pruebas/Despliegue) (la fase de prompts utilizados se añadirá una vez terminada la aplicación, recopilaré un documento docx con todos los prompts empeñados para el desarrollo de Tempora (Web) y una vez adjuntado, Claude lo añadirá en su sección correspondiente. • Botón o enlace directo de \"Ir a Tempora\" para arrancar la aplicación.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "3. Sistema de Internacionalización (i18n - Español / Inglés): - El idioma predeterminado de la interfaz debe ser el Español. - Debe incluirse un icono de una bola del mundo (globo terráqueo) en la interfaz con un menú desplegable que permita cambiar instantáneamente entre Español e Inglés. - Toda la aplicación debe ser completamente funcional en ambos idiomas sin perder ninguna característica ni funcionalidad actual.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Por favor, analízalo y propón el plan de acción o el código necesario para empezar con la primera implementación. Nota: Claude tiene que utilizar en todo momento la skill \"apple-design\" que tengo configurada adaptandose al HIG (Human Interface Guidelines)",
+     "s": "Source"
+    }
+   ]
+  },
+  {
+   "kind": "progress",
+   "sourceHeading": "Mensajes de progreso registrados de GPT",
+   "paragraphs": [
+    {
+     "k": "text",
+     "t": "Voy a revisar el store, los componentes y la configuración actual para ordenar las tres mejoras y preparar el primer prompt para Claude, incluyendo el uso de apple-design.",
+     "s": "Source"
+    }
+   ]
+  },
+  {
+   "kind": "gptResponse",
+   "sourceHeading": "Respuesta de GPT anterior al prompt para Claude",
+   "paragraphs": [
+    {
+     "k": "text",
+     "t": "Procederemos por módulos: primero preferencias y selector de propósito; después traducción completa; finalmente landing y GitHub Pages. Así podremos revisar cada cambio y documentarlo antes de pedirle a Claude el siguiente.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "He revisado los 15 archivos actualizados. Todavía no he ejecutado ni modificado el proyecto.",
+     "s": "Source"
+    },
+    {
+     "k": "table",
+     "t": "1. Qué nos permite aprovechar tu código\n                 Hallazgo                                   Consecuencia\nuseApp guarda los datos con Zustand         Añadiremos preferencias conservando los\nbajo tempora-v1                             eventos existentes.\nuseUI controla modales, filtros y           El selector inicial debe coordinarse con el\ncalendario                                  resumen de bienvenida.\nusePomodoro ya utiliza endAt                Conservaremos esa lógica del temporizador.\nLos textos están repartidos entre           La traducción debe incluir también\ncomponentes y store.ts                      notificaciones, errores y etiquetas accesibles.\nEl calendario utiliza date-fns y\n                                            Traduciremos fechas, meses y días, además\nabreviaturas inglesas escritas\n                                            de los botones.\nmanualmente\n                                            Revisaremos las funciones nativas antes del\nHay dependencias de Tauri\n                                            despliegue web.",
+     "s": "TranscriptTable"
+    },
+    {
+     "k": "text",
+     "t": "Entre los archivos individuales revisados no aparecen App.tsx, la entrada React, index.html, vite.config.* ni los módulos de src/lib. Claude deberá inspeccionarlos en su proyecto antes de modificar el arranque, las notificaciones o la compilación.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "2. Selector de propósito: comportamiento propuesto",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "La preferencia será independiente del tema y del idioma:",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "None‎ type Purpose = 'academic' | 'productivity' type Language = 'es' | 'en'",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "// Preferencias nuevas: purpose: Purpose | null // null: elección pendiente",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "language: Language               // 'es' inicialmente",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Flujo de primera apertura de la aplicación:",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "1.​ Recuperar las preferencias guardadas. 2.​ Si purpose es null, mostrar «¿Cómo quieres utilizar Tempora?». 3.​ Presentar dos opciones con descripción breve y botón «Continuar». 4.​ Guardar la elección. 5.​ Mostrar después el resumen de próximos eventos, si corresponde.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "La landing se podrá visitar sin responder al selector. La pregunta aparecerá al entrar en Tempora.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "El propósito se podrá cambiar desde Ajustes y desde un control visible en la navegación.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Recomiendo compartir los datos entre ambos propósitos. Cambiar de propósito adapta la presentación y las opciones iniciales; no convierte ni elimina elementos.",
+     "s": "Source"
+    },
+    {
+     "k": "table",
+     "t": "Contexto       Académico             Productividad\nAgrupación       Asignaturas         Áreas\nEntregas         Entregas            Tareas\n                 Sesión de           Bloque de\nSesión vinculada\n                 estudio             concentración\nCreación inicial Examen              Tarea\nEjemplo de\n                 Bases de Datos      Proyecto personal\ncampo",
+     "s": "TranscriptTable"
+    },
+    {
+     "k": "text",
+     "t": "Hay una distinción importante: un examen existente seguirá siendo un examen. No lo renombraremos como reunión ni cambiaremos sus reglas. En productividad seguirá accesible cuando exista.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Para esta adaptación podemos conservar inicialmente Kind = 'exam' | 'assignment' | 'study'. Una tarea general mantendrá, de momento, las mismas propiedades de fecha y duración que una entrega.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "3. Internacionalización completa",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Propongo i18next + react-i18next, con recursos ES/EN incluidos en la aplicación. Permiten traducir componentes y cambiar el idioma mediante changeLanguage. react- i18next documentation",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Aplicaremos estas reglas:",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Español en una instalación nueva, independientemente del idioma del navegador. ●​ Recuperar el idioma elegido en visitas posteriores. ●​ Un único valor persistido de idioma; evitaremos preferencias duplicadas.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Globo de lucide-react con menú «Español / English», selección visible y navegación por teclado. ●​ Actualización de document.documentElement.lang. ●​ Traducción de interfaz, errores, estados vacíos, notificaciones, ayudas y etiquetas accesibles. ●​ Fechas con el locale correspondiente. ●​ Los títulos y notas escritos por el usuario conservan su contenido.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Usaremos frases completas con parámetros: por ejemplo, «Entregas en los próximos {{count}} días». También guardaremos claves de error, en lugar de frases ya traducidas, para que un error visible cambie de idioma inmediatamente.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "4. Landing y GitHub Pages",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Propongo dos entradas HTML:",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Entrada                    Contenido Presentación de Tempora y documentación del index.html proyecto app/ Aplicación, accesible mediante «Ir a Tempora» index.html",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Vite admite varias entradas HTML. Configuraremos ambas para generar la landing y la aplicación en la misma compilación. Vite",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "La landing tendrá:",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "1.​ Sobre el proyecto: objetivo, funciones y tecnologías. 2.​ Fases del proyecto: Análisis, Diseño, Desarrollo, Prompts y respuestas, Pruebas y Despliegue. 3.​ Ir a Tempora: enlace directo a la aplicación.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "«Prompts y respuestas» mostrará “Documentación pendiente de incorporar” hasta que entregues el DOCX. Después prepararemos su contenido para la web, manteniendo el orden y los identificadores de las iteraciones.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "También traduciremos la landing. Configuraremos enlaces y recursos para la subruta del repositorio de GitHub Pages; Vite requiere ajustar base según la dirección publicada. Vite",
+     "s": "Source"
+    },
+    {
+     "k": "table",
+     "t": "5. Orden de implementación\nPas\n                 Implementación                   Comprobación antes de continuar\n o\n      Preferencias, migración y selector de Primera apertura, recarga y conservación\n1\n      propósito                             de eventos\n2     Traducción completa y menú de idioma Ambos idiomas y ambos propósitos\n                                            Calendario, audio y notificaciones en\n3     Adaptación web de funciones nativas\n                                            navegador",
+     "s": "TranscriptTable"
+    },
+    {
+     "k": "table",
+     "t": "Enlaces, acceso directo y recarga de la\n4    Landing bilingüe y entradas Vite\n                                                aplicación\n                                                Compilación, publicación y pruebas en la\n5    GitHub Pages y documentación\n                                                URL final",
+     "s": "TranscriptTable"
+    },
+    {
+     "k": "text",
+     "t": "La migración mantendrá la clave tempora-v1 y utilizará el versionado de Zustand para incorporar los campos nuevos. Zustand ofrece version y migrate para este propósito. Zustand Docs",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "6. Primer prompt exacto para Claude",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Este primer encargo deja preparada la preferencia de idioma, pero la traducción completa corresponde al paso 2.",
+     "s": "Source"
+    }
+   ]
+  },
+  {
+   "kind": "claudePrompt",
+   "sourceHeading": "3 Prompt exacto diseñado por GPT para Claude",
+   "paragraphs": [
+    {
+     "k": "text",
+     "t": "Trabaja sobre el proyecto Tempora adjunto, conservando su arquitectura React + TypeScript + Zustand + Tailwind CSS + Framer Motion.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "REQUISITO OBLIGATORIO​ Utiliza la skill apple-design que tengo configurada durante toda esta implementación. Lee sus instrucciones antes de diseñar o modificar la interfaz y aplica sus criterios pertinentes de HIG, interacción y accesibilidad. Si no puedes acceder a ella, indícalo antes de realizar cambios visuales; no afirmes haberla utilizado.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "OBJETIVO DE ESTA ITERACIÓN​ Implementar preferencias persistentes y un selector de propósito Académico / Productividad. No implementar todavía la landing, el despliegue ni la traducción completa.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "CONTEXTO TÉCNICO",
+     "s": "Source"
+    },
+    {
+     "k": "table",
+     "t": "●​   src/store.ts contiene useApp, useUI, usePomodoro y useAudio.\n    ●​   useApp utiliza persist con la clave tempora-v1.\n    ●​   Los tipos de evento actuales son exam, assignment y study.\n    ●​   Overlays.tsx incluye un resumen de bienvenida, ajustes y temas.\n    ●​   Sidebar.tsx contiene la navegación.\n    ●​   El temporizador ya utiliza endAt: conserva su funcionamiento.",
+     "s": "TranscriptTable"
+    },
+    {
+     "k": "text",
+     "t": "ANTES DE EDITAR",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "1.​ Inspecciona el repositorio real y localiza la entrada React, App.tsx, los hooks de arranque y los componentes implicados. 2.​ Explica brevemente dónde integrarás el selector y cómo evitarás que coincida con el resumen de bienvenida. 3.​ Si falta un archivo necesario, identifica su ruta y solicita únicamente ese archivo. No inventes su contenido.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "MODELO DE PREFERENCIAS​ Añade:",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Purpose = 'academic' | 'productivity'.",
+     "s": "Source"
+    },
+    {
+     "k": "table",
+     "t": "●​   Language = 'es' | 'en'.\n   ●​   purpose: Purpose | null, inicialmente null.\n   ●​   language: Language, inicialmente 'es'.\n   ●​   Acciones tipadas para actualizar ambas preferencias.",
+     "s": "TranscriptTable"
+    },
+    {
+     "k": "text",
+     "t": "Conserva la clave de almacenamiento tempora-v1.​ Versiona el estado persistido e implementa una migración desde la versión actual.​ Preserva items, sus identificadores, linkedTo, fechas, notas, tema, modo y notificaciones.​ Valida las preferencias recuperadas y aplica los valores iniciales cuando falten o sean inválidas.​ No introduzcas otro almacenamiento para estas mismas preferencias.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "COMPORTAMIENTO",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Espera a que las preferencias estén disponibles antes de decidir si mostrar el selector. ●​ Si purpose es null, muestra la elección de propósito. ●​ Ofrece dos opciones: Académico y Productividad, cada una con una descripción breve. ●​ No preselecciones una opción. Habilita Continuar al seleccionar una. ●​ Persiste la elección al confirmar. ●​ No muestres simultáneamente el selector y el resumen de bienvenida. ●​ Tras confirmar, permite que el flujo de bienvenida existente continúe una sola vez. ●​ Añade un control accesible en la navegación y una opción en Ajustes para cambiar de propósito. ●​ Cancelar un cambio posterior conserva la preferencia anterior. ●​ Cambiar de propósito conserva todos los eventos y mantiene en marcha el temporizador y el audio.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "ADAPTACIÓN DE PRESENTACIÓN​ Centraliza el vocabulario por propósito, preparado para su posterior traducción.​ Académico: asignaturas, entregas y sesiones de estudio.​ Productividad: áreas, tareas y bloques de concentración.​ Conserva los valores internos exam, assignment y study.​ Un examen existente debe seguir identificado como examen y permanecer accesible en ambos propósitos.​ La creación inicial será exam en Académico y assignment en Productividad.​ No alteres las reglas de fechas, duraciones, filtros, enlaces o eliminación en cascada.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "ALCANCE DEL IDIOMA EN ESTA ITERACIÓN​ Prepara la preferencia language y utiliza español para la nueva interfaz.​ No añadas todavía el menú de idioma ni traduzcas todos los componentes.​ Identifica esa parte como pendiente para la siguiente iteración.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "DISEÑO Y ACCESIBILIDAD",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Reutiliza los tokens, superficies, botones y animaciones existentes. ●​ Aplica apple-design sin rediseñar toda la aplicación. ●​ Usa controles semánticos, etiquetas claras, foco visible y navegación por teclado.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Si utilizas un diálogo, dale nombre accesible, gestiona el foco, evita que escape al fondo y restáuralo al cerrar cuando corresponda. ●​ Respeta prefers-reduced-motion. ●​ Diferencia la selección mediante texto o indicadores además del color. ●​ Verifica el selector con los temas claro y oscuro y en anchuras pequeñas.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "LÍMITES​ No actualices versiones principales de dependencias.​ No añadas backend, autenticación, planificador automático ni estadísticas.​ No borres funcionalidades existentes ni generes contenido ficticio de documentación.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "VALIDACIÓN​ Comprueba:",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "1.​ Almacenamiento nuevo: aparece la elección. 2.​ Confirmación y recarga: se conserva el propósito. 3.​ Estado antiguo tempora-v1: conserva los eventos y solicita el propósito. 4.​ Cambiar de propósito conserva los datos y las relaciones. 5.​ Selector y resumen de bienvenida no se superponen. 6.​ Cancelar desde Ajustes conserva la elección anterior. 7.​ Cambiar el propósito no reinicia el audio ni el Pomodoro. 8.​ Compilación TypeScript y producción con npm run build.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Añade pruebas automatizadas centradas en la migración y la conservación de datos si el entorno permite ejecutarlas. Distingue las verificaciones ejecutadas de las pendientes; no afirmes resultados que no hayas comprobado.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "ENTREGA",
+     "s": "Source"
+    },
+    {
+     "k": "table",
+     "t": "●​   Breve explicación de las decisiones.\n   ●​   Cambios por archivo, sin fragmentos omitidos ni pseudocódigo.\n   ●​   Dependencias añadidas y justificación, si fueran necesarias.\n   ●​   Comandos ejecutados y resultados reales.\n   ●​   Lista breve de pruebas manuales pendientes.\n   ●​   Resumen adecuado para documentar la iteración TEMPORA-WEB-001.",
+     "s": "TranscriptTable"
+    },
+    {
+     "k": "text",
+     "t": "Detente al finalizar esta iteración.",
+     "s": "Source"
+    }
+   ]
+  },
+  {
+   "kind": "gptContinuation",
+   "sourceHeading": "Continuación original de la respuesta de GPT",
+   "paragraphs": [
+    {
+     "k": "text",
+     "t": "Decisión para dejar registrada: recomiendo que ambos propósitos compartan los eventos y que cambiar de propósito adapte su presentación. ¿Lo mantenemos así o quieres dos espacios de datos independientes?",
+     "s": "Source"
+    }
+   ]
+  },
+  {
+   "kind": "claudeResponse",
+   "sourceHeading": "4 Respuesta de Claude con cambios y validación",
+   "paragraphs": [
+    {
+     "k": "note",
+     "t": "Fuente: páginas 54 a 56 del PDF. Se conserva la respuesta completa.",
+     "s": "Reference"
+    },
+    {
+     "k": "text",
+     "t": "Tras pegar el primer prompt obtenido de GPT-6.1 Sol a claude (que se encuentra dentro de las respuestas obtenidas de ChatGPT) he obtenido lo siguiente:",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Empiezo inspeccionando el repositorio real y releyendo la skill apple-design completa (antes me quedaron truncadas las líneas 102-189).",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Ahora la parte de UI: Modal accesible (nombre, foco, trampa de tabulación, restauración, pila para diálogos anidados), hooks de arranque con espera a la hidratación, y el selector.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "46/46 en navegador. Reviso visualmente las capturas (320 px claro/oscuro y el diálogo de cambio) y compruebo prefers-reduced-motion de forma mecánica.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Selector de propósito, preferencias persistentes y vocabulario por propósito listos, con npm test (22 pruebas), tsc y npm run build limpios y 46/46 comprobaciones en Chromium. No lo he probado en Tauri/WebView2 ni en Windows.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Skill apple-design: pude acceder a ella y la leí completa, con las líneas 102-189 que antes me llegaron truncadas. Apliqué:",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Respuesta al pulsar (.press) en las tarjetas del selector. ●​ Material sólido sobre glass-strong, sin apilar translucidez, y scrim apilado en el diálogo anidado. ●​ Entrada y salida por el mismo camino. ●​ Foco visible. ●​ prefers-reduced-motion. ●​ Tipografía y tokens ya existentes.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "No aplican aquí los apartados de velocidad, momentum y rubber-band.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Decisiones",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Selector: diálogo propio, PurposeDialog. En primer uso se muestra de forma derivada (hidratado && purpose === null) y no se puede descartar. En cambios posteriores se apila sobre Ajustes, así Cancelar devuelve el foco a «Cambiar». ●​ Bienvenida: useStartupAlerts espera a que haya hidratación y propósito, y a que no quede ningún [role=\"dialog\"] en el DOM. Lanzaba el resumen mientras el selector aún animaba su salida; el arnés de navegador lo detectó y lo corregí. ●​ Persistencia: ○​ Misma clave tempora-v1, ahora versión 1 con migración v0→v1. ○​ migrate y merge nunca lanzan: en este zustand una excepción deja hasHydrated() en false para siempre.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "○​ getItem tolera JSON ilegible y vuelve a los valores iniciales; ese valor corrupto se sobrescribe en la siguiente escritura. ○​ sanitizePersisted descarta solo los items sin forma válida; los válidos se conservan íntegros. ●​ Vocabulario: VOCAB[language][purpose] en vocab.ts. Solo existe es; en cae a es. Los valores internos exam/assignment/study no cambian, y el examen sigue siendo «Examen» y accesible en ambos propósitos.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Cambios por archivo",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "El código completo está en tempora-web-001.zip y el diff completo en TEMPORA- WEB-001.patch (frente a la entrega anterior).",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Nuevos: ○​ lib/preferences.ts: tipos, validación y migración. ○​ lib/vocab.ts: vocabulario por propósito. ○​ components/PurposeDialog.tsx: el selector (radios nativos, «Seleccionado»/«Actual» en texto). ○​ __tests__/{helpers,preferences,store,vocab-gate}.test.ts. ○​ vitest.config.ts. ●​ store.ts: purpose, language, setPurpose, setLanguage, persistencia versionada, y purposeChange/purposeVisible en useUI. ●​ lib/hooks.ts: useHydrated, canRunWelcome y la puerta de la bienvenida. ●​ ui.tsx: Modal con nombre accesible (labelledBy ahora obligatorio), foco inicial, trampa de Tab, restauración del foco, pila de diálogos y dismissible. ●​ App.tsx: fondo inert con un diálogo abierto. El audio y el Pomodoro quedan fuera de ese contenedor. ●​ Overlays.tsx: fila «Propósito» en Ajustes, vocabulario y ids de título. Saqué los Row fuera de los componentes: se remontaban en cada render y perdían el foco al pulsar un interruptor. ●​ Sidebar.tsx: control «Propósito: …» y etiquetas por vocabulario. ●​ ItemModal.tsx: tipo inicial según propósito y etiquetas por vocabulario. ●​ EventCard.tsx, ItemPopover.tsx, CalendarView.tsx: etiquetas por vocabulario. ●​ index.css: :focus-visible. ●​ package.json y README.md: script test y nota de preferencias.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Dependencias: solo vitest@^2.1.9 (devDependency), para las pruebas. No toqué versiones principales. package-lock.json va en el zip.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Comandos y resultados reales",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ npx tsc --noEmit: sin errores.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ npm test: 3 ficheros, 22/22 OK. Probé dos mutantes (quitar la rama v0→v1 y hacer que getItem lance con JSON corrupto) y ambos hicieron fallar las pruebas. ●​ npm run build: OK. ●​ Chromium headless sobre vite preview de la build de producción: 46/46. Cubre las 8 validaciones pedidas más teclado, foco, inert, solapamiento por historial de diálogos y 320 px en claro y oscuro (sin desbordamiento). ●​ prefers-reduced-motion: con reduce, el diálogo no usa transformaciones; sin él, anima. ●​ Capturas revisadas a ojo: 320 px oscuro, 320 px claro y el diálogo de cambio a 1280 px.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Pendiente de verificar a mano",
+     "s": "Source"
+    },
+    {
+     "k": "table",
+     "t": "●​ Entorno: Tauri/WebView2 en Windows, incluido inert.\n    ●​   Audio: la prueba usó un .wav local desde «Custom», no un preset de YouTube.\n    ●​   Visual: temas Ruby, Diamond y Antimatter; solo probé Purple Agate.\n    ●​   Accesibilidad: lector de pantalla.\n    ●​   Notificación nativa: el texto de lanzamiento sigue en inglés y dice «exam(s)/\n         assignment(s)» sea cual sea el propósito.",
+     "s": "TranscriptTable"
+    },
+    {
+     "k": "text",
+     "t": "Pendiente para la siguiente iteración",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Menú de idioma y traducción completa. Ahora la interfaz está mezclada: lo nuevo y la terminología por propósito va en español; el resto, en inglés («Welcome back», «Got it», «Schedule prep»…).",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Resumen TEMPORA-WEB-001",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Preferencias purpose y language en useApp, persistidas en tempora-v1 (v1, migración v0→v1 que conserva todo). Selector Académico/Productividad sin preselección ni solapamiento con la bienvenida, que corre una sola vez tras confirmar. Cambio posterior desde la navegación y Ajustes, con Cancelar sin efectos y audio y Pomodoro intactos. Vocabulario centralizado por propósito en español. Diálogos accesibles. 22 pruebas unitarias y 46 comprobaciones en navegador.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Retiré el tempora.zip anterior de la carpeta de salida; el paquete vigente es tempora- web-001.zip. Me detengo aquí.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Archivos en /mnt/user-data/outputs/:",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ tempora-web-001.zip ●​ TEMPORA-WEB-001.patch",
+     "s": "Source"
+    }
+   ]
+  }
+ ]
+}

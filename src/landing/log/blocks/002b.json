@@ -1,0 +1,368 @@
+{
+ "id": "002b",
+ "phase": 2,
+ "phaseSourceHeading": "Fase 2 Internacionalización",
+ "sourceHeading": "Iteración 002B Traducción completa de la interfaz",
+ "sections": [
+  {
+   "kind": "userPrompt",
+   "sourceHeading": "Prompt del usuario enviado a GPT",
+   "paragraphs": [
+    {
+     "k": "text",
+     "t": "Continúa con el siguiente prompt. “adjunto .zip + .patch”",
+     "s": "Source"
+    }
+   ]
+  },
+  {
+   "kind": "progress",
+   "sourceHeading": "Mensajes de progreso registrados de GPT",
+   "paragraphs": [
+    {
+     "k": "text",
+     "t": "N/A",
+     "s": "Source"
+    }
+   ]
+  },
+  {
+   "kind": "gptResponse",
+   "sourceHeading": "Respuesta de GPT anterior al prompt para Claude",
+   "paragraphs": [
+    {
+     "k": "text",
+     "t": "Seguimos con TEMPORA-WEB-002B: traducción completa de la interfaz. Este prompt parte de que Claude ha aplicado 002A y le pide comprobarlo antes de continuar. Las fechas y las notificaciones automáticas quedan para 002C.",
+     "s": "Source"
+    }
+   ]
+  },
+  {
+   "kind": "claudePrompt",
+   "sourceHeading": "3 Prompt exacto diseñado por GPT para Claude",
+   "paragraphs": [
+    {
+     "k": "text",
+     "t": "Continúa sobre la versión más reciente de Tempora, después de TEMPORA-WEB-002A.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "OBJETIVO​ Traducir completamente la interfaz visible y accesible a español e inglés, aprovechando los diccionarios, hooks y selector de idioma existentes.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "REQUISITO OBLIGATORIO​ Utiliza la skill apple-design configurada en mi entorno. Lee sus instrucciones antes de modificar la interfaz y aplica sus criterios pertinentes de HIG y accesibilidad. Si no puedes acceder a ella, comunícalo antes de realizar cambios visuales; no afirmes haberla utilizado.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "COMPROBACIÓN INICIAL​ Inspecciona el proyecto real y verifica que 002A incluye:",
+     "s": "Source"
+    },
+    {
+     "k": "table",
+     "t": "●​   Vocabulario español e inglés para ambos propósitos.\n   ●​   Textos comunes centralizados y tipados.\n   ●​   Selector de idioma conectado a setLanguage.\n   ●​   Persistencia del idioma.\n   ●​   Ajustes y selector de propósito traducidos.\n   ●​   Sincronización de document.documentElement.lang.",
+     "s": "TranscriptTable"
+    },
+    {
+     "k": "text",
+     "t": "Si falta algún requisito, identifica y completa únicamente esa dependencia antes de continuar. Conserva las convenciones y nombres introducidos en 002A.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "DECISIONES CONFIRMADAS",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Académico y Productividad comparten todos los eventos. ●​ Cambiar propósito o idioma solo adapta la presentación. ●​ Español es el idioma inicial. ●​ El idioma elegido se conserva tras recargar. ●​ Un examen sigue siendo un examen en ambos propósitos. ●​ No traduzcas ni modifiques títulos, asignaturas, áreas o notas escritos por el usuario. 1.​ INVENTARIO DE TEXTOS​ Revisa todos los componentes y sus dependencias para localizar: ●​ Texto visible. ●​ Botones, encabezados y estados vacíos. ●​ Placeholders y validaciones. ●​ Tooltips y atributos title. ●​ aria-label, descripciones y texto exclusivo para lectores de pantalla. ●​ Mensajes construidos mediante interpolación. ●​ Etiquetas visibles procedentes de constantes del store.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "No consideres identificadores internos, clases CSS, URLs ni comentarios como textos de interfaz.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "2.​ TRADUCCIÓN POR COMPONENTE",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Sidebar:",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Eslogan, navegación, propósito, temas, ajustes y modo claro/oscuro. ●​ Estados vacíos y texto alternativo pertinente. ●​ Conserva el vocabulario contextual ya existente.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "CalendarView:",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Hoy, añadir, día, semana, navegación y filtros.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Instrucciones para colocar una sesión y su cancelación. ●​ Nombres accesibles de botones.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "MiniCalendar:",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Nombres accesibles para navegar y seleccionar fechas. ●​ Mantén su estructura; los nombres de meses y días y su formato se resolverán en 002C.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "EventCard e ItemPopover:",
+     "s": "Source"
+    },
+    {
+     "k": "table",
+     "t": "●​   Tipos de evento y detalles accesibles.\n   ●​   Acciones para programar, elegir hueco, añadir, cancelar y eliminar.\n   ●​   Encabezados de sesiones vinculadas.\n   ●​   Mensajes de validación y eliminación con sesiones.\n   ●​   Utiliza frases completas adaptadas al idioma y propósito.",
+     "s": "TranscriptTable"
+    },
+    {
+     "k": "text",
+     "t": "ItemModal:",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Etiquetas, botones, placeholders y errores. ●​ Mantén el tipo inicial según propósito. ●​ Conserva los datos del formulario al cambiar idioma.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Overlays:",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Completa bienvenida y personalización de temas. ●​ Revisa Ajustes para detectar textos residuales. ●​ Los identificadores internos de temas permanecen iguales; sus nombres visibles y descripciones deben tener una decisión lingüística coherente. ●​ Tempora y nombres propios como Lofi Girl permanecen sin traducir.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "RightPanel:",
+     "s": "Source"
+    },
+    {
+     "k": "table",
+     "t": "●​   Fases, estados y controles del Pomodoro.\n   ●​   Recuento de sesiones con singular y plural.\n   ●​   Audio, volumen, silencio, fuente personalizada, carga y errores.\n   ●​   Traduce etiquetas procedentes de PHASES y PRESETS en la capa de presentación,\n        sin alterar sus IDs, duraciones ni URLs.",
+     "s": "TranscriptTable"
+    },
+    {
+     "k": "text",
+     "t": "Componentes compartidos:",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Revisa cualquier texto propio. ●​ Conserva nombres accesibles, gestión del foco y soporte de movimiento reducido. 3.​ ERRORES Y REACTIVIDAD​ No guardes frases traducidas como estado local de validación.​ Guarda un código de error tipado y los parámetros necesarios; resuelve el texto al renderizar.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Un error visible debe cambiar inmediatamente de idioma.​ Cambiar idioma no debe borrar entradas, cerrar formularios ni reiniciar selección, confirmaciones o navegación.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Evita añadir language como dependencia a efectos de inicialización que reinicien formularios.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "4.​ ARQUITECTURA ●​ Amplía los diccionarios y hooks existentes. ●​ Mantén separación entre vocabulario contextual y textos comunes. ●​ Exige cobertura de claves en ambos idiomas mediante TypeScript. ●​ No añadas otra librería ni otro almacenamiento de idioma. ●​ No construyas frases traducidas concatenando fragmentos dependientes de la gramática. ●​ Evita dependencias circulares con store.ts. ●​ No uses el idioma como key de componentes ni remontes la aplicación al cambiarlo. 5.​ CONSERVACIÓN FUNCIONAL​ Conserva: ●​ Eventos, filtros y relaciones linkedTo. ●​ Creación y eliminación en cascada. ●​ Arrastre y colocación de eventos. ●​ Reglas de fechas y duraciones. ●​ endAt, sesiones y funcionamiento del Pomodoro. ●​ Reproducción, volumen y fuente del audio. ●​ Tema, modo y flujo de bienvenida.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "No modifiques el esquema persistido ni incrementes su versión sin una necesidad real.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "6.​ LÍMITES DE ESTA ITERACIÓN​ Quedan para 002C: ●​ Formatos de fechas, meses y días. ●​ Fechas relativas y mensajes como hoy, mañana o dentro de N días. ●​ Notificaciones automáticas de bienvenida y finalización del temporizador.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "En el calendario, sí traduce el botón de navegación “Hoy”; su etiqueta es distinta del cálculo de fechas relativas.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "No implementes landing, despliegue ni funcionalidades nuevas.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "7.​ VALIDACIÓN​ Ejecuta npm test y npm run build si el entorno lo permite.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Añade o adapta pruebas significativas para:",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Vocabulario en las cuatro combinaciones idioma × propósito. ●​ Singular y plural de los recuentos incorporados. ●​ Resolución de errores parametrizados en ambos idiomas.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Si hay infraestructura de pruebas de componentes, verifica que un formulario y su error visible cambian de idioma conservando los datos. Si no existe, registra esa comprobación como manual pendiente.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Revisa visualmente, cuando dispongas de navegador:",
+     "s": "Source"
+    },
+    {
+     "k": "table",
+     "t": "●​   Ambos idiomas y propósitos.\n    ●​   Temas claro y oscuro.\n    ●​   Textos largos y anchuras pequeñas.\n    ●​   Controles de teclado y nombres accesibles.\n    ●​   Continuidad del temporizador y audio al cambiar idioma.",
+     "s": "TranscriptTable"
+    },
+    {
+     "k": "text",
+     "t": "No afirmes pruebas visuales ni funcionales que no hayas ejecutado.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "8.​ ENTREGA​ Proporciona: ●​ Resumen breve de los cambios. ●​ Archivos modificados y parche TEMPORA-WEB-002B.patch. ●​ Proyecto actualizado. ●​ Comandos ejecutados y resultados reales. ●​ Comprobaciones manuales realizadas o pendientes. ●​ Inventario concreto de lo restante para 002C.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Distingue lo implementado de lo verificado.​ Detente al finalizar TEMPORA-WEB-002B.",
+     "s": "Source"
+    }
+   ]
+  },
+  {
+   "kind": "claudeResponse",
+   "sourceHeading": "4 Respuesta de Claude con cambios y validación",
+   "paragraphs": [
+    {
+     "k": "note",
+     "t": "Fuente: páginas 60 a 61 del PDF. Se conserva la respuesta completa.",
+     "s": "Reference"
+    },
+    {
+     "k": "text",
+     "t": "Tras pegar el tercer prompt obtenido de GPT-6.1 Sol a claude (que se encuentra dentro de las respuestas obtenidas de ChatGPT) he obtenido lo siguiente:",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Empiezo leyendo la skill apple-design (requisito) y comprobando que el proyecto 002A sigue en el entorno.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Los diccionarios compilan. Ahora los componentes, uno a uno y con cada reemplazo verificado (si un ancla no existe, falla en voz alta).",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "TEMPORA-WEB-002B está terminada: la interfaz visible y accesible ya está en español e inglés. La probé en navegador solo en español claro y con el cambio de idioma en caliente. Quedan sin comprobar los 4 casos idioma×propósito, el modo oscuro, los 320 px y el teclado. Te dejo tempora-web-002b.zip y TEMPORA-WEB-002B.patch (diferencias respecto a 002A, 11 ficheros).",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Qué cambia",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Componentes: Sidebar, CalendarView, MiniCalendar (solo nombres accesibles), ItemModal, ItemPopover, Overlays (bienvenida y temas) y RightPanel (temporizador y audio) leen sus textos de lib/i18n.ts. ●​ Errores de formulario: se guardan como códigos con parámetros (FormError) y se resuelven al renderizar, así que cambian de idioma al instante. ●​ Plurales: los contadores de sesiones y el botón de eliminar usan singular/plural. ●​ Datos intactos: IDs, duraciones y URLs de PHASES/PRESETS no se tocan; solo se traducen las etiquetas al mostrarlas.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Cambios de comportamiento a revisar",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Si el elemento padre se borra mientras eliges hueco, ya no se crea una sesión con el texto de reserva 'Study'; se cancela la selección. ●​ El botón de eliminar muestra el número de sesiones asociadas. ●​ Añadí aria-pressed, aria-expanded, role=status y el cambio Silenciar/ Activar sonido. ●​ Los nombres de los temas ahora salen traducidos en español (Rubí, Ágata púrpura…).",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Comandos ejecutados",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ npx tsc --noEmit: OK. ●​ npm test: 85 pasan (42 de antes, 43 nuevos). ●​ Mutation check: al reintroducir un aria-label literal en Sidebar, la prueba de guarda falla (1 fallo) y vuelve a pasar al restaurarlo. ●​ npm run build: OK.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Verificado en navegador (Playwright, servidor de desarrollo, solo español claro 900 px)",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Con el modal de añadir abierto y un error visible, el error cambió de «Escribe el nombre de la asignatura.» a «Give it a subject name.» al pasar a inglés. ●​ Las notas escritas se conservaron y el modal siguió abierto. ●​ El temporizador siguió corriendo al cambiar de idioma (captura: 24:58, «Concentrándote», botón «Pausar»), el audio pasó a «Cargando…» y no hubo errores de página.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Pendiente de comprobar a mano",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Los 4 casos idioma×propósito en pantalla, modo claro/oscuro y 320 px de ancho. ●​ Teclado y lector de pantalla. ●​ El audio real (la captura solo mostró «Cargando…» y no probé que el sonido continuara al cambiar de idioma). ●​ No hay tests de componentes con jsdom, así que el comportamiento del formulario está probado solo en navegador.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Inventario para 002C",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Fechas, meses y días: título del mini-calendario («November 2026»), letras de los días, cabeceras del calendario (MON, TUE…), fecha de EventCard, fechas del popover y del resumen de bienvenida. ●​ relDays («hoy», «mañana», «dentro de N días»). ●​ Notificación de bienvenida en lib/hooks.ts y notificación de fin de temporizador en store.ts. ●​ <title> y textos de Tauri.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Limitación existente",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ EventCard sigue sin activación por teclado (el arrastre no tiene alternativa).",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "He parado aquí, como pediste.",
+     "s": "Source"
+    }
+   ]
+  }
+ ]
+}

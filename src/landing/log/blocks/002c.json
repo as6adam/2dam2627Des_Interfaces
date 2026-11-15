@@ -1,0 +1,453 @@
+{
+ "id": "002c",
+ "phase": 2,
+ "phaseSourceHeading": "Fase 2 Internacionalización",
+ "sourceHeading": "Iteración 002C Fechas y notificaciones bilingües",
+ "sections": [
+  {
+   "kind": "userPrompt",
+   "sourceHeading": "Prompt del usuario enviado a GPT",
+   "paragraphs": [
+    {
+     "k": "text",
+     "t": "002B terminado, continúa con el siguiente prompt.",
+     "s": "Source"
+    }
+   ]
+  },
+  {
+   "kind": "progress",
+   "sourceHeading": "Mensajes de progreso registrados de GPT",
+   "paragraphs": [
+    {
+     "k": "text",
+     "t": "N/A",
+     "s": "Source"
+    }
+   ]
+  },
+  {
+   "kind": "gptResponse",
+   "sourceHeading": "Respuesta de GPT anterior al prompt para Claude",
+   "paragraphs": [
+    {
+     "k": "text",
+     "t": "Seguimos con TEMPORA-WEB-002C: fechas, mensajes relativos y notificaciones. Este prompt cerrará la fase de internacionalización y pedirá a Claude verificar el resultado completo.",
+     "s": "Source"
+    }
+   ]
+  },
+  {
+   "kind": "claudePrompt",
+   "sourceHeading": "3 Prompt exacto diseñado por GPT para Claude",
+   "paragraphs": [
+    {
+     "k": "text",
+     "t": "Continúa sobre el proyecto actualizado tras TEMPORA-WEB-002B.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "OBJETIVO​ Completar la internacionalización de Tempora: formatos de fechas, meses y días, fechas relativas y notificaciones automáticas en español e inglés. Después, auditar la aplicación para detectar traducciones pendientes.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "REQUISITO OBLIGATORIO​ Utiliza la skill apple-design configurada en mi entorno. Lee sus instrucciones antes de modificar la interfaz y aplica sus criterios pertinentes de HIG y accesibilidad. Si no puedes acceder a ella, comunícalo antes de realizar cambios visuales; no afirmes haberla utilizado.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "COMPROBACIÓN INICIAL​ Inspecciona el código real de 002A y 002B:",
+     "s": "Source"
+    },
+    {
+     "k": "table",
+     "t": "●​   Diccionarios, funciones puras y hooks de traducción.\n    ●​   Preferencia language y selector de idioma.\n    ●​   src/lib/dates.ts, hooks.ts y notify.ts.\n    ●​   Llamadas a format, formatDistance, Intl y otras funciones de fecha.\n    ●​   Textos de notificaciones en store.ts.\n    ●​   CalendarView, MiniCalendar, EventCard, ItemPopover y resumen de bienvenida.",
+     "s": "TranscriptTable"
+    },
+    {
+     "k": "text",
+     "t": "Reutiliza las convenciones existentes. No inventes nombres de funciones o archivos sin revisar el proyecto.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "DECISIONES CONFIRMADAS",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Idioma inicial: español. ●​ Idiomas disponibles: es y en. ●​ Preferencia de idioma persistida mediante el mecanismo existente. ●​ Académico y Productividad comparten eventos. ●​ Cambiar idioma o propósito solo modifica la presentación. ●​ Los exámenes mantienen su significado en ambos propósitos. 1.​ CENTRALIZAR FORMATOS DE FECHA​ Aprovecha date-fns instalado y sus locales españoles e ingleses.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Define una correspondencia tipada y centralizada:",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ es → locale español.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ en → locale inglés coherente en toda la aplicación.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Mantén el lunes como primer día de la semana y el formato horario de 24 horas en ambos idiomas. Son decisiones de producto y no deben variar al traducir.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Crea o adapta helpers para:",
+     "s": "Source"
+    },
+    {
+     "k": "table",
+     "t": "●​   Encabezado diario.\n   ●​   Intervalo semanal.\n   ●​   Mes y año.\n   ●​   Día de la semana.\n   ●​   Fecha y hora de eventos.\n   ●​   Previsualización durante el arrastre.",
+     "s": "TranscriptTable"
+    },
+    {
+     "k": "text",
+     "t": "Evita repetir decisiones de formato en cada componente.​ No utilices un locale global mutable que impida identificar las dependencias del idioma.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "2.​ APLICAR LOS FORMATOS​ Actualiza todos los lugares pertinentes: ●​ CalendarView. ●​ MiniCalendar. ●​ EventCard. ●​ ItemPopover. ●​ Resumen de bienvenida. ●​ Cualquier otro componente que muestre fechas.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Sustituye las iniciales inglesas de días escritas manualmente en MiniCalendar por etiquetas localizadas.​ Las abreviaturas deben tener nombres accesibles completos cuando sea necesario.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Los encabezados y fechas visibles deben reaccionar al cambio de idioma sin recargar ni reiniciar la navegación.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "No fuerces mayúsculas mediante transformaciones de cadenas que alteren las convenciones lingüísticas.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "3.​ DIFERENCIAR PRESENTACIÓN Y DATOS​ No traduzcas ni modifiques: ●​ Fechas ISO persistidas. ●​ Valores de inputs date y time. ●​ Identificadores, IDs o relaciones linkedTo. ●​ subject y notes escritos por el usuario.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Los inputs date deben conservar yyyy-MM-dd y los time su formato técnico válido. Su apariencia nativa puede depender del navegador o sistema operativo; no prometas controlarla mediante el diccionario.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "El idioma no debe cambiar la zona horaria ni el instante de los eventos.​ Conserva la interpretación local existente al crear y mostrar eventos.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "4.​ FECHAS RELATIVAS​ Revisa relDays y sus consumidores.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Define mensajes completos y localizados para:",
+     "s": "Source"
+    },
+    {
+     "k": "table",
+     "t": "●​   Hoy / Today.\n   ●​   Mañana / Tomorrow.\n   ●​   Ayer / Yesterday.\n   ●​   Dentro de N días / In N days.\n   ●​   Hace N días / N days ago.",
+     "s": "TranscriptTable"
+    },
+    {
+     "k": "text",
+     "t": "Calcula diferencias entre días de calendario locales, no dividiendo milisegundos entre 24 horas. Considera los cambios de horario de verano.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Permite proporcionar una fecha de referencia para facilitar pruebas deterministas.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Mantén separados:",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ La etiqueta relativa de calendario. ●​ La comprobación exacta de si un evento ya ha pasado.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Un evento de esta mañana puede etiquetarse “Hoy” y, a la vez, estar vencido. Conserva las reglas actuales de inclusión en los avisos.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "5.​ NOTIFICACIONES AUTOMÁTICAS​ Traduce todos los mensajes generados por la aplicación: ●​ Resumen de próximos exámenes y entregas o tareas. ●​ Finalización de concentración. ●​ Finalización de descanso. ●​ Indicación del siguiente descanso corto o largo. ●​ Mensajes de prueba o errores propios todavía pendientes.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Construye frases completas y contempla singular y plural, incluido cero.​ Adapta entrega/tarea al propósito seleccionado.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Resuelve idioma y propósito vigentes en el momento de emitir cada notificación. Evita capturarlos al iniciar el temporizador o evaluar el módulo.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Usa funciones puras para construir mensajes, sin introducir imports circulares entre store, hooks y traducciones.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Conserva el comportamiento del servicio de notificaciones y sus mecanismos de compatibilidad existentes.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Cambiar idioma no debe emitir, duplicar ni volver a lanzar notificaciones.​ Las notificaciones ya entregadas al sistema permanecen en el idioma con el que se emitieron.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "6.​ CONSERVAR EL FUNCIONAMIENTO​ No alteres:",
+     "s": "Source"
+    },
+    {
+     "k": "table",
+     "t": "●​   Las ventanas actuales de avisos: exámenes y entregas.\n   ●​   El flujo de elección de propósito y bienvenida.\n   ●​   La protección frente a efectos duplicados de StrictMode.\n   ●​   endAt, duración, ciclos y sesiones del Pomodoro.\n   ●​   Audio, filtros, formularios o selección del calendario.\n   ●​   Persistencia y migraciones existentes.",
+     "s": "TranscriptTable"
+    },
+    {
+     "k": "text",
+     "t": "Presta atención a efectos que dependan del idioma: actualizar una traducción no debe repetir acciones de arranque ni reiniciar estados.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "7.​ AUDITORÍA FINAL DE I18N​ Revisa el código fuente buscando textos de interfaz sin centralizar.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Clasifica los resultados:",
+     "s": "Source"
+    },
+    {
+     "k": "table",
+     "t": "●​   Texto pendiente de traducir.\n   ●​   Nombre propio que debe conservarse.\n   ●​   Contenido introducido o guardado por el usuario.\n   ●​   Valor técnico que no corresponde traducir.",
+     "s": "TranscriptTable"
+    },
+    {
+     "k": "text",
+     "t": "Corrige los textos propios de la interfaz que sigan pendientes, incluidas etiquetas accesibles, errores, ayudas y estados vacíos.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Conserva los datos de ejemplo ya almacenados. Si localizas la creación de nuevos ejemplos, puedes adaptar su contenido al idioma y propósito al generarlos, sin modificar retrospectivamente eventos existentes.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "No añadas landing, despliegue ni funcionalidades nuevas.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "8.​ PRUEBAS​ Utiliza la infraestructura de pruebas existente y añade verificaciones significativas para: ●​ Meses y días en español e inglés. ●​ Semana iniciada en lunes en ambos idiomas. ●​ Formato horario de 24 horas. ●​ Fechas relativas: ayer, hoy, mañana y varios días. ●​ Cruce de mes y año. ●​ Diferencia entre etiqueta “Hoy” y vencimiento exacto. ●​ Mensajes con cantidades 0, 1 y 2. ●​ Notificaciones según idioma y propósito actuales. ●​ Cambio de idioma durante una sesión sin modificar endAt. ●​ Ausencia de notificaciones duplicadas por cambiar idioma.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Para horario de verano, ejecuta un caso en una zona con transición conocida si el entorno lo permite. Indica la zona utilizada; no afirmes cobertura si solo pruebas en UTC.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Ejecuta npm test y npm run build.​ Distingue pruebas ejecutadas de comprobaciones manuales pendientes.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Si dispones de navegador, comprueba las cuatro combinaciones:",
+     "s": "Source"
+    },
+    {
+     "k": "table",
+     "t": "●​   Español + Académico.\n    ●​   Español + Productividad.\n    ●​   English + Academic.\n    ●​   English + Productivity.",
+     "s": "TranscriptTable"
+    },
+    {
+     "k": "text",
+     "t": "Revisa especialmente calendarios, formularios, errores visibles, notificaciones y continuidad del audio y temporizador.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "9.​ ENTREGA​ Proporciona: ●​ Resumen de decisiones y cambios. ●​ Archivos modificados. ●​ Proyecto actualizado y TEMPORA-WEB-002C.patch. ●​ Comandos ejecutados y resultados reales. ●​ Tabla breve de cobertura de internacionalización. ●​ Limitaciones y comprobaciones pendientes, si existen.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Solo declara completada la internacionalización si la auditoría no encuentra textos propios pendientes dentro del alcance. Diferencia claramente implementación y verificación.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Detente al finalizar TEMPORA-WEB-002C.",
+     "s": "Source"
+    }
+   ]
+  },
+  {
+   "kind": "claudeResponse",
+   "sourceHeading": "4 Respuesta de Claude con cambios y validación",
+   "paragraphs": [
+    {
+     "k": "note",
+     "t": "Fuente: páginas 62 a 64 del PDF. Se conserva la respuesta completa.",
+     "s": "Reference"
+    },
+    {
+     "k": "text",
+     "t": "Tras pegar el cuarto prompt obtenido de GPT-6.1 Sol a claude (que se encuentra dentro de las respuestas obtenidas de ChatGPT) he obtenido lo siguiente:",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Ahora escribo el módulo de fechas centralizado y las ampliaciones del diccionario.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "La internacionalización de Tempora queda completada para fechas, fechas relativas y notificaciones, y la auditoría no encontró textos propios pendientes. Te dejo tempora- web-002c.zip y TEMPORA-WEB-002C.patch (13 ficheros respecto a 002B).",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "La skill apple-design sí estaba accesible y la leí antes de tocar la interfaz, aunque este paso es casi todo texto y formato. Apliqué su criterio de continuidad: la previsualización del arrastre guarda la fecha y se formatea al renderizar, así que cambia de idioma sin cortar el gesto.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Qué hice",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Formatos de fecha: lib/dates.ts concentra todos los formatos (encabezado diario, intervalo semanal, mes y año, días y hora de eventos). Cada función recibe el idioma como argumento, sin locale global. Usa es y en-GB, con lunes primero y 24 h en ambos. ●​ Mini-calendario: las iniciales salen de una tabla explícita (L M X J V S D / M T W T F S S), porque el locale español de date-fns devuelve «m» para el miércoles. Cada día tiene su nombre completo accesible, y cada fecha su etiqueta completa con «con eventos / has events». ●​ Fechas relativas: relativeDayLabel da Hoy/Mañana/Ayer/Dentro de N días/ Hace N días contando días de calendario locales, con fecha de referencia opcional. hasPassed comprueba el vencimiento exacto por separado. Antes un evento pasado se etiquetaba «hoy»; ahora dice «Ayer» o «Hace N días». ●​ Notificaciones: welcomeNotice y timerNotice son funciones puras en lib/ i18n.ts. Idioma y propósito se leen al emitir, no al arrancar el temporizador. El aviso de bienvenida cubre 0, 1 y 2+ y adapta entrega/tarea al propósito. ●​ Datos de ejemplo: loadSample ahora los genera en el idioma vigente. Los eventos ya guardados no se tocan. ●​ Cambios menores: ○​ La semana abreviada ya no va en mayúsculas forzadas. ○​ El intervalo semanal colapsa el mes repetido: «9 – 15 nov 2026». En 1280 px el título anterior se truncaba. ○​ Si la semana cruza de año, ambos extremos llevan año.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Comandos y resultados",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ npx tsc --noEmit: OK. ●​ npm test: 113 pasan (85 de antes más 28 nuevos). ●​ TZ=UTC con los tests nuevos: 28 pasan.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ npm run build: OK. ●​ Mutation checks: con una resta de milisegundos en lugar de días de calendario fallan 2 tests de fechas relativas. Con el idioma fijado en 'es' al emitir fallan los avisos del temporizador. ●​ Horario de verano: los tests corren en Europe/Madrid (transiciones del 29-mar y 25-oct de 2026). El día de 23 h cuenta como «Mañana» aunque haya menos de 24 h entre medias. No lo probé en otras zonas horarias.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Verificado en navegador",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Playwright con zona Europe/Madrid, sobre el servidor de desarrollo:",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ Combinaciones: probé las cuatro (es/en × académico/productividad). Calendario mensual, nombres de días y meses, y fecha y relativa del popover salen en el idioma activo. ●​ Cambio en caliente: el popover abierto cambió de «mié 18 nov · 20:00 · Dentro de 3 días» a «Wed 18 Nov · 20:00 · In 3 days» sin cerrarse. ●​ Aviso de bienvenida (Notification simulada): en español académico dice «1 examen en los próximos 15 días. 2 entregas en los próximos 30 días.»; en inglés productividad dice «1 exam in the next 15 days. 2 tasks in the next 30 days.». Cambiar el idioma después no emitió nada más. ●​ Sin comprobar en esta pasada: el audio. La continuidad del temporizador al cambiar de idioma sí quedó probada en 002B y por tests de endAt.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Cobertura",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Área                                      Estado",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Textos de interfaz y etiquetas accesibles         es/en, 4 combinaciones (002A–C)",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Errores de formulario                             códigos tipados resueltos al renderizar",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Meses, días, rangos, hora 24 h                    es/en, lunes primero",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Fechas relativas                                  es/en, días de calendario",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Notificaciones (bienvenida, concentración, es/en + propósito, al emitir descanso)",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Datos de ejemplo                                  idioma vigente al generarlos",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "«Tempora» (nombre propio, se <title>, ventana de Tauri conserva)",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Auditoría: el resto de literales son valores técnicos o contenido del usuario (subject/notes, IDs, yyyy-MM-dd, HH:mm). Los ejemplos de helpers.ts son solo de tests.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Limitaciones y pendientes",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "●​ No revisé a mano modo oscuro, 320 px, teclado ni lector de pantalla. La app nativa de Tauri tampoco se ha probado. ●​ Las notificaciones reales de Tauri no se probaron; usé la API Notification simulada. ●​ Las fechas de los <input type=date|time> se ven según el navegador o sistema, no según el diccionario. ●​ EventCard sigue sin activación por teclado (limitación de antes). ●​ Los títulos largos en semanas que cruzan de mes (p. ej. «26 oct – 1 nov 2026») aún pueden truncarse a 1280 px.",
+     "s": "Source"
+    },
+    {
+     "k": "text",
+     "t": "Me detengo aquí, como pediste.",
+     "s": "Source"
+    }
+   ]
+  }
+ ]
+}
