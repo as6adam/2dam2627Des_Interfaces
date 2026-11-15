@@ -49,6 +49,7 @@ const NARROW_WEEKDAYS: Record<Language, readonly string[]> = {
 }
 export const formatWeekdayNarrow = (language: Language, d: Date) => NARROW_WEEKDAYS[language][d.getDay()]
 export const formatTime = (d: Date) => format(d, TIME)
+export const formatDayMonth = (language: Language, d: Date) => fmt(language, d, PATTERNS[language].dayMonth)
 /** «dom 15 nov · 15:00». */
 export const formatEventDateTime = (language: Language, d: Date) => `${fmt(language, d, 'EEE d MMM')} · ${formatTime(d)}`
 /** Previsualización mientras se arrastra: «lun 09:30». */

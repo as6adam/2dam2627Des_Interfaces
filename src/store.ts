@@ -3,6 +3,7 @@ import { persist, type PersistStorage } from 'zustand/middleware'
 import { addDays, setHours, setMinutes } from 'date-fns'
 import { notify } from './lib/notify'
 import { sampleEntries, timerNotice } from './lib/i18n'
+import { useProgress } from './lib/progress'
 import { createSafeStorage } from './lib/storage'
 import { initialCalendarView } from './lib/layout'
 import { DEFAULT_VOLUME, clampVolume, parseAudioSource, sanitizeAudio, type AudioProblem } from './lib/audio'
@@ -34,6 +35,7 @@ interface AppState {
   purpose: Purpose | null
   language: Language
   addItem: (i: Omit<Item, 'id'>) => string
+  addItems: (items: Omit<Item, 'id'>[]) => void
   updateItem: (id: string, patch: Partial<Item>) => void
   removeItem: (id: string) => void
   setMode: (m: Mode) => void
@@ -57,6 +59,7 @@ export const useApp = create<AppState>()(
         return id
       },
       updateItem: (id, patch) => set((s) => ({ items: s.items.map((i) => (i.id === id ? { ...i, ...patch } : i)) })),
+      addItems: (items) => set((s) => ({ items: [...s.items, ...items.map((i) => ({ ...i, id: uid() }))] })),
       removeItem: (id) => set((s) => ({ items: s.items.filter((i) => i.id !== id && i.linkedTo !== id) })),
       setMode: (mode) => set({ mode }),
       setTheme: (theme) => set({ theme }),
@@ -92,6 +95,9 @@ export type Modal =
   | { type: 'theme' }
   | { type: 'settings' }
   | { type: 'startup' }
+  | { type: 'planner'; itemId: string }
+  | { type: 'statistics' }
+  | { type: 'transfer' }
 /** Paneles plegables. Es ESTADO DE PRESENTACIÓN: no se persiste y abrirlo/cerrarlo no toca datos, Pomodoro ni audio. */
 export type Panel = 'nav' | 'focus'
 interface UIState {
@@ -168,6 +174,7 @@ export const usePomodoro = create<PomoState>()((set, get) => ({
     const done = phase === 'focus' ? sessions + 1 : sessions
     const next: Phase = phase === 'focus' ? (done % 4 === 0 ? 'long' : 'short') : 'focus'
     set({ phase: next, running: false, endAt: null, remaining: PHASES[next].secs, sessions: done })
+    if (phase === 'focus') useProgress.getState().recordFocus({ id: uid(), endedAt: new Date().toISOString(), minutes: PHASES.focus.secs / 60 })
     if (useApp.getState().notifications) {
       // Idioma vigente EN EL MOMENTO de emitir (no al arrancar el temporizador): cambiarlo no emite ni repite nada.
       const n = timerNotice(useApp.getState().language, phase, next)

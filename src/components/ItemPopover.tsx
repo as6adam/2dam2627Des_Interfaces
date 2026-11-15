@@ -11,6 +11,8 @@ import type { FormError } from '../lib/vocab'
 import { kindMeta } from './EventCard'
 import { useDialogBehavior } from './ui'
 import { useLayout } from '../lib/layout'
+import { advancedText } from '../lib/advancedText'
+import { useProgress } from '../lib/progress'
 
 const W = 344
 const DURATIONS = [30, 60, 90, 120]
@@ -38,6 +40,8 @@ export function ItemPopover() {
   const v = useVocab()
   const t = useCommon().popover
   const language = useLanguage()
+  const advanced = advancedText(language)
+  const completed = useProgress((s) => item ? !!s.completed[item.id] : false)
   const errorText = useFormErrorText()
   const close = () => useUI.setState({ popover: null })
   const { mobile } = useLayout() // móvil: hoja inferior a ancho completo (el popover anclado de 344 px no cabe ni tiene dónde anclarse)
@@ -109,6 +113,7 @@ export function ItemPopover() {
 
             <div className="flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto overscroll-contain px-5 pb-3">
             {item.notes && <p className="t-body break-words rounded-xl bg-line/5 p-3 text-sub">{item.notes}</p>}
+            <button onClick={() => useProgress.getState().toggleCompleted(item.id)} aria-pressed={completed} className="btn-ghost min-h-11 text-left">{completed ? advanced.markUndone : advanced.markDone}</button>
 
             {item.kind !== 'study' && (
               <>
@@ -144,6 +149,8 @@ export function ItemPopover() {
                     )}
                   </AnimatePresence>
                 </div>
+
+                {!duePassed && <button onClick={() => useUI.setState({ popover: null, modal: { type: 'planner', itemId: item.id } })} className="btn-primary min-h-11 w-full">{advanced.planner}</button>}
 
                 {sessions.length > 0 && (
                   <div>

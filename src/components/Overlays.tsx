@@ -12,6 +12,7 @@ import { useCommon, useLanguage, usePurposeInfo, useVocab } from '../lib/vocab'
 import { Modal, Switch } from './ui'
 import { ItemModal } from './ItemModal'
 import { PurposeDialog } from './PurposeDialog'
+import { AdvancedOverlays } from './AdvancedOverlays'
 
 const close = () => useUI.setState({ modal: null })
 
@@ -166,5 +167,5 @@ function SettingsModal() {
 }
 
 export function Overlays() {
-  return (<><ItemModal /><Startup /><ThemeModal /><SettingsModal /><PurposeDialog /></>)
+  return (<><ItemModal /><Startup /><ThemeModal /><SettingsModal /><PurposeDialog /><AdvancedOverlays /></>)
 }

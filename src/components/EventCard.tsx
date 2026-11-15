@@ -9,6 +9,8 @@ import { formErrorText, useCommon, useLanguage, useVocab } from '../lib/vocab'
 import { validateReschedule } from '../lib/schedule'
 import { useToasts } from '../lib/toasts'
 import { SPRING } from '../lib/motion'
+import { useProgress } from '../lib/progress'
+import { advancedText } from '../lib/advancedText'
 
 export let justDragged = false // lets the column ignore the click that trails a drag
 
@@ -35,6 +37,7 @@ export function EventCard({ item, lane, lanes, dayCount, gridRef }: { item: Item
   const track = useRef<(() => void) | null>(null) // limpia los oyentes del gesto en curso
   const swallowClick = useRef(false)
   const language = useLanguage()
+  const completed = useProgress((s) => !!s.completed[item.id])
   const start = new Date(item.start)
   const top = (start.getHours() - START_H + start.getMinutes() / 60) * HOUR_H
   // Keep the two-pixel gap inside the time slot; short events must not overlap the next slot.
@@ -142,7 +145,7 @@ export function EventCard({ item, lane, lanes, dayCount, gridRef }: { item: Item
 
   return (
     <motion.div
-      ref={ref} role="button" tabIndex={0} aria-haspopup="dialog" aria-label={t.eventLabel(label, item.subject, formatEventDateTime(language, start))}
+      ref={ref} role="button" tabIndex={0} aria-haspopup="dialog" aria-label={`${t.eventLabel(label, item.subject, formatEventDateTime(language, start))}${completed ? ` · ${advancedText(language).done}` : ''}`}
       whileTap={{ scale: 0.985 }}
       onPointerDown={begin}
       onContextMenu={(e) => { if (armed || track.current) e.preventDefault() }} // el menú contextual de la pulsación larga no debe tapar el agarre
@@ -163,7 +166,7 @@ export function EventCard({ item, lane, lanes, dayCount, gridRef }: { item: Item
       <div className="event-card-content">
       <div className="event-card-heading">
         <Icon aria-hidden className="event-card-icon" style={{ color: `rgb(${color})` }} />
-        <span className="event-card-title">{item.subject}</span>
+        <span className={clsx('event-card-title', completed && 'line-through opacity-60')}>{item.subject}</span>
       </div>
       {compact ? (
         <span aria-hidden className="event-card-time text-sub tabular-nums">

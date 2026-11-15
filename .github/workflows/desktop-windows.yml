@@ -1,0 +1,32 @@
+name: Build and test Tempora Windows
+on:
+  push:
+    branches: [Pomodoro_Tempora]
+    paths: ['src/**', 'src-tauri/**', 'package*.json', 'scripts/smoke-desktop.ps1', '.github/workflows/desktop-windows.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  windows:
+    runs-on: windows-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: rustup default stable
+      - run: npm run tauri -- build --bundles nsis --ci
+      - name: Native window and accessibility smoke test
+        shell: pwsh
+        run: ./scripts/smoke-desktop.ps1
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: Tempora-Windows
+          path: |
+            src-tauri/target/release/bundle/nsis/*.exe
+            desktop-smoke.json
+          if-no-files-found: error

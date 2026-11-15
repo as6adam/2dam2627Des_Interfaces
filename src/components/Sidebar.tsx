@@ -10,6 +10,9 @@ import { useCommon, usePurposeInfo, useVocab } from '../lib/vocab'
 import { MiniCalendar } from './MiniCalendar'
 import { PanelHeader, PanelShell, afterNavigation, openDialogFromPanel, usePanelDocked } from './Panels'
 import { Switch } from './ui'
+import { advancedText } from '../lib/advancedText'
+import { useLanguage } from '../lib/vocab'
+import { BarChart3, FolderSync } from 'lucide-react'
 
 function NavItem({ icon: Icon, label, active, badge, onClick, trailing, haspopup, expanded }: { icon: LucideIcon; label: string; active?: boolean; badge?: number; onClick: () => void; trailing?: React.ReactNode; haspopup?: boolean; expanded?: boolean }) {
   return (
@@ -29,6 +32,7 @@ export function Sidebar() {
   const v = useVocab()
   const common = useCommon()
   const t = common.sidebar
+  const advanced = advancedText(useLanguage())
   const purposeInfo = usePurposeInfo()
   const filter = useUI((s) => s.filter)
   const modal = useUI((s) => s.modal)
@@ -84,6 +88,8 @@ export function Sidebar() {
         <NavItem icon={Target} label={t.purposeControl(purposeInfo[purpose ?? 'academic'].name)} haspopup active={purposeChange} onClick={() => openDialog({ purposeChange: true })} />
         <NavItem icon={Palette} label={t.themes} active={modal?.type === 'theme'} onClick={() => openDialog({ modal: { type: 'theme' } })} />
         <NavItem icon={Settings} label={t.settings} active={modal?.type === 'settings'} onClick={() => openDialog({ modal: { type: 'settings' } })} />
+        <NavItem icon={BarChart3} label={advanced.stats} active={modal?.type === 'statistics'} onClick={() => openDialog({ modal: { type: 'statistics' } })} />
+        <NavItem icon={FolderSync} label={advanced.transfer} active={modal?.type === 'transfer'} onClick={() => openDialog({ modal: { type: 'transfer' } })} />
       </nav>
 
       <div className="mt-auto flex items-center justify-between rounded-2xl bg-line/5 px-3 py-2.5">
