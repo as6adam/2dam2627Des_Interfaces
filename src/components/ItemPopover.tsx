@@ -5,7 +5,7 @@ import { CalendarClock, CalendarPlus, MousePointerClick, Trash2, X } from 'lucid
 import clsx from 'clsx'
 import { useApp, useUI } from '../store'
 import { SPRING, SPRING_BOUNCE } from '../lib/motion'
-import { formatEventDateTime, relativeDayLabel, toDateInput, toTimeInput } from '../lib/dates'
+import { formatEventDateTime, formatFullDate, relativeDayLabel, toDateInput, toTimeInput } from '../lib/dates'
 import { useCommon, useFormErrorText, useLanguage, useVocab } from '../lib/vocab'
 import type { FormError } from '../lib/vocab'
 import { kindMeta } from './EventCard'
@@ -77,6 +77,8 @@ export function ItemPopover() {
   const meta = item ? kindMeta[item.kind] : null
   const sessions = item ? items.filter((i) => i.linkedTo === item.id).sort((a, b) => +new Date(a.start) - +new Date(b.start)) : []
   const due = item ? new Date(item.start) : new Date()
+  const duePassed = +due <= Date.now()
+  const reschedule = () => item && useUI.setState({ popover: null, modal: { type: 'item', editId: item.id } })
 
   return (
     <AnimatePresence>
@@ -111,19 +113,23 @@ export function ItemPopover() {
             {item.kind !== 'study' && (
               <>
                 <div className="rounded-2xl p-3.5" style={{ background: `rgb(var(--study) / .12)` }}>
-                  <p className="text-[13px] font-semibold leading-snug">{v.studyPrompt[item.kind === 'exam' ? 'exam' : 'assignment']}</p>
+                  <p className="text-[13px] font-semibold leading-snug">{duePassed ? t.pastDue : v.studyPrompt[item.kind === 'exam' ? 'exam' : 'assignment']}</p>
                   <AnimatePresence initial={false} mode="wait">
-                    {!asking ? (
+                    {duePassed ? (
+                      <button onClick={reschedule} className="btn-primary mt-3 flex items-center gap-1.5 touch:min-h-11"><CalendarClock className="size-4" aria-hidden /> {t.reschedule}</button>
+                    ) : !asking ? (
                       <motion.div key="cta" exit={{ opacity: 0 }} className="mt-3 flex gap-2">
                         <button onClick={() => setAsking(true)} className="btn-primary flex items-center gap-1.5 !py-1.5 touch:min-h-11"><CalendarPlus className="size-4" aria-hidden /> {t.schedulePrep}</button>
                         <button onClick={close} className="btn-ghost !py-1.5 touch:min-h-11">{t.notNow}</button>
                       </motion.div>
                     ) : (
                       <motion.div key="form" initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} className="mt-3 flex flex-col gap-2.5 overflow-hidden px-0.5 pb-0.5">
+                        <p id="session-deadline-hint" className="t-caption text-sub">{t.sessionLimit(`${formatFullDate(language, due)} · ${toTimeInput(due)}`)}</p>
                         <div className="grid grid-cols-1 gap-2 min-[400px]:grid-cols-2">
-                          <input aria-label={v.sessionDateLabel} type="date" value={date} max={toDateInput(due)} onChange={(e) => { setDate(e.target.value); setError(null) }} className="field" />
+                          <input aria-label={v.sessionDateLabel} aria-describedby="session-deadline-hint" type="date" value={date} max={toDateInput(due)} onChange={(e) => { setDate(e.target.value); setError(null) }} className="field" />
                           <input aria-label={v.sessionTimeLabel} type="time" value={time} onChange={(e) => { setTime(e.target.value); setError(null) }} className="field" />
                         </div>
+                        <button onClick={reschedule} className="btn-ghost text-left !text-[12px] touch:min-h-11">{t.reschedule}</button>
                         <div role="group" aria-label={t.durationGroup} className="flex gap-1.5">
                           {DURATIONS.map((d) => (
                             <button key={d} onClick={() => setDur(d)} aria-pressed={dur === d} className={clsx('press flex-1 rounded-lg py-1 text-[12px] font-semibold touch:min-h-11', dur === d ? 'bg-accent text-on-accent' : 'bg-line/10 text-sub')}>{t.minutes(d)}</button>

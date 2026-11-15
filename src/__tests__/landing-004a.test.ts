@@ -183,12 +183,13 @@ describe('contenido es/en', () => {
       expect(LANDING[l].phases.items[3].status).toBe('partial') // incorporado hasta 004C; lo posterior no consta en el documento
     }
   })
-  it('despliegue y pruebas en dispositivos reales constan como pendientes (nada marcado como hecho sin estarlo)', () => {
+  it('la publicación y la prueba básica de iPhone están hechas; Tauri queda pendiente', () => {
     for (const l of LANGUAGES) {
       const testing = LANDING[l].phases.items.find((p) => p.id === 'testing')!
       const deploy = testing.items.find((i) => /GitHub Pages/.test(i.text))!
-      expect(deploy.status).toBe('pending')
-      expect(testing.items.find((i) => /(físicos|physical)/.test(i.text))!.status).toBe('pending')
+        expect(deploy.status).toBe('done')
+        expect(testing.items.find((i) => /(iPhone)/.test(i.text))!.status).toBe('done')
+        expect(testing.items.find((i) => /Tauri/.test(i.text))!.status).toBe('pending')
       expect(testing.status).not.toBe('done')
     }
   })

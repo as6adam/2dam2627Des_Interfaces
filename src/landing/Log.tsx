@@ -5,7 +5,7 @@ import type { Language } from '../lib/preferences'
 import {
   BLOCK_IDS, MANIFEST, blockAnchor, blockFromHash, hasTranscript, loadBlock, promptText, sectionOf,
   type BlockId, type LogBlockData, type LogParagraph, type LogSection, type ManifestBlock, type PhaseNumber, type SectionKind,
-} from './log'
+} from './log/index'
 import { copyText } from './log/clipboard'
 import { LOG_META, LOG_TEXT, fill, type LogText } from './log/text'
 

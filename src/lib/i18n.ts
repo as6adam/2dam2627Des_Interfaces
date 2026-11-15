@@ -227,6 +227,7 @@ export interface Common {
   miniCalendar: { group: string; previousMonth: string; nextMonth: string; withEvents: string }
   popover: {
     dialogLabel: (subject: string) => string; close: string; schedulePrep: string; notNow: string
+    pastDue: string; sessionLimit: (date: string) => string
     durationGroup: string; minutes: (n: number) => string
     addToCalendar: string; pick: string; pickHint: string; delete: string
     reschedule: string; rescheduleLabel: (subject: string) => string; touchMoveHint: string
@@ -360,6 +361,8 @@ export const COMMON: Record<Language, Common> = {
       dialogLabel: (subject) => `Detalles de ${subject}`,
       close: 'Cerrar',
       schedulePrep: 'Programar preparación',
+      pastDue: 'Esta fecha límite ya pasó. Para preparar una nueva fecha, cambia primero la fecha del examen o de la tarea.',
+      sessionLimit: (date) => `La sesión debe terminar antes de la fecha límite: ${date}. Para elegir un año posterior, cambia primero la fecha del examen o de la tarea.`,
       notNow: 'Ahora no',
       durationGroup: 'Duración',
       minutes: (n) => `${num('es', n)} min`,
@@ -544,6 +547,8 @@ export const COMMON: Record<Language, Common> = {
       dialogLabel: (subject) => `${subject} details`,
       close: 'Close',
       schedulePrep: 'Schedule prep',
+      pastDue: 'This deadline has passed. To prepare for a new date, first change the exam or assignment date.',
+      sessionLimit: (date) => `The session must end before the deadline: ${date}. To select a later year, first change the exam or assignment date.`,
       notNow: 'Not now',
       durationGroup: 'Duration',
       minutes: (n) => `${num('en', n)} min`,

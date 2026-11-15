@@ -56,6 +56,15 @@ main { overflow-wrap: anywhere; }
 /* Halo del icono: acento difuminado, estático. */
 .l-halo { background: radial-gradient(closest-side, rgb(var(--accent) / .32), transparent 72%); }
 
+/* Full screenshots retain their proportions; only thumbnails are loaded until opened. */
+.l-shots { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.25rem; }
+.l-shot { min-width: 0; margin: 0; overflow: hidden; border: 1px solid rgb(var(--line) / .16); border-radius: 1rem; background: rgb(var(--glass) / .5); }
+.l-shot a { display: block; background: rgb(var(--line) / .05); }
+.l-shot img { display: block; width: 100%; height: auto; }
+.l-shots-mobile { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (min-width: 640px) { .l-shots:not(.l-shots-mobile) { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1024px) { .l-shots-mobile { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+
 /* Línea de la cronología de fases. */
 .l-rail::before { display: none; content: ''; position: absolute; left: 1.1875rem; top: 2.5rem; bottom: -2rem; width: 1px; background: rgb(var(--line) / .16); }
 @media (min-width: 640px) { .l-rail::before { display: block; } li:last-child > .l-rail::before { display: none; } }

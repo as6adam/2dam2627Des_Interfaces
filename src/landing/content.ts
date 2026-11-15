@@ -121,14 +121,14 @@ const es: LandingText = {
         ],
       },
       {
-        id: 'design', title: 'Diseño', status: 'partial',
+        id: 'design', title: 'Diseño', status: 'done',
         summary: 'Identidad visual y distribución de la interfaz.',
         items: [
           { text: 'Identidad «Obsidiana + Gemas»: violeta como acento inicial, cuatro temas y modo claro y oscuro.', status: 'done' },
           { text: 'Tipografía del sistema, superficies translúcidas y movimiento breve que respeta «reducir movimiento».', status: 'done' },
           { text: 'Distribución adaptable a móvil, tableta y escritorio.', status: 'done' },
           { text: 'Esta página de presentación.', status: 'done' },
-          { text: 'Capturas reales de la aplicación en la página de presentación.', status: 'pending' },
+          { text: 'Capturas reales de Chrome de escritorio y Safari de iPhone incorporadas a la galería.', status: 'done' },
         ],
       },
       {
@@ -149,13 +149,14 @@ const es: LandingText = {
       },
       {
         id: 'testing', title: 'Pruebas y despliegue', status: 'partial',
-        summary: 'Cómo se comprueba y cómo se publicará.',
+        summary: 'Cómo se comprueba y cómo se ha publicado.',
         items: [
           { text: 'Pruebas automáticas con Vitest sobre la lógica: persistencia, validación de fechas, distribución adaptable y audio.', status: 'done' },
           { text: 'Revisiones manuales en navegador, con pantallas y toque emulados.', status: 'done' },
-          { text: 'Pruebas en dispositivos físicos, con teclado virtual y en la aplicación de escritorio.', status: 'pending' },
-          { text: 'Configuración de despliegue preparada: flujo de GitHub Actions y comprobación del paquete generado, sin ejecutar todavía en GitHub.', status: 'done' },
-          { text: 'Publicación en GitHub Pages: todavía no publicada ni verificada.', status: 'pending' },
+          { text: 'Prueba básica en iPhone con Safari: funcionamiento confirmado por Adam y documentado con capturas.', status: 'done' },
+          { text: 'Pruebas específicas con teclado virtual, tecnologías de asistencia y aplicación de escritorio Tauri.', status: 'pending' },
+          { text: 'Flujo de GitHub Actions ejecutado: instalación, pruebas, compilación y verificación del paquete antes del despliegue.', status: 'done' },
+          { text: 'Landing y aplicación publicadas en GitHub Pages; despliegue y acceso comprobados por Adam.', status: 'done' },
         ],
       },
     ],
@@ -251,14 +252,14 @@ const en: LandingText = {
         ],
       },
       {
-        id: 'design', title: 'Design', status: 'partial',
+        id: 'design', title: 'Design', status: 'done',
         summary: 'Visual identity and interface layout.',
         items: [
           { text: '“Obsidian + Gems” identity: violet as the default accent, four themes, and light and dark mode.', status: 'done' },
           { text: 'System typography, translucent surfaces and short motion that respects “reduce motion”.', status: 'done' },
           { text: 'A layout that adapts to phone, tablet and desktop.', status: 'done' },
           { text: 'This presentation page.', status: 'done' },
-          { text: 'Real screenshots of the app on the presentation page.', status: 'pending' },
+          { text: 'Real desktop Chrome and iPhone Safari screenshots included in the gallery.', status: 'done' },
         ],
       },
       {
@@ -279,13 +280,14 @@ const en: LandingText = {
       },
       {
         id: 'testing', title: 'Testing and deployment', status: 'partial',
-        summary: 'How it is checked and how it will be published.',
+        summary: 'How it is checked and how it has been published.',
         items: [
           { text: 'Automated Vitest tests for the logic: persistence, date validation, adaptive layout and audio.', status: 'done' },
           { text: 'Manual browser checks, with emulated screens and touch.', status: 'done' },
-          { text: 'Tests on physical devices, with the on-screen keyboard, and in the desktop app.', status: 'pending' },
-          { text: 'Deployment setup prepared: GitHub Actions workflow and a check of the generated package, not run on GitHub yet.', status: 'done' },
-          { text: 'Publication on GitHub Pages: not published or verified yet.', status: 'pending' },
+          { text: 'Basic physical iPhone Safari check: operation confirmed by Adam and documented with screenshots.', status: 'done' },
+          { text: 'Specific tests with the on-screen keyboard, assistive technology and the Tauri desktop app.', status: 'pending' },
+          { text: 'GitHub Actions workflow executed: installation, tests, build and package verification before deployment.', status: 'done' },
+          { text: 'Landing and application published on GitHub Pages; deployment and access checked by Adam.', status: 'done' },
         ],
       },
     ],

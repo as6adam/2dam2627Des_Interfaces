@@ -1,5 +1,18 @@
 # Tempora
 
+## Current delivery status (15 November 2026)
+
+- Landing: https://as6adam.github.io/2dam2627Des_Interfaces/
+- App: https://as6adam.github.io/2dam2627Des_Interfaces/app/index.html
+- Publishing branch: `Pomodoro_Tempora`; pushes trigger GitHub Actions. Pages uses the `github-pages` environment, which permits this branch.
+- Adam confirmed the live deployment and supplied real Chrome desktop and iPhone Safari screenshots. The landing gallery contains all ten screenshots, with English and Spanish captions.
+- Adam reports that the app works on his iPhone. This is a basic user check, not a complete device/accessibility test suite; Tauri and specific virtual-keyboard checks remain pending.
+- The study-session date picker is bounded by its parent exam/assignment date. New events and rescheduling support future years, including 2027 and 2028. Passed deadlines offer rescheduling instead of suggesting a new preparation session after the deadline.
+- Calendar cards preserve duration proportions and adapt their text to their own width. The full 24-hour calendar is available.
+
+The numbered sections below describe the historical iterations. Statements such as "not published" refer to the state at that iteration, not the current delivery. The original prompt transcripts remain unchanged.
+
+
 Study planner with a weekly/daily calendar, exam & assignment tracking, Pomodoro timer and focus audio.
 Tauri 2 · React 18 · TypeScript · Tailwind 3 · Framer Motion · Zustand.
 

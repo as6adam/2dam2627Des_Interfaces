@@ -3,14 +3,14 @@ import { createElement } from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 import { PERSIST_NAME } from '../lib/preferences'
 import { saveSharedPref } from '../lib/sharedPrefs'
-import { INITIAL_SAVE_NOTICE, applySaveResult, dismissSaveNotice, isSaveNoticeVisible } from '../landing/saveNotice'
+import { INITIAL_SAVE_NOTICE, applySaveResult, dismissSaveNotice, isSaveNoticeVisible } from '../landing/noticeState'
 import { SaveNotice } from '../landing/SaveNotice'
 import { LANDING } from '../landing/content'
 import { LANGUAGES } from '../lib/preferences'
 import { MemoryStorage } from './helpers'
 import landingView from '../landing/Landing.tsx?raw'
 import noticeView from '../landing/SaveNotice.tsx?raw'
-import noticeLogic from '../landing/saveNotice.ts?raw'
+import noticeLogic from '../landing/noticeState.ts?raw'
 
 /** Almacenamiento que lee bien pero NO puede escribir (cuota llena, modo privado, bloqueado…). */
 class FailingWrites extends MemoryStorage {

@@ -16,7 +16,7 @@ describe('flujo de despliegue (texto)', () => {
     for (const c of ['npm test', 'npm run build', 'npm run verify:dist']) expect(workflow).toContain(c)
   })
   it('permisos mínimos: contents: read global; pages/id-token solo en el despliegue', () => {
-    expect(workflow).toMatch(/^permissions:\n  contents: read/m)
+    expect(workflow).toMatch(/^permissions:\r?\n  contents: read/m)
     const deploy = workflow.slice(workflow.indexOf('  deploy:'))
     expect(deploy).toMatch(/pages: write/)
     expect(deploy).toMatch(/id-token: write/)
@@ -31,12 +31,12 @@ describe('flujo de despliegue (texto)', () => {
   it('package.json expone verify:dist y no fija engines', () => {
     expect(pkg.scripts['verify:dist']).toContain('verify-dist')
   })
-  it('el estado publicado sigue pendiente en es/en', () => {
+  it('la publicación está hecha en es/en y las pruebas aún pendientes se conservan', () => {
     for (const l of LANGUAGES) {
       const t = LANDING[l].phases.items.find((p) => p.id === 'testing')!
       const publish = t.items.find((i) => /GitHub Pages/.test(i.text))!
-      expect(publish.status).toBe('pending')
-      expect(t.items.some((i) => /(Configuración de despliegue|Deployment setup)/.test(i.text) && i.status === 'done')).toBe(true)
+      expect(publish.status).toBe('done')
+      expect(t.items.some((i) => /GitHub Actions/.test(i.text) && i.status === 'done')).toBe(true)
       expect(t.status).not.toBe('done')
     }
   })

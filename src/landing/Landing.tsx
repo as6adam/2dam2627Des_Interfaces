@@ -8,9 +8,10 @@ import logo from '../assets/logo-288.png'
 import { LANGUAGES, PERSIST_NAME, isLanguage, type Language } from '../lib/preferences'
 import { readSharedPrefs, saveSharedPref } from '../lib/sharedPrefs'
 import { appHref } from './guard'
-import { INITIAL_SAVE_NOTICE, applySaveResult, dismissSaveNotice, isSaveNoticeVisible } from './saveNotice'
+import { INITIAL_SAVE_NOTICE, applySaveResult, dismissSaveNotice, isSaveNoticeVisible } from './noticeState'
 import { SaveNotice } from './SaveNotice'
 import { PromptLog } from './Log'
+import { ScreenshotGallery } from './ScreenshotGallery'
 import { getLanding, type FeatureIcon, type LandingText, type Phase, type Status } from './content'
 
 const ICONS: Record<FeatureIcon, typeof Timer> = {
@@ -51,6 +52,14 @@ export function Landing() {
   const { language, dark, theme, setLanguage, setDark, noticeVisible, dismissNotice } = useSharedPrefs()
   const t = getLanding(language)
 
+  // Fragment targets are inserted by React after the browser's initial anchor lookup.
+  useEffect(() => {
+    const id = window.location.hash.slice(1)
+    if (!id || id.startsWith('log-')) return
+    const frame = requestAnimationFrame(() => document.getElementById(id)?.scrollIntoView({ block: 'start', behavior: 'instant' }))
+    return () => cancelAnimationFrame(frame)
+  }, [])
+
   // Documento: lang, título, descripción, modo y tema (mismo `<html>` que usa la aplicación).
   useEffect(() => {
     const root = document.documentElement
@@ -69,6 +78,7 @@ export function Landing() {
         <Hero t={t} />
         <About t={t} />
         <Features t={t} />
+        <ScreenshotGallery language={language} />
         <Tech t={t} />
         <Phases t={t} language={language} />
         <Access t={t} />
