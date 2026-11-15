@@ -167,7 +167,7 @@ describe('contenido es/en', () => {
   it('el inglés está realmente traducido (no es copia del español) salvo nombres propios', () => {
     const same = strings(LANDING.es).filter((s, i) => s === strings(LANDING.en)[i])
     // Nombres propios, tecnologías y nombres de idioma pueden coincidir.
-    for (const s of same) expect(s).toMatch(/^(Tempora|React 18|TypeScript|Tailwind CSS 3|Framer Motion|Zustand|date-fns|lucide-react|Tauri 2 \(Rust\)|Vite 5|Vitest|Español|English|Prompt|Pomodoro)$/)
+    for (const s of same) expect(s).toMatch(/^(Tempora|React 18|TypeScript|Tailwind CSS 3|Framer Motion|Zustand|date-fns|lucide-react|Tauri 2 \(Rust\)|Vite 5|Vitest|Playwright|Español|English|Prompt|Pomodoro)$/)
   })
   it('las fases son las cinco pedidas, en orden, con los mismos estados en ambos idiomas', () => {
     expect(PHASE_IDS).toEqual(['analysis', 'design', 'development', 'prompts', 'testing'])
@@ -175,12 +175,12 @@ describe('contenido es/en', () => {
     const sig = (t: LandingText) => t.phases.items.map((p) => [p.status, p.items.map((i) => i.status)])
     expect(sig(LANDING.en)).toEqual(sig(LANDING.es))
   })
-  it('«Prompts utilizados y respuestas obtenidas»: ya no es el aviso de pendiente; el registro real se incorpora (005) y la fase queda parcial', () => {
+  it('el registro original hasta 004C está completado para el alcance de la entrega', () => {
     expect(LANDING.es.phases.items[3].title).toBe('Prompts utilizados y respuestas obtenidas')
     expect(LANDING.en.phases.items[3].title).toBe('Prompts used and responses obtained')
     for (const l of LANGUAGES) {
       expect(JSON.stringify(LANDING[l])).not.toMatch(/Documentación pendiente de incorporar|Documentation yet to be added/)
-      expect(LANDING[l].phases.items[3].status).toBe('partial') // incorporado hasta 004C; lo posterior no consta en el documento
+      expect(LANDING[l].phases.items[3].status).toBe('done')
     }
   })
   it('la publicación y la prueba básica de iPhone están hechas; Tauri queda pendiente', () => {
@@ -193,14 +193,13 @@ describe('contenido es/en', () => {
       expect(testing.status).not.toBe('done')
     }
   })
-  it('las funciones que no existen solo aparecen como «todavía no» / pendientes, nunca como funciones', () => {
+  it('la planificación, las estadísticas y la transferencia manual existen; la nube queda fuera del alcance', () => {
     for (const l of LANGUAGES) {
       const t = LANDING[l]
-      const claim = /planificaci[oó]n autom[aá]tica|sincroniz|estad[ií]stic|automatic scheduling|sync|statistic/i
-      // «Datos en tu dispositivo» las menciona solo para negarlas (no hay cuenta, servidor ni sincronización).
-      for (const f of t.features.items.filter((x) => x.icon !== 'storage')) expect(`${f.title} ${f.text}`).not.toMatch(claim)
+      for (const icon of ['planner', 'statistics', 'transfer']) expect(t.features.items.some((f) => f.icon === icon)).toBe(true)
       expect(t.features.notYet.items).toHaveLength(3)
-      for (const ph of t.phases.items) for (const it of ph.items.filter((i) => claim.test(i.text))) expect(it.status).toBe('pending')
+      expect(t.features.notYet.items.some((s) => /nube|cloud/i.test(s))).toBe(true)
+      expect(t.phases.items.find((p) => p.id === 'development')!.status).toBe('done')
     }
   })
   it('no hay enlaces, correos ni repositorios inventados en el contenido', () => {

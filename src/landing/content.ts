@@ -10,7 +10,7 @@ import { LOG_TEXT, type LogText } from './log/text'
 export type Status = 'done' | 'partial' | 'pending'
 export type PhaseId = 'analysis' | 'design' | 'development' | 'prompts' | 'testing'
 export const PHASE_IDS: readonly PhaseId[] = ['analysis', 'design', 'development', 'prompts', 'testing']
-export type FeatureIcon = 'calendar' | 'link' | 'timer' | 'audio' | 'language' | 'palette' | 'devices' | 'storage'
+export type FeatureIcon = 'calendar' | 'link' | 'timer' | 'audio' | 'language' | 'palette' | 'devices' | 'storage' | 'planner' | 'statistics' | 'transfer'
 
 export interface PhaseItem { text: string; status: Exclude<Status, 'partial'> }
 export interface Phase { id: PhaseId; title: string; summary: string; status: Status; items: PhaseItem[] }
@@ -87,12 +87,15 @@ const es: LandingText = {
       { icon: 'language', title: 'Español e inglés', text: 'Interfaz, fechas y avisos en los dos idiomas. El idioma se recuerda y es el mismo en esta página y en la aplicación.' },
       { icon: 'palette', title: 'Personalización', text: 'Cuatro temas de acento (Rubí, Ágata púrpura, Diamante y Antimateria, con el violeta como inicial) y modo claro u oscuro.' },
       { icon: 'devices', title: 'Móvil, tableta y escritorio', text: 'En escritorio, tres áreas visibles; en tableta, paneles plegables; en móvil, una barra inferior con menú, añadir y concentración.' },
-      { icon: 'storage', title: 'Datos en tu dispositivo', text: 'Los eventos y preferencias se guardan localmente. No hay cuenta, servidor ni sincronización.' },
+      { icon: 'planner', title: 'Planificación automática', text: 'Desde un examen o una entrega futura, elige el número de sesiones, su duración, el horario y los días disponibles. Revisa una propuesta repartida antes de la fecha límite, sin solaparse con los eventos existentes.' },
+      { icon: 'transfer', title: 'Transferencia entre dispositivos', text: 'Exporta un archivo JSON de Tempora e impórtalo desde el otro dispositivo. Incluye vista previa, detección de duplicados y elección de la versión en conflicto. Es manual; las eliminaciones no se propagan y no hay sincronización en la nube.' },
+      { icon: 'statistics', title: 'Estadísticas de concentración', text: 'Consulta periodos de 7, 30 y 90 días: tiempo programado por asignatura o área, eventos completados, Pomodoros finalizados, minutos de concentración, días activos y racha. El historial empieza a registrarse desde la versión 1.1.' },
+      { icon: 'storage', title: 'Datos en tu dispositivo', text: 'Los eventos, preferencias e historial se guardan localmente. Puedes transferirlos manualmente por archivo; no hay cuenta ni nube.' },
     ],
     notYet: {
-      title: 'Todavía no incluye',
+      title: 'Posibles ampliaciones',
       intro: 'Estas funciones no existen en Tempora por ahora:',
-      items: ['Planificación automática de sesiones de estudio', 'Sincronización entre dispositivos', 'Estadísticas avanzadas'],
+      items: ['Sincronización automática en la nube con cuentas', 'Colaboración en tiempo real', 'Integración con otros calendarios'],
     },
   },
   tech: {
@@ -102,7 +105,7 @@ const es: LandingText = {
       { name: 'Interfaz', items: ['React 18', 'TypeScript', 'Tailwind CSS 3', 'Framer Motion'] },
       { name: 'Estado y utilidades', items: ['Zustand', 'date-fns', 'lucide-react'] },
       { name: 'Escritorio', items: ['Tauri 2 (Rust)'] },
-      { name: 'Herramientas', items: ['Vite 5', 'Vitest'] },
+      { name: 'Herramientas', items: ['Vite 5', 'Vitest', 'Playwright'] },
     ],
   },
   phases: {
@@ -112,12 +115,12 @@ const es: LandingText = {
     itemLabel: { done: 'Hecho', pending: 'Pendiente' },
     items: [
       {
-        id: 'analysis', title: 'Análisis', status: 'partial',
+        id: 'analysis', title: 'Análisis', status: 'done',
         summary: 'Qué debía resolver Tempora y con qué límites.',
         items: [
           { text: 'Necesidad: organizar exámenes y entregas, preparar su estudio y concentrarse con un temporizador y audio.', status: 'done' },
           { text: 'Decisiones de producto: dos propósitos con los mismos eventos, español e inglés, datos locales y sin servidor.', status: 'done' },
-          { text: 'Validación de la utilidad con personas usuarias.', status: 'pending' },
+          { text: 'Validación inicial con Adam, usuario y autor, en PC e iPhone: uso, capturas y comentarios que permitieron corregir el horario, las tarjetas y el flujo de fechas.', status: 'done' },
         ],
       },
       {
@@ -132,19 +135,19 @@ const es: LandingText = {
         ],
       },
       {
-        id: 'development', title: 'Desarrollo', status: 'partial',
+        id: 'development', title: 'Desarrollo', status: 'done',
         summary: 'Lo construido, por iteraciones.',
         items: [
           { text: 'Calendario con vistas de semana y día, eventos, sesiones vinculadas y validación de fechas.', status: 'done' },
           { text: 'Pomodoro, audio de concentración y avisos.', status: 'done' },
           { text: 'Persistencia local con migraciones y sin borrar datos que no se pueden leer.', status: 'done' },
           { text: 'Idiomas, propósitos y adaptación a distintos tamaños de pantalla.', status: 'done' },
-          { text: 'Planificación automática, sincronización y estadísticas avanzadas.', status: 'pending' },
+          { text: 'Planificación automática con revisión de huecos, transferencia manual entre dispositivos por archivo y estadísticas con historial persistente de Pomodoro.', status: 'done' },
         ],
       },
       {
-        id: 'prompts', title: 'Prompts utilizados y respuestas obtenidas', status: 'partial',
-        summary: 'Registro incorporado desde el análisis inicial hasta la iteración 004C del documento fuente. Las iteraciones posteriores no constan en él.',
+        id: 'prompts', title: 'Prompts utilizados y respuestas obtenidas', status: 'done',
+        summary: 'Registro completo para la entrega: desde el análisis inicial hasta 004C, conservando los prompts y respuestas originales. Los retoques posteriores de publicación quedan fuera del registro por decisión del autor.',
         items: [],
       },
       {
@@ -218,12 +221,15 @@ const en: LandingText = {
       { icon: 'language', title: 'Spanish and English', text: 'Interface, dates and alerts in both languages. The language is remembered and is the same on this page and in the app.' },
       { icon: 'palette', title: 'Personalisation', text: 'Four accent themes (Ruby, Purple agate, Diamond and Antimatter, with violet as the default) and light or dark mode.' },
       { icon: 'devices', title: 'Phone, tablet and desktop', text: 'On desktop, three visible areas; on tablet, collapsible panels; on a phone, a bottom bar with menu, add and focus.' },
-      { icon: 'storage', title: 'Data on your device', text: 'Events and preferences are stored locally. There is no account, no server and no sync.' },
+      { icon: 'planner', title: 'Automatic planning', text: 'From a future exam or assignment, choose the number of sessions, their duration, available hours and days. Review a proposal spread before the deadline, without overlapping existing events.' },
+      { icon: 'transfer', title: 'Cross-device transfer', text: 'Export a Tempora JSON file and import it on the other device. Includes a preview, duplicate detection and a choice of conflicting versions. It is manual; deletions are not propagated and there is no cloud sync.' },
+      { icon: 'statistics', title: 'Focus statistics', text: 'Review 7, 30 and 90-day periods: scheduled time by subject or area, completed events, finished Pomodoros, focus minutes, active days and streak. History starts being recorded with version 1.1.' },
+      { icon: 'storage', title: 'Data on your device', text: 'Events, preferences and history are saved locally. You can transfer them manually by file; there is no account or cloud.' },
     ],
     notYet: {
-      title: 'Not included yet',
+      title: 'Possible extensions',
       intro: 'These features do not exist in Tempora for now:',
-      items: ['Automatic scheduling of study sessions', 'Syncing across devices', 'Advanced statistics'],
+      items: ['Automatic cloud sync with accounts', 'Real-time collaboration', 'Integration with other calendars'],
     },
   },
   tech: {
@@ -233,7 +239,7 @@ const en: LandingText = {
       { name: 'Interface', items: ['React 18', 'TypeScript', 'Tailwind CSS 3', 'Framer Motion'] },
       { name: 'State and utilities', items: ['Zustand', 'date-fns', 'lucide-react'] },
       { name: 'Desktop', items: ['Tauri 2 (Rust)'] },
-      { name: 'Tooling', items: ['Vite 5', 'Vitest'] },
+      { name: 'Tooling', items: ['Vite 5', 'Vitest', 'Playwright'] },
     ],
   },
   phases: {
@@ -243,12 +249,12 @@ const en: LandingText = {
     itemLabel: { done: 'Done', pending: 'Pending' },
     items: [
       {
-        id: 'analysis', title: 'Analysis', status: 'partial',
+        id: 'analysis', title: 'Analysis', status: 'done',
         summary: 'What Tempora had to solve, and within which limits.',
         items: [
           { text: 'Need: organise exams and assignments, prepare for them, and focus with a timer and audio.', status: 'done' },
           { text: 'Product decisions: two purposes sharing the same events, Spanish and English, local data and no server.', status: 'done' },
-          { text: 'Validating usefulness with real users.', status: 'pending' },
+          { text: 'Initial validation with Adam, both user and author, on PC and iPhone: use, screenshots and feedback led to fixes in calendar hours, event cards and the date flow.', status: 'done' },
         ],
       },
       {
@@ -263,19 +269,19 @@ const en: LandingText = {
         ],
       },
       {
-        id: 'development', title: 'Development', status: 'partial',
+        id: 'development', title: 'Development', status: 'done',
         summary: 'What has been built, iteration by iteration.',
         items: [
           { text: 'Calendar with week and day views, events, linked sessions and date validation.', status: 'done' },
           { text: 'Pomodoro, focus audio and alerts.', status: 'done' },
           { text: 'Local persistence with migrations that never delete data it cannot read.', status: 'done' },
           { text: 'Languages, purposes and adaptation to different screen sizes.', status: 'done' },
-          { text: 'Automatic scheduling, syncing and advanced statistics.', status: 'pending' },
+          { text: 'Automatic planning with reviewed time slots, manual cross-device file transfer and statistics with persistent Pomodoro history.', status: 'done' },
         ],
       },
       {
-        id: 'prompts', title: 'Prompts used and responses obtained', status: 'partial',
-        summary: 'Record added from the initial analysis up to iteration 004C of the source document. Later iterations are not in it.',
+        id: 'prompts', title: 'Prompts used and responses obtained', status: 'done',
+        summary: 'Complete delivery record: initial analysis through 004C, preserving the original prompts and responses. Later publishing adjustments are outside the scope chosen by the author.',
         items: [],
       },
       {

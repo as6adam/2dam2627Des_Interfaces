@@ -2,7 +2,7 @@ name: Build and test Tempora Windows
 on:
   push:
     branches: [Pomodoro_Tempora]
-    paths: ['src/**', 'src-tauri/**', 'package*.json', 'scripts/smoke-desktop.ps1', 'scripts/verify-tauri.mjs', '.github/workflows/desktop-windows.yml']
+    paths: ['src/components/**', 'src/lib/**', 'src/styles/**', 'src/assets/**', 'src/App.tsx', 'src/main.tsx', 'src/store.ts', 'src/index.css', 'src-tauri/**', 'package*.json', 'scripts/smoke-desktop.ps1', '.github/workflows/desktop-windows.yml']
   workflow_dispatch:
 permissions:
   contents: read

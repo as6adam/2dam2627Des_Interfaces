@@ -92,10 +92,11 @@ export function parseBackup(text: string): Backup {
   if (!record(raw.app) || !Array.isArray(raw.app.items) || raw.app.items.length > 10000 || !validDate(raw.exportedAt)) throw new BackupError('invalid')
   const ids = new Set<string>()
   for (const i of raw.app.items) {
-    if (!record(i) || typeof i.id !== 'string' || !i.id || i.id.length > 200 || ids.has(i.id) || !['exam', 'assignment', 'study'].includes(String(i.kind)) || typeof i.subject !== 'string' || !i.subject.trim() || i.subject.length > 500 || !validDate(i.start) || typeof i.duration !== 'number' || !Number.isFinite(i.duration) || i.duration <= 0 || i.duration > 1440 || typeof i.notes !== 'string' || i.notes.length > 20000 || (i.linkedTo !== undefined && typeof i.linkedTo !== 'string')) throw new BackupError('invalid')
+    if (!record(i) || typeof i.id !== 'string' || !i.id || ['__proto__', 'constructor', 'prototype'].includes(i.id) || i.id.length > 200 || ids.has(i.id) || !['exam', 'assignment', 'study'].includes(String(i.kind)) || typeof i.subject !== 'string' || !i.subject.trim() || i.subject.length > 500 || !validDate(i.start) || typeof i.duration !== 'number' || !Number.isFinite(i.duration) || i.duration <= 0 || i.duration > 1440 || typeof i.notes !== 'string' || i.notes.length > 20000 || (i.linkedTo !== undefined && typeof i.linkedTo !== 'string')) throw new BackupError('invalid')
     ids.add(i.id)
   }
   const app = sanitizePersisted(raw.app)
+  if (['mode', 'theme', 'notifications', 'purpose', 'language'].some((key) => app[key as keyof PersistedApp] !== (raw.app as Record<string, unknown>)[key])) throw new BackupError('invalid')
   assertRelations(app.items)
   if (!record(raw.progress) || !record(raw.progress.completed) || !Array.isArray(raw.progress.focusLog)) throw new BackupError('invalid')
   const progress = cleanProgress(raw.progress)

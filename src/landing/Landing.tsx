@@ -2,6 +2,7 @@ import { useEffect, useState, type CSSProperties, type ReactNode } from 'react'
 import {
   ArrowRight, CalendarDays, Check, ChevronDown, CircleDashed, Globe, HardDrive, Headphones, Languages as LanguagesIcon,
   Link2, MonitorSmartphone, Moon, Palette, Sun, Timer,
+  BarChart3, CalendarClock, FolderSync,
 } from 'lucide-react'
 import clsx from 'clsx'
 import logo from '../assets/logo-288.png'
@@ -17,6 +18,7 @@ import { getLanding, type FeatureIcon, type LandingText, type Phase, type Status
 const ICONS: Record<FeatureIcon, typeof Timer> = {
   calendar: CalendarDays, link: Link2, timer: Timer, audio: Headphones,
   language: LanguagesIcon, palette: Palette, devices: MonitorSmartphone, storage: HardDrive,
+  planner: CalendarClock, statistics: BarChart3, transfer: FolderSync,
 }
 const APP_URL = appHref(import.meta.env.BASE_URL)
 

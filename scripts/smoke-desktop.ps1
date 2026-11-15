@@ -1,7 +1,6 @@
 $ErrorActionPreference = 'Stop'
 Add-Type -AssemblyName UIAutomationClient
 Add-Type -AssemblyName UIAutomationTypes
-$env:WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS = '--force-renderer-accessibility --remote-debugging-port=9223'
 $binary = Join-Path $PSScriptRoot '../src-tauri/target/release/tempora.exe'
 $process = Start-Process -FilePath (Resolve-Path -LiteralPath $binary) -PassThru -WindowStyle Hidden
 try {

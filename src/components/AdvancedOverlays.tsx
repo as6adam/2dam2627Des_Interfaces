@@ -91,18 +91,18 @@ function TransferModal() {
   const [backup, setBackup] = useState<Backup | null>(null)
   const [preferFile, setPreferFile] = useState(false)
   const [preferences, setPreferences] = useState(false)
-  const [message, setMessage] = useState('')
-  const [error, setError] = useState('')
+  const [message, setMessage] = useState<'imported' | 'exported' | ''>('')
+  const [error, setError] = useState<'invalid' | 'size' | 'version' | 'relations' | ''>('')
   const [loading, setLoading] = useState(false)
   useEffect(() => { if (open) { setBackup(null); setError(''); setMessage(''); setPreferences(false); setPreferFile(false) } }, [open])
-  const fail = (e: unknown) => setError(t[e instanceof BackupError ? e.code : 'invalid'])
+  const fail = (e: unknown) => setError(e instanceof BackupError ? e.code : 'invalid')
   const exportFile = () => {
     const text = JSON.stringify(createBackup(useApp.getState(), useProgress.getState()), null, 2)
     const blob = new Blob([text], { type: 'application/json' })
     const url = URL.createObjectURL(blob); const a = document.createElement('a')
     a.href = url; a.download = `tempora-${toDateInput(new Date())}.json`; document.body.appendChild(a); a.click(); a.remove()
     window.setTimeout(() => URL.revokeObjectURL(url), 1000)
-    setMessage(t.exported); setError('')
+    setMessage('exported'); setError('')
   }
   const selectFile = async (file?: File) => {
     setBackup(null); setError(''); setMessage(''); setLoading(true)
@@ -116,7 +116,7 @@ function TransferModal() {
       void ignoredItems
       useApp.setState({ ...(preferences ? prefs : {}), items: merged.items })
       useProgress.setState(merged.progress)
-      setBackup(null); setMessage(t.imported); setError('')
+      setBackup(null); setMessage('imported'); setError('')
     } catch (e) { fail(e) }
   }
   const preview = backup ? importPreview(items, backup.app.items) : null
@@ -136,8 +136,8 @@ function TransferModal() {
         <label className="mb-3 flex min-h-11 items-center gap-2 text-[13px]"><input type="checkbox" checked={preferences} onChange={(e) => setPreferences(e.target.checked)} />{t.preferences}</label>
         <button onClick={apply} className="btn-primary min-h-11 w-full">{t.import}</button>
       </section>}
-      {message && <p role="status" className="t-body mt-3">{message}</p>}
-      {error && <p role="alert" className="t-body mt-3 text-red-500">{error}</p>}
+      {message && <p role="status" className="t-body mt-3">{t[message]}</p>}
+      {error && <p role="alert" className="t-body mt-3 text-red-500">{t[error]}</p>}
       <div className="mt-4 flex justify-end"><button onClick={close} className="btn-ghost min-h-11">{t.close}</button></div>
     </Modal>
   )

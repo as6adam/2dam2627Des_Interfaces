@@ -1,5 +1,26 @@
 # Tempora
 
+## Tempora 1.1 - delivery features
+
+### Automatic preparation
+Open a future exam or assignment and choose **Planificación automática / Automatic planning**. Select 1-30 sessions, a 15-120 minute duration, available hours and optional weekdays. The planner spreads sessions across days, avoids existing events, and requires every session to finish before the deadline. Review the preview before adding it. If only some slots fit, the proposal says so; it never overwrites existing events. A stale proposal is revalidated against the current calendar before saving.
+
+### Statistics
+Open **Estadísticas / Statistics** in the navigation menu. Periods cover today and the preceding 6, 29 or 89 local calendar days. Scheduled study minutes are separate from completed Pomodoro minutes. Metrics include completed events, completed focus cycles, active days, a streak within the selected period, a subject/area breakdown and a daily table. The **Marcar como completado / Mark complete** button is in event details. Focus history records only focus phases completed from this version onward; pauses and abandoned phases are not counted as completed. The new `tempora-progress-v1` key stores completion marks and focus history separately, without migrating or deleting existing events.
+
+### Manual cross-device transfer (selected delivery scope)
+Open **Transferir datos / Transfer data**, export the JSON file and send/save it to your other device. Import it there, review the counts, choose which version to keep for conflicts, and confirm. Preferences are applied only if explicitly selected. Identical events and focus records are not duplicated. Invalid files are rejected before state changes. Sessions must retain a valid parent and finish before its deadline after merging. Local-only events are retained. **There is no cloud service or automatic cross-device sync; deletions and removed completion marks are not propagated.** The file contains private event notes; keep it private.
+
+### Reproducible checks and scope
+`npm ci`, `npm test`, `npm run build`, `npm run verify:dist`.
+
+For the browser checks: `npx playwright install --with-deps chromium`, then `npm run test:e2e`. The Pages workflow runs these steps before publishing. Reports and screenshots are written under `test-results/` (ignored by Git). Checks exercise the planner, a completed Pomodoro, completion marks, desktop-to-phone file transfer, duplicate and invalid imports, focus containment, Escape, named accessibility controls, phone layout, and a **simulated** virtual-keyboard viewport. These are Chromium automation checks, not certification of NVDA/VoiceOver or a real mobile keyboard.
+
+The Windows workflow builds a production Tauri NSIS installer, launches the production executable, checks the native window title and confirms the process remains running. The artifact `Tempora-Windows` contains the installer and `desktop-smoke.json`. **This is a native startup smoke test, not a complete native interaction or screen-reader test.** Tauri and browser data are separate origins; use the JSON transfer to carry data between them.
+
+Initial user validation is Adam's actual desktop/iPhone usage, screenshots and feedback. No independent participant study is claimed. The original prompt record ends at 004C and is considered complete for the submission scope chosen by Adam; later publishing adjustments are intentionally excluded.
+
+
 ## Current delivery status (15 November 2026)
 
 - Landing: https://as6adam.github.io/2dam2627Des_Interfaces/
