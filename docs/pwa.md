@@ -114,6 +114,14 @@ Comando: `npm run test:pwa` · Resultado: **48/48** · 2026-11-22
 > **Estado: NO REALIZADA.** No tengo acceso a un iPhone. Ninguna fila de esta tabla se ha
 > marcado como pasada. Rellénala al hacer la prueba.
 
+### Estado del despliegue (22-11-2026)
+
+El código está en la rama `T5_Guía_de_viajes_de_mi_pueblo` de `as6adam/2dam2627Des_Interfaces`
+(commit `8c165b5`). **No está desplegado**: el sitio de Pages de ese repositorio publica
+«Tempora» y, por decisión del autor, no se sustituye. Mientras no haya una URL HTTPS, la prueba
+física no puede hacerse en Pages. Las alternativas son un repositorio propio para Brum o un
+servidor HTTPS local.
+
 ### Requisitos previos
 
 - Safari en iOS solo registra el service worker en un **contexto seguro (HTTPS)**. Una IP local
