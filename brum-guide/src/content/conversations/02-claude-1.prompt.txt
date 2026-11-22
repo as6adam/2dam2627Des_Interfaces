@@ -1,0 +1,67 @@
+@"[dato privado omitido]\Desktop\estructura_files.txt" @"[dato privado omitido]\Desktop\links-referencia-design.txt" Actúa como desarrollador principal de una guía turística bilingüe de Birmingham,
+Inglaterra. Ejecuta únicamente la fase 1 en el directorio actual. Inspecciona
+primero el repositorio y sus instrucciones y conserva el trabajo existente.
+Si aún no hay proyecto, inicializa aquí React + TypeScript + Vite con npm.
+
+1. Activa e invoca explícitamente mi skill instalada `apple-design` antes de
+   diseñar la interfaz. Lee sus instrucciones y aplícalas junto con las Human
+   Interface Guidelines de Apple a jerarquía, tarjetas, tipografía, áreas
+   táctiles, foco, gestos y transiciones con física de muelles. Informa al
+   final qué decisiones concretas salieron de la skill. Si no puedes cargarla,
+   indica el motivo exacto y aplica las HIG directamente.
+
+2. Haz fetch directo de https://www.honor.com/es/phones/honor-magic8-pro/
+   desde la terminal o mediante tu herramienta web. Después observa la página
+   renderizada en móvil y escritorio con las herramientas de navegador de
+   las que dispongas. Registra en docs/motion-reference.md qué secciones
+   responden al scroll, qué elementos permanecen fijos, cómo cambian
+   la posición, escala, opacidad y profundidad, qué dispara las
+   secciones interactivas y qué diferencias ves en pantallas táctiles.
+   Separa las observaciones de las inferencias y marca lo que no pudiste
+   verificar. Propón para cada mecánica comprobada una adaptación concreta
+   a la portada, las tarjetas o las fichas de Birmingham. Diseña una
+   composición y un ritmo propios, con los recursos gráficos de la guía.
+   No copies código, recursos gráficos ni la composición de HONOR.
+
+3. Instala automáticamente con npm las versiones compatibles de React,
+   TypeScript, Vite, React Router, Motion for React y vite-plugin-pwa,
+   además de las dependencias de comprobación que uses. Comprueba antes
+   que la versión de Node satisface sus requisitos y conserva package-lock.json.
+   Resuelve por terminal las instalaciones que puedas hacer dentro del
+   proyecto. Si una instalación queda bloqueada, identifica el paso pendiente.
+   No añadas otro motor de animación para resolver los mismos efectos.
+
+4. Configura Vite con dos entradas reales, index.html y diario.html. Prevé
+   una base configurable para servir en raíz y en /<repo>/ de GitHub Pages.
+   Evita rutas absolutas que asuman la raíz del dominio. Crea la estructura
+   de src/ por áreas de responsabilidad. Configura navegación hash en la
+   guía para portada, sector, lugar y un estado de ruta desconocida.
+   Enlaza la guía con el diario y el diario con la guía.
+
+5. Implementa un AppShell responsive compartido. En la barra superior
+   incluye un botón de globo con nombre accesible que despliegue Español
+   y English, indique el idioma activo y sea operable con teclado y tacto.
+   Añade un selector Claro/Oscuro. Usa español y claro en almacenamiento
+   limpio. Persiste preferencias válidas con claves propias del proyecto en
+   localStorage, aplica el tema antes del primer pintado en las dos entradas
+   y actualiza document.documentElement.lang al cambiar de idioma. Si el
+   almacenamiento falla, mantén operativos los controles durante la sesión.
+   Traduce navegación, controles, títulos y estados iniciales. Prepara
+   viewport-fit=cover y los tokens de áreas seguras.
+
+6. Deja una portada básica, las vistas de sector y lugar preparadas para
+   catálogos futuros y un diario inicial con contexto de la web. Inspecciona
+   en modo lectura [dato privado omitido]\Desktop\Brum_pics e inventaría las once
+   carpetas sin modificar ni importar fotos todavía. Prepara los contratos
+   de sector, lugar, foto y diario. Reserva la implementación final de la
+   PWA, el catálogo completo y las animaciones de scroll para sus fases.
+
+7. Ejecuta la comprobación de tipos y el build. Sirve el resultado y prueba
+   ambos HTML, una ruta hash directa y los enlaces con una base de prueba
+   /brum-guide/. Prueba la primera visita en español y claro, y que inglés
+   y oscuro sobreviven a una recarga y al salto entre ambos HTML. Revisa
+   una anchura móvil de 390 px y una de escritorio de 1440 px. Deja en el
+   README los comandos y devuelve resultados reales, archivos principales
+   y puntos pendientes. No publiques, no hagas push y detente al concluir.
+
+"Nota: adjunto estructura_files.txt && links-referencia-design.txt"

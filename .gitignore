@@ -1,0 +1,13 @@
+node_modules
+dist
+*.tsbuildinfo
+node_modules/.tmp
+test-results
+.DS_Store
+
+# scrollcraft: solo se versionan el brief y el registro
+brum-guide/scrollcraft/*
+!brum-guide/scrollcraft/FINGERPRINTS.md
+!brum-guide/scrollcraft/builds/
+brum-guide/scrollcraft/builds/*/*
+!brum-guide/scrollcraft/builds/*/BRIEF.md

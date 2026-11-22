@@ -1,0 +1,29 @@
+Ejecuta la fase 4. Activa y usa mi skill `apple-design` y las Human Interface
+Guidelines de Apple para áreas seguras, controles, estados sin conexión,
+tipografía, interacción táctil y transiciones con muelles. Instala
+automáticamente desde la terminal los paquetes PWA o de prueba que falten.
+
+Configura el manifiesto con id estable, start_url y scope dentro de la base
+del proyecto, display standalone, nombre, colores e iconos PNG propios de
+192 y 512 px, variante maskable y apple-touch-icon de 180 px. Comprueba que
+el manifiesto, el worker, el diario y los iconos resuelven bajo /<repo>/.
+Ajusta las áreas seguras en orientación vertical y horizontal.
+
+Configura Workbox para precargar las dos páginas HTML y sus recursos
+esenciales, incluidos los textos ES/EN. Mantén el diario accesible sin
+conexión como página independiente. Evita un fallback global a index.html
+que capture diario.html. Guarda bajo demanda solo imágenes locales, con
+límites de tamaño, cantidad y antigüedad. Ofrece un estado claro para fotos
+y servicios externos no disponibles sin conexión. Implementa un aviso
+bilingüe de nueva versión y actualiza tras la confirmación del visitante.
+
+Prepara un workflow de GitHub Actions con npm ci, comprobaciones, build y
+despliegue de dist/ a Pages. Prueba primero el build servido con un subpath:
+entrada directa a ambas páginas, fichas por hash, enlaces, worker activo,
+recarga sin conexión tras la primera carga y actualización de versión.
+Documenta la prueba física en iPhone desde Safari: añadir a pantalla de
+inicio, comprobar icono y modo standalone, girar el dispositivo, cambiar
+idioma y tema, cerrar y reabrir, y probar modo avión. Distingue pruebas de
+escritorio o simuladas de las realizadas en iPhone. No des por pasada una
+prueba física que no hayas hecho. No hagas push ni despliegues sin que te
+lo pida.

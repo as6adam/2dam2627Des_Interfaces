@@ -1,0 +1,465 @@
+{
+  "folders": [
+    {
+      "folder": "Culture_&_Heritage",
+      "folderSlug": "culture-and-heritage",
+      "count": 4,
+      "photos": [
+        {
+          "id": "culture-and-heritage--aston-hall",
+          "file": "Aston Hall.jpg",
+          "bytes": 318976,
+          "width": 1296,
+          "height": 729,
+          "format": "jpeg"
+        },
+        {
+          "id": "culture-and-heritage--birmingham-back-to-backs",
+          "file": "Birmingham Back to Backs.jpg",
+          "bytes": 193020,
+          "width": 1440,
+          "height": 500,
+          "format": "jpeg"
+        },
+        {
+          "id": "culture-and-heritage--birmingham-museum-and-art-gallery",
+          "file": "Birmingham Museum and Art Gallery.jpg",
+          "bytes": 2119892,
+          "width": 3840,
+          "height": 1979,
+          "format": "jpeg"
+        },
+        {
+          "id": "culture-and-heritage--jewellery-quarter",
+          "file": "Jewellery Quarter.jpg",
+          "bytes": 221358,
+          "width": 1366,
+          "height": 768,
+          "format": "jpeg"
+        }
+      ]
+    },
+    {
+      "folder": "Education_&_Literature",
+      "folderSlug": "education-and-literature",
+      "count": 4,
+      "photos": [
+        {
+          "id": "education-and-literature--birmingham-city-university",
+          "file": "Birmingham City University.png",
+          "bytes": 1299817,
+          "width": 626,
+          "height": 835,
+          "format": "png"
+        },
+        {
+          "id": "education-and-literature--library-of-birmingham-book-rotunda",
+          "file": "Library of Birmingham Book Rotunda.jpg",
+          "bytes": 124107,
+          "width": 830,
+          "height": 460,
+          "format": "jpeg"
+        },
+        {
+          "id": "education-and-literature--shakespeare-memorial-room",
+          "file": "Shakespeare Memorial Room.jpg",
+          "bytes": 207490,
+          "width": 1024,
+          "height": 683,
+          "format": "jpeg"
+        },
+        {
+          "id": "education-and-literature--university-of-birmingham",
+          "file": "University of Birmingham.jpg",
+          "bytes": 251975,
+          "width": 1000,
+          "height": 667,
+          "format": "jpeg"
+        }
+      ]
+    },
+    {
+      "folder": "Entertainment_&_Nightlife",
+      "folderSlug": "entertainment-and-nightlife",
+      "count": 4,
+      "photos": [
+        {
+          "id": "entertainment-and-nightlife--birmingham-hippodrome",
+          "file": "Birmingham Hippodrome.jpg",
+          "bytes": 386482,
+          "width": 980,
+          "height": 1307,
+          "format": "jpeg"
+        },
+        {
+          "id": "entertainment-and-nightlife--o2-academy-birmingham",
+          "file": "O2 Academy Birmingham.jpg",
+          "bytes": 97399,
+          "width": 1300,
+          "height": 500,
+          "format": "jpeg"
+        },
+        {
+          "id": "entertainment-and-nightlife--symphony-hall",
+          "file": "Symphony Hall.jpg",
+          "bytes": 766911,
+          "width": 2000,
+          "height": 1300,
+          "format": "jpeg"
+        },
+        {
+          "id": "entertainment-and-nightlife--the-night-owl",
+          "file": "The Night Owl.jpg",
+          "bytes": 323296,
+          "width": 1400,
+          "height": 960,
+          "format": "jpeg"
+        }
+      ]
+    },
+    {
+      "folder": "Family_&_Recreation",
+      "folderSlug": "family-and-recreation",
+      "count": 4,
+      "photos": [
+        {
+          "id": "family-and-recreation--cadbury-world",
+          "file": "Cadbury World.jpg",
+          "bytes": 139577,
+          "width": 768,
+          "height": 1024,
+          "format": "jpeg"
+        },
+        {
+          "id": "family-and-recreation--legoland-discovery-centre",
+          "file": "LEGOLAND Discovery Centre.jpg",
+          "bytes": 156180,
+          "width": 980,
+          "height": 514,
+          "format": "jpeg"
+        },
+        {
+          "id": "family-and-recreation--national-sea-life-centre",
+          "file": "National SEA LIFE Centre.jpg",
+          "bytes": 748039,
+          "width": 1870,
+          "height": 1521,
+          "format": "jpeg"
+        },
+        {
+          "id": "family-and-recreation--thinktank-science-museum",
+          "file": "Thinktank Science Museum.jpg",
+          "bytes": 2477468,
+          "width": 2592,
+          "height": 1944,
+          "format": "jpeg"
+        }
+      ]
+    },
+    {
+      "folder": "Gastronomy_&_Culinary",
+      "folderSlug": "gastronomy-and-culinary",
+      "count": 4,
+      "photos": [
+        {
+          "id": "gastronomy-and-culinary--birmingham-balti",
+          "file": "Birmingham Balti.jpg",
+          "bytes": 93985,
+          "width": 750,
+          "height": 562,
+          "format": "jpeg"
+        },
+        {
+          "id": "gastronomy-and-culinary--digbeth-dining-club",
+          "file": "Digbeth Dining Club.jpg",
+          "bytes": 287018,
+          "width": 1440,
+          "height": 960,
+          "format": "jpeg"
+        },
+        {
+          "id": "gastronomy-and-culinary--original-patty-men",
+          "file": "Original Patty Men.jpg",
+          "bytes": 146395,
+          "width": 960,
+          "height": 540,
+          "format": "jpeg"
+        },
+        {
+          "id": "gastronomy-and-culinary--purnells",
+          "file": "Purnells.jpg",
+          "bytes": 220837,
+          "width": 1100,
+          "height": 1100,
+          "format": "jpeg"
+        }
+      ]
+    },
+    {
+      "folder": "Health_&_Wellness",
+      "folderSlug": "health-and-wellness",
+      "count": 4,
+      "photos": [
+        {
+          "id": "health-and-wellness--bannatyne-spa",
+          "file": "Bannatyne Spa.jpg",
+          "bytes": 141028,
+          "width": 1280,
+          "height": 713,
+          "format": "jpeg"
+        },
+        {
+          "id": "health-and-wellness--harborne-pool-and-fitness-centre",
+          "file": "Harborne Pool and Fitness Centre.jpg",
+          "bytes": 238275,
+          "width": 915,
+          "height": 515,
+          "format": "jpeg"
+        },
+        {
+          "id": "health-and-wellness--moseley-road-baths",
+          "file": "Moseley Road Baths.jpg",
+          "bytes": 90180,
+          "width": 832,
+          "height": 1110,
+          "format": "jpeg"
+        },
+        {
+          "id": "health-and-wellness--santai-spa",
+          "file": "Santai Spa.jpg",
+          "bytes": 100941,
+          "width": 750,
+          "height": 750,
+          "format": "jpeg"
+        }
+      ]
+    },
+    {
+      "folder": "Nature_&_Outdoors",
+      "folderSlug": "nature-and-outdoors",
+      "count": 4,
+      "photos": [
+        {
+          "id": "nature-and-outdoors--birmingham-botanical-gardens",
+          "file": "Birmingham Botanical Gardens.jpg",
+          "bytes": 3599995,
+          "width": 3840,
+          "height": 2555,
+          "format": "jpeg"
+        },
+        {
+          "id": "nature-and-outdoors--cannon-hill-park",
+          "file": "Cannon Hill Park.jpg",
+          "bytes": 218219,
+          "width": 1080,
+          "height": 1920,
+          "format": "jpeg"
+        },
+        {
+          "id": "nature-and-outdoors--lickey-hills",
+          "file": "Lickey Hills.jpg",
+          "bytes": 545883,
+          "width": 2048,
+          "height": 1213,
+          "format": "jpeg"
+        },
+        {
+          "id": "nature-and-outdoors--sutton-park",
+          "file": "Sutton Park.jpg",
+          "bytes": 928093,
+          "width": 1600,
+          "height": 1066,
+          "format": "jpeg"
+        }
+      ]
+    },
+    {
+      "folder": "Shopping_&_Retail",
+      "folderSlug": "shopping-and-retail",
+      "count": 4,
+      "photos": [
+        {
+          "id": "shopping-and-retail--bullring-and-selfridges",
+          "file": "Bullring and Selfridges.jpg",
+          "bytes": 2650088,
+          "width": 3840,
+          "height": 2160,
+          "format": "jpeg"
+        },
+        {
+          "id": "shopping-and-retail--grand-central",
+          "file": "Grand Central.jpg",
+          "bytes": 98594,
+          "width": 1024,
+          "height": 536,
+          "format": "jpeg"
+        },
+        {
+          "id": "shopping-and-retail--great-western-arcade",
+          "file": "Great Western Arcade.jpg",
+          "bytes": 984595,
+          "width": 2050,
+          "height": 1367,
+          "format": "jpeg"
+        },
+        {
+          "id": "shopping-and-retail--mailbox",
+          "file": "Mailbox.jpg",
+          "bytes": 321914,
+          "width": 1600,
+          "height": 1066,
+          "format": "jpeg"
+        }
+      ]
+    },
+    {
+      "folder": "Sports_&_Adventure",
+      "folderSlug": "sports-and-adventure",
+      "count": 4,
+      "photos": [
+        {
+          "id": "sports-and-adventure--ackers-adventure",
+          "file": "Ackers Adventure.jpg",
+          "bytes": 343308,
+          "width": 1920,
+          "height": 900,
+          "format": "jpeg"
+        },
+        {
+          "id": "sports-and-adventure--alexander-stadium",
+          "file": "Alexander Stadium.jpg",
+          "bytes": 256021,
+          "width": 1900,
+          "height": 750,
+          "format": "jpeg"
+        },
+        {
+          "id": "sports-and-adventure--edgbaston-cricket-ground",
+          "file": "Edgbaston Cricket Ground.jpg",
+          "bytes": 318602,
+          "width": 901,
+          "height": 600,
+          "format": "jpeg"
+        },
+        {
+          "id": "sports-and-adventure--villa-park",
+          "file": "Villa Park.jpg",
+          "bytes": 1246128,
+          "width": 1920,
+          "height": 1080,
+          "format": "jpeg"
+        }
+      ]
+    },
+    {
+      "folder": "Visitor_Logistics_&_Safety",
+      "folderSlug": "visitor-logistics-and-safety",
+      "count": 4,
+      "photos": [
+        {
+          "id": "visitor-logistics-and-safety--birmingham-airport",
+          "file": "Birmingham Airport.jpg",
+          "bytes": 57407,
+          "width": 681,
+          "height": 486,
+          "format": "jpeg"
+        },
+        {
+          "id": "visitor-logistics-and-safety--birmingham-new-street-station",
+          "file": "Birmingham New Street Station.jpg",
+          "bytes": 104404,
+          "width": 1024,
+          "height": 538,
+          "format": "jpeg"
+        },
+        {
+          "id": "visitor-logistics-and-safety--city-centre-wayfinding",
+          "file": "City Centre Wayfinding.jpg",
+          "bytes": 769604,
+          "width": 1380,
+          "height": 1932,
+          "format": "jpeg"
+        },
+        {
+          "id": "visitor-logistics-and-safety--west-midlands-metro",
+          "file": "West Midlands Metro.jpg",
+          "bytes": 149288,
+          "width": 1200,
+          "height": 579,
+          "format": "jpeg"
+        }
+      ]
+    },
+    {
+      "folder": "Welcome_to_brum",
+      "folderSlug": "welcome-to-brum",
+      "count": 8,
+      "photos": [
+        {
+          "id": "welcome-to-brum--birmingham-arquitectura",
+          "file": "Birmingham-Arquitectura.jpg",
+          "bytes": 724766,
+          "width": 3000,
+          "height": 2000,
+          "format": "jpeg"
+        },
+        {
+          "id": "welcome-to-brum--birmingham-biblioteca-desde-el-canal",
+          "file": "Birmingham-Biblioteca-desde-el-canal.jpg",
+          "bytes": 218736,
+          "width": 480,
+          "height": 720,
+          "format": "jpeg"
+        },
+        {
+          "id": "welcome-to-brum--birmingham-bullring",
+          "file": "Birmingham-Bullring.jpg",
+          "bytes": 400409,
+          "width": 1920,
+          "height": 1088,
+          "format": "jpeg"
+        },
+        {
+          "id": "welcome-to-brum--birmingham-canal",
+          "file": "Birmingham-Canal.jpg",
+          "bytes": 422462,
+          "width": 1200,
+          "height": 750,
+          "format": "jpeg"
+        },
+        {
+          "id": "welcome-to-brum--birmingham-centenary-square-desde-el-aire",
+          "file": "Birmingham-Centenary-Square-desde-el-aire.jpg",
+          "bytes": 555361,
+          "width": 2300,
+          "height": 1169,
+          "format": "jpeg"
+        },
+        {
+          "id": "welcome-to-brum--birmingham-panoramica-nocturna",
+          "file": "Birmingham-Panoramica-nocturna.jpg",
+          "bytes": 108972,
+          "width": 800,
+          "height": 500,
+          "format": "jpeg"
+        },
+        {
+          "id": "welcome-to-brum--birmingham-victoria-square-de-noche",
+          "file": "Birmingham-Victoria-Square-de-noche.jpg",
+          "bytes": 440681,
+          "width": 1600,
+          "height": 1066,
+          "format": "jpeg"
+        },
+        {
+          "id": "welcome-to-brum--birmingham-victoria-square",
+          "file": "Birmingham-Victoria-Square.jpg",
+          "bytes": 1581778,
+          "width": 3840,
+          "height": 2430,
+          "format": "jpeg"
+        }
+      ]
+    }
+  ]
+}

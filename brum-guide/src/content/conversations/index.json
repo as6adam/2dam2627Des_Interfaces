@@ -1,0 +1,84 @@
+{
+  "$comment": "Diario: parejas prompt/respuesta en el orden del documento. Para añadir o completar una entrada, edita sus dos archivos de texto y pon \"status\": \"published\". Solo se publican las entradas con estado published y contenido en ambos archivos.",
+  "source": "prompts para la documentación.txt",
+  "declaredModels": [
+    "GPT-6.2 Astra (High)",
+    "Opus 5.5 (High)"
+  ],
+  "declaredTools": [
+    "ChatGPT",
+    "Claude (Code)"
+  ],
+  "entries": [
+    {
+      "id": "01-chatgpt-1",
+      "order": 1,
+      "tool": "chatgpt",
+      "number": 1,
+      "status": "published",
+      "promptFile": "01-chatgpt-1.prompt.txt",
+      "responseFile": "01-chatgpt-1.response.md",
+      "redactions": 4
+    },
+    {
+      "id": "02-claude-1",
+      "order": 2,
+      "tool": "claude",
+      "number": 1,
+      "status": "published",
+      "promptFile": "02-claude-1.prompt.txt",
+      "responseFile": "02-claude-1.response.md",
+      "redactions": 4
+    },
+    {
+      "id": "03-claude-2",
+      "order": 3,
+      "tool": "claude",
+      "number": 2,
+      "status": "published",
+      "promptFile": "03-claude-2.prompt.txt",
+      "responseFile": "03-claude-2.response.md",
+      "redactions": 1
+    },
+    {
+      "id": "04-claude-3",
+      "order": 4,
+      "tool": "claude",
+      "number": 3,
+      "status": "published",
+      "promptFile": "04-claude-3.prompt.txt",
+      "responseFile": "04-claude-3.response.md",
+      "redactions": 2
+    },
+    {
+      "id": "05-claude-4",
+      "order": 5,
+      "tool": "claude",
+      "number": 4,
+      "status": "published",
+      "promptFile": "05-claude-4.prompt.txt",
+      "responseFile": "05-claude-4.response.md",
+      "redactions": 0
+    },
+    {
+      "id": "06-claude-5",
+      "order": 6,
+      "tool": "claude",
+      "number": 5,
+      "status": "published",
+      "promptFile": "06-claude-5.prompt.txt",
+      "responseFile": "06-claude-5.response.md",
+      "redactions": 0
+    },
+    {
+      "id": "07-claude-6",
+      "order": 7,
+      "tool": "claude",
+      "number": 6,
+      "status": "published",
+      "promptFile": "07-claude-6.prompt.txt",
+      "responseFile": "07-claude-6.response.md",
+      "redactions": 3
+    }
+  ]
+}

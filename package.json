@@ -1,0 +1,22 @@
+{
+  "name": "brum-academic-repository",
+  "private": true,
+  "scripts": {
+    "dev": "npm --prefix brum-guide run dev --",
+    "typecheck": "npm --prefix brum-guide run typecheck --",
+    "build": "npm --prefix brum-guide run build --",
+    "build:pages": "npm --prefix brum-guide run build:pages --",
+    "preview": "npm --prefix brum-guide run preview --",
+    "preview:pages": "npm --prefix brum-guide run preview:pages --",
+    "inventory:photos": "npm --prefix brum-guide run inventory:photos --",
+    "test:e2e": "npm --prefix brum-guide run test:e2e --",
+    "test:motion": "npm --prefix brum-guide run test:motion --",
+    "test:pwa": "npm --prefix brum-guide run test:pwa --",
+    "test:journal": "npm --prefix brum-guide run test:journal --",
+    "images": "npm --prefix brum-guide run images --",
+    "check:catalog": "npm --prefix brum-guide run check:catalog --",
+    "report:photos": "npm --prefix brum-guide run report:photos --",
+    "icons": "npm --prefix brum-guide run icons --",
+    "import:conversations": "npm --prefix brum-guide run import:conversations --"
+  }
+}

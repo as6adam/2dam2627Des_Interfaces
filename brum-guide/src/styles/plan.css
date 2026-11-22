@@ -1,0 +1,439 @@
+/* ==========================================================================
+   Fase 6: secciones nuevas de la ficha y páginas de planificación.
+   Solo se anima transform/opacity (desde Motion); aquí no hay transiciones
+   de layout.
+   ========================================================================== */
+
+/* ---------- Ficha: Lo imprescindible ---------- */
+
+.highlights {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  max-width: var(--reading-max);
+}
+.highlight {
+  display: grid;
+  gap: 2px;
+  padding: var(--space-3) var(--space-4);
+  border-left: 3px solid var(--tone, var(--accent));
+  border-radius: 0 var(--radius-m) var(--radius-m) 0;
+  background: color-mix(in srgb, var(--tone, var(--accent)) 7%, var(--surface));
+}
+.highlight__text {
+  font-weight: 600;
+}
+.fact__value--text {
+  display: block;
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+}
+
+/* ---------- Ficha: Cerca de aquí ---------- */
+
+.nearby {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.nearby__link {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas: 'name icon' 'meta icon';
+  align-items: center;
+  column-gap: var(--space-3);
+  min-height: var(--hit);
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--separator);
+  border-radius: var(--radius-l);
+  background: var(--surface);
+  color: var(--text);
+  text-decoration: none;
+}
+.nearby__name {
+  grid-area: name;
+  font-weight: 600;
+}
+.nearby__meta {
+  grid-area: meta;
+  color: var(--text-2);
+  font-size: var(--fs-footnote);
+}
+.nearby__link svg {
+  grid-area: icon;
+  color: var(--tone, var(--accent));
+}
+.nearby__link:active {
+  background: var(--surface-2);
+}
+
+/* ---------- Páginas de planificación ---------- */
+
+.plan {
+  display: grid;
+  gap: var(--space-6);
+  min-width: 0;
+}
+.plan__body {
+  display: grid;
+  gap: var(--space-5);
+  min-width: 0;
+}
+
+.topics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.topic {
+  display: grid;
+  align-content: start;
+  gap: var(--space-3);
+  padding: var(--space-5);
+  border-radius: var(--radius-l);
+  border: 1px solid var(--separator);
+  background: var(--surface);
+}
+.topic .title-3 {
+  color: var(--text);
+}
+
+/* ---------- Rutas de un día ---------- */
+
+.routes {
+  display: grid;
+  gap: var(--space-6);
+}
+.route {
+  display: grid;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  border-radius: var(--radius-xl);
+  background: var(--surface);
+  border: 1px solid var(--separator);
+}
+.route__header {
+  display: grid;
+  gap: var(--space-1);
+}
+.route__mood {
+  color: var(--text-2);
+  max-width: var(--reading-max);
+}
+.route__steps {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: stop;
+}
+.route__step {
+  position: relative;
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-2) 0 var(--space-4) 40px;
+  counter-increment: stop;
+}
+/* Hilo vertical entre paradas */
+.route__step::before {
+  content: '';
+  position: absolute;
+  left: 13px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: color-mix(in srgb, var(--tone) 40%, var(--separator));
+}
+.route__step:last-child::before {
+  bottom: auto;
+  height: calc(var(--space-2) + 3.4rem);
+}
+.route__leg {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 var(--space-2);
+  color: var(--text-2);
+  font-size: 0.9375rem;
+}
+.route__mode {
+  padding: 1px 8px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  color: var(--text);
+  font-size: var(--fs-footnote);
+  font-weight: 600;
+}
+.route__stop {
+  position: relative;
+  display: grid;
+  gap: 2px;
+  min-height: var(--hit);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-l);
+  background: color-mix(in srgb, var(--tone) 8%, var(--surface));
+  color: var(--text);
+  text-decoration: none;
+}
+.route__index {
+  position: absolute;
+  left: -40px;
+  top: 50%;
+  width: 28px;
+  height: 28px;
+  margin-top: -14px;
+  border-radius: 50%;
+  background: var(--tone);
+}
+.route__index::after {
+  content: counter(stop);
+  display: grid;
+  place-items: center;
+  height: 100%;
+  color: var(--tone-ink, #fff);
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+.route__name {
+  font-weight: 650;
+}
+.route__note {
+  color: var(--text-2);
+  font-size: 0.9375rem;
+}
+.route__stop:active {
+  transform: scale(0.98);
+}
+
+/* ---------- Agenda anual ---------- */
+
+.agenda {
+  display: grid;
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.agenda__month {
+  display: grid;
+  grid-template-columns: minmax(0, 9rem) 1fr;
+  gap: var(--space-4);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--separator);
+}
+.agenda__label {
+  font-family: var(--font-display);
+  font-size: var(--fs-title-2);
+  line-height: var(--lh-title-2);
+  letter-spacing: var(--ls-title-2);
+  text-transform: capitalize;
+  color: var(--tone, var(--accent));
+}
+.agenda__items {
+  display: grid;
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.agenda__item {
+  display: grid;
+  gap: var(--space-1);
+  justify-items: start;
+}
+@media (max-width: 560px) {
+  .agenda__month {
+    grid-template-columns: 1fr;
+    gap: var(--space-2);
+  }
+}
+
+/* ---------- Habla brummie ---------- */
+
+.glossary {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr));
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.glossary__term {
+  display: grid;
+  align-content: start;
+  gap: var(--space-2);
+  padding: var(--space-5);
+  border-radius: var(--radius-l);
+  background: var(--surface);
+  border: 1px solid var(--separator);
+}
+.glossary__word {
+  font-family: var(--font-display);
+  font-size: var(--fs-title-2);
+  line-height: 1.1;
+  letter-spacing: var(--ls-title-2);
+  font-weight: 700;
+  color: var(--tone, var(--accent));
+}
+.glossary__say,
+.glossary__example {
+  color: var(--text-2);
+  font-size: 0.9375rem;
+}
+.glossary__meaning {
+  font-weight: 500;
+}
+
+/* ---------- Mapa sin conexión ---------- */
+
+.maps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
+  gap: var(--space-5);
+}
+.map {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  min-width: 0;
+}
+.map__svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-l);
+  border: 1px solid var(--separator);
+  overflow: hidden;
+}
+.map__ground {
+  fill: var(--surface);
+}
+.map__grid {
+  fill: none;
+  stroke: var(--separator);
+  stroke-width: 1;
+}
+.map__centre {
+  fill: color-mix(in srgb, var(--accent) 8%, transparent);
+  stroke: var(--accent);
+  stroke-width: 2;
+  stroke-dasharray: 6 6;
+}
+.map__pin {
+  cursor: pointer;
+}
+.map__dot {
+  fill: var(--tone);
+  stroke: var(--surface);
+  stroke-width: 3;
+}
+.map__halo {
+  fill: color-mix(in srgb, var(--tone) 22%, transparent);
+}
+.map__label {
+  fill: var(--text);
+  font-size: 28px;
+  font-weight: 600;
+  paint-order: stroke;
+  stroke: var(--surface);
+  stroke-width: 5px;
+  stroke-linejoin: round;
+  opacity: 0;
+  pointer-events: none;
+}
+.map__pin[data-focus] .map__label,
+.map__pin:focus-visible .map__label {
+  opacity: 1;
+}
+@media (hover: hover) and (pointer: fine) {
+  .map__pin:hover .map__label {
+    opacity: 1;
+  }
+  .map__pin:hover .map__dot {
+    stroke: var(--text);
+  }
+}
+.map__pin:focus-visible {
+  outline: none;
+}
+.map__pin:focus-visible .map__dot {
+  stroke: var(--focus);
+  stroke-width: 5;
+}
+.map__scale path {
+  stroke: var(--text-2);
+  stroke-width: 3;
+  fill: none;
+}
+.map__scale text,
+.map__north text {
+  fill: var(--text-2);
+  font-size: 20px;
+  font-weight: 600;
+}
+.map__north path {
+  fill: var(--text-2);
+}
+
+.map-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr));
+  gap: var(--space-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.map-list ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.map-list__sector {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-weight: 650;
+}
+.map-list__sector::before {
+  content: '';
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--tone);
+}
+.map-list [aria-current='location'] {
+  text-decoration: underline;
+}
+
+/* ---------- Barra superior y pie ---------- */
+
+.topnav__short {
+  display: none;
+}
+@media (max-width: 640px) {
+  .topnav__long {
+    display: none;
+  }
+  .topnav__short {
+    display: inline;
+  }
+}
+.shell-footer__links .text-link {
+  min-width: var(--hit);
+  justify-content: center;
+}
+.shell-footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0 var(--space-4);
+  margin-top: var(--space-2);
+}

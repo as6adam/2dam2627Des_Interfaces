@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="112" fill="#a33c25"/>
+  <g stroke="#c9634a" stroke-width="10" opacity=".55">
+    <path d="M0 96h512M0 176h512M0 256h512"/>
+    <path d="M128 16v80M320 16v80M224 96v80M416 96v80M128 176v80M320 176v80"/>
+  </g>
+  <path d="M0 330c90-26 170 26 256 0s166-26 256 0v182H0z" fill="#1d7472"/>
+  <text x="256" y="300" text-anchor="middle" font-family="system-ui,-apple-system,Segoe UI,sans-serif" font-size="250" font-weight="800" fill="#fff">B</text>
+</svg>

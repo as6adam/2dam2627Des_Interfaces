@@ -1,0 +1,30 @@
+Ejecuta la fase 2 sobre la base aprobada. Activa y usa mi skill `apple-design`
+y las Human Interface Guidelines de Apple para jerarquía, tipografía, tarjetas,
+gestos, foco y el comportamiento previsto de las transiciones con muelles.
+Instala desde la terminal cualquier dependencia imprescindible para esta fase.
+
+Desarrolla la portada, las vistas de sector y las fichas con un único catálogo
+tipado. Incluye estas diez categorías, con nombre ES y EN: Culture and
+Heritage, Gastronomy and Culinary, Nature and Outdoors, Shopping and Retail,
+Entertainment and Nightlife, Family and Recreation, Education and Literature,
+Health and Wellness, Sports and Adventure, Visitor Logistics and Safety.
+
+Implementa el destacado de Aston Villa y Villa Park, enlazado a su ficha.
+Incluye contexto del club, estadio y experiencia del visitante con los textos
+que te entregue. Cada lugar debe admitir dirección, opciones de transporte,
+parada o estación, origen cuando proceda, tramo a pie, mapa, accesibilidad,
+fuente y fecha de verificación. Importa solo los datos que te facilite o que
+puedas verificar en las fuentes pertinentes. Si faltan mi listado o textos,
+usa entradas de demostración identificadas como tales y deja una guía breve
+para sustituirlas. No inventes servicios, recorridos ni tiempos de viaje.
+
+Lee [dato privado omitido]\Desktop\Brum_pics. Respeta los originales y copia solo
+las fotos autorizadas para el sitio. Usa Welcome_to_brum para la portada,
+genera variantes responsivas cuando proceda y registra fuente, autor,
+permiso y texto alternativo ES/EN. Deja un recurso local provisional para
+las fotos sin autorización confirmada. Reserva dimensiones para evitar saltos
+de layout y carga de forma diferida las imágenes fuera de la primera vista.
+
+Comprueba los diez sectores, Villa Park, enlaces directos, atrás/adelante,
+restauración de foco y desplazamiento, textos ES/EN y legibilidad en ambos
+temas. Ejecuta el build. Resume qué contenido queda por facilitar o verificar.
