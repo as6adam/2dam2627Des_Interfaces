@@ -1,0 +1,917 @@
+{
+  "$comment": "Registro de derechos. Solo permission=granted se copia al sitio (npm run images). Autorización global de uso académico declarada por el autor del proyecto el 2026-11-22. Los indicios de autoría se conservan para el crédito.",
+  "photos": [
+    {
+      "id": "culture-and-heritage--aston-hall",
+      "folder": "Culture_&_Heritage",
+      "file": "Aston Hall.jpg",
+      "width": 1296,
+      "height": 729,
+      "source": "Carpeta Brum_pics aportada por el autor del proyecto",
+      "author": null,
+      "license": "Uso académico no comercial autorizado por el autor del proyecto (declaración del 2026-11-22); sin publicación pública.",
+      "permission": "granted",
+      "evidence": [
+        "Sin metadatos de autoría ni licencia."
+      ],
+      "alt": {
+        "es": "Fachada de ladrillo rojo de Aston Hall, mansión jacobea con torres rematadas en cúpula, tras un amplio césped.",
+        "en": "Red-brick façade of Aston Hall, a Jacobean mansion with domed towers, beyond a wide lawn."
+      },
+      "role": "place"
+    },
+    {
+      "id": "culture-and-heritage--birmingham-back-to-backs",
+      "folder": "Culture_&_Heritage",
+      "file": "Birmingham Back to Backs.jpg",
+      "width": 1440,
+      "height": 500,
+      "source": "Carpeta Brum_pics aportada por el autor del proyecto",
+      "author": null,
+      "license": "Uso académico no comercial autorizado por el autor del proyecto (declaración del 2026-11-22); sin publicación pública.",
+      "permission": "granted",
+      "evidence": [
+        "Sin metadatos de autoría ni licencia."
+      ],
+      "alt": {
+        "es": "Patio adoquinado de las Back to Backs: casas obreras de ladrillo con puertas y ventanas verdes y una bicicleta apoyada.",
+        "en": "Cobbled courtyard of the Back to Backs: brick workers’ houses with green doors and windows and a parked bicycle."
+      },
+      "role": "place"
+    },
+    {
+      "id": "culture-and-heritage--birmingham-museum-and-art-gallery",
+      "folder": "Culture_&_Heritage",
+      "file": "Birmingham Museum and Art Gallery.jpg",
+      "width": 3840,
+      "height": 1979,
+      "source": "Carpeta Brum_pics aportada por el autor del proyecto",
+      "author": null,
+      "license": "Uso académico no comercial autorizado por el autor del proyecto (declaración del 2026-11-22); sin publicación pública.",
+      "permission": "granted",
+      "evidence": [
+        "Sin metadatos de autoría ni licencia."
+      ],
+      "alt": {
+        "es": "Edificio victoriano con cúpula del Council House, sede del Museo y Galería de Arte, junto a la estatua de la reina Victoria en Victoria Square.",
+        "en": "The domed Victorian Council House, home of the Museum and Art Gallery, beside the Queen Victoria statue in Victoria Square."
+      },
+      "role": "place"
+    },
+    {
+      "id": "culture-and-heritage--jewellery-quarter",
+      "folder": "Culture_&_Heritage",
+      "file": "Jewellery Quarter.jpg",
+      "width": 1366,
+      "height": 768,
+      "source": "Carpeta Brum_pics aportada por el autor del proyecto",
+      "author": null,
+      "license": "Uso académico no comercial autorizado por el autor del proyecto (declaración del 2026-11-22); sin publicación pública.",
+      "permission": "granted",
+      "evidence": [
+        "Sin metadatos de autoría ni licencia."
+      ],
+      "alt": {
+        "es": "Escaparate con verja de hierro y puerta verde del Museum of the Jewellery Quarter, bajo un cartel con un ancla.",
+        "en": "Iron-grilled window and green door of the Museum of the Jewellery Quarter, under an anchor sign."
+      },
+      "role": "place"
+    },
+    {
+      "id": "education-and-literature--birmingham-city-university",
+      "folder": "Education_&_Literature",
+      "file": "Birmingham City University.png",
+      "width": 626,
+      "height": 835,
+      "source": "Carpeta Brum_pics aportada por el autor del proyecto",
+      "author": null,
+      "license": "Uso académico no comercial autorizado por el autor del proyecto (declaración del 2026-11-22); sin publicación pública.",
+      "permission": "granted",
+      "evidence": [
+        "Sin metadatos de autoría ni licencia."
+      ],
+      "alt": {
+        "es": "Fachada de cristal y paneles rojos de un edificio de la Birmingham City University, con estudiantes en la entrada.",
+        "en": "Glass and red-panelled façade of a Birmingham City University building, with students at the entrance."
+      },
+      "role": "place"
+    },
+    {
+      "id": "education-and-literature--library-of-birmingham-book-rotunda",
+      "folder": "Education_&_Literature",
+      "file": "Library of Birmingham Book Rotunda.jpg",
+      "width": 830,
+      "height": 460,
+      "source": "Carpeta Brum_pics aportada por el autor del proyecto",
+      "author": "Christian Richters",
+      "license": "Uso académico no comercial autorizado por el autor del proyecto (declaración del 2026-11-22); sin publicación pública.",
+      "permission": "granted",
+      "evidence": [
+        "Marca de agua visible: «Christian Richters»."
+      ],
+      "alt": {
+        "es": "Interior circular de la Biblioteca de Birmingham, con anillos de estanterías y escaleras mecánicas.",
+        "en": "Circular interior of the Library of Birmingham, with rings of bookshelves and escalators."
+      },
+      "role": "place"
+    },
+    {
+      "id": "education-and-literature--shakespeare-memorial-room",
+      "folder": "Education_&_Literature",
+      "file": "Shakespeare Memorial Room.jpg",
+      "width": 1024,
+      "height": 683,
+      "source": "Carpeta Brum_pics aportada por el autor del proyecto",
+      "author": null,
+      "license": "Uso académico no comercial autorizado por el autor del proyecto (declaración del 2026-11-22); sin publicación pública.",
+      "permission": "granted",
+      "evidence": [
+        "Sin metadatos de autoría ni licencia."
+      ],
+      "alt": {
+        "es": "Shakespeare Memorial Room: estanterías de madera tallada, un busto sobre una mesa con mantel blanco y filas de sillas azules.",
+        "en": "Shakespeare Memorial Room: carved wooden bookcases, a bust on a white-clothed table and rows of blue chairs."
+      },
+      "role": "place"
+    },
+    {
+      "id": "education-and-literature--university-of-birmingham",
+      "folder": "Education_&_Literature",
+      "file": "University of Birmingham.jpg",
+      "width": 1000,
+      "height": 667,
+      "source": "Carpeta Brum_pics aportada por el autor del proyecto",
+      "author": null,
+      "license": "Uso académico no comercial autorizado por el autor del proyecto (declaración del 2026-11-22); sin publicación pública.",
+      "permission": "granted",
+      "evidence": [
+        "Metadatos de edición (Adobe Photoshop); sin autor."
+      ],
+      "alt": {
+        "es": "Torre del reloj de ladrillo de la Universidad de Birmingham sobre el césped del campus.",
+        "en": "The University of Birmingham’s brick clock tower above the campus lawns."
+      },
+      "role": "place"
+    },
+    {
+      "id": "entertainment-and-nightlife--birmingham-hippodrome",
+      "folder": "Entertainment_&_Nightlife",
+      "file": "Birmingham Hippodrome.jpg",
+      "width": 980,
+      "height": 1307,
+      "source": "Carpeta Brum_pics aportada por el autor del proyecto",
+      "author": null,
+      "license": "Uso académico no comercial autorizado por el autor del proyecto (declaración del 2026-11-22); sin publicación pública.",
+      "permission": "granted",
+      "evidence": [
+        "Sin metadatos de autoría ni licencia."
+      ],
+      "alt": {
+        "es": "Fachada acristalada del Birmingham Hippodrome con carteles en la entrada y peatones en la calle.",
+        "en": "Glass frontage of Birmingham Hippodrome with posters at the entrance and people on the street."
+      },
+      "role": "place"
+    },
+    {
+      "id": "entertainment-and-nightlife--o2-academy-birmingham",
+      "folder": "Entertainment_&_Nightlife",
+      "file": "O2 Academy Birmingham.jpg",
+      "width": 1300,
+      "height": 500,
+      "source": "Carpeta Brum_pics aportada por el autor del proyecto",
+      "author": null,
+      "license": "Uso académico no comercial autorizado por el autor del proyecto (declaración del 2026-11-22); sin publicación pública.",
+      "permission": "granted",
+      "evidence": [
+        "Sin metadatos de autoría ni licencia."
+      ],
+      "alt": {
+        "es": "Fachada de la O2 Academy Birmingham de noche, con su rótulo iluminado.",
+        "en": "O2 Academy Birmingham at night, with its illuminated sign."
+      },
+      "role": "place"
+    },
+    {
+      "id": "entertainment-and-nightlife--symphony-hall",
+      "folder": "Entertainment_&_Nightlife",
+      "file": "Symphony Hall.jpg",
+      "width": 2000,
+      "height": 1300,
+      "source": "Carpeta Brum_pics aportada por el autor del proyecto",
+      "author": null,
+      "license": "Uso académico no comercial autorizado por el autor del proyecto (declaración del 2026-11-22); sin publicación pública.",
+      "permission": "granted",
+      "evidence": [
+        "Sin metadatos de autoría ni licencia."
+      ],
+      "alt": {
+        "es": "Auditorio del Symphony Hall con butacas rojas y varios niveles de anfiteatro, visto desde el escenario.",
+        "en": "Symphony Hall auditorium with red seats and several tiers of balconies, seen from the stage."
+      },
+      "role": "place"
+    },
+    {
+      "id": "entertainment-and-nightlife--the-night-owl",
+      "folder": "Entertainment_&_Nightlife",
+      "file": "The Night Owl.jpg",
+      "width": 1400,
+      "height": 960,
+      "source": "Carpeta Brum_pics aportada por el autor del proyecto",
+      "author": null,
+      "license": "Uso académico no comercial autorizado por el autor del proyecto (declaración del 2026-11-22); sin publicación pública.",
+      "permission": "granted",
+      "evidence": [
+        "Sin metadatos de autoría ni licencia."
+      ],
+      "alt": {
+        "es": "Público con los brazos en alto bajo luz azul durante un concierto en The Night Owl.",
+        "en": "Audience with raised arms under blue light during a gig at The Night Owl."
+      },
+      "role": "place"
+    },
+    {
+      "id": "family-and-recreation--cadbury-world",
+      "folder": "Family_&_Recreation",
+      "file": "Cadbury World.jpg",
+      "width": 768,
+      "height": 1024,
+      "source": "Carpeta Brum_pics aportada por el autor del proyecto",
+      "author": null,
+      "license": "Uso académico no comercial autorizado por el autor del proyecto (declaración del 2026-11-22); sin publicación pública.",
+      "permission": "granted",
+      "evidence": [
+        "EXIF de cámara de teléfono; sin autor."
+      ],
+      "alt": {
+        "es": "Fachada acristalada azul de Cadbury World decorada con envoltorios de chocolate gigantes.",
+        "en": "Blue glass frontage of Cadbury World decorated with giant chocolate wrappers."
+      },
+      "role": "place"
+    },
+    {
+      "id": "family-and-recreation--legoland-discovery-centre",
+      "folder": "Family_&_Recreation",
+      "file": "LEGOLAND Discovery Centre.jpg",
+      "width": 980,
+      "height": 514,
+      "source": "Carpeta Brum_pics aportada por el autor del proyecto",
+      "author": null,
+      "license": "Uso académico no comercial autorizado por el autor del proyecto (declaración del 2026-11-22); sin publicación pública.",
+      "permission": "granted",
+      "evidence": [
+        "Sin metadatos de autoría ni licencia."
+      ],
+      "alt": {
+        "es": "Maqueta de LEGO del edificio The Mailbox, con minifiguras en la planta baja.",
+        "en": "LEGO model of The Mailbox building, with minifigures at street level."
+      },
+      "role": "place"
+    },
+    {
+      "id": "family-and-recreation--national-sea-life-centre",
+      "folder": "Family_&_Recreation",
+      "file": "National SEA LIFE Centre.jpg",
+      "width": 1870,
+      "height": 1521,
+      "source": "Carpeta Brum_pics aportada por el autor del proyecto",
+      "author": null,
+      "license": "Uso académico no comercial autorizado por el autor del proyecto (declaración del 2026-11-22); sin publicación pública.",
+      "permission": "granted",
+      "evidence": [
+        "Sin metadatos de autoría ni licencia."
+      ],
+      "alt": {
+        "es": "Familia observando peces y una tortuga marina desde un túnel submarino del National SEA LIFE Centre.",
+        "en": "A family watching fish and a sea turtle from an underwater tunnel at the National SEA LIFE Centre."
+      },
+      "role": "place"
+    },
+    {
+      "id": "family-and-recreation--thinktank-science-museum",
+      "folder": "Family_&_Recreation",
+      "file": "Thinktank Science Museum.jpg",
+      "width": 2592,
+      "height": 1944,
+      "source": "Carpeta Brum_pics aportada por el autor del proyecto",
+      "author": null,
+      "license": "Uso académico no comercial autorizado por el autor del proyecto (declaración del 2026-11-22); sin publicación pública.",
+      "permission": "granted",
+      "evidence": [
+        "Sin metadatos de autoría ni licencia."
+      ],
+      "alt": {
+        "es": "Exterior de Thinktank con fachada de lamas metálicas y piezas de maquinaria expuestas en la plaza.",
+        "en": "Outside Thinktank: a slatted metal façade and machinery exhibits in the square."
+      },
+      "role": "place"
+    },
+    {
+      "id": "gastronomy-and-culinary--birmingham-balti",
+      "folder": "Gastronomy_&_Culinary",
+      "file": "Birmingham Balti.jpg",
+      "width": 750,
+      "height": 562,
+      "source": "Carpeta Brum_pics aportada por el autor del proyecto",
+      "author": null,
+      "license": "Uso académico no comercial autorizado por el autor del proyecto (declaración del 2026-11-22); sin publicación pública.",
+      "permission": "granted",
+      "evidence": [
+        "Sin metadatos de autoría ni licencia."
+      ],
+      "alt": {
+        "es": "Dos cuencos de balti y un naan grande sobre una mesa de madera, con cebolla roja y guindillas.",
+        "en": "Two balti bowls and a large naan on a wooden table, with red onion and chillies."
+      },
+      "role": "place"
+    },
+    {
+      "id": "gastronomy-and-culinary--digbeth-dining-club",
+      "folder": "Gastronomy_&_Culinary",
+      "file": "Digbeth Dining Club.jpg",
+      "width": 1440,
+      "height": 960,
+      "source": "Carpeta Brum_pics aportada por el autor del proyecto",
+      "author": null,
+      "license": "Uso académico no comercial autorizado por el autor del proyecto (declaración del 2026-11-22); sin publicación pública.",
+      "permission": "granted",
+      "evidence": [
+        "Sin metadatos de autoría ni licencia."
+      ],
+      "alt": {
+        "es": "Clientes pidiendo en un puesto de comida callejera con el rótulo «Handmade Pies & Sides».",
+        "en": "Customers ordering at a street-food stall signed “Handmade Pies & Sides”."
+      },
+      "role": "place"
+    },
+    {
+      "id": "gastronomy-and-culinary--original-patty-men",
+      "folder": "Gastronomy_&_Culinary",
+      "file": "Original Patty Men.jpg",
+      "width": 960,
+      "height": 540,
+      "source": "Carpeta Brum_pics aportada por el autor del proyecto",
+      "author": null,
+      "license": "Uso académico no comercial autorizado por el autor del proyecto (declaración del 2026-11-22); sin publicación pública.",
+      "permission": "granted",
+      "evidence": [
+        "Sin metadatos de autoría ni licencia."
+      ],
+      "alt": {
+        "es": "Hamburguesa envuelta en papel con el logotipo de Original Patty Men junto a una bandeja de patatas fritas.",
+        "en": "Burger wrapped in Original Patty Men paper beside a tray of fries."
+      },
+      "role": "place"
+    },
+    {
+      "id": "gastronomy-and-culinary--purnells",
+      "folder": "Gastronomy_&_Culinary",
+      "file": "Purnells.jpg",
+      "width": 1100,
+      "height": 1100,
+      "source": "Carpeta Brum_pics aportada por el autor del proyecto",
+      "author": null,
+      "license": "Uso académico no comercial autorizado por el autor del proyecto (declaración del 2026-11-22); sin publicación pública.",
+      "permission": "granted",
+      "evidence": [
+        "Sin metadatos de autoría ni licencia."
+      ],
+      "alt": {
+        "es": "Plato de alta cocina servido en un cuenco negro sobre un mantel naranja.",
+        "en": "Fine-dining dish served in a black bowl on an orange tablecloth."
+      },
+      "role": "place"
+    },
+    {
+      "id": "health-and-wellness--bannatyne-spa",
+      "folder": "Health_&_Wellness",
+      "file": "Bannatyne Spa.jpg",
+      "width": 1280,
+      "height": 713,
+      "source": "Carpeta Brum_pics aportada por el autor del proyecto",
+      "author": null,
+      "license": "Uso académico no comercial autorizado por el autor del proyecto (declaración del 2026-11-22); sin publicación pública.",
+      "permission": "granted",
+      "evidence": [
+        "Sin metadatos de autoría ni licencia."
+      ],
+      "alt": {
+        "es": "Sala de tratamientos de spa en penumbra con dos camillas cubiertas de toallas grises.",
+        "en": "Dimly lit spa treatment room with two beds draped in grey towels."
+      },
+      "role": "place"
+    },
+    {
+      "id": "health-and-wellness--harborne-pool-and-fitness-centre",
+      "folder": "Health_&_Wellness",
+      "file": "Harborne Pool and Fitness Centre.jpg",
+      "width": 915,
+      "height": 515,
+      "source": "Carpeta Brum_pics aportada por el autor del proyecto",
+      "author": null,
+      "license": "Uso académico no comercial autorizado por el autor del proyecto (declaración del 2026-11-22); sin publicación pública.",
+      "permission": "granted",
+      "evidence": [
+        "Sin metadatos de autoría ni licencia."
+      ],
+      "alt": {
+        "es": "Piscina cubierta con calles separadas por corcheras rojas y niños con gorro nadando.",
+        "en": "Indoor pool with red lane ropes and children in swimming caps."
+      },
+      "role": "place"
+    },
+    {
+      "id": "health-and-wellness--moseley-road-baths",
+      "folder": "Health_&_Wellness",
+      "file": "Moseley Road Baths.jpg",
+      "width": 832,
+      "height": 1110,
+      "source": "Carpeta Brum_pics aportada por el autor del proyecto",
+      "author": null,
+      "license": "Uso académico no comercial autorizado por el autor del proyecto (declaración del 2026-11-22); sin publicación pública.",
+      "permission": "granted",
+      "evidence": [
+        "EXIF de dispositivo; sin autor."
+      ],
+      "alt": {
+        "es": "Piscina histórica de Moseley Road Baths con arcos de hierro, ventanales y cabinas de madera alrededor.",
+        "en": "Historic pool at Moseley Road Baths with iron arches, tall windows and wooden cubicles around it."
+      },
+      "role": "place"
+    },
+    {
+      "id": "health-and-wellness--santai-spa",
+      "folder": "Health_&_Wellness",
+      "file": "Santai Spa.jpg",
+      "width": 750,
+      "height": 750,
+      "source": "Carpeta Brum_pics aportada por el autor del proyecto",
+      "author": "Daniel Graves Photography",
+      "license": "Uso académico no comercial autorizado por el autor del proyecto (declaración del 2026-11-22); sin publicación pública.",
+      "permission": "granted",
+      "evidence": [
+        "IPTC/XMP: fotógrafo «Daniel Graves Photography», fecha 2019-11-12."
+      ],
+      "alt": {
+        "es": "Piscina interior iluminada en azul, con columnas y tumbonas.",
+        "en": "Blue-lit indoor pool with columns and loungers."
+      },
+      "role": "place"
+    },
+    {
+      "id": "nature-and-outdoors--birmingham-botanical-gardens",
+      "folder": "Nature_&_Outdoors",
+      "file": "Birmingham Botanical Gardens.jpg",
+      "width": 3840,
+      "height": 2555,
+      "source": "Carpeta Brum_pics aportada por el autor del proyecto",
+      "author": null,
+      "license": "Uso académico no comercial autorizado por el autor del proyecto (declaración del 2026-11-22); sin publicación pública.",
+      "permission": "granted",
+      "evidence": [
+        "Sin metadatos de autoría ni licencia."
+      ],
+      "alt": {
+        "es": "Parterre de cactus y suculentas ante el invernadero victoriano de los Birmingham Botanical Gardens.",
+        "en": "Bed of cacti and succulents in front of the Victorian glasshouse at Birmingham Botanical Gardens."
+      },
+      "role": "place"
+    },
+    {
+      "id": "nature-and-outdoors--cannon-hill-park",
+      "folder": "Nature_&_Outdoors",
+      "file": "Cannon Hill Park.jpg",
+      "width": 1080,
+      "height": 1920,
+      "source": "Carpeta Brum_pics aportada por el autor del proyecto",
+      "author": null,
+      "license": "Uso académico no comercial autorizado por el autor del proyecto (declaración del 2026-11-22); sin publicación pública.",
+      "permission": "granted",
+      "evidence": [
+        "Sin metadatos de autoría ni licencia."
+      ],
+      "alt": {
+        "es": "Estanque con nenúfares y un barco a pedales con forma de cisne en Cannon Hill Park.",
+        "en": "Lily-covered pond with a swan pedalo at Cannon Hill Park."
+      },
+      "role": "place"
+    },
+    {
+      "id": "nature-and-outdoors--lickey-hills",
+      "folder": "Nature_&_Outdoors",
+      "file": "Lickey Hills.jpg",
+      "width": 2048,
+      "height": 1213,
+      "source": "Flickr (enlace en metadatos IPTC)",
+      "author": null,
+      "license": "Uso académico no comercial autorizado por el autor del proyecto (declaración del 2026-11-22); sin publicación pública.",
+      "permission": "granted",
+      "evidence": [
+        "IPTC con enlace a Flickr; sin licencia declarada."
+      ],
+      "alt": {
+        "es": "Mirador de piedra con almenas en lo alto de una colina de hierba, bajo cielo azul.",
+        "en": "Crenellated stone viewpoint on a grassy hilltop under a blue sky."
+      },
+      "role": "place"
+    },
+    {
+      "id": "nature-and-outdoors--sutton-park",
+      "folder": "Nature_&_Outdoors",
+      "file": "Sutton Park.jpg",
+      "width": 1600,
+      "height": 1066,
+      "source": "Carpeta Brum_pics aportada por el autor del proyecto",
+      "author": null,
+      "license": "Uso académico no comercial autorizado por el autor del proyecto (declaración del 2026-11-22); sin publicación pública.",
+      "permission": "granted",
+      "evidence": [
+        "Sin metadatos de autoría ni licencia."
+      ],
+      "alt": {
+        "es": "Lago rodeado de árboles otoñales y vegetación de ribera en Sutton Park.",
+        "en": "Lake framed by autumn trees and reeds in Sutton Park."
+      },
+      "role": "place"
+    },
+    {
+      "id": "shopping-and-retail--bullring-and-selfridges",
+      "folder": "Shopping_&_Retail",
+      "file": "Bullring and Selfridges.jpg",
+      "width": 3840,
+      "height": 2160,
+      "source": "Carpeta Brum_pics aportada por el autor del proyecto",
+      "author": null,
+      "license": "Uso académico no comercial autorizado por el autor del proyecto (declaración del 2026-11-22); sin publicación pública.",
+      "permission": "granted",
+      "evidence": [
+        "Sin metadatos de autoría ni licencia."
+      ],
+      "alt": {
+        "es": "Fachada curva de Selfridges cubierta de discos metálicos, en el Bullring.",
+        "en": "Curved Selfridges façade covered in metal discs at the Bullring."
+      },
+      "role": "place"
+    },
+    {
+      "id": "shopping-and-retail--grand-central",
+      "folder": "Shopping_&_Retail",
+      "file": "Grand Central.jpg",
+      "width": 1024,
+      "height": 536,
+      "source": "Carpeta Brum_pics aportada por el autor del proyecto",
+      "author": null,
+      "license": "Uso académico no comercial autorizado por el autor del proyecto (declaración del 2026-11-22); sin publicación pública.",
+      "permission": "granted",
+      "evidence": [
+        "Sin metadatos de autoría ni licencia."
+      ],
+      "alt": {
+        "es": "Atrio de Grand Central bajo una cubierta blanca, con gente y tiendas en dos niveles.",
+        "en": "Grand Central atrium under a white roof, with shoppers and stores on two levels."
+      },
+      "role": "place"
+    },
+    {
+      "id": "shopping-and-retail--great-western-arcade",
+      "folder": "Shopping_&_Retail",
+      "file": "Great Western Arcade.jpg",
+      "width": 2050,
+      "height": 1367,
+      "source": "Carpeta Brum_pics aportada por el autor del proyecto",
+      "author": null,
+      "license": "Uso académico no comercial autorizado por el autor del proyecto (declaración del 2026-11-22); sin publicación pública.",
+      "permission": "granted",
+      "evidence": [
+        "Sin metadatos de autoría ni licencia."
+      ],
+      "alt": {
+        "es": "Galería victoriana con cubierta de cristal, suelo ajedrezado y escaparates a ambos lados.",
+        "en": "Victorian arcade with a glass roof, chequered floor and shopfronts on both sides."
+      },
+      "role": "place"
+    },
+    {
+      "id": "shopping-and-retail--mailbox",
+      "folder": "Shopping_&_Retail",
+      "file": "Mailbox.jpg",
+      "width": 1600,
+      "height": 1066,
+      "source": "Carpeta Brum_pics aportada por el autor del proyecto",
+      "author": null,
+      "license": "Uso académico no comercial autorizado por el autor del proyecto (declaración del 2026-11-22); sin publicación pública.",
+      "permission": "granted",
+      "evidence": [
+        "Sin metadatos de autoría ni licencia."
+      ],
+      "alt": {
+        "es": "Edificio de The Mailbox con fachada roja y acristalada y tiendas en la planta baja.",
+        "en": "The Mailbox building with a red and glass façade and shops at street level."
+      },
+      "role": "place"
+    },
+    {
+      "id": "sports-and-adventure--ackers-adventure",
+      "folder": "Sports_&_Adventure",
+      "file": "Ackers Adventure.jpg",
+      "width": 1920,
+      "height": 900,
+      "source": "Carpeta Brum_pics aportada por el autor del proyecto",
+      "author": null,
+      "license": "Uso académico no comercial autorizado por el autor del proyecto (declaración del 2026-11-22); sin publicación pública.",
+      "permission": "granted",
+      "evidence": [
+        "Sin metadatos de autoría ni licencia."
+      ],
+      "alt": {
+        "es": "Personas con esquís en una pista de esquí seco.",
+        "en": "People on skis on a dry ski slope."
+      },
+      "role": "place"
+    },
+    {
+      "id": "sports-and-adventure--alexander-stadium",
+      "folder": "Sports_&_Adventure",
+      "file": "Alexander Stadium.jpg",
+      "width": 1900,
+      "height": 750,
+      "source": "Carpeta Brum_pics aportada por el autor del proyecto",
+      "author": null,
+      "license": "Uso académico no comercial autorizado por el autor del proyecto (declaración del 2026-11-22); sin publicación pública.",
+      "permission": "granted",
+      "evidence": [
+        "Sin metadatos de autoría ni licencia."
+      ],
+      "alt": {
+        "es": "Vista aérea del Alexander Stadium con su pista de atletismo azul.",
+        "en": "Aerial view of Alexander Stadium with its blue athletics track."
+      },
+      "role": "place"
+    },
+    {
+      "id": "sports-and-adventure--edgbaston-cricket-ground",
+      "folder": "Sports_&_Adventure",
+      "file": "Edgbaston Cricket Ground.jpg",
+      "width": 901,
+      "height": 600,
+      "source": "Carpeta Brum_pics aportada por el autor del proyecto",
+      "author": null,
+      "license": "Uso académico no comercial autorizado por el autor del proyecto (declaración del 2026-11-22); sin publicación pública.",
+      "permission": "granted",
+      "evidence": [
+        "Sin metadatos de autoría ni licencia."
+      ],
+      "alt": {
+        "es": "Vista aérea del campo de críquet de Edgbaston lleno de público durante un partido.",
+        "en": "Aerial view of Edgbaston cricket ground packed with spectators during a match."
+      },
+      "role": "place"
+    },
+    {
+      "id": "sports-and-adventure--villa-park",
+      "folder": "Sports_&_Adventure",
+      "file": "Villa Park.jpg",
+      "width": 1920,
+      "height": 1080,
+      "source": "Carpeta Brum_pics aportada por el autor del proyecto",
+      "author": null,
+      "license": "Uso académico no comercial autorizado por el autor del proyecto (declaración del 2026-11-22); sin publicación pública.",
+      "permission": "granted",
+      "evidence": [
+        "Sin metadatos de autoría ni licencia."
+      ],
+      "alt": {
+        "es": "Vista aérea de Villa Park, estadio del Aston Villa, con sus gradas cubiertas rodeadas de casas.",
+        "en": "Aerial view of Villa Park, Aston Villa’s stadium, its covered stands surrounded by houses."
+      },
+      "role": "place"
+    },
+    {
+      "id": "visitor-logistics-and-safety--birmingham-airport",
+      "folder": "Visitor_Logistics_&_Safety",
+      "file": "Birmingham Airport.jpg",
+      "width": 681,
+      "height": 486,
+      "source": "Carpeta Brum_pics aportada por el autor del proyecto",
+      "author": null,
+      "license": "Uso académico no comercial autorizado por el autor del proyecto (declaración del 2026-11-22); sin publicación pública.",
+      "permission": "granted",
+      "evidence": [
+        "Sin metadatos de autoría ni licencia."
+      ],
+      "alt": {
+        "es": "Entrada de salidas del aeropuerto de Birmingham con viajeros y maletas.",
+        "en": "Departures entrance at Birmingham Airport with travellers and suitcases."
+      },
+      "role": "place"
+    },
+    {
+      "id": "visitor-logistics-and-safety--birmingham-new-street-station",
+      "folder": "Visitor_Logistics_&_Safety",
+      "file": "Birmingham New Street Station.jpg",
+      "width": 1024,
+      "height": 538,
+      "source": "Carpeta Brum_pics aportada por el autor del proyecto",
+      "author": null,
+      "license": "Uso académico no comercial autorizado por el autor del proyecto (declaración del 2026-11-22); sin publicación pública.",
+      "permission": "granted",
+      "evidence": [
+        "Sin metadatos de autoría ni licencia."
+      ],
+      "alt": {
+        "es": "Vestíbulo de la estación de Birmingham New Street con paneles de salidas y techo ondulado.",
+        "en": "Birmingham New Street station concourse with departure boards and a wave-shaped ceiling."
+      },
+      "role": "place"
+    },
+    {
+      "id": "visitor-logistics-and-safety--city-centre-wayfinding",
+      "folder": "Visitor_Logistics_&_Safety",
+      "file": "City Centre Wayfinding.jpg",
+      "width": 1380,
+      "height": 1932,
+      "source": "Carpeta Brum_pics aportada por el autor del proyecto",
+      "author": null,
+      "license": "Uso académico no comercial autorizado por el autor del proyecto (declaración del 2026-11-22); sin publicación pública.",
+      "permission": "granted",
+      "evidence": [
+        "Sin metadatos de autoría ni licencia."
+      ],
+      "alt": {
+        "es": "Tótem de señalización con plano del centro y peatones pasando a su lado.",
+        "en": "Wayfinding totem with a city-centre map and pedestrians walking past."
+      },
+      "role": "place"
+    },
+    {
+      "id": "visitor-logistics-and-safety--west-midlands-metro",
+      "folder": "Visitor_Logistics_&_Safety",
+      "file": "West Midlands Metro.jpg",
+      "width": 1200,
+      "height": 579,
+      "source": "Carpeta Brum_pics aportada por el autor del proyecto",
+      "author": null,
+      "license": "Uso académico no comercial autorizado por el autor del proyecto (declaración del 2026-11-22); sin publicación pública.",
+      "permission": "granted",
+      "evidence": [
+        "Sin metadatos de autoría ni licencia."
+      ],
+      "alt": {
+        "es": "Tranvía azul del West Midlands Metro junto a edificios de oficinas en el centro de Birmingham.",
+        "en": "Blue West Midlands Metro tram beside office buildings in central Birmingham."
+      },
+      "role": "place"
+    },
+    {
+      "id": "welcome-to-brum--birmingham-arquitectura",
+      "folder": "Welcome_to_brum",
+      "file": "Birmingham-Arquitectura.jpg",
+      "width": 3000,
+      "height": 2000,
+      "source": "Carpeta Brum_pics aportada por el autor del proyecto",
+      "author": null,
+      "license": "Uso académico no comercial autorizado por el autor del proyecto (declaración del 2026-11-22); sin publicación pública.",
+      "permission": "granted",
+      "evidence": [
+        "Sin metadatos de autoría ni licencia."
+      ],
+      "alt": {
+        "es": "Iglesia de San Martín iluminada al atardecer junto a la fachada de discos de Selfridges.",
+        "en": "St Martin’s Church lit at dusk beside the disc-clad Selfridges building."
+      },
+      "role": "home"
+    },
+    {
+      "id": "welcome-to-brum--birmingham-biblioteca-desde-el-canal",
+      "folder": "Welcome_to_brum",
+      "file": "Birmingham-Biblioteca-desde-el-canal.jpg",
+      "width": 480,
+      "height": 720,
+      "source": "Carpeta Brum_pics aportada por el autor del proyecto",
+      "author": null,
+      "license": "Uso académico no comercial autorizado por el autor del proyecto (declaración del 2026-11-22); sin publicación pública.",
+      "permission": "granted",
+      "evidence": [
+        "Metadatos de edición (Adobe Photoshop, 2022-04-28); sin autor."
+      ],
+      "alt": {
+        "es": "Fachada de celosía de la Biblioteca de Birmingham vista desde el canal, con barcas amarradas.",
+        "en": "The Library of Birmingham’s filigree façade seen from the canal, with moored boats."
+      },
+      "role": "home"
+    },
+    {
+      "id": "welcome-to-brum--birmingham-bullring",
+      "folder": "Welcome_to_brum",
+      "file": "Birmingham-Bullring.jpg",
+      "width": 1920,
+      "height": 1088,
+      "source": "Carpeta Brum_pics aportada por el autor del proyecto",
+      "author": null,
+      "license": "Uso académico no comercial autorizado por el autor del proyecto (declaración del 2026-11-22); sin publicación pública.",
+      "permission": "granted",
+      "evidence": [
+        "Rasgos de imagen generada o compuesta: la escena no coincide con el entorno real del Bullring. Verificar procedencia."
+      ],
+      "alt": {
+        "es": "Canal con barcas que lleva hacia un edificio rotulado «Bull Ring» al atardecer.",
+        "en": "Canal with boats leading towards a building signed “Bull Ring” at sunset."
+      },
+      "role": "home"
+    },
+    {
+      "id": "welcome-to-brum--birmingham-canal",
+      "folder": "Welcome_to_brum",
+      "file": "Birmingham-Canal.jpg",
+      "width": 1200,
+      "height": 750,
+      "source": "Getty Images",
+      "author": "Thomas Faull / Getty Images",
+      "license": "Uso académico no comercial autorizado por el autor del proyecto (declaración del 2026-11-22); sin publicación pública.",
+      "permission": "granted",
+      "evidence": [
+        "IPTC/XMP: «Thomas Faull», «Getty Images», fecha 2024-07-24. Imagen de banco de imágenes: no usar sin licencia."
+      ],
+      "alt": {
+        "es": "Vista elevada de un canal entre edificios de ladrillo del centro, con barcazas y torres al fondo.",
+        "en": "Elevated view of a city-centre canal between brick buildings, with narrowboats and towers behind."
+      },
+      "role": "home"
+    },
+    {
+      "id": "welcome-to-brum--birmingham-centenary-square-desde-el-aire",
+      "folder": "Welcome_to_brum",
+      "file": "Birmingham-Centenary-Square-desde-el-aire.jpg",
+      "width": 2300,
+      "height": 1169,
+      "source": "Carpeta Brum_pics aportada por el autor del proyecto",
+      "author": null,
+      "license": "Uso académico no comercial autorizado por el autor del proyecto (declaración del 2026-11-22); sin publicación pública.",
+      "permission": "granted",
+      "evidence": [
+        "Sin metadatos de autoría ni licencia."
+      ],
+      "alt": {
+        "es": "Vista aérea del centro de Birmingham con la Biblioteca y Centenary Square.",
+        "en": "Aerial view of central Birmingham with the Library and Centenary Square."
+      },
+      "role": "home"
+    },
+    {
+      "id": "welcome-to-brum--birmingham-panoramica-nocturna",
+      "folder": "Welcome_to_brum",
+      "file": "Birmingham-Panoramica-nocturna.jpg",
+      "width": 800,
+      "height": 500,
+      "source": "Carpeta Brum_pics aportada por el autor del proyecto",
+      "author": null,
+      "license": "Uso académico no comercial autorizado por el autor del proyecto (declaración del 2026-11-22); sin publicación pública.",
+      "permission": "granted",
+      "evidence": [
+        "Sin metadatos de autoría ni licencia."
+      ],
+      "alt": {
+        "es": "Panorámica del centro al anochecer con la torre BT, el canal y un puente iluminados.",
+        "en": "City-centre panorama at dusk with the BT Tower, the canal and a lit bridge."
+      },
+      "role": "home"
+    },
+    {
+      "id": "welcome-to-brum--birmingham-victoria-square-de-noche",
+      "folder": "Welcome_to_brum",
+      "file": "Birmingham-Victoria-Square-de-noche.jpg",
+      "width": 1600,
+      "height": 1066,
+      "source": "Carpeta Brum_pics aportada por el autor del proyecto",
+      "author": null,
+      "license": "Uso académico no comercial autorizado por el autor del proyecto (declaración del 2026-11-22); sin publicación pública.",
+      "permission": "granted",
+      "evidence": [
+        "Sin metadatos de autoría ni licencia."
+      ],
+      "alt": {
+        "es": "Council House y Victoria Square iluminados al anochecer, con la escalinata en primer plano.",
+        "en": "The Council House and Victoria Square lit at dusk, with the steps in the foreground."
+      },
+      "role": "home"
+    },
+    {
+      "id": "welcome-to-brum--birmingham-victoria-square",
+      "folder": "Welcome_to_brum",
+      "file": "Birmingham-Victoria-Square.jpg",
+      "width": 3840,
+      "height": 2430,
+      "source": "Carpeta Brum_pics aportada por el autor del proyecto",
+      "author": null,
+      "license": "Uso académico no comercial autorizado por el autor del proyecto (declaración del 2026-11-22); sin publicación pública.",
+      "permission": "granted",
+      "evidence": [
+        "Sin metadatos de autoría ni licencia."
+      ],
+      "alt": {
+        "es": "Council House con su torre del reloj y la estatua de la reina Victoria en Victoria Square, bajo cielo azul.",
+        "en": "The Council House and its clock tower with the Queen Victoria statue in Victoria Square, under a blue sky."
+      },
+      "role": "home"
+    }
+  ]
+}

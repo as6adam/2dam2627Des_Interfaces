@@ -1,0 +1,80 @@
+# Guía para sustituir el contenido de demostración
+
+Todo el contenido vive en dos archivos:
+
+- `src/content/catalog.ts`: sectores, lugares y el destacado de portada (un único catálogo tipado).
+- `src/content/photo-rights.json`: registro de derechos y texto alternativo de cada foto.
+
+Después de cada cambio, ejecuta `npm run check:catalog`. Rechaza datos prácticos sin fuente,
+fuentes sin fecha y entradas de demostración con datos.
+
+## 1. Sustituir una entrada de demostración
+
+Cada entrada `provenance: 'demo'` solo tiene el nombre (tomado del archivo de foto) y el
+sector. Para convertirla en una ficha real, añade esto:
+
+```ts
+{
+  id: 'aston-hall',                       // no lo cambies: forma parte de la URL
+  sectorId: 'culture-heritage',
+  name: { es: 'Aston Hall', en: 'Aston Hall' },
+  kind: 'venue',
+  provenance: 'author',                   // 'author' si los textos son tuyos; 'verified' si solo hay datos comprobados
+  verifiedOn: 'AAAA-MM-DD',               // día en que comprobaste los datos prácticos
+  summary: { es: '…', en: '…' },
+  description: [{ es: '…', en: '…' }],
+  address: { lines: ['…'], postcode: '…', sourceId: 'web-oficial' },
+  map: { provider: 'OpenStreetMap', url: 'https://www.openstreetmap.org/search?query=…' },
+  transport: [
+    {
+      id: 'rail-x',
+      mode: 'rail',                       // rail | tram | bus | shuttle | coach | air | cycle
+      stop: { es: 'Estación de …', en: '… station' },
+      service: { es: 'Línea …', en: '… line' },     // opcional
+      origin: { es: 'Birmingham New Street', en: 'Birmingham New Street' }, // cuando proceda
+      ride: { es: '… min', en: '… min' },           // solo si la fuente lo publica
+      walk: { minutes: '≈ 10', distance: { es: '0,5 millas', en: '0.5 miles' } },
+      sourceIds: ['web-oficial'],
+    },
+  ],
+  accessibility: [{ text: { es: '…', en: '…' }, sourceIds: ['web-oficial'] }],
+  sources: [
+    { id: 'web-oficial', title: '…', publisher: '…', url: 'https://…', checkedOn: 'AAAA-MM-DD' },
+  ],
+  photoIds: ['culture-and-heritage--aston-hall'],
+}
+```
+
+Reglas:
+
+- **No inventes servicios, recorridos ni tiempos.** Si la fuente no publica un dato, deja el
+  campo fuera: la ficha lo listará en «Pendiente de facilitar o verificar».
+- Copia los tiempos tal como los publica la fuente (por ejemplo `≈ 5` o `< 10`). No los
+  recalcules.
+- Si dos fuentes no coinciden, regístralo en `caveats`.
+- Para quitar una entrada de demostración que no vaya a usarse, bórrala del catálogo.
+  El sector la dejará de contar automáticamente.
+
+## 2. Sustituir los textos de Villa Park
+
+En `catalog.featured` cambia `textStatus: 'provisional'` por `'author'` y reemplaza los
+`paragraphs` de cada bloque (`club`, `stadium`, `visitor`). Mantén `sourceIds` si los
+textos siguen apoyándose en esas fuentes, o deja la lista vacía (`[]`) si son tuyos y no
+citan ninguna.
+
+## 3. Autorizar una foto
+
+1. En `photo-rights.json`, en la foto correspondiente, rellena `source` (URL o «Foto propia»),
+   `author` y `license` (p. ej. «Permiso escrito de X, 2026-11-30» o «CC BY 4.0»), y cambia
+   `permission` a `"granted"`.
+2. Revisa los textos alternativos `alt.es` y `alt.en`, redactados a partir de la imagen.
+3. Ejecuta `npm run images`. Lee el original de `../Brum_pics` (o la ruta indicada con
+   `--src`), genera variantes WebP/JPG en `src/assets/images/` sin metadatos y actualiza
+   `src/content/image-manifest.json`.
+4. Ejecuta `npm run report:photos` para actualizar `docs/photo-rights.md`.
+
+Si una foto deja de estar autorizada, vuelve a poner `"unconfirmed"` y ejecuta `npm run images`:
+se retiran sus variantes y vuelve a mostrarse el recurso provisional.
+
+Las fotos de la portada salen de `Welcome_to_brum` y se eligen en `src/content/media.ts`
+(`HOME_HERO_PHOTO`, `HOME_STRIP_PHOTOS`).

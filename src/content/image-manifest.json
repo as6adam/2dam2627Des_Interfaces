@@ -1,0 +1,965 @@
+{
+  "culture-and-heritage--aston-hall": {
+    "width": 1296,
+    "height": 729,
+    "variants": [
+      {
+        "width": 480,
+        "webp": "culture-and-heritage--aston-hall-480.webp",
+        "jpg": "culture-and-heritage--aston-hall-480.jpg"
+      },
+      {
+        "width": 960,
+        "webp": "culture-and-heritage--aston-hall-960.webp",
+        "jpg": "culture-and-heritage--aston-hall-960.jpg"
+      },
+      {
+        "width": 1296,
+        "webp": "culture-and-heritage--aston-hall-1296.webp",
+        "jpg": "culture-and-heritage--aston-hall-1296.jpg"
+      }
+    ]
+  },
+  "culture-and-heritage--birmingham-back-to-backs": {
+    "width": 1440,
+    "height": 500,
+    "variants": [
+      {
+        "width": 480,
+        "webp": "culture-and-heritage--birmingham-back-to-backs-480.webp",
+        "jpg": "culture-and-heritage--birmingham-back-to-backs-480.jpg"
+      },
+      {
+        "width": 960,
+        "webp": "culture-and-heritage--birmingham-back-to-backs-960.webp",
+        "jpg": "culture-and-heritage--birmingham-back-to-backs-960.jpg"
+      },
+      {
+        "width": 1440,
+        "webp": "culture-and-heritage--birmingham-back-to-backs-1440.webp",
+        "jpg": "culture-and-heritage--birmingham-back-to-backs-1440.jpg"
+      }
+    ]
+  },
+  "culture-and-heritage--birmingham-museum-and-art-gallery": {
+    "width": 3840,
+    "height": 1979,
+    "variants": [
+      {
+        "width": 480,
+        "webp": "culture-and-heritage--birmingham-museum-and-art-gallery-480.webp",
+        "jpg": "culture-and-heritage--birmingham-museum-and-art-gallery-480.jpg"
+      },
+      {
+        "width": 960,
+        "webp": "culture-and-heritage--birmingham-museum-and-art-gallery-960.webp",
+        "jpg": "culture-and-heritage--birmingham-museum-and-art-gallery-960.jpg"
+      },
+      {
+        "width": 1600,
+        "webp": "culture-and-heritage--birmingham-museum-and-art-gallery-1600.webp",
+        "jpg": "culture-and-heritage--birmingham-museum-and-art-gallery-1600.jpg"
+      }
+    ]
+  },
+  "culture-and-heritage--jewellery-quarter": {
+    "width": 1366,
+    "height": 768,
+    "variants": [
+      {
+        "width": 480,
+        "webp": "culture-and-heritage--jewellery-quarter-480.webp",
+        "jpg": "culture-and-heritage--jewellery-quarter-480.jpg"
+      },
+      {
+        "width": 960,
+        "webp": "culture-and-heritage--jewellery-quarter-960.webp",
+        "jpg": "culture-and-heritage--jewellery-quarter-960.jpg"
+      },
+      {
+        "width": 1366,
+        "webp": "culture-and-heritage--jewellery-quarter-1366.webp",
+        "jpg": "culture-and-heritage--jewellery-quarter-1366.jpg"
+      }
+    ]
+  },
+  "education-and-literature--birmingham-city-university": {
+    "width": 626,
+    "height": 835,
+    "variants": [
+      {
+        "width": 480,
+        "webp": "education-and-literature--birmingham-city-university-480.webp",
+        "jpg": "education-and-literature--birmingham-city-university-480.jpg"
+      },
+      {
+        "width": 626,
+        "webp": "education-and-literature--birmingham-city-university-626.webp",
+        "jpg": "education-and-literature--birmingham-city-university-626.jpg"
+      }
+    ]
+  },
+  "education-and-literature--library-of-birmingham-book-rotunda": {
+    "width": 830,
+    "height": 460,
+    "variants": [
+      {
+        "width": 480,
+        "webp": "education-and-literature--library-of-birmingham-book-rotunda-480.webp",
+        "jpg": "education-and-literature--library-of-birmingham-book-rotunda-480.jpg"
+      },
+      {
+        "width": 830,
+        "webp": "education-and-literature--library-of-birmingham-book-rotunda-830.webp",
+        "jpg": "education-and-literature--library-of-birmingham-book-rotunda-830.jpg"
+      }
+    ]
+  },
+  "education-and-literature--shakespeare-memorial-room": {
+    "width": 1024,
+    "height": 683,
+    "variants": [
+      {
+        "width": 480,
+        "webp": "education-and-literature--shakespeare-memorial-room-480.webp",
+        "jpg": "education-and-literature--shakespeare-memorial-room-480.jpg"
+      },
+      {
+        "width": 960,
+        "webp": "education-and-literature--shakespeare-memorial-room-960.webp",
+        "jpg": "education-and-literature--shakespeare-memorial-room-960.jpg"
+      },
+      {
+        "width": 1024,
+        "webp": "education-and-literature--shakespeare-memorial-room-1024.webp",
+        "jpg": "education-and-literature--shakespeare-memorial-room-1024.jpg"
+      }
+    ]
+  },
+  "education-and-literature--university-of-birmingham": {
+    "width": 1000,
+    "height": 667,
+    "variants": [
+      {
+        "width": 480,
+        "webp": "education-and-literature--university-of-birmingham-480.webp",
+        "jpg": "education-and-literature--university-of-birmingham-480.jpg"
+      },
+      {
+        "width": 960,
+        "webp": "education-and-literature--university-of-birmingham-960.webp",
+        "jpg": "education-and-literature--university-of-birmingham-960.jpg"
+      },
+      {
+        "width": 1000,
+        "webp": "education-and-literature--university-of-birmingham-1000.webp",
+        "jpg": "education-and-literature--university-of-birmingham-1000.jpg"
+      }
+    ]
+  },
+  "entertainment-and-nightlife--birmingham-hippodrome": {
+    "width": 980,
+    "height": 1307,
+    "variants": [
+      {
+        "width": 480,
+        "webp": "entertainment-and-nightlife--birmingham-hippodrome-480.webp",
+        "jpg": "entertainment-and-nightlife--birmingham-hippodrome-480.jpg"
+      },
+      {
+        "width": 960,
+        "webp": "entertainment-and-nightlife--birmingham-hippodrome-960.webp",
+        "jpg": "entertainment-and-nightlife--birmingham-hippodrome-960.jpg"
+      },
+      {
+        "width": 980,
+        "webp": "entertainment-and-nightlife--birmingham-hippodrome-980.webp",
+        "jpg": "entertainment-and-nightlife--birmingham-hippodrome-980.jpg"
+      }
+    ]
+  },
+  "entertainment-and-nightlife--o2-academy-birmingham": {
+    "width": 1300,
+    "height": 500,
+    "variants": [
+      {
+        "width": 480,
+        "webp": "entertainment-and-nightlife--o2-academy-birmingham-480.webp",
+        "jpg": "entertainment-and-nightlife--o2-academy-birmingham-480.jpg"
+      },
+      {
+        "width": 960,
+        "webp": "entertainment-and-nightlife--o2-academy-birmingham-960.webp",
+        "jpg": "entertainment-and-nightlife--o2-academy-birmingham-960.jpg"
+      },
+      {
+        "width": 1300,
+        "webp": "entertainment-and-nightlife--o2-academy-birmingham-1300.webp",
+        "jpg": "entertainment-and-nightlife--o2-academy-birmingham-1300.jpg"
+      }
+    ]
+  },
+  "entertainment-and-nightlife--symphony-hall": {
+    "width": 2000,
+    "height": 1300,
+    "variants": [
+      {
+        "width": 480,
+        "webp": "entertainment-and-nightlife--symphony-hall-480.webp",
+        "jpg": "entertainment-and-nightlife--symphony-hall-480.jpg"
+      },
+      {
+        "width": 960,
+        "webp": "entertainment-and-nightlife--symphony-hall-960.webp",
+        "jpg": "entertainment-and-nightlife--symphony-hall-960.jpg"
+      },
+      {
+        "width": 1600,
+        "webp": "entertainment-and-nightlife--symphony-hall-1600.webp",
+        "jpg": "entertainment-and-nightlife--symphony-hall-1600.jpg"
+      }
+    ]
+  },
+  "entertainment-and-nightlife--the-night-owl": {
+    "width": 1400,
+    "height": 960,
+    "variants": [
+      {
+        "width": 480,
+        "webp": "entertainment-and-nightlife--the-night-owl-480.webp",
+        "jpg": "entertainment-and-nightlife--the-night-owl-480.jpg"
+      },
+      {
+        "width": 960,
+        "webp": "entertainment-and-nightlife--the-night-owl-960.webp",
+        "jpg": "entertainment-and-nightlife--the-night-owl-960.jpg"
+      },
+      {
+        "width": 1400,
+        "webp": "entertainment-and-nightlife--the-night-owl-1400.webp",
+        "jpg": "entertainment-and-nightlife--the-night-owl-1400.jpg"
+      }
+    ]
+  },
+  "family-and-recreation--cadbury-world": {
+    "width": 768,
+    "height": 1024,
+    "variants": [
+      {
+        "width": 480,
+        "webp": "family-and-recreation--cadbury-world-480.webp",
+        "jpg": "family-and-recreation--cadbury-world-480.jpg"
+      },
+      {
+        "width": 768,
+        "webp": "family-and-recreation--cadbury-world-768.webp",
+        "jpg": "family-and-recreation--cadbury-world-768.jpg"
+      }
+    ]
+  },
+  "family-and-recreation--legoland-discovery-centre": {
+    "width": 980,
+    "height": 514,
+    "variants": [
+      {
+        "width": 480,
+        "webp": "family-and-recreation--legoland-discovery-centre-480.webp",
+        "jpg": "family-and-recreation--legoland-discovery-centre-480.jpg"
+      },
+      {
+        "width": 960,
+        "webp": "family-and-recreation--legoland-discovery-centre-960.webp",
+        "jpg": "family-and-recreation--legoland-discovery-centre-960.jpg"
+      },
+      {
+        "width": 980,
+        "webp": "family-and-recreation--legoland-discovery-centre-980.webp",
+        "jpg": "family-and-recreation--legoland-discovery-centre-980.jpg"
+      }
+    ]
+  },
+  "family-and-recreation--national-sea-life-centre": {
+    "width": 1870,
+    "height": 1521,
+    "variants": [
+      {
+        "width": 480,
+        "webp": "family-and-recreation--national-sea-life-centre-480.webp",
+        "jpg": "family-and-recreation--national-sea-life-centre-480.jpg"
+      },
+      {
+        "width": 960,
+        "webp": "family-and-recreation--national-sea-life-centre-960.webp",
+        "jpg": "family-and-recreation--national-sea-life-centre-960.jpg"
+      },
+      {
+        "width": 1600,
+        "webp": "family-and-recreation--national-sea-life-centre-1600.webp",
+        "jpg": "family-and-recreation--national-sea-life-centre-1600.jpg"
+      }
+    ]
+  },
+  "family-and-recreation--thinktank-science-museum": {
+    "width": 2592,
+    "height": 1944,
+    "variants": [
+      {
+        "width": 480,
+        "webp": "family-and-recreation--thinktank-science-museum-480.webp",
+        "jpg": "family-and-recreation--thinktank-science-museum-480.jpg"
+      },
+      {
+        "width": 960,
+        "webp": "family-and-recreation--thinktank-science-museum-960.webp",
+        "jpg": "family-and-recreation--thinktank-science-museum-960.jpg"
+      },
+      {
+        "width": 1600,
+        "webp": "family-and-recreation--thinktank-science-museum-1600.webp",
+        "jpg": "family-and-recreation--thinktank-science-museum-1600.jpg"
+      }
+    ]
+  },
+  "gastronomy-and-culinary--birmingham-balti": {
+    "width": 750,
+    "height": 562,
+    "variants": [
+      {
+        "width": 480,
+        "webp": "gastronomy-and-culinary--birmingham-balti-480.webp",
+        "jpg": "gastronomy-and-culinary--birmingham-balti-480.jpg"
+      },
+      {
+        "width": 750,
+        "webp": "gastronomy-and-culinary--birmingham-balti-750.webp",
+        "jpg": "gastronomy-and-culinary--birmingham-balti-750.jpg"
+      }
+    ]
+  },
+  "gastronomy-and-culinary--digbeth-dining-club": {
+    "width": 1440,
+    "height": 960,
+    "variants": [
+      {
+        "width": 480,
+        "webp": "gastronomy-and-culinary--digbeth-dining-club-480.webp",
+        "jpg": "gastronomy-and-culinary--digbeth-dining-club-480.jpg"
+      },
+      {
+        "width": 960,
+        "webp": "gastronomy-and-culinary--digbeth-dining-club-960.webp",
+        "jpg": "gastronomy-and-culinary--digbeth-dining-club-960.jpg"
+      },
+      {
+        "width": 1440,
+        "webp": "gastronomy-and-culinary--digbeth-dining-club-1440.webp",
+        "jpg": "gastronomy-and-culinary--digbeth-dining-club-1440.jpg"
+      }
+    ]
+  },
+  "gastronomy-and-culinary--original-patty-men": {
+    "width": 960,
+    "height": 540,
+    "variants": [
+      {
+        "width": 480,
+        "webp": "gastronomy-and-culinary--original-patty-men-480.webp",
+        "jpg": "gastronomy-and-culinary--original-patty-men-480.jpg"
+      },
+      {
+        "width": 960,
+        "webp": "gastronomy-and-culinary--original-patty-men-960.webp",
+        "jpg": "gastronomy-and-culinary--original-patty-men-960.jpg"
+      }
+    ]
+  },
+  "gastronomy-and-culinary--purnells": {
+    "width": 1100,
+    "height": 1100,
+    "variants": [
+      {
+        "width": 480,
+        "webp": "gastronomy-and-culinary--purnells-480.webp",
+        "jpg": "gastronomy-and-culinary--purnells-480.jpg"
+      },
+      {
+        "width": 960,
+        "webp": "gastronomy-and-culinary--purnells-960.webp",
+        "jpg": "gastronomy-and-culinary--purnells-960.jpg"
+      },
+      {
+        "width": 1100,
+        "webp": "gastronomy-and-culinary--purnells-1100.webp",
+        "jpg": "gastronomy-and-culinary--purnells-1100.jpg"
+      }
+    ]
+  },
+  "health-and-wellness--bannatyne-spa": {
+    "width": 1280,
+    "height": 713,
+    "variants": [
+      {
+        "width": 480,
+        "webp": "health-and-wellness--bannatyne-spa-480.webp",
+        "jpg": "health-and-wellness--bannatyne-spa-480.jpg"
+      },
+      {
+        "width": 960,
+        "webp": "health-and-wellness--bannatyne-spa-960.webp",
+        "jpg": "health-and-wellness--bannatyne-spa-960.jpg"
+      },
+      {
+        "width": 1280,
+        "webp": "health-and-wellness--bannatyne-spa-1280.webp",
+        "jpg": "health-and-wellness--bannatyne-spa-1280.jpg"
+      }
+    ]
+  },
+  "health-and-wellness--harborne-pool-and-fitness-centre": {
+    "width": 915,
+    "height": 515,
+    "variants": [
+      {
+        "width": 480,
+        "webp": "health-and-wellness--harborne-pool-and-fitness-centre-480.webp",
+        "jpg": "health-and-wellness--harborne-pool-and-fitness-centre-480.jpg"
+      },
+      {
+        "width": 915,
+        "webp": "health-and-wellness--harborne-pool-and-fitness-centre-915.webp",
+        "jpg": "health-and-wellness--harborne-pool-and-fitness-centre-915.jpg"
+      }
+    ]
+  },
+  "health-and-wellness--moseley-road-baths": {
+    "width": 832,
+    "height": 1110,
+    "variants": [
+      {
+        "width": 480,
+        "webp": "health-and-wellness--moseley-road-baths-480.webp",
+        "jpg": "health-and-wellness--moseley-road-baths-480.jpg"
+      },
+      {
+        "width": 832,
+        "webp": "health-and-wellness--moseley-road-baths-832.webp",
+        "jpg": "health-and-wellness--moseley-road-baths-832.jpg"
+      }
+    ]
+  },
+  "health-and-wellness--santai-spa": {
+    "width": 750,
+    "height": 750,
+    "variants": [
+      {
+        "width": 480,
+        "webp": "health-and-wellness--santai-spa-480.webp",
+        "jpg": "health-and-wellness--santai-spa-480.jpg"
+      },
+      {
+        "width": 750,
+        "webp": "health-and-wellness--santai-spa-750.webp",
+        "jpg": "health-and-wellness--santai-spa-750.jpg"
+      }
+    ]
+  },
+  "nature-and-outdoors--birmingham-botanical-gardens": {
+    "width": 3840,
+    "height": 2555,
+    "variants": [
+      {
+        "width": 480,
+        "webp": "nature-and-outdoors--birmingham-botanical-gardens-480.webp",
+        "jpg": "nature-and-outdoors--birmingham-botanical-gardens-480.jpg"
+      },
+      {
+        "width": 960,
+        "webp": "nature-and-outdoors--birmingham-botanical-gardens-960.webp",
+        "jpg": "nature-and-outdoors--birmingham-botanical-gardens-960.jpg"
+      },
+      {
+        "width": 1600,
+        "webp": "nature-and-outdoors--birmingham-botanical-gardens-1600.webp",
+        "jpg": "nature-and-outdoors--birmingham-botanical-gardens-1600.jpg"
+      }
+    ]
+  },
+  "nature-and-outdoors--cannon-hill-park": {
+    "width": 1080,
+    "height": 1920,
+    "variants": [
+      {
+        "width": 480,
+        "webp": "nature-and-outdoors--cannon-hill-park-480.webp",
+        "jpg": "nature-and-outdoors--cannon-hill-park-480.jpg"
+      },
+      {
+        "width": 960,
+        "webp": "nature-and-outdoors--cannon-hill-park-960.webp",
+        "jpg": "nature-and-outdoors--cannon-hill-park-960.jpg"
+      },
+      {
+        "width": 1080,
+        "webp": "nature-and-outdoors--cannon-hill-park-1080.webp",
+        "jpg": "nature-and-outdoors--cannon-hill-park-1080.jpg"
+      }
+    ]
+  },
+  "nature-and-outdoors--lickey-hills": {
+    "width": 2048,
+    "height": 1213,
+    "variants": [
+      {
+        "width": 480,
+        "webp": "nature-and-outdoors--lickey-hills-480.webp",
+        "jpg": "nature-and-outdoors--lickey-hills-480.jpg"
+      },
+      {
+        "width": 960,
+        "webp": "nature-and-outdoors--lickey-hills-960.webp",
+        "jpg": "nature-and-outdoors--lickey-hills-960.jpg"
+      },
+      {
+        "width": 1600,
+        "webp": "nature-and-outdoors--lickey-hills-1600.webp",
+        "jpg": "nature-and-outdoors--lickey-hills-1600.jpg"
+      }
+    ]
+  },
+  "nature-and-outdoors--sutton-park": {
+    "width": 1600,
+    "height": 1066,
+    "variants": [
+      {
+        "width": 480,
+        "webp": "nature-and-outdoors--sutton-park-480.webp",
+        "jpg": "nature-and-outdoors--sutton-park-480.jpg"
+      },
+      {
+        "width": 960,
+        "webp": "nature-and-outdoors--sutton-park-960.webp",
+        "jpg": "nature-and-outdoors--sutton-park-960.jpg"
+      },
+      {
+        "width": 1600,
+        "webp": "nature-and-outdoors--sutton-park-1600.webp",
+        "jpg": "nature-and-outdoors--sutton-park-1600.jpg"
+      }
+    ]
+  },
+  "shopping-and-retail--bullring-and-selfridges": {
+    "width": 3840,
+    "height": 2160,
+    "variants": [
+      {
+        "width": 480,
+        "webp": "shopping-and-retail--bullring-and-selfridges-480.webp",
+        "jpg": "shopping-and-retail--bullring-and-selfridges-480.jpg"
+      },
+      {
+        "width": 960,
+        "webp": "shopping-and-retail--bullring-and-selfridges-960.webp",
+        "jpg": "shopping-and-retail--bullring-and-selfridges-960.jpg"
+      },
+      {
+        "width": 1600,
+        "webp": "shopping-and-retail--bullring-and-selfridges-1600.webp",
+        "jpg": "shopping-and-retail--bullring-and-selfridges-1600.jpg"
+      }
+    ]
+  },
+  "shopping-and-retail--grand-central": {
+    "width": 1024,
+    "height": 536,
+    "variants": [
+      {
+        "width": 480,
+        "webp": "shopping-and-retail--grand-central-480.webp",
+        "jpg": "shopping-and-retail--grand-central-480.jpg"
+      },
+      {
+        "width": 960,
+        "webp": "shopping-and-retail--grand-central-960.webp",
+        "jpg": "shopping-and-retail--grand-central-960.jpg"
+      },
+      {
+        "width": 1024,
+        "webp": "shopping-and-retail--grand-central-1024.webp",
+        "jpg": "shopping-and-retail--grand-central-1024.jpg"
+      }
+    ]
+  },
+  "shopping-and-retail--great-western-arcade": {
+    "width": 2050,
+    "height": 1367,
+    "variants": [
+      {
+        "width": 480,
+        "webp": "shopping-and-retail--great-western-arcade-480.webp",
+        "jpg": "shopping-and-retail--great-western-arcade-480.jpg"
+      },
+      {
+        "width": 960,
+        "webp": "shopping-and-retail--great-western-arcade-960.webp",
+        "jpg": "shopping-and-retail--great-western-arcade-960.jpg"
+      },
+      {
+        "width": 1600,
+        "webp": "shopping-and-retail--great-western-arcade-1600.webp",
+        "jpg": "shopping-and-retail--great-western-arcade-1600.jpg"
+      }
+    ]
+  },
+  "shopping-and-retail--mailbox": {
+    "width": 1600,
+    "height": 1066,
+    "variants": [
+      {
+        "width": 480,
+        "webp": "shopping-and-retail--mailbox-480.webp",
+        "jpg": "shopping-and-retail--mailbox-480.jpg"
+      },
+      {
+        "width": 960,
+        "webp": "shopping-and-retail--mailbox-960.webp",
+        "jpg": "shopping-and-retail--mailbox-960.jpg"
+      },
+      {
+        "width": 1600,
+        "webp": "shopping-and-retail--mailbox-1600.webp",
+        "jpg": "shopping-and-retail--mailbox-1600.jpg"
+      }
+    ]
+  },
+  "sports-and-adventure--ackers-adventure": {
+    "width": 1920,
+    "height": 900,
+    "variants": [
+      {
+        "width": 480,
+        "webp": "sports-and-adventure--ackers-adventure-480.webp",
+        "jpg": "sports-and-adventure--ackers-adventure-480.jpg"
+      },
+      {
+        "width": 960,
+        "webp": "sports-and-adventure--ackers-adventure-960.webp",
+        "jpg": "sports-and-adventure--ackers-adventure-960.jpg"
+      },
+      {
+        "width": 1600,
+        "webp": "sports-and-adventure--ackers-adventure-1600.webp",
+        "jpg": "sports-and-adventure--ackers-adventure-1600.jpg"
+      }
+    ]
+  },
+  "sports-and-adventure--alexander-stadium": {
+    "width": 1900,
+    "height": 750,
+    "variants": [
+      {
+        "width": 480,
+        "webp": "sports-and-adventure--alexander-stadium-480.webp",
+        "jpg": "sports-and-adventure--alexander-stadium-480.jpg"
+      },
+      {
+        "width": 960,
+        "webp": "sports-and-adventure--alexander-stadium-960.webp",
+        "jpg": "sports-and-adventure--alexander-stadium-960.jpg"
+      },
+      {
+        "width": 1600,
+        "webp": "sports-and-adventure--alexander-stadium-1600.webp",
+        "jpg": "sports-and-adventure--alexander-stadium-1600.jpg"
+      }
+    ]
+  },
+  "sports-and-adventure--edgbaston-cricket-ground": {
+    "width": 901,
+    "height": 600,
+    "variants": [
+      {
+        "width": 480,
+        "webp": "sports-and-adventure--edgbaston-cricket-ground-480.webp",
+        "jpg": "sports-and-adventure--edgbaston-cricket-ground-480.jpg"
+      },
+      {
+        "width": 901,
+        "webp": "sports-and-adventure--edgbaston-cricket-ground-901.webp",
+        "jpg": "sports-and-adventure--edgbaston-cricket-ground-901.jpg"
+      }
+    ]
+  },
+  "sports-and-adventure--villa-park": {
+    "width": 1920,
+    "height": 1080,
+    "variants": [
+      {
+        "width": 480,
+        "webp": "sports-and-adventure--villa-park-480.webp",
+        "jpg": "sports-and-adventure--villa-park-480.jpg"
+      },
+      {
+        "width": 960,
+        "webp": "sports-and-adventure--villa-park-960.webp",
+        "jpg": "sports-and-adventure--villa-park-960.jpg"
+      },
+      {
+        "width": 1600,
+        "webp": "sports-and-adventure--villa-park-1600.webp",
+        "jpg": "sports-and-adventure--villa-park-1600.jpg"
+      }
+    ]
+  },
+  "visitor-logistics-and-safety--birmingham-airport": {
+    "width": 681,
+    "height": 486,
+    "variants": [
+      {
+        "width": 480,
+        "webp": "visitor-logistics-and-safety--birmingham-airport-480.webp",
+        "jpg": "visitor-logistics-and-safety--birmingham-airport-480.jpg"
+      },
+      {
+        "width": 681,
+        "webp": "visitor-logistics-and-safety--birmingham-airport-681.webp",
+        "jpg": "visitor-logistics-and-safety--birmingham-airport-681.jpg"
+      }
+    ]
+  },
+  "visitor-logistics-and-safety--birmingham-new-street-station": {
+    "width": 1024,
+    "height": 538,
+    "variants": [
+      {
+        "width": 480,
+        "webp": "visitor-logistics-and-safety--birmingham-new-street-station-480.webp",
+        "jpg": "visitor-logistics-and-safety--birmingham-new-street-station-480.jpg"
+      },
+      {
+        "width": 960,
+        "webp": "visitor-logistics-and-safety--birmingham-new-street-station-960.webp",
+        "jpg": "visitor-logistics-and-safety--birmingham-new-street-station-960.jpg"
+      },
+      {
+        "width": 1024,
+        "webp": "visitor-logistics-and-safety--birmingham-new-street-station-1024.webp",
+        "jpg": "visitor-logistics-and-safety--birmingham-new-street-station-1024.jpg"
+      }
+    ]
+  },
+  "visitor-logistics-and-safety--city-centre-wayfinding": {
+    "width": 1380,
+    "height": 1932,
+    "variants": [
+      {
+        "width": 480,
+        "webp": "visitor-logistics-and-safety--city-centre-wayfinding-480.webp",
+        "jpg": "visitor-logistics-and-safety--city-centre-wayfinding-480.jpg"
+      },
+      {
+        "width": 960,
+        "webp": "visitor-logistics-and-safety--city-centre-wayfinding-960.webp",
+        "jpg": "visitor-logistics-and-safety--city-centre-wayfinding-960.jpg"
+      },
+      {
+        "width": 1380,
+        "webp": "visitor-logistics-and-safety--city-centre-wayfinding-1380.webp",
+        "jpg": "visitor-logistics-and-safety--city-centre-wayfinding-1380.jpg"
+      }
+    ]
+  },
+  "visitor-logistics-and-safety--west-midlands-metro": {
+    "width": 1200,
+    "height": 579,
+    "variants": [
+      {
+        "width": 480,
+        "webp": "visitor-logistics-and-safety--west-midlands-metro-480.webp",
+        "jpg": "visitor-logistics-and-safety--west-midlands-metro-480.jpg"
+      },
+      {
+        "width": 960,
+        "webp": "visitor-logistics-and-safety--west-midlands-metro-960.webp",
+        "jpg": "visitor-logistics-and-safety--west-midlands-metro-960.jpg"
+      },
+      {
+        "width": 1200,
+        "webp": "visitor-logistics-and-safety--west-midlands-metro-1200.webp",
+        "jpg": "visitor-logistics-and-safety--west-midlands-metro-1200.jpg"
+      }
+    ]
+  },
+  "welcome-to-brum--birmingham-arquitectura": {
+    "width": 3000,
+    "height": 2000,
+    "variants": [
+      {
+        "width": 480,
+        "webp": "welcome-to-brum--birmingham-arquitectura-480.webp",
+        "jpg": "welcome-to-brum--birmingham-arquitectura-480.jpg"
+      },
+      {
+        "width": 960,
+        "webp": "welcome-to-brum--birmingham-arquitectura-960.webp",
+        "jpg": "welcome-to-brum--birmingham-arquitectura-960.jpg"
+      },
+      {
+        "width": 1600,
+        "webp": "welcome-to-brum--birmingham-arquitectura-1600.webp",
+        "jpg": "welcome-to-brum--birmingham-arquitectura-1600.jpg"
+      },
+      {
+        "width": 2400,
+        "webp": "welcome-to-brum--birmingham-arquitectura-2400.webp",
+        "jpg": "welcome-to-brum--birmingham-arquitectura-2400.jpg"
+      }
+    ]
+  },
+  "welcome-to-brum--birmingham-biblioteca-desde-el-canal": {
+    "width": 480,
+    "height": 720,
+    "variants": [
+      {
+        "width": 480,
+        "webp": "welcome-to-brum--birmingham-biblioteca-desde-el-canal-480.webp",
+        "jpg": "welcome-to-brum--birmingham-biblioteca-desde-el-canal-480.jpg"
+      }
+    ]
+  },
+  "welcome-to-brum--birmingham-bullring": {
+    "width": 1920,
+    "height": 1088,
+    "variants": [
+      {
+        "width": 480,
+        "webp": "welcome-to-brum--birmingham-bullring-480.webp",
+        "jpg": "welcome-to-brum--birmingham-bullring-480.jpg"
+      },
+      {
+        "width": 960,
+        "webp": "welcome-to-brum--birmingham-bullring-960.webp",
+        "jpg": "welcome-to-brum--birmingham-bullring-960.jpg"
+      },
+      {
+        "width": 1600,
+        "webp": "welcome-to-brum--birmingham-bullring-1600.webp",
+        "jpg": "welcome-to-brum--birmingham-bullring-1600.jpg"
+      },
+      {
+        "width": 1920,
+        "webp": "welcome-to-brum--birmingham-bullring-1920.webp",
+        "jpg": "welcome-to-brum--birmingham-bullring-1920.jpg"
+      }
+    ]
+  },
+  "welcome-to-brum--birmingham-canal": {
+    "width": 1200,
+    "height": 750,
+    "variants": [
+      {
+        "width": 480,
+        "webp": "welcome-to-brum--birmingham-canal-480.webp",
+        "jpg": "welcome-to-brum--birmingham-canal-480.jpg"
+      },
+      {
+        "width": 960,
+        "webp": "welcome-to-brum--birmingham-canal-960.webp",
+        "jpg": "welcome-to-brum--birmingham-canal-960.jpg"
+      },
+      {
+        "width": 1200,
+        "webp": "welcome-to-brum--birmingham-canal-1200.webp",
+        "jpg": "welcome-to-brum--birmingham-canal-1200.jpg"
+      }
+    ]
+  },
+  "welcome-to-brum--birmingham-centenary-square-desde-el-aire": {
+    "width": 2300,
+    "height": 1169,
+    "variants": [
+      {
+        "width": 480,
+        "webp": "welcome-to-brum--birmingham-centenary-square-desde-el-aire-480.webp",
+        "jpg": "welcome-to-brum--birmingham-centenary-square-desde-el-aire-480.jpg"
+      },
+      {
+        "width": 960,
+        "webp": "welcome-to-brum--birmingham-centenary-square-desde-el-aire-960.webp",
+        "jpg": "welcome-to-brum--birmingham-centenary-square-desde-el-aire-960.jpg"
+      },
+      {
+        "width": 1600,
+        "webp": "welcome-to-brum--birmingham-centenary-square-desde-el-aire-1600.webp",
+        "jpg": "welcome-to-brum--birmingham-centenary-square-desde-el-aire-1600.jpg"
+      },
+      {
+        "width": 2300,
+        "webp": "welcome-to-brum--birmingham-centenary-square-desde-el-aire-2300.webp",
+        "jpg": "welcome-to-brum--birmingham-centenary-square-desde-el-aire-2300.jpg"
+      }
+    ]
+  },
+  "welcome-to-brum--birmingham-panoramica-nocturna": {
+    "width": 800,
+    "height": 500,
+    "variants": [
+      {
+        "width": 480,
+        "webp": "welcome-to-brum--birmingham-panoramica-nocturna-480.webp",
+        "jpg": "welcome-to-brum--birmingham-panoramica-nocturna-480.jpg"
+      },
+      {
+        "width": 800,
+        "webp": "welcome-to-brum--birmingham-panoramica-nocturna-800.webp",
+        "jpg": "welcome-to-brum--birmingham-panoramica-nocturna-800.jpg"
+      }
+    ]
+  },
+  "welcome-to-brum--birmingham-victoria-square-de-noche": {
+    "width": 1600,
+    "height": 1066,
+    "variants": [
+      {
+        "width": 480,
+        "webp": "welcome-to-brum--birmingham-victoria-square-de-noche-480.webp",
+        "jpg": "welcome-to-brum--birmingham-victoria-square-de-noche-480.jpg"
+      },
+      {
+        "width": 960,
+        "webp": "welcome-to-brum--birmingham-victoria-square-de-noche-960.webp",
+        "jpg": "welcome-to-brum--birmingham-victoria-square-de-noche-960.jpg"
+      },
+      {
+        "width": 1600,
+        "webp": "welcome-to-brum--birmingham-victoria-square-de-noche-1600.webp",
+        "jpg": "welcome-to-brum--birmingham-victoria-square-de-noche-1600.jpg"
+      }
+    ]
+  },
+  "welcome-to-brum--birmingham-victoria-square": {
+    "width": 3840,
+    "height": 2430,
+    "variants": [
+      {
+        "width": 480,
+        "webp": "welcome-to-brum--birmingham-victoria-square-480.webp",
+        "jpg": "welcome-to-brum--birmingham-victoria-square-480.jpg"
+      },
+      {
+        "width": 960,
+        "webp": "welcome-to-brum--birmingham-victoria-square-960.webp",
+        "jpg": "welcome-to-brum--birmingham-victoria-square-960.jpg"
+      },
+      {
+        "width": 1600,
+        "webp": "welcome-to-brum--birmingham-victoria-square-1600.webp",
+        "jpg": "welcome-to-brum--birmingham-victoria-square-1600.jpg"
+      },
+      {
+        "width": 2400,
+        "webp": "welcome-to-brum--birmingham-victoria-square-2400.webp",
+        "jpg": "welcome-to-brum--birmingham-victoria-square-2400.jpg"
+      }
+    ]
+  }
+}
