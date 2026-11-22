@@ -43,15 +43,15 @@ export const motionTokens = {
   viewOffsetX: 24,
   opening: {
     /** Altura de recorrido del escenario fijo (× alto de ventana) en escritorio. */
-    runwayVh: 190,
+    runwayVh: 150,
     /** El marco de la foto crece desde esta escala (apertura). */
     frameScaleFrom: 0.86,
     /** La imagen se asienta desde este zoom (profundidad inversa al marco). */
-    imageScaleFrom: 1.18,
+    imageScaleFrom: 1.24,
     /** Capa frontal: sube desde este porcentaje de su altura. */
-    insetRiseFromPct: 55,
+    insetRiseFromPct: 70,
     /** El texto sube como mucho estos px; nunca baja de opacidad 1 en reposo. */
-    copyRisePx: 48,
+    copyRisePx: 72,
     /** En móvil: solo un leve asentamiento de la imagen, sin paralaje. */
     mobileImageScaleFrom: 1.08,
   },
@@ -73,7 +73,7 @@ export const motionTokens = {
   /** Fase 6 · movimiento firma: la esclusa. Progreso 0→1 del escenario fijo. */
   lock: {
     /** Recorrido del escenario (× alto de ventana): es el mayor de la portada. */
-    runwayVhWide: 320,
+    runwayVhWide: 240,
     runwayVhNarrow: 220,
     /** Tramo en que sube el agua. */
     fillFrom: 0.08,
@@ -91,7 +91,7 @@ export const motionTokens = {
     /** Margen final para que la última tarjeta respire (px). */
     tailPx: 48,
     /** Scroll vertical por cada px de avance lateral: la fila va más deprisa que la página. */
-    scrollPerPx: 0.55,
+    scrollPerPx: 0.4,
   },
   /** Fase 6 · barrido de Villa Park: recorte inicial por la derecha (%). */
   wipe: {

@@ -86,7 +86,7 @@ try {
       const s = document.querySelector('.opening');
       return { h: s.offsetHeight, top: s.getBoundingClientRect().top + scrollY, vh: innerHeight };
     });
-    check(env, 'Apertura con recorrido propio (escenario de 190 vh)', Math.abs(runway.h - 1.9 * runway.vh) < 4, `${runway.h}px`);
+    check(env, 'Apertura con recorrido propio (escenario de 150 vh)', Math.abs(runway.h - 1.5 * runway.vh) < 4, `${runway.h}px`);
 
     // Mutaciones del DOM durante el scroll: solo `style` (MotionValues), sin re-render de React.
     await p.evaluate(() => {
