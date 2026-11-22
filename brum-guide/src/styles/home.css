@@ -146,8 +146,8 @@
 
 .lock {
   position: relative;
-  /* A sangre: ocupa todo el ancho de la ventana (main recorta con overflow-x: clip). */
-  margin-inline: calc(50% - 50vw);
+  /* Ancho de la columna principal: main recorta con overflow-x: clip, así que no se sale de ella. */
+  margin-inline: calc(-1 * var(--pad-inline-start)) calc(-1 * var(--pad-inline-end));
 }
 .lock__stage {
   position: relative;
