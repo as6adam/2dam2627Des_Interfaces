@@ -43,15 +43,18 @@ jobs:
           node-version-file: tempora/.nvmrc
           cache: npm
           cache-dependency-path: tempora/package-lock.json
-      - name: Verificar y construir Tempora
-        working-directory: tempora
-        run: |
-          npm ci
-          npm test
-          npm run build
-          npm run verify:dist
-          npx playwright install --with-deps chromium
-          node scripts/verify-browser.mjs
+      - working-directory: tempora
+        run: npm ci
+      - working-directory: tempora
+        run: npm test
+      - working-directory: tempora
+        run: npm run build
+      - working-directory: tempora
+        run: npm run verify:dist
+      - working-directory: tempora
+        run: npx playwright install --with-deps chromium
+      - working-directory: tempora
+        run: node scripts/verify-browser.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -65,17 +68,23 @@ jobs:
           node-version: '22.22'
           cache: npm
           cache-dependency-path: guide-source/brum-guide/package-lock.json
-      - name: Verificar y construir Brum
+      - working-directory: guide-source/brum-guide
+        run: npm ci
+      - working-directory: guide-source/brum-guide
+        run: npm run typecheck
+      - working-directory: guide-source/brum-guide
+        run: npm run build:pages
+      - working-directory: guide-source/brum-guide
+        run: npm run test:e2e
+      - working-directory: guide-source/brum-guide
+        run: npm run test:motion
+      - working-directory: guide-source/brum-guide
+        run: npm run test:journal
+      - working-directory: guide-source/brum-guide
+        run: npm run test:pwa
+      - name: Build de Brum bajo /2dam2627Des_Interfaces/brum-guide/
         working-directory: guide-source/brum-guide
-        run: |
-          npm ci
-          npm run typecheck
-          npm run build:pages
-          npm run test:e2e
-          npm run test:motion
-          npm run test:journal
-          npm run test:pwa
-          APP_VERSION="$(git rev-parse --short HEAD)" BASE_PATH=/2dam2627Des_Interfaces/brum-guide/ npm run build
+        run: APP_VERSION="$(git rev-parse --short HEAD)" BASE_PATH=/2dam2627Des_Interfaces/brum-guide/ npm run build
 
       # ---------- Sitio conjunto ----------
       - name: Reunir ambas aplicaciones
