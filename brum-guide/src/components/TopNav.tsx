@@ -9,13 +9,14 @@ export type AppArea = 'guide' | 'journal';
  * Enlaces relativos al documento actual: funcionan igual en `/` y en `/<repo>/`.
  * En la guía, "#/" es un cambio de hash (sin recarga); desde el diario, "./" abre index.html.
  */
-const hrefs: Record<AppArea, { guide: string; journal: string }> = {
-  guide: { guide: '#/', journal: './diario.html' },
-  journal: { guide: './', journal: './diario.html' },
+const hrefs: Record<AppArea, { guide: string; plan: string; journal: string }> = {
+  guide: { guide: '#/', plan: '#/plan', journal: './diario.html' },
+  journal: { guide: './', plan: './#/plan', journal: './diario.html' },
 };
 
-export function TopNav({ area }: { area: AppArea }) {
+export function TopNav({ area, section }: { area: AppArea; section?: 'guide' | 'plan' }) {
   const { t } = usePreferences();
+  const inPlan = area === 'guide' && section === 'plan';
   const [scrolled, setScrolled] = useState(false);
 
   // Efecto de borde de scroll: la separación aparece solo cuando hay contenido debajo.
@@ -39,11 +40,20 @@ export function TopNav({ area }: { area: AppArea }) {
         </a>
 
         <nav className="topnav__nav" aria-label={t.shell.primaryNav}>
-          <a className="topnav__link" href={links.guide} aria-current={area === 'guide' ? 'page' : undefined}>
+          <a className="topnav__link" href={links.guide} aria-current={area === 'guide' && !inPlan ? 'page' : undefined}>
             {t.shell.navGuide}
           </a>
-          <a className="topnav__link" href={links.journal} aria-current={area === 'journal' ? 'page' : undefined}>
-            {t.shell.navJournal}
+          <a className="topnav__link" href={links.plan} aria-current={inPlan ? 'page' : undefined}>
+            {t.shell.navPlan}
+          </a>
+          <a
+            className="topnav__link"
+            href={links.journal}
+            aria-label={t.shell.navJournal}
+            aria-current={area === 'journal' ? 'page' : undefined}
+          >
+            <span className="topnav__long">{t.shell.navJournal}</span>
+            <span className="topnav__short">{t.shell.navJournalShort}</span>
           </a>
         </nav>
 

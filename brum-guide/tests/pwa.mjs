@@ -232,7 +232,16 @@ try {
   check(g, 'Navegación desconocida sin conexión → offline.html (sin fallback a index.html)', offlinePage === 'Sin conexión', offlinePage ?? '');
   const p2 = await ctx.newPage();
   await p2.goto(`${BASE}#/sector/gastronomy-culinary/purnells`);
-  check(g, 'Entrada directa por hash en pestaña nueva sin conexión', (await h1(p2)) === 'Purnell’s');
+  check(g, 'Entrada directa por hash en pestaña nueva sin conexión', (await h1(p2)) === 'Plates by Purnell’s');
+  // Fase 6: las secciones de planificación y el mapa funcionan sin conexión (todo va en el bundle).
+  for (const [hash, title] of [['#/plan', 'Antes de salir a la calle'], ['#/plan/before', 'Antes de viajar'], ['#/plan/getting-around', 'Moverse por la ciudad'], ['#/plan/routes', 'Rutas de un día'], ['#/plan/calendar', 'Agenda anual'], ['#/plan/brummie', 'Habla brummie']]) {
+    await p2.goto(`${BASE}${hash}`);
+    check(g, `Sin conexión: ${title}`, (await h1(p2)) === title);
+  }
+  await p2.goto(`${BASE}#/plan/map?focus=aston-hall`);
+  await p2.getByRole('heading', { level: 1 }).waitFor();
+  const pins = await p2.locator('.map__pin').count();
+  check(g, 'Sin conexión: mapa SVG propio con sus puntos (sin teselas externas)', pins >= 39 && (await p2.locator('.map__pin[data-focus]').count()) >= 1, `${pins} puntos`);
   await p2.getByRole('button', { name: /Idioma/ }).click();
   await p2.getByRole('menuitemradio', { name: 'English' }).click();
   check(g, 'Cambio a inglés sin conexión (textos precargados)', (await p2.locator('.offline-banner').innerText()).startsWith('Offline.'));

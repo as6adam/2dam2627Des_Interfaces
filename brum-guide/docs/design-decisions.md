@@ -60,3 +60,26 @@ Human Interface Guidelines de Apple. Cada decisión indica de qué apartado de l
 | Sin conexión se explica qué funciona y qué no, en lugar de un error genérico. Cada foto no guardada lo dice en su propia caja, con el tamaño reservado | §16 *Feedback* (estado), *Responsibility* | `OfflineBanner.tsx`, `Photo.tsx`, `ExternalLink.tsx` |
 | Los estados usan texto además de color (punto con borde, etiqueta «requiere conexión») | HIG · *Color* | `shell.css` |
 | Botones de los avisos de 44 px o más, también en horizontal, donde la barra se reduce a 48 px | HIG · *Layout*, §10 | `shell.css` |
+
+## Fase 6
+
+- **Método**: scrollcraft como método de diseño, no como motor. Ni `scrollcraft.js` ni otra
+  librería: todo el movimiento sigue en Motion y todos los ritmos en `src/motion/springs.ts`
+  (`motionTokens.lock`, `pan`, `wipe`, `openingMobile`).
+- **Gramática**: capítulos editoriales. Ocho actos y una familia de dispositivo distinta en cada
+  uno: apertura en capas (parallax), cifras (contador), sectores (pan lateral fijado en
+  escritorio, carrusel nativo en móvil), pausa (tira manual, silencio intencionado), esclusa
+  (pin + scrub, el pico), Villa Park (barrido con clip-path), rutas (cascada) y cierre útil.
+- **Pico y movimiento firma**: la esclusa. El agua (clip-path sobre la foto del canal) sube con
+  el scroll, el barco flota con ella, la regla marca el nivel y las compuertas se abren a la
+  foto nocturna. Es el acto con más recorrido (320 vh escritorio, 220 vh móvil), comprobado
+  en `tests/motion.mjs`.
+- **Profundidad del hero**: no hay recortes con transparencia en Brum_pics; la profundidad se
+  compone con fotos separadas (marco, imagen, capa frontal, escena). En móvil hay una
+  composición propia: la capa frontal sobresale de la foto y sube algo más deprisa.
+- **Conflicto de reglas**: «Explorar los sectores» era una pista de scroll. Ahora es navegación
+  real: diez enlaces de sector en el hero, alcanzables por teclado.
+- **Navegación**: la barra suma «Planifica» y en móvil acorta «Documentación y fases» a
+  «Diario» (el nombre completo sigue en `aria-label`). El pie enlaza Planifica, Mapa y Teléfonos.
+- **Movimiento reducido**: cada acto se queda en su estado final (esclusa llena y abierta,
+  sectores en rejilla, Villa Park visible), sin recorridos extra.

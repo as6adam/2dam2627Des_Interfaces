@@ -3,7 +3,9 @@ import { motion, useScroll, useSpring, useTransform } from 'motion/react';
 import { usePreferences } from '../preferences/PreferencesProvider';
 import { HOME_HERO_PHOTO, HOME_INSET_PHOTO, HOME_STRIP_PHOTOS } from '../content/media';
 import { Photo } from '../components/Photo';
-import { ChevronRightIcon } from '../components/icons';
+import { Link } from 'react-router';
+import { pick } from '../i18n';
+import { sectors } from '../content/queries';
 import { motionTokens, scrollSmoothing } from '../motion/springs';
 import { useMediaQuery, useMotionPrefs, WIDE_QUERY } from '../motion/useMotionPrefs';
 
@@ -35,7 +37,7 @@ export function PhotoOpening() {
 type Mode = 'static' | 'stage' | 'compact';
 
 function OpeningInner({ mode }: { mode: Mode }) {
-  const { t } = usePreferences();
+  const { t, lang } = usePreferences();
   const ref = useRef<HTMLElement>(null);
   const o = motionTokens.opening;
 
@@ -53,22 +55,17 @@ function OpeningInner({ mode }: { mode: Mode }) {
   const sceneOpacity = useTransform(p, [0.46, 0.78], [0, 1]);
   const sceneScale = useTransform(p, [0.46, 1], [1.12, 1]);
   const copyY = useTransform(p, [0, 1], [0, -o.copyRisePx]);
-  const cueOpacity = useTransform(p, [0, 0.12], [1, 0]);
+  // Móvil: la capa frontal sube un poco más deprisa que la foto al salir (separación de planos).
+  const insetMobileY = useTransform(p, [0, 1], [0, -motionTokens.openingMobile.insetRisePx]);
 
   const animated = mode !== 'static';
   const stage = mode === 'stage';
-
-  const goToSectors = () => {
-    const target = document.getElementById('sectors-title');
-    if (!target) return;
-    target.scrollIntoView({ behavior: mode === 'static' ? 'auto' : 'smooth', block: 'start' });
-    target.focus({ preventScroll: true });
-  };
 
   return (
     <section
       ref={ref}
       className={`opening opening--${mode}`}
+      data-sc-act="opening"
       aria-labelledby="home-title"
       // Recorrido del escenario fijo (solo escritorio animado): el scroll sigue siendo nativo.
       style={stage ? { height: `${o.runwayVh}vh` } : undefined}
@@ -86,6 +83,11 @@ function OpeningInner({ mode }: { mode: Mode }) {
             <Photo id={HOME_INSET_PHOTO} className="opening__inset-photo" sizes="300px" ratio={2 / 3} />
           </motion.div>
         )}
+        {mode === 'compact' && (
+          <motion.div className="opening__inset" style={{ y: insetMobileY }}>
+            <Photo id={HOME_INSET_PHOTO} className="opening__inset-photo" sizes="160px" ratio={2 / 3} />
+          </motion.div>
+        )}
         {mode === 'static' && (
           <div className="opening__inset">
             <Photo id={HOME_INSET_PHOTO} className="opening__inset-photo" sizes="300px" ratio={2 / 3} />
@@ -98,16 +100,21 @@ function OpeningInner({ mode }: { mode: Mode }) {
             {t.home.title}
           </h1>
           <p className="lead">{t.home.lead}</p>
-          {/* Equivalente visible y de teclado del recorrido por scroll */}
-          <motion.button
-            type="button"
-            className="opening__cue"
-            onClick={goToSectors}
-            style={stage ? { opacity: cueOpacity } : undefined}
-          >
-            {t.home.openingCue}
-            <ChevronRightIcon size={16} className="opening__cue-icon" />
-          </motion.button>
+          {/* Navegación real (no una pista de scroll): cada sector es un enlace. */}
+          <nav className="opening__nav" aria-labelledby="opening-nav-label">
+            <p id="opening-nav-label" className="opening__nav-label">
+              {t.home.openingCue}
+            </p>
+            <ul className="opening__chips" role="list">
+              {sectors.map((sector) => (
+                <li key={sector.id}>
+                  <Link className="chip opening__chip" to={`/sector/${sector.id}`} data-accent={sector.accent}>
+                    {pick(sector.name, lang)}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
         </motion.div>
       </div>
     </section>

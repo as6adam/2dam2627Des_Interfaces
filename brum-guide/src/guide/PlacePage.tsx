@@ -9,7 +9,9 @@ import { Breadcrumbs } from '../components/Breadcrumbs';
 import { SharedPhoto } from '../components/SharedPhoto';
 import { Reveal, RevealItem } from '../components/Reveal';
 import { SectionIndex, type IndexItem } from '../components/SectionIndex';
-import { ChevronLeftIcon } from '../components/icons';
+import { ChevronLeftIcon, ChevronRightIcon } from '../components/icons';
+import { nearbyPlaces } from '../content/geo';
+import { TFWM_PLANNER } from '../content/travel';
 import { ExternalLink } from '../components/ExternalLink';
 import { useDocumentTitle } from '../components/useDocumentTitle';
 import { NotFoundPage } from './NotFoundPage';
@@ -28,7 +30,9 @@ function PlaceView({ sector, place }: { sector: Sector; place: Place }) {
   const name = pick(place.name, lang);
   const sectorName = pick(sector.name, lang);
   const feature = featured.placeId === place.id ? featured : undefined;
-  const hasGettingThere = !!(place.address || place.transport?.length || place.map);
+  const hasGettingThere = !!(place.address || place.transport?.length || place.map || place.location);
+  const nearby = useMemo(() => nearbyPlaces(place), [place]);
+  const kmFormat = useMemo(() => new Intl.NumberFormat(lang, { maximumFractionDigits: 1, minimumFractionDigits: 1 }), [lang]);
   useDocumentTitle(name);
 
   /** Títulos de las fuentes citadas por un dato, para mostrarlos junto a él. */
@@ -41,11 +45,15 @@ function PlaceView({ sector, place }: { sector: Sector; place: Place }) {
     const items: IndexItem[] = feature
       ? feature.blocks.map((b) => ({ id: `sec-${b.id}`, label: pick(b.heading, lang) }))
       : [{ id: 'sec-overview', label: t.place.overview }];
+    if (place.highlights?.length) items.push({ id: 'sec-highlights', label: t.place.highlights });
+    if (place.practical?.length) items.push({ id: 'sec-practical', label: t.place.practical });
     if (hasGettingThere) items.push({ id: 'sec-getting-there', label: t.place.gettingThere });
     if (place.accessibility?.length) items.push({ id: 'sec-access', label: t.place.accessibility });
+    if (place.tips?.length) items.push({ id: 'sec-tips', label: t.place.tips });
+    if (nearby.length) items.push({ id: 'sec-nearby', label: t.place.nearby });
     if (place.sources?.length) items.push({ id: 'sec-sources', label: t.place.sources });
     return items;
-  }, [feature, hasGettingThere, place, lang, t]);
+  }, [feature, hasGettingThere, place, nearby.length, lang, t]);
 
   return (
     <article className="place" data-accent={sector.accent}>
@@ -112,6 +120,41 @@ function PlaceView({ sector, place }: { sector: Sector; place: Place }) {
             </Reveal>
           )}
 
+          {place.highlights?.length ? (
+            <Reveal as="section" id="sec-highlights" className="place__section" aria-labelledby="highlights-title">
+              <h2 id="highlights-title" className="title-2">
+                {t.place.highlights}
+              </h2>
+              <ul className="highlights" role="list">
+                {place.highlights.map((h, i) => (
+                  <li key={i} className="highlight">
+                    <span className="highlight__text">{pick(h.text, lang)}</span>
+                    <span className="cite">{cite(h.sourceIds)}</span>
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
+          ) : null}
+
+          {place.practical?.length ? (
+            <section id="sec-practical" className="place__section" aria-labelledby="practical-title">
+              <Reveal>
+                <h2 id="practical-title" className="title-2">
+                  {t.place.practical}
+                </h2>
+              </Reveal>
+              <Reveal group className="facts">
+                {place.practical.map((f, i) => (
+                  <RevealItem key={i} className="fact">
+                    <h3 className="fact__label">{t.place.practicalKinds[f.kind]}</h3>
+                    <p className="fact__value fact__value--text">{pick(f.text, lang)}</p>
+                    <p className="cite">{cite(f.sourceIds)}</p>
+                  </RevealItem>
+                ))}
+              </Reveal>
+            </section>
+          ) : null}
+
           {hasGettingThere && (
             <section id="sec-getting-there" className="place__section" aria-labelledby="getting-there-title">
               <Reveal>
@@ -137,8 +180,18 @@ function PlaceView({ sector, place }: { sector: Sector; place: Place }) {
                   <RevealItem className="fact">
                     <h3 className="fact__label">{t.place.map}</h3>
                     <ExternalLink href={place.map.url}>{t.place.mapLink}</ExternalLink>
+                    {place.location && (
+                      <Link className="text-link" to={`/plan/map?focus=${place.id}`}>
+                        {t.place.onMap}
+                      </Link>
+                    )}
                   </RevealItem>
                 )}
+                <RevealItem className="fact">
+                  <h3 className="fact__label">{t.place.planner}</h3>
+                  <ExternalLink href={TFWM_PLANNER}>journeyplanner.tfwm.org.uk</ExternalLink>
+                  <p className="note">{t.place.plannerNote}</p>
+                </RevealItem>
               </Reveal>
 
               {place.transport?.length ? (
@@ -169,6 +222,48 @@ function PlaceView({ sector, place }: { sector: Sector; place: Place }) {
                 ))}
               </ul>
             </Reveal>
+          ) : null}
+
+          {place.tips?.length ? (
+            <Reveal as="section" id="sec-tips" className="place__section" aria-labelledby="tips-title">
+              <h2 id="tips-title" className="title-2">
+                {t.place.tips}
+              </h2>
+              <ul className="bullet-list">
+                {place.tips.map((tip, i) => (
+                  <li key={i}>
+                    {pick(tip.text, lang)} <span className="cite">{cite(tip.sourceIds)}</span>
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
+          ) : null}
+
+          {nearby.length ? (
+            <section id="sec-nearby" className="place__section" aria-labelledby="nearby-title">
+              <Reveal>
+                <h2 id="nearby-title" className="title-2">
+                  {t.place.nearby}
+                </h2>
+                <p className="note">{t.place.nearbyLead}</p>
+              </Reveal>
+              <Reveal as="ul" group className="nearby" role="list">
+                {nearby.map(({ place: p, km }) => {
+                  const s = getSector(p.sectorId)!;
+                  return (
+                    <RevealItem as="li" key={p.id}>
+                      <Link className="nearby__link" to={`/sector/${s.id}/${p.id}`} data-accent={s.accent}>
+                        <span className="nearby__name">{pick(p.name, lang)}</span>
+                        <span className="nearby__meta">
+                          {pick(s.name, lang)} · {format(t.place.distanceKm, { km: kmFormat.format(km) })}
+                        </span>
+                        <ChevronRightIcon size={18} />
+                      </Link>
+                    </RevealItem>
+                  );
+                })}
+              </Reveal>
+            </section>
           ) : null}
 
           {place.caveats?.length ? (
@@ -229,7 +324,7 @@ function TransportCard({ option, cite }: { option: TransportOption; cite: (ids: 
       option.walk.distance ? pick(option.walk.distance, lang) : '',
     ].filter(Boolean);
     const walkText = [parts.join(' · '), option.walk.note ? pick(option.walk.note, lang) : ''].filter(Boolean).join('. ');
-    rows.push([t.place.walk, walkText]);
+    if (walkText) rows.push([t.place.walk, walkText]);
   }
   if (option.availability) rows.push([t.place.availability, pick(option.availability, lang)]);
 

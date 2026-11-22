@@ -26,7 +26,7 @@ export function PhotoStrip() {
   };
 
   return (
-    <section className="section strip-section" aria-labelledby={`${id}-title`}>
+    <section data-sc-act="pause" className="section strip-section" aria-labelledby={`${id}-title`}>
       <div className="section__header">
         <h2 id={`${id}-title`} className="title-3">
           {t.home.welcomeLabel}

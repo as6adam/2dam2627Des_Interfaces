@@ -51,6 +51,11 @@ npm run inventory:photos -- "../Brum_pics"   # inventario de fotos, solo lectura
 | `#/` | Portada |
 | `#/sector/:sectorId` | Sector (p. ej. `#/sector/culture-heritage`) |
 | `#/sector/:sectorId/:placeId` | Ficha (p. ej. `#/sector/culture-heritage/aston-hall`) |
+| `#/plan` | Planifica: índice de las secciones prácticas |
+| `#/plan/before` · `#/plan/getting-around` | Antes de viajar · Moverse por la ciudad |
+| `#/plan/routes` · `#/plan/calendar` · `#/plan/brummie` | Rutas de un día · Agenda anual · Habla brummie |
+| `#/plan/map` (`?focus=<placeId>`) | Mapa SVG propio, sin teselas, válido sin conexión |
+| `#/useful-numbers` | Teléfonos útiles |
 | cualquier otro, o sector/lugar inexistente | Página no encontrada |
 
 ## Preferencias
@@ -108,6 +113,15 @@ El estado de cada foto, en [docs/photo-rights.md](docs/photo-rights.md).
   precarga de las dos páginas, fotos bajo demanda con límites, estado sin conexión, aviso de
   nueva versión y workflow de Pages. Detalle y protocolo de prueba en iPhone en
   [docs/pwa.md](docs/pwa.md). **La prueba física en iPhone no se ha hecho.**
+
+- **Fase 6**: 34 fichas ampliadas (descripción de 2 a 4 párrafos, «Lo imprescindible», datos
+  prácticos, consejos, autobús/tranvía/tren con parada y tramo a pie, todo citado) en
+  `src/content/details/`, fusionadas en el catálogo por `enrich()`. Coordenadas de 39 lugares
+  (`locations.ts`) para el mapa y «Cerca de aquí». Secciones de planificación
+  (`src/content/travel.ts`, `src/guide/PlanPages.tsx`, `src/guide/MapPage.tsx`). Portada por
+  capítulos diseñada con el método scrollcraft: brief en `scrollcraft/builds/brum/BRIEF.md`,
+  movimiento firma «la esclusa» (`src/guide/CanalLock.tsx`). Capturas de verificación en
+  `scrollcraft/builds/brum/lab/` (no versionadas).
 
 - **Fase 5**: diario académico con las conversaciones del documento de prompts (1 pareja
   de ChatGPT y 6 de Claude). Cómo añadir

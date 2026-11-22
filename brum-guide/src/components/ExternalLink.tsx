@@ -6,12 +6,12 @@ import { useOnlineStatus } from '../pwa/useOnlineStatus';
  * Enlace a un servicio externo (mapa, fuentes). Se abre en otra pestaña y,
  * sin conexión, avisa de que necesita red en lugar de fallar en silencio.
  */
-export function ExternalLink({ href, children, lang }: { href: string; children: ReactNode; lang?: string }) {
+export function ExternalLink({ href, children, lang, className = 'text-link' }: { href: string; children: ReactNode; lang?: string; className?: string }) {
   const { t } = usePreferences();
   const online = useOnlineStatus();
   return (
     <span className="external-link" data-offline={!online || undefined}>
-      <a className="text-link" href={href} target="_blank" rel="noopener noreferrer" lang={lang}>
+      <a className={className} href={href} target="_blank" rel="noopener noreferrer" lang={lang}>
         {children}
         <span className="visually-hidden"> {t.place.newTab}</span>
       </a>

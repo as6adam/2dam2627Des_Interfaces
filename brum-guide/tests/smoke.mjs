@@ -260,6 +260,14 @@ try {
     ['#/sector/gastronomy-culinary', 'Gastronomía y cocina'],
     ['#/sector/sports-adventure/villa-park', 'Villa Park'],
     ['#/sector/visitor-logistics-safety/birmingham-new-street-station', 'Estación de Birmingham New Street'],
+    ['#/plan', 'Antes de salir a la calle'],
+    ['#/plan/before', 'Antes de viajar'],
+    ['#/plan/getting-around', 'Moverse por la ciudad'],
+    ['#/plan/routes', 'Rutas de un día'],
+    ['#/plan/calendar', 'Agenda anual'],
+    ['#/plan/brummie', 'Habla brummie'],
+    ['#/plan/map', 'Mapa'],
+    ['#/sector/gastronomy-culinary/purnells', 'Plates by Purnell’s'],
     ['#/no-existe', 'No encontramos esta página'],
     ['#/sector/inventado', 'No encontramos esta página'],
     ['#/sector/nature-outdoors/villa-park', 'No encontramos esta página'],
@@ -270,6 +278,34 @@ try {
     await p.goto(BASE + hash);
     const h1 = await h1Text(p);
     check(`Ruta directa ${hash}`, h1 === expected, h1 ?? '');
+    await p.close();
+  }
+  // Fase 6: fichas ampliadas, secciones nuevas y navegación
+  {
+    const p = await dctx.newPage();
+    await p.goto(BASE + '#/sector/culture-heritage/aston-hall');
+    await p.getByRole('heading', { level: 1 }).waitFor();
+    const heads = await p.locator('main h2').allTextContents();
+    check('Ficha ampliada: Lo imprescindible, Datos prácticos, Consejos y Cerca de aquí', ['Lo imprescindible', 'Datos prácticos', 'Consejos', 'Cerca de aquí'].every((h) => heads.includes(h)), heads.join(' · '));
+    const paras = await p.locator('#sec-overview p').count();
+    check('Ficha ampliada: descripción de 3 párrafos o más', paras >= 3, String(paras));
+    check('Cómo llegar: autobús con línea y parada, y enlace al planificador de TfWM', (await p.locator('.transport[data-mode="bus"]').count()) >= 3 && (await p.locator('a[href*="journeyplanner.tfwm.org.uk"]').count()) === 1);
+    const near = await p.locator('.nearby__link').first().innerText();
+    check('Cerca de aquí: el más cercano a Aston Hall es Villa Park', near.includes('Villa Park'), near.replace(/s+/g, ' '));
+    const cites = await p.locator('#sec-highlights .cite, #sec-practical .cite').allTextContents();
+    check('Cada imprescindible y dato práctico cita su fuente', cites.length >= 6 && cites.every((c) => c.startsWith('Fuente:')), String(cites.length));
+    await p.goto(BASE + '#/sector/gastronomy-culinary/purnells');
+    await p.getByRole('heading', { level: 1 }).waitFor();
+    check('Purnell’s: aviso de cierre visible', (await p.locator('main').innerText()).includes('cerró en octubre de 2024'));
+    await p.goto(BASE + '#/plan/brummie');
+    await p.getByRole('heading', { level: 1 }).waitFor();
+    check('Habla brummie: 10 términos', (await p.locator('.glossary__term').count()) === 10);
+    await p.goto(BASE + '#/plan/routes');
+    await p.getByRole('heading', { level: 1 }).waitFor();
+    check('Rutas de un día: 4 rutas con paradas enlazadas', (await p.locator('.route').count()) === 4 && (await p.locator('.route__stop').count()) >= 10);
+    const navCurrent = await p.locator('.topnav__link[aria-current="page"]').innerText();
+    check('Barra superior: «Planifica» marcado en las secciones de planificación', navCurrent.trim() === 'Planifica', navCurrent);
+    check('Pie: enlaces a Planifica, Mapa y Teléfonos', (await p.locator('.shell-footer__links a').count()) === 3);
     await p.close();
   }
   await dctx.close();
@@ -338,6 +374,7 @@ try {
       loading: img.getAttribute('loading'),
       hero: !!img.closest('.opening__image'),
       opening: !!img.closest('.opening'),
+      lock: !!img.closest('.lock__stage'),
       frameH: img.closest('.photo__frame').getBoundingClientRect().height,
       ratio: getComputedStyle(img.closest('.photo__frame')).aspectRatio,
       responsive: !!img.getAttribute('srcset') && !!img.closest('picture')?.querySelector('source[type="image/webp"]'),
@@ -346,7 +383,7 @@ try {
   );
   check('Fotos reales responsivas (srcset + WebP), sin recursos provisionales', imgs.every((i) => i.responsive && !i.placeholder), `${imgs.filter((i) => i.responsive).length}/${imgs.length}`);
   check('Todas las imágenes declaran width y height', imgs.length > 0 && imgs.every((i) => i.w && i.h), `${imgs.length} imágenes`);
-  check('Espacio reservado: aspect-ratio en marcos o altura fija del escenario de apertura', imgs.every((i) => (i.ratio && i.ratio !== 'auto') || (i.opening && i.frameH > 0)));
+  check('Espacio reservado: aspect-ratio en marcos o altura fija del escenario (apertura o esclusa)', imgs.every((i) => (i.ratio && i.ratio !== 'auto') || ((i.opening || i.lock) && i.frameH > 0)));
   check('Primera vista inmediata, resto diferido', imgs.filter((i) => i.hero).every((i) => i.loading === 'eager') && imgs.filter((i) => !i.hero).every((i) => i.loading === 'lazy'));
   for (let y = 0; y < 6000; y += 700) {
     await ip.evaluate((v) => scrollTo(0, v), y);
@@ -426,7 +463,7 @@ try {
   for (const width of [390, 1440]) {
     const mobile = width === 390;
     const wctx = await browser.newContext({ viewport: { width, height: mobile ? 844 : 900 }, deviceScaleFactor: mobile ? 3 : 1, hasTouch: mobile, isMobile: mobile });
-    for (const [name, url] of [['guide', BASE], ['sector', `${BASE}#/sector/sports-adventure`], ['villa', `${BASE}#/sector/sports-adventure/villa-park`], ['demo', `${BASE}#/sector/gastronomy-culinary/purnells`], ['journal', `${BASE}diario.html`]]) {
+    for (const [name, url] of [['guide', BASE], ['sector', `${BASE}#/sector/sports-adventure`], ['villa', `${BASE}#/sector/sports-adventure/villa-park`], ['demo', `${BASE}#/sector/gastronomy-culinary/purnells`], ['journal', `${BASE}diario.html`], ['plan', `${BASE}#/plan`], ['routes', `${BASE}#/plan/routes`], ['map', `${BASE}#/plan/map`], ['aston', `${BASE}#/sector/culture-heritage/aston-hall`]]) {
       const wp = await wctx.newPage();
       await wp.goto(url);
       await wp.getByRole('heading', { level: 1 }).waitFor();

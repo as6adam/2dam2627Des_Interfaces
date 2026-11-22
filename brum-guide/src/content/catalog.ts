@@ -1,5 +1,6 @@
 /** Catálogo bilingüe con información práctica atribuida a sus fuentes. */
 import type { Catalog, Place, Sector, SourceRef } from './types.ts';
+import { enrich } from './details/index.ts';
 
 /* ------------------------------------------------------------------ */
 /* Sectores (orden de la portada)                                      */
@@ -2523,7 +2524,7 @@ const places: Place[] = [
 
 export const catalog: Catalog = {
   sectors,
-  places: [...places.slice(0, 32), villaPark, ...places.slice(32)],
+  places: [...places.slice(0, 32), villaPark, ...places.slice(32)].map(enrich),
   featured: {
     placeId: 'villa-park',
     textStatus: 'author',

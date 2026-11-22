@@ -6,6 +6,8 @@
 import { readFileSync } from 'node:fs';
 import { catalog } from '../src/content/catalog.ts';
 import type { PhotoRights } from '../src/content/types.ts';
+import { details } from '../src/content/details/index.ts';
+import { locations } from '../src/content/details/locations.ts';
 
 const rights = JSON.parse(
   readFileSync(new URL('../src/content/photo-rights.json', import.meta.url), 'utf8'),
@@ -35,6 +37,11 @@ for (const p of catalog.places) {
   if (p.address) needSource([p.address.sourceId], 'dirección');
   for (const t of p.transport ?? []) needSource(t.sourceIds, `transporte ${t.id}`);
   for (const a of p.accessibility ?? []) needSource(a.sourceIds, 'accesibilidad');
+  for (const h of p.highlights ?? []) needSource(h.sourceIds, 'imprescindible');
+  for (const x of p.practical ?? []) needSource(x.sourceIds, `dato práctico ${x.kind}`);
+  for (const x of p.tips ?? []) needSource(x.sourceIds, 'consejo');
+  for (const x of [...(p.highlights ?? []), ...(p.practical ?? []), ...(p.tips ?? [])]) if (!x.text.es || !x.text.en) errors.push(`${p.id}: texto citado sin ES/EN`);
+  if (p.location && (p.location.lat < 52.3 || p.location.lat > 52.65 || p.location.lng < -2.1 || p.location.lng > -1.6)) errors.push(`${p.id}: coordenadas fuera del área de Birmingham`);
   for (const s of p.sources ?? []) if (!iso.test(s.checkedOn)) errors.push(`${p.id}: fecha de verificación inválida en ${s.id}`);
 
   if (p.provenance === 'demo') {
@@ -46,6 +53,10 @@ for (const p of catalog.places) {
     if (!p.verifiedOn || !iso.test(p.verifiedOn)) errors.push(`${p.id}: falta fecha de verificación`);
   }
 }
+
+for (const id of [...Object.keys(details), ...Object.keys(locations)]) if (!seen.has(id)) errors.push(`ampliación para un lugar inexistente: ${id}`);
+const located = catalog.places.filter((p) => p.location).length;
+console.log(`Ubicaciones: ${located}/${catalog.places.length} · Ampliadas: ${Object.keys(details).length}`);
 
 for (const s of catalog.sectors) {
   if (!catalog.places.some((p) => p.sectorId === s.id)) warn.push(`sector sin lugares: ${s.id}`);

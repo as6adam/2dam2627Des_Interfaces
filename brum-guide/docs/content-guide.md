@@ -94,3 +94,27 @@ Para una pareja nueva, añade sus dos archivos y una entrada en `index.json` con
 `order`. Solo se publican las entradas con `"status": "published"` y texto en los dos archivos.
 `npm run import:conversations -- "<ruta al .txt>"` vuelve a importar el documento completo
 sin sobrescribir los borradores ya existentes.
+
+## 5. Ampliar una ficha (fase 6)
+
+Las ampliaciones viven en `src/content/details/*.ts`, una entrada por id de lugar, con los
+ayudantes de `helpers.ts`:
+
+- `t(es, en)`: texto bilingüe. `c(es, en, ...fuentes)`: texto citado (imprescindibles, consejos).
+- `fact(tipo, es, en, ...fuentes)`: dato práctico (`status`, `hours`, `price`, `booking`,
+  `duration`, `contact`).
+- `go({...})`: opción de transporte (modo, línea, parada, origen, trayecto, tramo a pie).
+- `src(id, título, editor, url)`: fuente con la fecha de consulta `CHECKED`.
+
+`enrich()` (`details/index.ts`) sustituye nombre, resumen, descripción, dirección, mapa,
+imprescindibles, datos prácticos y consejos; añade transporte (la opción nueva reemplaza a la
+antigua con el mismo modo y parada), accesibilidad, avisos y fuentes. Si la ficha base y la
+ampliación citan la misma URL, queda una sola fuente.
+
+Regla: lo que ninguna fuente publica se omite. Nada de horarios, precios, frecuencias ni
+tiempos calculados. `npm run check:catalog` comprueba que cada dato cite una fuente existente
+y que las coordenadas caigan en el área de Birmingham.
+
+Las coordenadas están en `details/locations.ts` (centroide del código postal en postcodes.io,
+u OpenStreetMap cuando no hay código postal). Las secciones de planificación están en
+`src/content/travel.ts`, con sus fuentes en `travelSources`.

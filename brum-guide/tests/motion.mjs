@@ -130,14 +130,19 @@ try {
     const mut = await p.evaluate(() => window.__mut);
     check(env, 'Solo cambian estilos inline (sin re-render de React por frame)', mut.other === 0 && mut.style > 0, JSON.stringify(mut));
 
-    // Control visible / teclado equivalente al recorrido
+    // La antigua pista «Explorar los sectores» es ahora navegación real: enlaces por teclado.
     await p.evaluate(() => scrollTo(0, 0));
     await wait(p, 300);
-    await p.getByRole('button', { name: 'Explorar los sectores' }).focus();
+    const nav = p.getByRole('navigation', { name: 'Explorar los sectores' });
+    check(env, 'Hero: «Explorar los sectores» es navegación con 10 enlaces', (await nav.getByRole('link').count()) === 10);
+    await nav.getByRole('link', { name: 'Cultura y patrimonio' }).focus();
     await p.keyboard.press('Enter');
-    await wait(p, 1200);
-    const cue = await p.evaluate(() => ({ focus: document.activeElement?.id, top: Math.round(document.getElementById('sectors-title').getBoundingClientRect().top) }));
-    check(env, 'Botón «Explorar los sectores» por teclado: desplaza y enfoca', cue.focus === 'sectors-title' && cue.top < 300, JSON.stringify(cue));
+    await p.waitForURL(/culture-heritage$/);
+    await wait(p, 700);
+    const navFocus = await p.evaluate(() => document.activeElement?.tagName + ':' + document.activeElement?.textContent);
+    check(env, 'Enlace de sector por teclado: navega y enfoca el h1', navFocus.startsWith('H1'), navFocus);
+    await p.goBack();
+    await p.waitForSelector('.opening');
     await p.locator('.fact-number').first().scrollIntoViewIfNeeded();
     await p.waitForSelector('.fact-number[data-counter-ready="true"]');
     check(env, 'El contador conserva la cifra para lectores de pantalla', (await p.locator('.fact-number .visually-hidden').first().textContent()).replace(/\D/g, '') === '1176960');
@@ -157,7 +162,7 @@ try {
       image: await p.evaluate(readTransform, '.opening__image'),
       sectionH: await p.evaluate(() => document.querySelector('.opening').offsetHeight),
     };
-    check(env, 'Sin escenario fijo ni capa frontal (sin paralaje)', a.stage.position !== 'sticky' && (!a.inset || a.inset.display === 'none') && a.frame.scale === 1, JSON.stringify({ pos: a.stage.position, inset: a.inset?.display ?? 'no montada' }));
+    check(env, 'Composición móvil propia: sin escenario fijo, capa frontal visible y marco sin escala', a.stage.position !== 'sticky' && a.inset?.display === 'block' && a.frame.scale === 1, JSON.stringify({ pos: a.stage.position, inset: a.inset?.display ?? 'no montada' }));
     await p.evaluate(() => scrollTo(0, document.querySelector('.opening').offsetHeight * 0.6));
     await wait(p, 450);
     const b = await p.evaluate(readTransform, '.opening__image');
@@ -404,8 +409,83 @@ try {
     check(env, 'Revelado sin desplazamiento (solo opacidad)', sec.ty === 0, JSON.stringify(sec));
     // Acceso directo
     await gotoReady(p, `${BASE}#/sector/gastronomy-culinary/purnells`);
-    check(env, 'Acceso directo a una ficha', (await p.getByRole('heading', { level: 1 }).textContent()) === 'Purnell’s');
+    check(env, 'Acceso directo a una ficha', (await p.getByRole('heading', { level: 1 }).textContent()) === 'Plates by Purnell’s');
     await p.screenshot({ path: `${shots}reduced-${opts.viewport.width}.png` });
+    await ctx.close();
+  }
+
+  /* ================= 7b. Fase 6: esclusa (pico) y sectores en paso lateral ================= */
+  for (const [env, opts] of [['Chrome 1440 · ratón', DESKTOP], ['Chrome 390 · móvil táctil emulado', MOBILE]]) {
+    const ctx = await browser.newContext(opts);
+    const p = await ctx.newPage();
+    await gotoReady(p, BASE);
+    const geo = await p.evaluate(() => {
+      const l = document.querySelector('.lock');
+      const s = document.querySelector('.sectors');
+      const acts = [...document.querySelectorAll('[data-sc-act]')].map((a) => ({ id: a.dataset.scAct, h: a.offsetHeight }));
+      return { lockTop: l.offsetTop, lockH: l.offsetHeight, vh: innerHeight, secTop: s.offsetTop, secH: s.offsetHeight, secMode: s.className, acts };
+    });
+    const tallest = geo.acts.reduce((a, b) => (b.h > a.h ? b : a));
+    check(env, 'Pico: la esclusa es el acto con más recorrido', tallest.id === 'lock', geo.acts.map((a) => `${a.id}:${a.h}`).join(' '));
+    const sample = async (f) => {
+      await p.evaluate(([top, h, vh, f]) => scrollTo(0, top + (h - vh) * f), [geo.lockTop, geo.lockH, geo.vh, f]);
+      await wait(p, 450);
+      return p.evaluate(() => ({
+        clip: getComputedStyle(document.querySelector('.lock__water')).clipPath,
+        gate: new DOMMatrixReadOnly(getComputedStyle(document.querySelector('.lock__gate--left')).transform).e,
+        night: +getComputedStyle(document.querySelector('.lock__night')).opacity,
+        stage: Math.round(document.querySelector('.lock__stage').getBoundingClientRect().top),
+        beats: [...document.querySelectorAll('.lock__beat')].map((b) => +(+getComputedStyle(b).opacity).toFixed(2)),
+      }));
+    };
+    const s0 = await sample(0.02);
+    const s1 = await sample(0.4);
+    const s2 = await sample(0.98);
+    const insetTop = (c) => parseFloat((c.match(/inset\(([\d.]+)%/) ?? [])[1] ?? 'NaN');
+    check(env, 'Esclusa: el agua sube con el scroll (clip-path)', insetTop(s0.clip) > 95 && insetTop(s1.clip) < insetTop(s0.clip) && insetTop(s2.clip) < 1, [s0.clip, s1.clip, s2.clip].join(' → '));
+    check(env, 'Esclusa: las compuertas se abren y aparece la noche', s0.gate === 0 && s2.gate < 0 && s0.night === 0 && s2.night === 1, `${s0.gate} → ${s2.gate} · ${s0.night} → ${s2.night}`);
+    check(env, 'Esclusa: escenario fijo durante el recorrido', Math.abs(s1.stage - s2.stage) <= 1, `${s1.stage}, ${s2.stage}`);
+    check(env, 'Esclusa: nunca hay dos frases a la vez', [s0, s1, s2].every((s) => s.beats.filter((o) => o > 0.05).length <= 1) && s2.beats.at(-1) === 1, [s0, s1, s2].map((s) => s.beats.join('/')).join(' · '));
+
+    if (opts === DESKTOP) {
+      check(env, 'Sectores: paso lateral fijado en escritorio', geo.secMode.includes('sectors--pan') && geo.secH > geo.vh, `${geo.secMode} · ${geo.secH}px`);
+      const tx = async (f) => {
+        await p.evaluate(([top, h, vh, f]) => scrollTo(0, top + (h - vh) * f), [geo.secTop, geo.secH, geo.vh, f]);
+        await wait(p, 450);
+        return p.evaluate(() => new DOMMatrixReadOnly(getComputedStyle(document.querySelector('.sectors__track')).transform).e);
+      };
+      const x0 = await tx(0);
+      const x1 = await tx(1);
+      const lastCard = await p.evaluate(() => {
+        const r = document.querySelector('.sectors__track > li:last-child').getBoundingClientRect();
+        return { right: Math.round(r.right), vw: innerWidth };
+      });
+      check(env, 'Sectores: la fila avanza de lado y la última tarjeta queda a la vista', x0 === 0 && x1 < -200 && lastCard.right <= lastCard.vw, `${x0} → ${Math.round(x1)} · ${JSON.stringify(lastCard)}`);
+    } else {
+      const swipe = await p.evaluate(() => {
+        const tr = document.querySelector('.sectors__track');
+        return { mode: document.querySelector('.sectors').className, overflow: getComputedStyle(tr).overflowX, snap: getComputedStyle(tr).scrollSnapType };
+      });
+      check(env, 'Sectores: carrusel nativo con scroll-snap en móvil', swipe.mode.includes('sectors--swipe') && swipe.overflow === 'auto' && swipe.snap.startsWith('x'), JSON.stringify(swipe));
+    }
+    const hscroll = await p.evaluate(() => document.documentElement.scrollWidth - innerWidth);
+    check(env, 'Sin scroll horizontal de página', hscroll <= 0, `${hscroll}px`);
+    await ctx.close();
+  }
+  {
+    const env = 'Chrome 1440 · reduced-motion';
+    const ctx = await browser.newContext({ ...DESKTOP, reducedMotion: 'reduce' });
+    const p = await ctx.newPage();
+    await gotoReady(p, BASE);
+    const r = await p.evaluate(() => ({
+      lock: document.querySelector('.lock').className,
+      h: document.querySelector('.lock').offsetHeight,
+      vh: innerHeight,
+      night: +getComputedStyle(document.querySelector('.lock__night')).opacity,
+      sectors: document.querySelector('.sectors').className,
+    }));
+    check(env, 'Esclusa estática: llena, abierta y sin recorrido extra', r.lock.includes('lock--static') && r.h <= r.vh && r.night === 1, JSON.stringify(r));
+    check(env, 'Sectores en rejilla, sin paso lateral', r.sectors.includes('sectors--grid'));
     await ctx.close();
   }
   /* ================= 8. Enlace escrito en la barra (misma pestaña) ================= */

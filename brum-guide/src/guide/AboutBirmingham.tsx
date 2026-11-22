@@ -11,7 +11,7 @@ const facts = [
 export function AboutBirmingham() {
   const { lang } = usePreferences();
   const es = lang === 'es';
-  return <section className="section" aria-labelledby="about-birmingham">
+  return <section className="section" aria-labelledby="about-birmingham" data-sc-act="about">
     <h2 id="about-birmingham" className="title-2">{es ? 'Sobre Birmingham' : 'About Birmingham'}</h2>
     <p className="lead">{es ? 'Antes de los talleres y los canales hubo un asentamiento sajón junto al río Rea. El mercado autorizado en 1166 atrajo a comerciantes; los oficios del metal dieron a la ciudad una clientela mucho más amplia.' : 'Before the workshops and canals there was a Saxon settlement by the River Rea. A market charter in 1166 drew traders, and metalworkers went on to find customers far beyond the town.'} <ExternalLink href="https://www.birmingham.gov.uk/info/50050/culture_arts_and_heritage/1258/">Birmingham City Council</ExternalLink></p>
     <p>{es ? 'El ayuntamiento describe Birmingham como la segunda ciudad del Reino Unido, después de Londres, y por tanto también de Inglaterra. La cifra de habitantes corresponde al municipio. El área de la autoridad metropolitana incluye además Coventry, Dudley, Sandwell, Solihull, Walsall y Wolverhampton.' : 'The council describes Birmingham as the second city by size in the UK, after London, placing it second in England too. The population figure below is for the city itself. The combined authority also covers Coventry, Dudley, Sandwell, Solihull, Walsall and Wolverhampton.'} <ExternalLink href="https://www.birmingham.gov.uk/download/downloads/id/25056/birmingham_local_plan_issues_and_options.pdf">Birmingham City Council</ExternalLink></p>

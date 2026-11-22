@@ -15,3 +15,6 @@ createRoot(root).render(
     </PreferencesProvider>
   </StrictMode>,
 );
+
+// Señal de «primer pintado listo» que espera la verificación visual (scrollcraft shoot.mjs).
+requestAnimationFrame(() => requestAnimationFrame(() => document.documentElement.classList.add('sc-ready')));

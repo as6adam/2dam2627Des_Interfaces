@@ -133,6 +133,32 @@ export interface Place {
   /** Discrepancias detectadas entre fuentes, visibles en la ficha. */
   caveats?: LocalizedText[];
   photoIds: PhotoId[];
+  /** «Lo imprescindible»: cosas concretas que ver o hacer, citadas. */
+  highlights?: CitedText[];
+  /** Datos prácticos publicados por el lugar (horario, precio, reserva…). */
+  practical?: PracticalFact[];
+  /** Consejos del visitante tomados de la web oficial o de guías reputadas. */
+  tips?: CitedText[];
+  /** Ubicación para el mapa y «Cerca de aquí», con su procedencia. */
+  location?: GeoPoint & { via: 'postcodes.io' | 'openstreetmap' };
+}
+
+/** Coordenadas WGS84 (grados decimales). */
+export interface GeoPoint {
+  lat: number;
+  lng: number;
+}
+
+/** Texto bilingüe con las fuentes que lo respaldan. */
+export interface CitedText {
+  text: LocalizedText;
+  sourceIds: string[];
+}
+
+export type PracticalKind = 'status' | 'hours' | 'price' | 'booking' | 'duration' | 'contact';
+
+export interface PracticalFact extends CitedText {
+  kind: PracticalKind;
 }
 
 export interface FeaturedBlock {

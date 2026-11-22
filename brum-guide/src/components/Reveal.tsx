@@ -38,6 +38,7 @@ interface RevealProps {
   'aria-label'?: string;
   role?: string;
   'data-accent'?: string;
+  'data-sc-act'?: string;
 }
 
 export function Reveal({ as = 'div', children, group = false, ...rest }: RevealProps) {

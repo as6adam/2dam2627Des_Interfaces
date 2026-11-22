@@ -90,7 +90,7 @@ export function GuideLayout() {
   const sharedFlight = hasPendingShared();
 
   return (
-    <AppShell area="guide">
+    <AppShell area="guide" section={/^\/(plan|useful-numbers)/.test(location.pathname) ? 'plan' : 'guide'}>
       <ScrollRestoration getKey={historyKey} />
       <motion.div
         key={location.pathname}

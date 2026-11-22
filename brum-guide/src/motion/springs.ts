@@ -70,4 +70,35 @@ export const motionTokens = {
     /** Paralaje de la foto de cabecera mientras la cabecera sale de vista (px). */
     parallaxPx: 48,
   },
+  /** Fase 6 · movimiento firma: la esclusa. Progreso 0→1 del escenario fijo. */
+  lock: {
+    /** Recorrido del escenario (× alto de ventana): es el mayor de la portada. */
+    runwayVhWide: 320,
+    runwayVhNarrow: 220,
+    /** Tramo en que sube el agua. */
+    fillFrom: 0.08,
+    fillTo: 0.62,
+    /** El barco flota un poco por encima de la lámina (% del alto de la cámara). */
+    boatSinkPct: 9,
+    /** Tramo en que se abren las compuertas. */
+    gatesFrom: 0.62,
+    gatesTo: 0.84,
+    /** La foto nocturna se acerca de esta escala a 1 al abrirse la esclusa. */
+    nightScaleFrom: 1.14,
+  },
+  /** Fase 6 · sectores en paso lateral (escritorio). */
+  pan: {
+    /** Margen final para que la última tarjeta respire (px). */
+    tailPx: 48,
+    /** Scroll vertical por cada px de avance lateral: la fila va más deprisa que la página. */
+    scrollPerPx: 0.55,
+  },
+  /** Fase 6 · barrido de Villa Park: recorte inicial por la derecha (%). */
+  wipe: {
+    fromPct: 62,
+  },
+  /** Fase 6 · apertura en móvil: la capa frontal sube estos px al salir. */
+  openingMobile: {
+    insetRisePx: 40,
+  },
 } as const;

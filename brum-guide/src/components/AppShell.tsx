@@ -10,7 +10,7 @@ import { TopNav, type AppArea } from './TopNav';
  * estado sin conexión, contenido principal, pie con la versión y avisos de la PWA.
  * `reducedMotion="user"` hace que Motion respete la preferencia del sistema.
  */
-export function AppShell({ area, children }: { area: AppArea; children: ReactNode }) {
+export function AppShell({ area, section, children }: { area: AppArea; section?: 'guide' | 'plan'; children: ReactNode }) {
   const { t } = usePreferences();
   return (
     <MotionConfig reducedMotion="user">
@@ -25,14 +25,18 @@ export function AppShell({ area, children }: { area: AppArea; children: ReactNod
       >
         {t.shell.skipToContent}
       </a>
-      <TopNav area={area} />
+      <TopNav area={area} section={section} />
       <OfflineBanner />
       <main id="main" className="shell-main" tabIndex={-1}>
         {children}
       </main>
       <footer className="shell-footer" data-app-version={__APP_VERSION__}>
         <p>{t.shell.footerNote}</p>
-        <a className="text-link" href="./#/useful-numbers">{t.shell.numbers}</a>
+        <nav className="shell-footer__links" aria-label={t.shell.footerPlan}>
+          <a className="text-link" href="./#/plan">{t.shell.footerPlan}</a>
+          <a className="text-link" href="./#/plan/map">{t.shell.footerMap}</a>
+          <a className="text-link" href="./#/useful-numbers">{t.shell.numbers}</a>
+        </nav>
       </footer>
       <PwaUpdater />
     </MotionConfig>
