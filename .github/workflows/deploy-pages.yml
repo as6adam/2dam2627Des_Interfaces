@@ -1,0 +1,109 @@
+# Sitio de GitHub Pages de 2dam2627Des_Interfaces: Tempora en la raíz y Brum en /brum-guide/.
+#
+# Este mismo archivo vive en las ramas Pomodoro_Tempora y T5_Guía_de_viajes_de_mi_pueblo,
+# para que un push a cualquiera de las dos construya SIEMPRE ambas aplicaciones y ninguna
+# borre a la otra al publicar.
+#
+# El entorno github-pages solo admite despliegues desde Pomodoro_Tempora y main:
+# - push a T5_Guía_de_viajes_de_mi_pueblo → construye y verifica ambas apps (sin publicar);
+# - push a Pomodoro_Tempora, o «Run workflow» sobre esa rama → construye y publica ambas,
+#   usando la última versión de T5.
+name: Tempora y Brum en Pages
+
+on:
+  push:
+    branches:
+      - Pomodoro_Tempora
+      - T5_Guía_de_viajes_de_mi_pueblo
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: Pomodoro_Tempora
+          path: tempora
+      - uses: actions/checkout@v6
+        with:
+          ref: T5_Guía_de_viajes_de_mi_pueblo
+          path: guide-source
+
+      # ---------- Tempora (igual que su workflow original) ----------
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: tempora/.nvmrc
+          cache: npm
+          cache-dependency-path: tempora/package-lock.json
+      - name: Verificar y construir Tempora
+        working-directory: tempora
+        run: |
+          npm ci
+          npm test
+          npm run build
+          npm run verify:dist
+          npx playwright install --with-deps chromium
+          node scripts/verify-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: Tempora-browser-checks
+          path: tempora/test-results/
+          if-no-files-found: ignore
+
+      # ---------- Brum (requiere Node >= 22.22) ----------
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22.22'
+          cache: npm
+          cache-dependency-path: guide-source/brum-guide/package-lock.json
+      - name: Verificar y construir Brum
+        working-directory: guide-source/brum-guide
+        run: |
+          npm ci
+          npm run typecheck
+          npm run build:pages
+          npm run test:e2e
+          npm run test:motion
+          npm run test:journal
+          npm run test:pwa
+          APP_VERSION="$(git rev-parse --short HEAD)" BASE_PATH=/2dam2627Des_Interfaces/brum-guide/ npm run build
+
+      # ---------- Sitio conjunto ----------
+      - name: Reunir ambas aplicaciones
+        run: |
+          mkdir site
+          cp -a tempora/dist/. site/
+          test ! -e site/brum-guide
+          cp -a guide-source/brum-guide/dist site/brum-guide
+          test -s site/index.html
+          test -s site/app/index.html
+          test -s site/brum-guide/index.html
+          test -s site/brum-guide/diario.html
+          test -s site/brum-guide/sw.js
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: site
+
+  deploy:
+    # Solo las ramas permitidas por el entorno github-pages.
+    if: github.ref_name == 'Pomodoro_Tempora' || github.ref_name == 'main'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

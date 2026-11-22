@@ -1,0 +1,22 @@
+Ejecuta la fase 3. Activa y usa mi skill `apple-design` y las Human Interface
+Guidelines de Apple. Aplica sus criterios a tarjetas, gestos táctiles,
+jerarquía tipográfica, foco y transiciones con física de muelles. Revisa
+docs/motion-reference.md y vuelve a comprobar en la página oficial de HONOR
+cualquier comportamiento cuya observación aún sea incierta.
+
+Implementa con Motion for React tres interacciones propias: apertura
+fotográfica con profundidad ligada al scroll, revelado progresivo de
+secciones editoriales y transición entre tarjeta y ficha. Reproduce el
+principio de las mecánicas observadas, ajustando amplitud, ritmo, duración
+y composición al contenido de Birmingham. Mantén el scroll nativo. Usa
+sticky de forma localizada, anima principalmente transform y opacity y evita
+actualizar el estado de React en cada frame. En pantallas táctiles ofrece
+respuesta de pulsación y acceso completo sin hover. Los gestos auxiliares
+deben tener un equivalente por teclado o control visible.
+
+Aplica prefers-reduced-motion, elimina en ese modo el paralaje y los
+desplazamientos amplios, y conserva el acceso directo y el foco correcto en
+cada vista. Centraliza los parámetros de muelle. Instala por terminal solo
+las dependencias que falten. Revisa el comportamiento real a 390 y 1440 px,
+prueba teclado, tacto emulado y movimiento reducido, y registra qué
+mecánicas se verificaron y en qué entorno.

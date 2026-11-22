@@ -1,50 +1,22 @@
 {
-  "name": "brum-guide",
+  "name": "brum-academic-repository",
   "private": true,
-  "version": "0.1.0",
-  "type": "module",
-  "description": "Guía turística bilingüe de Birmingham (es/en) y diario de desarrollo.",
-  "engines": {
-    "node": ">=22.22.0"
-  },
   "scripts": {
-    "dev": "vite",
-    "typecheck": "tsc -b --noEmit && node scripts/check-catalog.ts",
-    "build": "tsc -b && vite build",
-    "build:pages": "tsc -b && vite build --base=/brum-guide/",
-    "preview": "vite preview",
-    "preview:pages": "vite preview --base=/brum-guide/",
-    "inventory:photos": "node scripts/inventory-photos.mjs",
-    "test:e2e": "node tests/smoke.mjs",
-    "test:motion": "node tests/motion.mjs",
-    "test:pwa": "node tests/pwa.mjs",
-    "images": "node scripts/build-images.mjs",
-    "check:catalog": "node scripts/check-catalog.ts",
-    "report:photos": "node scripts/photo-rights-report.mjs",
-    "icons": "node scripts/render-icons.mjs"
-  },
-  "dependencies": {
-    "motion": "^14.14.0",
-    "react": "^19.3.1",
-    "react-dom": "^19.3.1",
-    "react-router": "^8.5.2"
-  },
-  "devDependencies": {
-    "@types/node": "^26.6.6",
-    "@types/react": "^19.3.0",
-    "@types/react-dom": "^19.3.0",
-    "@vitejs/plugin-react": "^6.3.0",
-    "playwright-core": "^1.65.1",
-    "sharp": "^0.35.5",
-    "typescript": "^7.0.2",
-    "vite": "^8.3.8",
-    "vite-plugin-pwa": "^2.0.0",
-    "workbox-cacheable-response": "^7.4.1",
-    "workbox-core": "^7.4.1",
-    "workbox-expiration": "^7.4.1",
-    "workbox-precaching": "^7.4.1",
-    "workbox-routing": "^7.4.1",
-    "workbox-strategies": "^7.4.1",
-    "workbox-window": "^7.4.1"
+    "dev": "npm --prefix brum-guide run dev --",
+    "typecheck": "npm --prefix brum-guide run typecheck --",
+    "build": "npm --prefix brum-guide run build --",
+    "build:pages": "npm --prefix brum-guide run build:pages --",
+    "preview": "npm --prefix brum-guide run preview --",
+    "preview:pages": "npm --prefix brum-guide run preview:pages --",
+    "inventory:photos": "npm --prefix brum-guide run inventory:photos --",
+    "test:e2e": "npm --prefix brum-guide run test:e2e --",
+    "test:motion": "npm --prefix brum-guide run test:motion --",
+    "test:pwa": "npm --prefix brum-guide run test:pwa --",
+    "test:journal": "npm --prefix brum-guide run test:journal --",
+    "images": "npm --prefix brum-guide run images --",
+    "check:catalog": "npm --prefix brum-guide run check:catalog --",
+    "report:photos": "npm --prefix brum-guide run report:photos --",
+    "icons": "npm --prefix brum-guide run icons --",
+    "import:conversations": "npm --prefix brum-guide run import:conversations --"
   }
 }
